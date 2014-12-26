@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="25" height="25" tilewidth="16" tileheight="16">
+ <tileset firstgid="1" name="map" tilewidth="16" tileheight="16">
+  <image source="map.png" width="48" height="32"/>
+ </tileset>
+ <tileset firstgid="7" name="meta" tilewidth="16" tileheight="16">
+  <image source="meta.png" width="48" height="16"/>
+ </tileset>
+ <layer name="background" width="25" height="25">
+  <data encoding="base64" compression="zlib">
+   eJztwwEJAAAMBKH7/qWXY6Dgqqmq+uoB+w0Ccg==
+  </data>
+ </layer>
+ <layer name="object" width="25" height="25">
+  <data encoding="base64" compression="zlib">
+   eJzFlosKwCAIRaO1/f8nr0ExEcvrAzoQ0dRmdV0r5af21opOHU1Ci1/FeeB5XMr7JDuyXsoTtCNU1kfmiILuz86P2zI14OEePZqH5mfVUBa7GtQ0RGvBeh7oejNq4YPmatlryZc/m+NIrll69s6DxK32zavd0zVM4d/1mVtjYxTJ36IP6Z7JZuYTOYfsPFf7dkJjPLZtbN5/mUwid9ELQKwA0Q==
+  </data>
+ </layer>
+ <objectgroup name="Objects" width="25" height="25">
+  <object name="player" type="イベント" x="193" y="193" width="16" height="16"/>
+ </objectgroup>
+ <layer name="meta" width="25" height="25" visible="0">
+  <data encoding="base64" compression="zlib">
+   eJzNVUEOACAI8tj/X9yxrZVGUsitaYBOy2yg2RkakLu6y8LsY8UdxW80M3FEI8PF7DMbam9of9V+d/B8RTWy9yLSqMDzSkNdp2I+K+3E7CU6o3wox895rTC3Hp/K38nbyNBhIfMXdZkNAXk=
+  </data>
+ </layer>
+</map>
