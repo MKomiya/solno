@@ -1,5 +1,6 @@
 #include "HelloWorldScene.h"
 #include "FieldLayer.h"
+#include "ControllerLayer.h"
 
 USING_NS_CC;
 
@@ -13,9 +14,12 @@ Scene* HelloWorld::createScene()
 
     auto map = FieldLayer::create();
     
+    auto frame = ControllerLayer::create();
+    
     // add layer as a child to scene
     scene->addChild(layer);
     scene->addChild(map);
+    scene->addChild(frame);
 
     // return the scene
     return scene;
