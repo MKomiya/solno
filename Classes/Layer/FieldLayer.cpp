@@ -27,20 +27,17 @@ bool FieldLayer::init()
     
     // player character view
     {
-        auto texture = Director::getInstance()->getTextureCache()->addImage("chara/hiroine_1616.png");
-        texture->setAliasTexParameters();
-        
+        Director::getInstance()->getTextureCache()->addImage("chara/hiroine_3232.png");
         auto frame_cache = SpriteFrameCache::getInstance();
-        frame_cache->addSpriteFramesWithFile("chara/hiroine.plist", "chara/hiroine_1616.png");
+        frame_cache->addSpriteFramesWithFile("chara/hiroine.plist", "chara/hiroine_3232.png");
 
         auto sprite = Sprite::create();
         auto cache  = AnimationCache::getInstance();
         cache->addAnimationsWithFile("chara/animations.plist");
-        auto animation = cache->getAnimation("down_anime");
+        auto animation = cache->getAnimation("left_anime");
         
         player_idling_animate = Animate::create(animation);
         sprite->runAction(player_idling_animate);
-        sprite->setScale(2.0f);
         sprite->setPosition(Point(s.width / 2.0f, s.height / 2.0f));
         addChild(sprite);
     }

@@ -173,7 +173,7 @@
 	<dict>
 		<key>spritesheets</key>
 		<array>
-			<string>charachip/hiroine_1616.plist</string>
+			<string>hiroine.plist</string>
 		</array>
 		<key>format</key>
 		<integer>2</integer>
