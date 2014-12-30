@@ -27,8 +27,14 @@ bool ControllerLayer::init()
     
     auto button = MenuArrowItem::create("up");
     button->setPosition(Point(200, 200));
+    auto button2 = MenuArrowItem::create("left");
+    button2->setPosition(Point(160, 180));
+    auto button3 = MenuArrowItem::create("down");
+    button3->setPosition(Point(200, 160));
+    auto button4 = MenuArrowItem::create("right");
+    button4->setPosition(Point(240, 180));
     
-    auto menu = Menu::create(button, NULL);
+    auto menu = Menu::create(button, button2, button3, button4, NULL);
     menu->setPosition(Point::ZERO);
     addChild(menu);
     
