@@ -8,6 +8,9 @@
 
 #include "FieldLayer.h"
 
+#include "StateMachineModule.h"
+#include "FieldState.h"
+
 USING_NS_CC;
 
 bool FieldLayer::init()
@@ -42,12 +45,28 @@ bool FieldLayer::init()
         addChild(sprite);
     }
     
+    // Initialize state
+    {
+        auto state = new FieldState(this);
+        auto state_machine = StateMachineModule::getInstance();
+        state_machine->registerState("field", state);
+        state_machine->setNowState("field");
+        
+        scheduleUpdate();
+    }
+    
     return true;
 }
 
-void FieldLayer::_changePlayerAnimation(std::string direction)
+void FieldLayer::changePlayerAnimation(std::string direction)
 {
     auto anime_name = direction + "_anime";
     auto animation  = AnimationCache::getInstance()->getAnimation(anime_name.c_str());
     player_idling_animate->setAnimation(animation);
+}
+
+void FieldLayer::update(float dt)
+{
+    CCLOG("FieldLayer: update");
+    StateMachineModule::getInstance()->update();
 }

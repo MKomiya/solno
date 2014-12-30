@@ -7,6 +7,7 @@
 //
 
 #include "ControllerLayer.h"
+#include "MenuArrowItem.h"
 
 USING_NS_CC;
 
@@ -23,6 +24,13 @@ bool ControllerLayer::init()
     frame->setAnchorPoint(Point::ZERO);
     frame->setScale(2.0f);
     addChild(frame);
+    
+    auto button = MenuArrowItem::create("up");
+    button->setPosition(Point(200, 200));
+    
+    auto menu = Menu::create(button, NULL);
+    menu->setPosition(Point::ZERO);
+    addChild(menu);
     
     return true;
 }

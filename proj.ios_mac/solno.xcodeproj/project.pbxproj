@@ -67,6 +67,10 @@
 		D083A2A71A4DAB59009A9099 /* FieldLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D083A2A51A4DAB59009A9099 /* FieldLayer.cpp */; };
 		D083A2A91A4DAE08009A9099 /* tmx in Resources */ = {isa = PBXBuildFile; fileRef = D083A2A81A4DAE08009A9099 /* tmx */; };
 		D083A2AC1A4DB1EF009A9099 /* chara in Resources */ = {isa = PBXBuildFile; fileRef = D083A2AB1A4DB1EF009A9099 /* chara */; };
+		D0EBE6171A526F7200E36888 /* MenuArrowItem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D0EBE6151A526F7200E36888 /* MenuArrowItem.cpp */; };
+		D0EBE61A1A52709B00E36888 /* InputModule.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D0EBE6181A52709B00E36888 /* InputModule.cpp */; };
+		D0EBE61E1A5275B900E36888 /* FieldState.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D0EBE61C1A5275B900E36888 /* FieldState.cpp */; };
+		D0EBE6211A52771D00E36888 /* StateMachineModule.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D0EBE61F1A52771D00E36888 /* StateMachineModule.cpp */; };
 		D44C620C132DFF330009C878 /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D44C620B132DFF330009C878 /* OpenAL.framework */; };
 		D44C620E132DFF430009C878 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D44C620D132DFF430009C878 /* AVFoundation.framework */; };
 		D44C6210132DFF4E0009C878 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D44C620F132DFF4E0009C878 /* AudioToolbox.framework */; };
@@ -164,6 +168,15 @@
 		D083A2A61A4DAB59009A9099 /* FieldLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FieldLayer.h; path = Layer/FieldLayer.h; sourceTree = "<group>"; };
 		D083A2A81A4DAE08009A9099 /* tmx */ = {isa = PBXFileReference; lastKnownFileType = folder; path = tmx; sourceTree = "<group>"; };
 		D083A2AB1A4DB1EF009A9099 /* chara */ = {isa = PBXFileReference; lastKnownFileType = folder; path = chara; sourceTree = "<group>"; };
+		D0EBE6151A526F7200E36888 /* MenuArrowItem.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = MenuArrowItem.cpp; path = Layer/Widget/MenuArrowItem.cpp; sourceTree = "<group>"; };
+		D0EBE6161A526F7200E36888 /* MenuArrowItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MenuArrowItem.h; path = Layer/Widget/MenuArrowItem.h; sourceTree = "<group>"; };
+		D0EBE6181A52709B00E36888 /* InputModule.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = InputModule.cpp; path = Module/InputModule.cpp; sourceTree = "<group>"; };
+		D0EBE6191A52709B00E36888 /* InputModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = InputModule.h; path = Module/InputModule.h; sourceTree = "<group>"; };
+		D0EBE61C1A5275B900E36888 /* FieldState.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = FieldState.cpp; path = State/FieldState.cpp; sourceTree = "<group>"; };
+		D0EBE61D1A5275B900E36888 /* FieldState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FieldState.h; path = State/FieldState.h; sourceTree = "<group>"; };
+		D0EBE61F1A52771D00E36888 /* StateMachineModule.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = StateMachineModule.cpp; path = Module/StateMachineModule.cpp; sourceTree = "<group>"; };
+		D0EBE6201A52771D00E36888 /* StateMachineModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StateMachineModule.h; path = Module/StateMachineModule.h; sourceTree = "<group>"; };
+		D0EBE6221A527C1400E36888 /* IState.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = IState.h; path = State/IState.h; sourceTree = "<group>"; };
 		D44C620B132DFF330009C878 /* OpenAL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenAL.framework; path = System/Library/Frameworks/OpenAL.framework; sourceTree = SDKROOT; };
 		D44C620D132DFF430009C878 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		D44C620F132DFF4E0009C878 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
@@ -298,6 +311,8 @@
 		46880B8319C43A87006E1F66 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				D0EBE61B1A52759B00E36888 /* State */,
+				D0EBE6141A526F0F00E36888 /* Module */,
 				D083A2AA1A4DAF46009A9099 /* Layer */,
 				46880B8419C43A87006E1F66 /* AppDelegate.cpp */,
 				46880B8519C43A87006E1F66 /* AppDelegate.h */,
@@ -358,12 +373,43 @@
 		D083A2AA1A4DAF46009A9099 /* Layer */ = {
 			isa = PBXGroup;
 			children = (
+				D0EBE6131A52606800E36888 /* Widget */,
 				D083A2A51A4DAB59009A9099 /* FieldLayer.cpp */,
 				D083A2A61A4DAB59009A9099 /* FieldLayer.h */,
 				D048D9BA1A4E623500EE9339 /* ControllerLayer.cpp */,
 				D048D9BB1A4E623500EE9339 /* ControllerLayer.h */,
 			);
 			name = Layer;
+			sourceTree = "<group>";
+		};
+		D0EBE6131A52606800E36888 /* Widget */ = {
+			isa = PBXGroup;
+			children = (
+				D0EBE6151A526F7200E36888 /* MenuArrowItem.cpp */,
+				D0EBE6161A526F7200E36888 /* MenuArrowItem.h */,
+			);
+			name = Widget;
+			sourceTree = "<group>";
+		};
+		D0EBE6141A526F0F00E36888 /* Module */ = {
+			isa = PBXGroup;
+			children = (
+				D0EBE6181A52709B00E36888 /* InputModule.cpp */,
+				D0EBE6191A52709B00E36888 /* InputModule.h */,
+				D0EBE61F1A52771D00E36888 /* StateMachineModule.cpp */,
+				D0EBE6201A52771D00E36888 /* StateMachineModule.h */,
+			);
+			name = Module;
+			sourceTree = "<group>";
+		};
+		D0EBE61B1A52759B00E36888 /* State */ = {
+			isa = PBXGroup;
+			children = (
+				D0EBE61C1A5275B900E36888 /* FieldState.cpp */,
+				D0EBE61D1A5275B900E36888 /* FieldState.h */,
+				D0EBE6221A527C1400E36888 /* IState.h */,
+			);
+			name = State;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -515,13 +561,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D0EBE61E1A5275B900E36888 /* FieldState.cpp in Sources */,
 				46880B8819C43A87006E1F66 /* AppDelegate.cpp in Sources */,
+				D0EBE6171A526F7200E36888 /* MenuArrowItem.cpp in Sources */,
 				D048D9BC1A4E623500EE9339 /* ControllerLayer.cpp in Sources */,
 				46880B8A19C43A87006E1F66 /* HelloWorldScene.cpp in Sources */,
 				D083A2A71A4DAB59009A9099 /* FieldLayer.cpp in Sources */,
 				503AE10017EB989F00D1A890 /* AppController.mm in Sources */,
+				D0EBE6211A52771D00E36888 /* StateMachineModule.cpp in Sources */,
 				503AE10217EB989F00D1A890 /* RootViewController.mm in Sources */,
 				503AE10117EB989F00D1A890 /* main.m in Sources */,
+				D0EBE61A1A52709B00E36888 /* InputModule.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

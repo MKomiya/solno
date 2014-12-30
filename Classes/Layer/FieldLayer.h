@@ -17,10 +17,10 @@ class FieldLayer : public cocos2d::Layer
 public:
     virtual bool init();
     CREATE_FUNC(FieldLayer);
+    void changePlayerAnimation(std::string direction);
+    virtual void update(float dt);
     
 private:
-    void _changePlayerAnimation(std::string direction);
-    
     cocos2d::Animate* player_idling_animate;
 };
 
