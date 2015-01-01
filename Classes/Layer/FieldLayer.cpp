@@ -22,30 +22,28 @@ bool FieldLayer::init()
     auto s = Director::getInstance()->getWinSize();
     
     // map view
-    TMXLayer* collider;
-    {
-        auto map = TMXTiledMap::create("tmx/largemap.tmx");
-        map->setScale(2.0f);
-        addChild(map);
-        collider = map->getLayer("meta");
-    }
+    auto map = TMXTiledMap::create("tmx/largemap.tmx");
+    map->setAnchorPoint(Point(0, 1));
+    map->setPosition(Point(16, s.height - 16));
+    map->setScale(2.0f);
+    addChild(map);
+    auto collider = map->getLayer("meta");
     
     // player character view
-    {
-        Director::getInstance()->getTextureCache()->addImage("chara/hiroine_3232.png");
-        auto frame_cache = SpriteFrameCache::getInstance();
-        frame_cache->addSpriteFramesWithFile("chara/hiroine.plist", "chara/hiroine_3232.png");
+    Director::getInstance()->getTextureCache()->addImage("chara/hiroine_3232.png");
+    auto frame_cache = SpriteFrameCache::getInstance();
+    frame_cache->addSpriteFramesWithFile("chara/hiroine.plist", "chara/hiroine_3232.png");
 
-        player_sprite = Sprite::create();
-        auto cache  = AnimationCache::getInstance();
-        cache->addAnimationsWithFile("chara/animations.plist");
-        auto animation = cache->getAnimation("left_anime");
-        
-        player_idling_animate = Animate::create(animation);
-        player_sprite->runAction(player_idling_animate);
-        player_sprite->setPosition(Point(s.width / 2.0f, s.height / 2.0f));
-        addChild(player_sprite);
-    }
+    player_sprite = Sprite::create();
+    auto cache  = AnimationCache::getInstance();
+    cache->addAnimationsWithFile("chara/animations.plist");
+    auto animation = cache->getAnimation("left_anime");
+    
+    player_idling_animate = Animate::create(animation);
+    player_sprite->runAction(player_idling_animate);
+    player_sprite->setAnchorPoint(Point(0, 1));
+    player_sprite->setPosition(Point(16, s.height - 16));
+    addChild(player_sprite);
     
     // Initialize state
     {

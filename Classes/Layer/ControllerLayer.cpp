@@ -17,12 +17,12 @@ bool ControllerLayer::init()
         return false;
     }
     
+    auto visible_size    = Director::getInstance()->getVisibleSize();
     auto texture = Director::getInstance()->getTextureCache()->addImage("ui/ui_common_frame.png");
     texture->setAliasTexParameters();
     
     auto frame = Sprite::createWithTexture(texture);
-    frame->setAnchorPoint(Point::ZERO);
-    frame->setScale(2.0f);
+    frame->setPosition(Point(visible_size.width / 2.0f, visible_size.height / 2.0f));
     addChild(frame);
     
     auto button = MenuArrowItem::create("up");

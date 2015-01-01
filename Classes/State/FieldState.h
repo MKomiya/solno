@@ -19,13 +19,14 @@
 
 enum MapColliderType {
     NO_COLLISION = 0,
-    COLLIDABLE   = 1,
+    COLLIDABLE   = 14,
 };
 
 class FieldLayer;
 class FieldState : public IState {
 public:
     FieldState(FieldLayer* view, cocos2d::TMXLayer* collider);
+    virtual ~FieldState();
     virtual void update();
     
 private:
@@ -34,6 +35,7 @@ private:
     
     FieldLayer* _view;
     cocos2d::Point _player_map_pos;
+    std::string _player_direction;
     cocos2d::TMXLayer* _map_collider;
 };
 
