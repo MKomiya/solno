@@ -22,10 +22,12 @@ bool FieldLayer::init()
     auto s = Director::getInstance()->getWinSize();
     
     // map view
+    TMXLayer* collider;
     {
         auto map = TMXTiledMap::create("tmx/largemap.tmx");
         map->setScale(2.0f);
         addChild(map);
+        collider = map->getLayer("meta");
     }
     
     // player character view
@@ -47,7 +49,7 @@ bool FieldLayer::init()
     
     // Initialize state
     {
-        auto state = new FieldState(this);
+        auto state = new FieldState(this, collider);
         auto state_machine = StateMachineModule::getInstance();
         state_machine->registerState("field", state);
         state_machine->setNowState("field");
