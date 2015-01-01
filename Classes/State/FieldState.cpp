@@ -24,28 +24,45 @@ void FieldState::update()
     CCLOG("FieldState: update");
     
     auto command = InputModule::getInstance()->getInputCommand();
-    _movePlayerCharacter(command);
+    if (command != InputCommand::NOTHING) {
+        _movePlayerCharacter(command);
+    }
 }
 
 void FieldState::_movePlayerCharacter(InputCommand move_command)
 {
     std::string direction_str;
     
+    auto move_vec = Point(0, 0);
+    auto next_pos = _player_map_pos;
     if (move_command == InputCommand::MOVE_UP) {
         direction_str = "up";
-        _player_map_pos.y -= 1;
+        move_vec.y = -16;
+        next_pos.y -= 1;
     } else if (move_command == InputCommand::MOVE_LEFT) {
         direction_str = "left";
-        _player_map_pos.x -= 1;
+        move_vec.x = -1;
+        next_pos.x -= 1;
     } else if (move_command == InputCommand::MOVE_DOWN) {
         direction_str = "down";
-        _player_map_pos.y += 1;
+        move_vec.y = 1;
+        next_pos.y += 1;
     } else if (move_command == InputCommand::MOVE_RIGHT) {
         direction_str = "right";
-        _player_map_pos.x += 1;
+        move_vec.x = 1;
+        next_pos.x += 1;
     }
     
-    _view->changePlayerAnimation(direction_str);
+    // check collidable
+    if (this->_isCollidable(next_pos.x, next_pos.y)) {
+        return ;
+    }
+    
+    // run move action
+    if (_view->runMoveAction(move_vec)) {
+        _player_map_pos = next_pos; // move successful
+        _view->changePlayerAnimation(direction_str);
+    }
 }
 
 bool FieldState::_isCollidable(int map_x, int map_y)

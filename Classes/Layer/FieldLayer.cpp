@@ -36,15 +36,15 @@ bool FieldLayer::init()
         auto frame_cache = SpriteFrameCache::getInstance();
         frame_cache->addSpriteFramesWithFile("chara/hiroine.plist", "chara/hiroine_3232.png");
 
-        auto sprite = Sprite::create();
+        player_sprite = Sprite::create();
         auto cache  = AnimationCache::getInstance();
         cache->addAnimationsWithFile("chara/animations.plist");
         auto animation = cache->getAnimation("left_anime");
         
         player_idling_animate = Animate::create(animation);
-        sprite->runAction(player_idling_animate);
-        sprite->setPosition(Point(s.width / 2.0f, s.height / 2.0f));
-        addChild(sprite);
+        player_sprite->runAction(player_idling_animate);
+        player_sprite->setPosition(Point(s.width / 2.0f, s.height / 2.0f));
+        addChild(player_sprite);
     }
     
     // Initialize state
@@ -65,6 +65,19 @@ void FieldLayer::changePlayerAnimation(std::string direction)
     auto anime_name = direction + "_anime";
     auto animation  = AnimationCache::getInstance()->getAnimation(anime_name.c_str());
     player_idling_animate->setAnimation(animation);
+}
+
+bool FieldLayer::runMoveAction(cocos2d::Point move_vec)
+{
+    auto running_action = player_sprite->getActionByTag(PlayerActionTags::MOVE_SEQUENCE);
+    if (running_action != NULL && !running_action->isDone()) {
+        return false;
+    }
+    
+    auto move_action = MoveBy::create(0.3f, move_vec);
+    move_action->setTag(PlayerActionTags::MOVE_SEQUENCE);
+    player_sprite->runAction(move_action);
+    return true;
 }
 
 void FieldLayer::update(float dt)
