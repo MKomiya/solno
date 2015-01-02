@@ -38,6 +38,7 @@ out/
 .cproject
 cocos2d/build/build/
 proj.ios_mac/build/
+!.cocos-project.json
 
 # backup files
 *.bak
