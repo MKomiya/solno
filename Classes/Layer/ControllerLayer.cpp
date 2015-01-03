@@ -26,13 +26,13 @@ bool ControllerLayer::init()
     addChild(frame);
     
     auto button = MenuArrowItem::create("up");
-    button->setPosition(Point(250, 100));
+    button->setPosition(Point(240, 100));
     auto button2 = MenuArrowItem::create("left");
-    button2->setPosition(Point(210, 80));
+    button2->setPosition(Point(200, 80));
     auto button3 = MenuArrowItem::create("down");
-    button3->setPosition(Point(250, 60));
+    button3->setPosition(Point(240, 60));
     auto button4 = MenuArrowItem::create("right");
-    button4->setPosition(Point(290, 80));
+    button4->setPosition(Point(280, 80));
     
     auto menu = Menu::create(button, button2, button3, button4, NULL);
     menu->setPosition(Point::ZERO);
