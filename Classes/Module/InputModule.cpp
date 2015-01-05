@@ -10,32 +10,18 @@
 
 InputModule* InputModule::_instance;
 
-void InputModule::setInputCommand(InputCommand command)
+void InputModule::pushEvent(InputEvent e)
 {
-    CCLOG("InputModule: setInputCommand");
-    now_command = command;
+    _event_stack.push(e);
 }
 
-InputCommand InputModule::getInputCommand()
+InputEvent InputModule::popEvent()
 {
-    CCLOG("InputModule: getInputCommand");
-    return now_command;
-}
-
-void InputModule::setInputCommandByString(std::string command_str)
-{
-    InputCommand command;
-    if (command_str == "up") {
-        command = InputCommand::MOVE_UP;
-    } else if (command_str == "left") {
-        command = InputCommand::MOVE_LEFT;
-    } else if (command_str == "right") {
-        command = InputCommand::MOVE_RIGHT;
-    } else if (command_str == "down") {
-        command = InputCommand::MOVE_DOWN;
-    } else {
-        throw "Invalid command string";
+    if (_event_stack.empty()) {
+        return (InputEvent)0;
     }
     
-    setInputCommand(command);
+    auto ret = _event_stack.top();
+    _event_stack.pop();
+    return ret;
 }

@@ -25,18 +25,17 @@ enum MapColliderType {
 class FieldLayer;
 class FieldState : public IState {
 public:
-    FieldState(FieldLayer* view, cocos2d::TMXLayer* collider);
+    FieldState();
     virtual ~FieldState();
     virtual void update();
     
 private:
-    void _movePlayerCharacter(InputCommand move_command);
-    bool _isCollidable(int map_x, int map_y);
+    void movePlayerCharacter(InputEvent event);
+    bool isCollidable(int map_x, int map_y);
     
-    FieldLayer* _view;
-    cocos2d::Point _player_map_pos;
-    std::string _player_direction;
-    cocos2d::TMXLayer* _map_collider;
+    cocos2d::Point player_map_pos;
+    std::string player_direction;
+    FieldLayer* view;
 };
 
 #endif /* defined(__solno__FieldState__) */

@@ -11,6 +11,7 @@
 
 class IState {
 public:
+    virtual ~IState(){}
     virtual void update() = 0;
 };
 
