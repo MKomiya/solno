@@ -22,7 +22,8 @@ public:
         }
         return _instance;
     }
-    
+
+    void releaseStates();
     void registerState(std::string key, IState* state);
     void setNowState(std::string key);
     void update();

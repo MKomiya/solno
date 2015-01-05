@@ -67,6 +67,8 @@
 		D083A2A71A4DAB59009A9099 /* FieldLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D083A2A51A4DAB59009A9099 /* FieldLayer.cpp */; };
 		D083A2A91A4DAE08009A9099 /* tmx in Resources */ = {isa = PBXBuildFile; fileRef = D083A2A81A4DAE08009A9099 /* tmx */; };
 		D083A2AC1A4DB1EF009A9099 /* chara in Resources */ = {isa = PBXBuildFile; fileRef = D083A2AB1A4DB1EF009A9099 /* chara */; };
+		D0CDF0A71A5AB331009E5E98 /* PlayerView.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D0CDF0A51A5AB331009E5E98 /* PlayerView.cpp */; };
+		D0CDF0AA1A5ABB27009E5E98 /* LayerManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D0CDF0A81A5ABB27009E5E98 /* LayerManager.cpp */; };
 		D0EBE6171A526F7200E36888 /* MenuArrowItem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D0EBE6151A526F7200E36888 /* MenuArrowItem.cpp */; };
 		D0EBE61A1A52709B00E36888 /* InputModule.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D0EBE6181A52709B00E36888 /* InputModule.cpp */; };
 		D0EBE61E1A5275B900E36888 /* FieldState.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D0EBE61C1A5275B900E36888 /* FieldState.cpp */; };
@@ -168,6 +170,10 @@
 		D083A2A61A4DAB59009A9099 /* FieldLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FieldLayer.h; path = Layer/FieldLayer.h; sourceTree = "<group>"; };
 		D083A2A81A4DAE08009A9099 /* tmx */ = {isa = PBXFileReference; lastKnownFileType = folder; path = tmx; sourceTree = "<group>"; };
 		D083A2AB1A4DB1EF009A9099 /* chara */ = {isa = PBXFileReference; lastKnownFileType = folder; path = chara; sourceTree = "<group>"; };
+		D0CDF0A51A5AB331009E5E98 /* PlayerView.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = PlayerView.cpp; path = Layer/Component/PlayerView.cpp; sourceTree = "<group>"; };
+		D0CDF0A61A5AB331009E5E98 /* PlayerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PlayerView.h; path = Layer/Component/PlayerView.h; sourceTree = "<group>"; };
+		D0CDF0A81A5ABB27009E5E98 /* LayerManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = LayerManager.cpp; path = Layer/LayerManager.cpp; sourceTree = "<group>"; };
+		D0CDF0A91A5ABB27009E5E98 /* LayerManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LayerManager.h; path = Layer/LayerManager.h; sourceTree = "<group>"; };
 		D0EBE6151A526F7200E36888 /* MenuArrowItem.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = MenuArrowItem.cpp; path = Layer/Widget/MenuArrowItem.cpp; sourceTree = "<group>"; };
 		D0EBE6161A526F7200E36888 /* MenuArrowItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MenuArrowItem.h; path = Layer/Widget/MenuArrowItem.h; sourceTree = "<group>"; };
 		D0EBE6181A52709B00E36888 /* InputModule.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = InputModule.cpp; path = Module/InputModule.cpp; sourceTree = "<group>"; };
@@ -373,13 +379,25 @@
 		D083A2AA1A4DAF46009A9099 /* Layer */ = {
 			isa = PBXGroup;
 			children = (
+				D0CDF0A41A5AB26E009E5E98 /* Component */,
 				D0EBE6131A52606800E36888 /* Widget */,
 				D083A2A51A4DAB59009A9099 /* FieldLayer.cpp */,
 				D083A2A61A4DAB59009A9099 /* FieldLayer.h */,
 				D048D9BA1A4E623500EE9339 /* ControllerLayer.cpp */,
 				D048D9BB1A4E623500EE9339 /* ControllerLayer.h */,
+				D0CDF0A81A5ABB27009E5E98 /* LayerManager.cpp */,
+				D0CDF0A91A5ABB27009E5E98 /* LayerManager.h */,
 			);
 			name = Layer;
+			sourceTree = "<group>";
+		};
+		D0CDF0A41A5AB26E009E5E98 /* Component */ = {
+			isa = PBXGroup;
+			children = (
+				D0CDF0A51A5AB331009E5E98 /* PlayerView.cpp */,
+				D0CDF0A61A5AB331009E5E98 /* PlayerView.h */,
+			);
+			name = Component;
 			sourceTree = "<group>";
 		};
 		D0EBE6131A52606800E36888 /* Widget */ = {
@@ -568,6 +586,8 @@
 				46880B8A19C43A87006E1F66 /* HelloWorldScene.cpp in Sources */,
 				D083A2A71A4DAB59009A9099 /* FieldLayer.cpp in Sources */,
 				503AE10017EB989F00D1A890 /* AppController.mm in Sources */,
+				D0CDF0AA1A5ABB27009E5E98 /* LayerManager.cpp in Sources */,
+				D0CDF0A71A5AB331009E5E98 /* PlayerView.cpp in Sources */,
 				D0EBE6211A52771D00E36888 /* StateMachineModule.cpp in Sources */,
 				503AE10217EB989F00D1A890 /* RootViewController.mm in Sources */,
 				503AE10117EB989F00D1A890 /* main.m in Sources */,

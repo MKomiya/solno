@@ -11,10 +11,9 @@
 
 #include <stdio.h>
 
-enum InputCommand {
-    NOTHING,
-    MOVE_UP, MOVE_RIGHT, MOVE_DOWN, MOVE_LEFT,
-    DECIDE, CANCELL
+enum InputEvent {
+    PRESS_UP, PRESS_RIGHT, PRESS_DOWN, PRESS_LEFT,
+    RELEASE_UP, RELEASE_RIGHT, RELEASE_DOWN, RELEASE_LEFT
 };
 
 class InputModule
@@ -27,14 +26,12 @@ public:
         return _instance;
     }
     
-    void setInputCommand(InputCommand command);
-    void setInputCommandByString(std::string command_str);
-    InputCommand getInputCommand();
+    void pushEvent(InputEvent e);
+    InputEvent popEvent();
     
 private:
     static InputModule* _instance;
-    
-    InputCommand now_command;
+    std::stack<InputEvent> _event_stack;
 };
 
 #endif /* defined(__solno__InputModule__) */

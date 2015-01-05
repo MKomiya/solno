@@ -29,13 +29,35 @@ void MenuArrowItem::selected()
     MenuItem::selected();
     CCLOG("selected");
     
-    InputModule::getInstance()->setInputCommandByString(_direction);
+    InputEvent event;
+    if (_direction == "up") {
+        event = InputEvent::PRESS_UP;
+    } else if (_direction == "right") {
+        event = InputEvent::PRESS_RIGHT;
+    } else if (_direction == "down") {
+        event = InputEvent::PRESS_DOWN;
+    } else if (_direction == "left") {
+        event = InputEvent::PRESS_LEFT;
+    }
+    
+    InputModule::getInstance()->pushEvent(event);
 }
 
 void MenuArrowItem::unselected()
 {
     MenuItem::unselected();
     CCLOG("unselected");
-
-    InputModule::getInstance()->setInputCommand(InputCommand::NOTHING);
+    
+    InputEvent event;
+    if (_direction == "up") {
+        event = InputEvent::RELEASE_UP;
+    } else if (_direction == "right") {
+        event = InputEvent::RELEASE_RIGHT;
+    } else if (_direction == "down") {
+        event = InputEvent::RELEASE_DOWN;
+    } else if (_direction == "left") {
+        event = InputEvent::RELEASE_LEFT;
+    }
+    
+    InputModule::getInstance()->pushEvent(event);
 }

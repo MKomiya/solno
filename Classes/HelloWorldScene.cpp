@@ -1,4 +1,8 @@
 #include "HelloWorldScene.h"
+#include "FieldState.h"
+#include "StateMachineModule.h"
+
+#include "LayerManager.h"
 #include "FieldLayer.h"
 #include "ControllerLayer.h"
 
@@ -9,18 +13,20 @@ Scene* HelloWorld::createScene()
     // 'scene' is an autorelease object
     auto scene = Scene::create();
     
+    LayerManager::getInstance()->init(scene);
+    
     // 'layer' is an autorelease object
     auto layer = HelloWorld::create();
-
-    auto map = FieldLayer::create();
-    
-    auto frame = ControllerLayer::create();
     
     // add layer as a child to scene
     scene->addChild(layer);
-    scene->addChild(map);
-    scene->addChild(frame);
-
+    
+    // initialize view
+    auto field = FieldLayer::create();
+    auto controller = ControllerLayer::create();
+    LayerManager::getInstance()->push(field);
+    LayerManager::getInstance()->push(controller);
+    
     // return the scene
     return scene;
 }
@@ -33,5 +39,17 @@ bool HelloWorld::init()
         return false;
     }
     
+    // publish state
+    auto state = new FieldState();
+    StateMachineModule::getInstance()->registerState("field", state);
+    StateMachineModule::getInstance()->setNowState("field");
+    scheduleUpdate();
+    
+    
     return true;
+}
+
+void HelloWorld::update(float dt)
+{
+    StateMachineModule::getInstance()->update();
 }

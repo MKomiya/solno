@@ -16,18 +16,19 @@ enum PlayerActionTags {
     MOVE_SEQUENCE = 11,
 };
 
+class PlayerView;
 class FieldLayer : public cocos2d::Layer
 {
 public:
     virtual bool init();
     CREATE_FUNC(FieldLayer);
     void changePlayerAnimation(std::string direction);
-    bool runMoveAction(cocos2d::Point move_vec);
-    virtual void update(float dt);
+    bool runMoveAction(cocos2d::Point move_vec, std::string direction);
+    cocos2d::TMXLayer* getMapCollider();
 
 private:
-    cocos2d::Sprite* player_sprite;
-    cocos2d::Animate* player_idling_animate;
+    cocos2d::TMXTiledMap* map;
+    PlayerView* player_sprite;
 };
 
 #endif /* defined(__solno__FieldLayer__) */

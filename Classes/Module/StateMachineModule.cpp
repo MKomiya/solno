@@ -7,9 +7,18 @@
 //
 
 #include "StateMachineModule.h"
-#include "IState.h"
+
+#include "FieldState.h"
 
 StateMachineModule* StateMachineModule::_instance;
+
+void StateMachineModule::releaseStates()
+{
+    for (auto state : _state_hash) {
+        delete state.second;
+    }
+    _state_hash.clear();
+}
 
 void StateMachineModule::registerState(std::string key, IState *state)
 {
