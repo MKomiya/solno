@@ -12,6 +12,7 @@
 #include <stdio.h>
 
 enum InputEvent {
+    NOTHING = 0,
     PRESS_UP, PRESS_RIGHT, PRESS_DOWN, PRESS_LEFT,
     RELEASE_UP, RELEASE_RIGHT, RELEASE_DOWN, RELEASE_LEFT
 };

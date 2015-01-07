@@ -18,7 +18,7 @@ void InputModule::pushEvent(InputEvent e)
 InputEvent InputModule::popEvent()
 {
     if (_event_stack.empty()) {
-        return (InputEvent)0;
+        return InputEvent::NOTHING;
     }
     
     auto ret = _event_stack.top();

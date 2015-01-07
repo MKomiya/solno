@@ -25,7 +25,6 @@ FieldState::~FieldState()
 
 void FieldState::update()
 {
-    CCLOG("FieldState: update");
     
     auto event = InputModule::getInstance()->popEvent();
     if (event != 0) {
@@ -64,7 +63,7 @@ void FieldState::movePlayerCharacter(InputEvent event)
         ret = direction_str;
     }
     
-    // check collidable
+    // check collidable*
     if (isCollidable(next_pos.x, next_pos.y)) {
         return ;
     }

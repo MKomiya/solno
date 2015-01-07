@@ -17,6 +17,7 @@ MenuArrowItem* MenuArrowItem::create(std::string direction)
     auto pRet = new MenuArrowItem(direction);
     if (pRet && pRet->initWithString(direction.c_str(), NULL)) {
         pRet->autorelease();
+        pRet->scheduleUpdate();
     } else {
         delete pRet;
         pRet = NULL;
@@ -26,27 +27,12 @@ MenuArrowItem* MenuArrowItem::create(std::string direction)
 
 void MenuArrowItem::selected()
 {
-    MenuItem::selected();
-    CCLOG("selected");
-    
-    InputEvent event;
-    if (_direction == "up") {
-        event = InputEvent::PRESS_UP;
-    } else if (_direction == "right") {
-        event = InputEvent::PRESS_RIGHT;
-    } else if (_direction == "down") {
-        event = InputEvent::PRESS_DOWN;
-    } else if (_direction == "left") {
-        event = InputEvent::PRESS_LEFT;
-    }
-    
-    InputModule::getInstance()->pushEvent(event);
+    MenuItemFont::selected();
 }
 
 void MenuArrowItem::unselected()
 {
-    MenuItem::unselected();
-    CCLOG("unselected");
+    MenuItemFont::unselected();
     
     InputEvent event;
     if (_direction == "up") {
@@ -60,4 +46,21 @@ void MenuArrowItem::unselected()
     }
     
     InputModule::getInstance()->pushEvent(event);
+}
+
+void MenuArrowItem::update(float dt)
+{
+    if (isSelected()) {
+        InputEvent event;
+        if (_direction == "up") {
+            event = InputEvent::PRESS_UP;
+        } else if (_direction == "right") {
+            event = InputEvent::PRESS_RIGHT;
+        } else if (_direction == "down") {
+            event = InputEvent::PRESS_DOWN;
+        } else if (_direction == "left") {
+            event = InputEvent::PRESS_LEFT;
+        }
+        InputModule::getInstance()->pushEvent(event);
+    }
 }

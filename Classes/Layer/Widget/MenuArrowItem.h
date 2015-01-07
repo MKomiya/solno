@@ -20,6 +20,7 @@ public:
     static MenuArrowItem* create(std::string direction);
     virtual void selected();
     virtual void unselected();
+    virtual void update(float dt);
     
 private:
     std::string _direction;

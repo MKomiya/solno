@@ -47,18 +47,17 @@ void PlayerView::setIdlingAnimate(std::string direction)
 bool PlayerView::runMoveAction(Point move_vec, std::string direction = "")
 {
     // 方向が変わるときにのみdirection指定
-    if (direction.empty()) {
-        auto move_action = MoveBy::create(0.3f, move_vec);
-        move_action->setTag(MOVE_SEQUENCE);
-        this->runAction(move_action);
-    } else {
-        auto change_dir  = CallFunc::create([=]() {
-            this->setIdlingAnimate(direction);
-        });
-        auto move_action = MoveBy::create(0.3f, move_vec);
-        auto seq         = Sequence::create(change_dir, move_action, NULL);
-        seq->setTag(MOVE_SEQUENCE);
-        this->runAction(seq);
+    if (!direction.empty()) {
+        this->setIdlingAnimate(direction);
     }
+    
+    auto running_action = this->getActionByTag(MOVE_SEQUENCE);
+    if (running_action && !running_action->isDone()) {
+        return false;
+    }
+    
+    auto move_action = MoveBy::create(0.3f, move_vec);
+    move_action->setTag(MOVE_SEQUENCE);
+    this->runAction(move_action);
     return true;
 }
