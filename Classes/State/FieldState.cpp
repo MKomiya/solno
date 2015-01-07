@@ -12,11 +12,11 @@
 
 USING_NS_CC;
 
-FieldState::FieldState() :
+FieldState::FieldState(FieldLayer* view) :
 player_map_pos(Point(0, 0)),
-player_direction("down")
+player_direction("down"),
+view(view)
 {
-    view = FieldLayer::create();
 }
 
 FieldState::~FieldState()
@@ -65,11 +65,9 @@ void FieldState::movePlayerCharacter(InputEvent event)
     }
     
     // check collidable
-    /*
     if (isCollidable(next_pos.x, next_pos.y)) {
         return ;
     }
-     */
     
     // run move action
     if (view->runMoveAction(move_vec, ret)) {

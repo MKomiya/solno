@@ -46,16 +46,6 @@ void PlayerView::setIdlingAnimate(std::string direction)
 
 bool PlayerView::runMoveAction(Point move_vec, std::string direction = "")
 {
-    auto hoge = CallFunc::create([]() {
-        CCLOG("action called");
-    });
-    this->runAction(hoge);
-    
-    auto action = this->getActionByTag(PlayerView::PlayerActionTag::MOVE_SEQUENCE);
-    if (action && !action->isDone()) {
-        return false;
-    }
-    
     // 方向が変わるときにのみdirection指定
     if (direction.empty()) {
         auto move_action = MoveBy::create(0.3f, move_vec);
