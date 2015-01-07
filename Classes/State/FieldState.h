@@ -25,7 +25,7 @@ enum MapColliderType {
 class FieldLayer;
 class FieldState : public IState {
 public:
-    FieldState();
+    FieldState(FieldLayer* view);
     virtual ~FieldState();
     virtual void update();
     

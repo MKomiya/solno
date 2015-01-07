@@ -21,12 +21,6 @@ Scene* HelloWorld::createScene()
     // add layer as a child to scene
     scene->addChild(layer);
     
-    // initialize view
-    auto field = FieldLayer::create();
-    auto controller = ControllerLayer::create();
-    LayerManager::getInstance()->push(field);
-    LayerManager::getInstance()->push(controller);
-    
     // return the scene
     return scene;
 }
@@ -39,12 +33,17 @@ bool HelloWorld::init()
         return false;
     }
     
+    // initialize view
+    auto field      = FieldLayer::create();
+    auto controller = ControllerLayer::create();
+    LayerManager::getInstance()->push(field);
+    LayerManager::getInstance()->push(controller);
+    
     // publish state
-    auto state = new FieldState();
+    auto state = new FieldState(field);
     StateMachineModule::getInstance()->registerState("field", state);
     StateMachineModule::getInstance()->setNowState("field");
     scheduleUpdate();
-    
     
     return true;
 }

@@ -44,12 +44,7 @@ void FieldLayer::changePlayerAnimation(std::string direction)
 }
 
 bool FieldLayer::runMoveAction(cocos2d::Point move_vec, std::string direction="")
-{
-    auto action = player_sprite->getActionByTag(PlayerView::PlayerActionTag::MOVE_SEQUENCE);
-    if (action && !action->isDone()) {
-        return false;
-    }
-    
+{    
     return player_sprite->runMoveAction(move_vec, direction);
 }
 
