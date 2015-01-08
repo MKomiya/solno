@@ -34,6 +34,10 @@ void FieldState::update()
 
 void FieldState::movePlayerCharacter(InputEvent event)
 {
+    if (view->isRunningPlayerView() || view->isRunningMapScroll()) {
+        return ;
+    }
+    
     std::string direction_str = player_direction;
     
     auto move_vec = Point(0, 0);
@@ -67,10 +71,37 @@ void FieldState::movePlayerCharacter(InputEvent event)
         return ;
     }
     
-    // run move action
-    if (view->runMoveAction(move_vec)) {
-        player_map_pos = next_pos;
+    // update player position
+    player_map_pos = next_pos;
+    CCLOG("moved pos(%f, %f)", player_map_pos.x, player_map_pos.y);
+    
+    // run scroll field if player pos is scroll point
+    if (((int)player_map_pos.x % 9 == 0 && event == InputEvent::PRESS_RIGHT) ||
+        ((int)player_map_pos.y % 9 == 0 && event == InputEvent::PRESS_DOWN)  ||
+        ((int)player_map_pos.x % 9 == 8 && event == InputEvent::PRESS_LEFT)  ||
+        ((int)player_map_pos.y % 9 == 8 && event == InputEvent::PRESS_UP))
+    {
+        Point move, scroll;
+        if (event == InputEvent::PRESS_RIGHT) {
+            move = Point(-32 * 8, 0);
+            scroll = Point(-32 * 9, 0);
+        } else if (event == InputEvent::PRESS_DOWN) {
+            move = Point(0, 32 * 8);
+            scroll = Point(0, 32 * 9);
+        } else if (event == InputEvent::PRESS_LEFT) {
+            move = Point(32 * 8, 0);
+            scroll = Point(32 * 9, 0);
+        } else if (event == InputEvent::PRESS_UP) {
+            move = Point(0, -32 * 8);
+            scroll = Point(0, -32 * 9);
+        }
+        view->scrollField(move, scroll);
+        
+        return ;
     }
+    
+    // run move action
+    view->runMoveAction(move_vec);
 }
 
 bool FieldState::isCollidable(int map_x, int map_y)

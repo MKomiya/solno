@@ -44,15 +44,18 @@ void PlayerView::setIdlingAnimate(std::string direction)
     runAction(animate);
 }
 
-bool PlayerView::runMoveAction(Point move_vec)
+void PlayerView::runMoveAction(Point move_vec)
 {
-    auto running_action = this->getActionByTag(MOVE_SEQUENCE);
-    if (running_action && !running_action->isDone()) {
-        return false;
-    }
-    
     auto move_action = MoveBy::create(0.3f, move_vec);
     move_action->setTag(MOVE_SEQUENCE);
     this->runAction(move_action);
-    return true;
+}
+
+bool PlayerView::isRunnningMoveAction()
+{
+    auto running_action = this->getActionByTag(MOVE_SEQUENCE);
+    if (running_action && !running_action->isDone()) {
+        return true;
+    }
+    return false;
 }
