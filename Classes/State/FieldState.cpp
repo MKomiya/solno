@@ -34,7 +34,7 @@ void FieldState::update()
 
 void FieldState::movePlayerCharacter(InputEvent event)
 {
-    std::string direction_str;
+    std::string direction_str = player_direction;
     
     auto move_vec = Point(0, 0);
     auto next_pos = player_map_pos;
