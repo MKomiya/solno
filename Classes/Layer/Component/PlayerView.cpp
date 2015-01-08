@@ -44,13 +44,8 @@ void PlayerView::setIdlingAnimate(std::string direction)
     runAction(animate);
 }
 
-bool PlayerView::runMoveAction(Point move_vec, std::string direction = "")
+bool PlayerView::runMoveAction(Point move_vec)
 {
-    // 方向が変わるときにのみdirection指定
-    if (!direction.empty()) {
-        this->setIdlingAnimate(direction);
-    }
-    
     auto running_action = this->getActionByTag(MOVE_SEQUENCE);
     if (running_action && !running_action->isDone()) {
         return false;

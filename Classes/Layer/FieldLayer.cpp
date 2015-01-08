@@ -43,9 +43,9 @@ void FieldLayer::changePlayerAnimation(std::string direction)
     player_sprite->setIdlingAnimate(direction.c_str());
 }
 
-bool FieldLayer::runMoveAction(cocos2d::Point move_vec, std::string direction="")
+bool FieldLayer::runMoveAction(cocos2d::Point move_vec)
 {    
-    return player_sprite->runMoveAction(move_vec, direction);
+    return player_sprite->runMoveAction(move_vec);
 }
 
 TMXLayer* FieldLayer::getMapCollider()
