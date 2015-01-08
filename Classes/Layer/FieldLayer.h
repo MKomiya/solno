@@ -23,7 +23,7 @@ public:
     virtual bool init();
     CREATE_FUNC(FieldLayer);
     void changePlayerAnimation(std::string direction);
-    bool runMoveAction(cocos2d::Point move_vec, std::string direction);
+    bool runMoveAction(cocos2d::Point move_vec);
     cocos2d::TMXLayer* getMapCollider();
 
 private:

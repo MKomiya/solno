@@ -57,19 +57,18 @@ void FieldState::movePlayerCharacter(InputEvent event)
         next_pos.x += 1;
     }
     
-    std::string ret = "";
     if (player_direction != direction_str) {
+        view->changePlayerAnimation(direction_str);
         player_direction = direction_str;
-        ret = direction_str;
     }
     
-    // check collidable*
+    // check collidable
     if (isCollidable(next_pos.x, next_pos.y)) {
         return ;
     }
     
     // run move action
-    if (view->runMoveAction(move_vec, ret)) {
+    if (view->runMoveAction(move_vec)) {
         player_map_pos = next_pos;
     }
 }
