@@ -22,7 +22,8 @@ public:
     
     static PlayerView* create();
     void setIdlingAnimate(std::string direction);
-    bool runMoveAction(cocos2d::Point move_vec);
+    void runMoveAction(cocos2d::Point move_vec);
+    bool isRunnningMoveAction();
 };
 
 #endif /* defined(__solno__PlayerView__) */

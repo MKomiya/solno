@@ -43,9 +43,9 @@ void FieldLayer::changePlayerAnimation(std::string direction)
     player_sprite->setIdlingAnimate(direction.c_str());
 }
 
-bool FieldLayer::runMoveAction(cocos2d::Point move_vec)
+void FieldLayer::runMoveAction(cocos2d::Point move_vec)
 {    
-    return player_sprite->runMoveAction(move_vec);
+    player_sprite->runMoveAction(move_vec);
 }
 
 TMXLayer* FieldLayer::getMapCollider()
@@ -55,4 +55,26 @@ TMXLayer* FieldLayer::getMapCollider()
         throw "meta layer is not found";
     }
     return ret;
+}
+
+void FieldLayer::scrollField(cocos2d::Point move_vec, cocos2d::Point scroll_vec)
+{
+    auto action = Spawn::create(TargetedAction::create(player_sprite, MoveBy::create(0.4, move_vec)),
+                                TargetedAction::create(map, MoveBy::create(0.4, scroll_vec)), nullptr);
+    action->setTag(SCROLL_ACTION);
+    this->runAction(action);
+}
+
+bool FieldLayer::isRunningPlayerView()
+{
+    return player_sprite->isRunnningMoveAction();
+}
+
+bool FieldLayer::isRunningMapScroll()
+{
+    auto action = this->getActionByTag(SCROLL_ACTION);
+    if (action && !action->isDone()) {
+        return true;
+    }
+    return false;
 }

@@ -658,7 +658,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Mitsushige Komiya (H4BCXMPZQT)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Mitsushige Komiya (FH4ED4ZW4C)";
 				COMPRESS_PNG_FILES = NO;
 				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -677,7 +677,7 @@
 				INFOPLIST_FILE = ios/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				LIBRARY_SEARCH_PATHS = "";
-				PROVISIONING_PROFILE = "440ba5f0-5bbe-44e3-b0e5-c68336b8333c";
+				PROVISIONING_PROFILE = "19819ee8-0ee7-4b1b-8179-3bbe48a369e9";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "";
