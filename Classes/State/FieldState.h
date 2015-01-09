@@ -13,13 +13,26 @@
 #include <cocos2d.h>
 
 #include "IState.h"
-#include "FieldState.h"
 
 #include "InputModule.h"
 
 enum MapColliderType {
     NO_COLLISION = 0,
-    COLLIDABLE   = 14,
+    COLLIDABLE   = 17, // タイルが増えるとGIDが変わるので別途検討
+};
+enum ObjectType {
+    MOVABLE_ROCK = 1,
+};
+struct FieldObject {
+    int id;
+    cocos2d::Point pos;
+    ObjectType type;
+    
+    FieldObject(int i, cocos2d::Point p, ObjectType t) {
+        id   = i;
+        pos  = p;
+        type = t;
+    }
 };
 
 class FieldLayer;
@@ -36,6 +49,7 @@ private:
     cocos2d::Point player_map_pos;
     std::string player_direction;
     FieldLayer* view;
+    std::vector<FieldObject*> objects;
 };
 
 #endif /* defined(__solno__FieldState__) */

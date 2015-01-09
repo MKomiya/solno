@@ -29,6 +29,12 @@ bool FieldLayer::init()
     map->setScale(2.0f);
     addChild(map);
     
+    // invisible meta
+    auto meta_layer = map->getLayer("meta");
+    auto obj_layer  = map->getLayer("object");
+    meta_layer->setVisible(true);
+    obj_layer->setVisible(false);
+    
     // player character view
     player_sprite = PlayerView::create();
     player_sprite->setAnchorPoint(Point(0, 1));
@@ -36,6 +42,28 @@ bool FieldLayer::init()
     addChild(player_sprite);
     
     return true;
+}
+
+void FieldLayer::initFieldObject(std::vector<FieldObject *> objects)
+{
+    auto s = map->getContentSize();
+    
+    objects_root = Node::create();
+    objects_root->setPosition(Point::ZERO);
+    map->addChild(objects_root);
+    
+    for (auto object : objects) {
+        auto sprite = Sprite::create("tmx/movable_rock.png");
+        Point pos;
+        pos.x = object->pos.x * 16;
+        pos.y = s.height - (object->pos.y * 16);
+        
+        sprite->getTexture()->setAliasTexParameters();
+        sprite->setAnchorPoint(Point(0, 1));
+        sprite->setPosition(pos);
+        sprite->setTag(object->id);
+        objects_root->addChild(sprite);
+    }
 }
 
 void FieldLayer::changePlayerAnimation(std::string direction)
@@ -48,11 +76,27 @@ void FieldLayer::runMoveAction(cocos2d::Point move_vec)
     player_sprite->runMoveAction(move_vec);
 }
 
+void FieldLayer::runObjectMoveAction(int object_id, cocos2d::Point move_vec)
+{
+    auto obj = objects_root->getChildByTag(object_id);
+    
+    obj->runAction(MoveBy::create(0.3, move_vec));
+}
+
 TMXLayer* FieldLayer::getMapCollider()
 {
     auto ret = map->getLayer("meta");
     if (ret == nullptr) {
         throw "meta layer is not found";
+    }
+    return ret;
+}
+
+TMXLayer* FieldLayer::getObjectsLayer()
+{
+    auto ret = map->getLayer("object");
+    if (ret == nullptr) {
+        throw "object layer is not found";
     }
     return ret;
 }
