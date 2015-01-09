@@ -86,6 +86,21 @@ void FieldState::movePlayerCharacter(InputEvent event)
     // check object collidable
     for (auto obj : objects) {
         if (obj->pos == next_pos) {
+            // check collidable behind movable rock
+            Point check_pos = obj->pos;
+            if (event == InputEvent::PRESS_DOWN) {
+                check_pos.y += 1;
+            } else if (event == InputEvent::PRESS_LEFT) {
+                check_pos.x -= 1;
+            } else if (event == InputEvent::PRESS_RIGHT) {
+                check_pos.x += 1;
+            } else if (event == InputEvent::PRESS_UP) {
+                check_pos.y -= 1;
+            }
+            if (isCollidable(check_pos.x, check_pos.y)) {
+                return ;
+            }
+            
             // moving rock action
             Point move_vec;
             if (event == InputEvent::PRESS_DOWN) {
