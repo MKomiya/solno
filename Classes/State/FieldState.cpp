@@ -17,6 +17,23 @@ player_map_pos(Point(0, 0)),
 player_direction("down"),
 view(view)
 {
+    auto obj_layer = view->getObjectsLayer();
+    auto tiles     = obj_layer->getTiles();
+    auto size      = obj_layer->getLayerSize();
+    
+    int id = 100;
+    for (int i=0; i < size.width * size.height; ++i) {
+        if (tiles[i] > 0) {
+            Point pos(i % (int)size.width, i / (int)size.height);
+            
+            auto obj = new FieldObject(id, pos, MOVABLE_ROCK);
+            objects.push_back(obj);
+            
+            ++id;
+        }
+    }
+    
+    view->initFieldObject(objects);
 }
 
 FieldState::~FieldState()
@@ -66,14 +83,39 @@ void FieldState::movePlayerCharacter(InputEvent event)
         player_direction = direction_str;
     }
     
-    // check collidable
+    // check object collidable
+    for (auto obj : objects) {
+        if (obj->pos == next_pos) {
+            // moving rock action
+            Point move_vec;
+            if (event == InputEvent::PRESS_DOWN) {
+                obj->pos.y += 1;
+                move_vec.y = -16;
+            } else if (event == InputEvent::PRESS_LEFT) {
+                obj->pos.x -= 1;
+                move_vec.x = -16;
+            } else if (event == InputEvent::PRESS_RIGHT) {
+                obj->pos.x += 1;
+                move_vec.x = 16;
+            } else if (event == InputEvent::PRESS_UP) {
+                obj->pos.y -= 1;
+                move_vec.y = 16;
+            }
+            
+            // send run action map object
+            view->runObjectMoveAction(obj->id, move_vec);
+            
+            break;
+        }
+    }
+    
+    // check map collidable
     if (isCollidable(next_pos.x, next_pos.y)) {
         return ;
     }
     
     // update player position
     player_map_pos = next_pos;
-    CCLOG("moved pos(%f, %f)", player_map_pos.x, player_map_pos.y);
     
     // run scroll field if player pos is scroll point
     if (((int)player_map_pos.x % 9 == 0 && event == InputEvent::PRESS_RIGHT) ||
@@ -107,12 +149,12 @@ void FieldState::movePlayerCharacter(InputEvent event)
 bool FieldState::isCollidable(int map_x, int map_y)
 {
     if (map_x < 0 || map_y < 0) {
-        return false;
+        return true;
     }
     
     auto tiled_gid = view->getMapCollider()->getTileGIDAt(Point(map_x, map_y));
     
-    if (tiled_gid == MapColliderType::COLLIDABLE) {
+    if (tiled_gid > 0) {
         return true;
     }
     
