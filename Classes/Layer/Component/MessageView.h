@@ -22,7 +22,7 @@ public:
     
     static MessageView* create(std::string msg_data);
     virtual void onEnter();
-    virtual void update(float dt);
+    void updateMessage(float dt);
     
 private:
     std::string msg_data;

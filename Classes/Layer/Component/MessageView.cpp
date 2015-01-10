@@ -45,17 +45,21 @@ void MessageView::onEnter()
     
     auto move  = MoveTo::create(0.3f, Point(16, 176));
     auto moved = CallFunc::create([=]() {
-        this->scheduleUpdate();
+        this->schedule(schedule_selector(MessageView::updateMessage), 0.03f);
     });
     runAction(Sequence::create(move, moved, NULL));
 }
 
-void MessageView::update(float dt)
+void MessageView::updateMessage(float dt)
 {
-    string_idx++;
+    string_idx += 3;
     string_idx = string_idx >= msg_data.length() ? msg_data.length() : string_idx;
     
     auto output = msg_data.substr(0, string_idx);
+    if (output.empty()) {
+        return ;
+    }
+    
     auto msg_label = (LabelTTF*)getChildByTag(MESSAGE_LABEL);
     msg_label->setString(output.c_str());
 }
