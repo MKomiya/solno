@@ -16,9 +16,6 @@
    eJzFlosKwCAIRaO1/f8nr0ExEcvrAzoQ0dRmdV0r5af21opOHU1Ci1/FeeB5XMr7JDuyXsoTtCNU1kfmiILuz86P2zI14OEePZqH5mfVUBa7GtQ0RGvBeh7oejNq4YPmatlryZc/m+NIrll69s6DxK32zavd0zVM4d/1mVtjYxTJ36IP6Z7JZuYTOYfsPFf7dkJjPLZtbN5/mUwid9ELQKwA0Q==
   </data>
  </layer>
- <objectgroup name="Objects" width="25" height="25" visible="0">
-  <object name="player" type="start" x="192" y="192" width="16" height="16"/>
- </objectgroup>
  <layer name="meta" width="25" height="25">
   <data encoding="base64" compression="zlib">
    eJzNVUEOACAI8gv9/7Md21ppJIXcmgbotMwGmp2hAbmruyzMPlbcUfxGMxNHNDJczD6zofaG9lftdwfPV1Qjey8ijQo8rzTUdSrms9JOzF6iM8qHcvyc1wpz6/Gp/J28jQwdFjJ/UQcaUAMg
