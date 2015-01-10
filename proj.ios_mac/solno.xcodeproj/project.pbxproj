@@ -62,6 +62,7 @@
 		BF171245129291EC00B8313A /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF170DB012928DE900B8313A /* OpenGLES.framework */; };
 		BF1712471292920000B8313A /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = BF170DB412928DE900B8313A /* libz.dylib */; };
 		BF1C47F01293687400B63C5D /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF1C47EA1293683800B63C5D /* QuartzCore.framework */; };
+		D020AD741A616A2000BB01A9 /* MessageView.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D020AD721A616A2000BB01A9 /* MessageView.cpp */; };
 		D048D9BC1A4E623500EE9339 /* ControllerLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D048D9BA1A4E623500EE9339 /* ControllerLayer.cpp */; };
 		D048D9BE1A4E65CD00EE9339 /* ui in Resources */ = {isa = PBXBuildFile; fileRef = D048D9BD1A4E65CD00EE9339 /* ui */; };
 		D083A2A71A4DAB59009A9099 /* FieldLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D083A2A51A4DAB59009A9099 /* FieldLayer.cpp */; };
@@ -163,6 +164,8 @@
 		BF170DB012928DE900B8313A /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		BF170DB412928DE900B8313A /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		BF1C47EA1293683800B63C5D /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		D020AD721A616A2000BB01A9 /* MessageView.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = MessageView.cpp; path = Layer/Component/MessageView.cpp; sourceTree = "<group>"; };
+		D020AD731A616A2000BB01A9 /* MessageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MessageView.h; path = Layer/Component/MessageView.h; sourceTree = "<group>"; };
 		D048D9BA1A4E623500EE9339 /* ControllerLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ControllerLayer.cpp; path = Layer/ControllerLayer.cpp; sourceTree = "<group>"; };
 		D048D9BB1A4E623500EE9339 /* ControllerLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ControllerLayer.h; path = Layer/ControllerLayer.h; sourceTree = "<group>"; };
 		D048D9BD1A4E65CD00EE9339 /* ui */ = {isa = PBXFileReference; lastKnownFileType = folder; path = ui; sourceTree = "<group>"; };
@@ -396,6 +399,8 @@
 			children = (
 				D0CDF0A51A5AB331009E5E98 /* PlayerView.cpp */,
 				D0CDF0A61A5AB331009E5E98 /* PlayerView.h */,
+				D020AD721A616A2000BB01A9 /* MessageView.cpp */,
+				D020AD731A616A2000BB01A9 /* MessageView.h */,
 			);
 			name = Component;
 			sourceTree = "<group>";
@@ -583,6 +588,7 @@
 				46880B8819C43A87006E1F66 /* AppDelegate.cpp in Sources */,
 				D0EBE6171A526F7200E36888 /* MenuArrowItem.cpp in Sources */,
 				D048D9BC1A4E623500EE9339 /* ControllerLayer.cpp in Sources */,
+				D020AD741A616A2000BB01A9 /* MessageView.cpp in Sources */,
 				46880B8A19C43A87006E1F66 /* HelloWorldScene.cpp in Sources */,
 				D083A2A71A4DAB59009A9099 /* FieldLayer.cpp in Sources */,
 				503AE10017EB989F00D1A890 /* AppController.mm in Sources */,

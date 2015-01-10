@@ -8,6 +8,7 @@
 
 #include "FieldLayer.h"
 #include "PlayerView.h"
+#include "MessageView.h"
 
 #include "StateMachineModule.h"
 #include "FieldState.h"
@@ -40,6 +41,10 @@ bool FieldLayer::init()
     player_sprite->setAnchorPoint(Point(0, 1));
     player_sprite->setPosition(Point(16, s.height - 16));
     addChild(player_sprite);
+    
+    // test add
+    auto message_view = MessageView::create("テストメッセージ");
+    addChild(message_view);
     
     return true;
 }
