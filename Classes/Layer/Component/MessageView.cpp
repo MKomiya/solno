@@ -62,4 +62,9 @@ void MessageView::updateMessage(float dt)
     
     auto msg_label = (LabelTTF*)getChildByTag(MESSAGE_LABEL);
     msg_label->setString(output.c_str());
+    
+    if (string_idx == msg_data.length()) {
+        unschedule(schedule_selector(MessageView::updateMessage));
+        this->removeFromParent();
+    }
 }

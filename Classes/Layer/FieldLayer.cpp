@@ -42,10 +42,6 @@ bool FieldLayer::init()
     player_sprite->setPosition(Point(16, s.height - 16));
     addChild(player_sprite);
     
-    // test add
-    auto message_view = MessageView::create("テストメッセージ");
-    addChild(message_view);
-    
     return true;
 }
 
@@ -77,7 +73,7 @@ void FieldLayer::changePlayerAnimation(std::string direction)
 }
 
 void FieldLayer::runMoveAction(cocos2d::Point move_vec)
-{    
+{
     player_sprite->runMoveAction(move_vec);
 }
 
@@ -126,4 +122,9 @@ bool FieldLayer::isRunningMapScroll()
         return true;
     }
     return false;
+}
+
+void FieldLayer::addRunActionAfterMove(cocos2d::FiniteTimeAction *action)
+{
+    player_sprite->addRunActionAfterMove(action);
 }

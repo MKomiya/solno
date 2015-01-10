@@ -9,6 +9,7 @@
 #include "FieldState.h"
 
 #include "FieldLayer.h"
+#include "MessageView.h"
 
 USING_NS_CC;
 
@@ -26,7 +27,7 @@ view(view)
         if (tiles[i] > 0) {
             Point pos(i % (int)size.width, i / (int)size.height);
             
-            auto obj = new FieldObject(id, pos, MOVABLE_ROCK);
+            auto obj = new FieldObject(id, pos, MESSAGE_POINT);
             objects.push_back(obj);
             
             ++id;
@@ -87,40 +88,42 @@ void FieldState::movePlayerCharacter(InputEvent event)
     for (auto obj : objects) {
         if (obj->pos == next_pos) {
             // check collidable behind movable rock
-            Point check_pos = obj->pos;
-            if (event == InputEvent::PRESS_DOWN) {
-                check_pos.y += 1;
-            } else if (event == InputEvent::PRESS_LEFT) {
-                check_pos.x -= 1;
-            } else if (event == InputEvent::PRESS_RIGHT) {
-                check_pos.x += 1;
-            } else if (event == InputEvent::PRESS_UP) {
-                check_pos.y -= 1;
+            if (obj->type == ObjectType::MOVABLE_ROCK) {
+                Point check_pos = obj->pos;
+                if (event == InputEvent::PRESS_DOWN) {
+                    check_pos.y += 1;
+                } else if (event == InputEvent::PRESS_LEFT) {
+                    check_pos.x -= 1;
+                } else if (event == InputEvent::PRESS_RIGHT) {
+                    check_pos.x += 1;
+                } else if (event == InputEvent::PRESS_UP) {
+                    check_pos.y -= 1;
+                }
+                if (isCollidable(check_pos.x, check_pos.y)) {
+                    return ;
+                }
+                
+                // moving rock action
+                Point move_vec;
+                if (event == InputEvent::PRESS_DOWN) {
+                    obj->pos.y += 1;
+                    move_vec.y = -16;
+                } else if (event == InputEvent::PRESS_LEFT) {
+                    obj->pos.x -= 1;
+                    move_vec.x = -16;
+                } else if (event == InputEvent::PRESS_RIGHT) {
+                    obj->pos.x += 1;
+                    move_vec.x = 16;
+                } else if (event == InputEvent::PRESS_UP) {
+                    obj->pos.y -= 1;
+                    move_vec.y = 16;
+                }
+                
+                // send run action map object
+                view->runObjectMoveAction(obj->id, move_vec);
+                
+                break;
             }
-            if (isCollidable(check_pos.x, check_pos.y)) {
-                return ;
-            }
-            
-            // moving rock action
-            Point move_vec;
-            if (event == InputEvent::PRESS_DOWN) {
-                obj->pos.y += 1;
-                move_vec.y = -16;
-            } else if (event == InputEvent::PRESS_LEFT) {
-                obj->pos.x -= 1;
-                move_vec.x = -16;
-            } else if (event == InputEvent::PRESS_RIGHT) {
-                obj->pos.x += 1;
-                move_vec.x = 16;
-            } else if (event == InputEvent::PRESS_UP) {
-                obj->pos.y -= 1;
-                move_vec.y = 16;
-            }
-            
-            // send run action map object
-            view->runObjectMoveAction(obj->id, move_vec);
-            
-            break;
         }
     }
     
@@ -159,6 +162,20 @@ void FieldState::movePlayerCharacter(InputEvent event)
     
     // run move action
     view->runMoveAction(move_vec);
+    
+    // check object collidable after move
+    for (auto obj : objects) {
+        if (obj->pos == player_map_pos) {
+            if (obj->type == ObjectType::MESSAGE_POINT) {
+                auto action = CallFunc::create([=]() {
+                    std::string msg_data = "ドウカ、ツナガッテクダサイ";
+                    auto msg_view = MessageView::create(msg_data);
+                    view->addChild(msg_view);
+                });
+                view->addRunActionAfterMove(action);
+            }
+        }
+    }
 }
 
 bool FieldState::isCollidable(int map_x, int map_y)

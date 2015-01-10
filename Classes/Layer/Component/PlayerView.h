@@ -24,6 +24,10 @@ public:
     void setIdlingAnimate(std::string direction);
     void runMoveAction(cocos2d::Point move_vec);
     bool isRunnningMoveAction();
+    void addRunActionAfterMove(cocos2d::FiniteTimeAction* action);
+    
+private:
+    cocos2d::Vector<cocos2d::FiniteTimeAction*> after_move_action;
 };
 
 #endif /* defined(__solno__PlayerView__) */
