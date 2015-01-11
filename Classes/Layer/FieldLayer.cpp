@@ -8,6 +8,7 @@
 
 #include "FieldLayer.h"
 #include "PlayerView.h"
+#include "MessageView.h"
 
 #include "StateMachineModule.h"
 #include "FieldState.h"
@@ -72,7 +73,7 @@ void FieldLayer::changePlayerAnimation(std::string direction)
 }
 
 void FieldLayer::runMoveAction(cocos2d::Point move_vec)
-{    
+{
     player_sprite->runMoveAction(move_vec);
 }
 
@@ -121,4 +122,9 @@ bool FieldLayer::isRunningMapScroll()
         return true;
     }
     return false;
+}
+
+void FieldLayer::addRunActionAfterMove(cocos2d::FiniteTimeAction *action)
+{
+    player_sprite->addRunActionAfterMove(action);
 }
