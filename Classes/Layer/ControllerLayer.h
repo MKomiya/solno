@@ -17,6 +17,11 @@ class ControllerLayer : public cocos2d::Layer
 public:
     virtual bool init();
     CREATE_FUNC(ControllerLayer);
+    
+    void setEnableArrowButtons(bool enabled);
+    
+private:
+    cocos2d::Menu* arrow_menu;
 };
 
 #endif /* defined(__solno__ControllerLayer__) */
