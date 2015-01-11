@@ -40,6 +40,8 @@ public:
     bool isRunningPlayerView();
     bool isRunningMapScroll();
     
+    void addRunActionAfterMove(cocos2d::FiniteTimeAction* action);
+    
 private:
     cocos2d::TMXTiledMap* map;
     PlayerView* player_sprite;

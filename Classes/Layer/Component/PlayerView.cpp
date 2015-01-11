@@ -47,8 +47,22 @@ void PlayerView::setIdlingAnimate(std::string direction)
 void PlayerView::runMoveAction(Point move_vec)
 {
     auto move_action = MoveBy::create(0.3f, move_vec);
-    move_action->setTag(MOVE_SEQUENCE);
-    this->runAction(move_action);
+    auto moved_action = CallFunc::create([=]() {
+        if (after_move_action.size() == 0) {
+            return ;
+        }
+        
+        auto seq = Sequence::create(after_move_action);
+        auto after = CallFunc::create([=]{
+            after_move_action.clear();
+        });
+        
+        this->runAction(Sequence::create(seq, after, NULL));
+    });
+    auto action = Sequence::create(move_action, moved_action, NULL);
+    action->setTag(MOVE_SEQUENCE);
+    
+    this->runAction(action);
 }
 
 bool PlayerView::isRunnningMoveAction()
@@ -58,4 +72,9 @@ bool PlayerView::isRunnningMoveAction()
         return true;
     }
     return false;
+}
+
+void PlayerView::addRunActionAfterMove(cocos2d::FiniteTimeAction *action)
+{
+    after_move_action.pushBack(action);
 }
