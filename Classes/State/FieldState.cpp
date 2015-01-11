@@ -9,14 +9,16 @@
 #include "FieldState.h"
 
 #include "FieldLayer.h"
+#include "ControllerLayer.h"
 #include "MessageView.h"
 
 USING_NS_CC;
 
-FieldState::FieldState(FieldLayer* view) :
+FieldState::FieldState(FieldLayer* view, ControllerLayer* controller) :
 player_map_pos(Point(0, 0)),
 player_direction("down"),
-view(view)
+view(view),
+controller(controller)
 {
     auto obj_layer = view->getObjectsLayer();
     auto tiles     = obj_layer->getTiles();
@@ -167,6 +169,8 @@ void FieldState::movePlayerCharacter(InputEvent event)
     for (auto obj : objects) {
         if (obj->pos == player_map_pos) {
             if (obj->type == ObjectType::MESSAGE_POINT) {
+                controller->setEnableArrowButtons(false);
+                
                 auto action = CallFunc::create([=]() {
                     std::string msg_data = "ドウカ、ツナガッテクダサイ";
                     auto msg_view = MessageView::create(msg_data);

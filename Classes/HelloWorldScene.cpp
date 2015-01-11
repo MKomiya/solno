@@ -40,7 +40,7 @@ bool HelloWorld::init()
     LayerManager::getInstance()->push(controller);
     
     // publish state
-    auto state = new FieldState(field);
+    auto state = new FieldState(field, controller);
     StateMachineModule::getInstance()->registerState("field", state);
     StateMachineModule::getInstance()->setNowState("field");
     scheduleUpdate();

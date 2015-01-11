@@ -37,9 +37,10 @@ struct FieldObject {
 };
 
 class FieldLayer;
+class ControllerLayer;
 class FieldState : public IState {
 public:
-    FieldState(FieldLayer* view);
+    FieldState(FieldLayer* view, ControllerLayer* controller);
     virtual ~FieldState();
     virtual void update();
     
@@ -50,6 +51,7 @@ private:
     cocos2d::Point player_map_pos;
     std::string player_direction;
     FieldLayer* view;
+    ControllerLayer* controller;
     std::vector<FieldObject*> objects;
 };
 
