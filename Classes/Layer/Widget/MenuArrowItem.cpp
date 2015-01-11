@@ -15,7 +15,7 @@ _direction(direction) {}
 MenuArrowItem* MenuArrowItem::create(std::string direction)
 {
     auto pRet = new MenuArrowItem(direction);
-    if (pRet && pRet->initWithString(direction.c_str(), NULL)) {
+    if (pRet && pRet->initWithString(direction.c_str(), nullptr)) {
         pRet->autorelease();
         pRet->scheduleUpdate();
     } else {
