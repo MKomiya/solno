@@ -12,6 +12,8 @@
 #include "ControllerLayer.h"
 #include "MessageView.h"
 
+#include "Direction.h"
+
 USING_NS_CC;
 
 FieldState::FieldState(FieldLayer* view, ControllerLayer* controller) :
@@ -29,7 +31,7 @@ controller(controller)
         if (tiles[i] > 0) {
             Point pos(i % (int)size.width, i / (int)size.height);
             
-            auto obj = new FieldObject(id, pos, MESSAGE_POINT);
+            auto obj = new FieldObject(id, pos, MOVABLE_ROCK);
             objects.push_back(obj);
             
             ++id;
@@ -67,28 +69,22 @@ void FieldState::movePlayerCharacter(InputEvent event)
         return ;
     }
     
+    if (event == InputEvent::RELEASE_DOWN  ||
+        event == InputEvent::RELEASE_LEFT  ||
+        event == InputEvent::RELEASE_RIGHT ||
+        event == InputEvent::RELEASE_UP) {
+        return ;
+    }
+    
     std::string direction_str = player_direction;
     
     auto move_vec = Point(0, 0);
     auto next_pos = player_map_pos;
     
-    if (event == InputEvent::PRESS_UP) {
-        direction_str = "up";
-        move_vec.y = 32;
-        next_pos.y -= 1;
-    } else if (event == InputEvent::PRESS_LEFT) {
-        direction_str = "left";
-        move_vec.x = -32;
-        next_pos.x -= 1;
-    } else if (event == InputEvent::PRESS_DOWN) {
-        direction_str = "down";
-        move_vec.y = -32;
-        next_pos.y += 1;
-    } else if (event == InputEvent::PRESS_RIGHT) {
-        direction_str = "right";
-        move_vec.x = 32;
-        next_pos.x += 1;
-    }
+    auto direction_entity = Direction::createInstance(event);
+    move_vec += direction_entity.getUnitVec() * 32;
+    next_pos += direction_entity.getMapPointVec();
+    direction_str = direction_entity.getDirectionLabel();
     
     if (player_direction != direction_str) {
         view->changePlayerAnimation(direction_str);
@@ -101,34 +97,15 @@ void FieldState::movePlayerCharacter(InputEvent event)
             // check collidable behind movable rock
             if (obj->type == ObjectType::MOVABLE_ROCK) {
                 Point check_pos = obj->pos;
-                if (event == InputEvent::PRESS_DOWN) {
-                    check_pos.y += 1;
-                } else if (event == InputEvent::PRESS_LEFT) {
-                    check_pos.x -= 1;
-                } else if (event == InputEvent::PRESS_RIGHT) {
-                    check_pos.x += 1;
-                } else if (event == InputEvent::PRESS_UP) {
-                    check_pos.y -= 1;
-                }
+                check_pos += direction_entity.getMapPointVec();
                 if (isCollidable(check_pos.x, check_pos.y)) {
                     return ;
                 }
                 
                 // moving rock action
                 Point move_vec;
-                if (event == InputEvent::PRESS_DOWN) {
-                    obj->pos.y += 1;
-                    move_vec.y = -16;
-                } else if (event == InputEvent::PRESS_LEFT) {
-                    obj->pos.x -= 1;
-                    move_vec.x = -16;
-                } else if (event == InputEvent::PRESS_RIGHT) {
-                    obj->pos.x += 1;
-                    move_vec.x = 16;
-                } else if (event == InputEvent::PRESS_UP) {
-                    obj->pos.y -= 1;
-                    move_vec.y = 16;
-                }
+                obj->pos += direction_entity.getMapPointVec();
+                move_vec  = direction_entity.getUnitVec() * 16;
                 
                 // send run action map object
                 view->runObjectMoveAction(obj->id, move_vec);
@@ -153,19 +130,8 @@ void FieldState::movePlayerCharacter(InputEvent event)
         ((int)player_map_pos.y % 9 == 8 && event == InputEvent::PRESS_UP))
     {
         Point move, scroll;
-        if (event == InputEvent::PRESS_RIGHT) {
-            move = Point(-32 * 8, 0);
-            scroll = Point(-32 * 9, 0);
-        } else if (event == InputEvent::PRESS_DOWN) {
-            move = Point(0, 32 * 8);
-            scroll = Point(0, 32 * 9);
-        } else if (event == InputEvent::PRESS_LEFT) {
-            move = Point(32 * 8, 0);
-            scroll = Point(32 * 9, 0);
-        } else if (event == InputEvent::PRESS_UP) {
-            move = Point(0, -32 * 8);
-            scroll = Point(0, -32 * 9);
-        }
+        move   = direction_entity.getUnitVec() * -32 * 8;
+        scroll = direction_entity.getUnitVec() * -32 * 9;
         view->scrollField(move, scroll);
         
         return ;
