@@ -47,7 +47,16 @@ void FieldState::update()
 {
     
     auto event = InputModule::getInstance()->popEvent();
-    if (event != 0) {
+    
+    if (event == InputEvent::RELEASE_DECIDE) {
+        // message view disabled
+        if (view->getMessageState() == MessageView::WAIT) {
+            view->releaseMessages();
+            controller->setEnableArrowButtons(true);
+        }
+    }
+    
+    if (event != InputEvent::RELEASE_DECIDE && event != InputEvent::PRESS_DECIDE && event != 0) {
         movePlayerCharacter(event);
     }
 }
@@ -170,11 +179,8 @@ void FieldState::movePlayerCharacter(InputEvent event)
         if (obj->pos == player_map_pos) {
             if (obj->type == ObjectType::MESSAGE_POINT) {
                 controller->setEnableArrowButtons(false);
-                
                 auto action = CallFunc::create([=]() {
-                    std::string msg_data = "ドウカ、ツナガッテクダサイ";
-                    auto msg_view = MessageView::create(msg_data);
-                    view->addChild(msg_view);
+                    view->viewMessages("メッセージテスト");
                 });
                 view->addRunActionAfterMove(action);
             }

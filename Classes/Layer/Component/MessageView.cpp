@@ -10,13 +10,14 @@
 
 USING_NS_CC;
 
-MessageView::MessageView(std::string msg_data) :
-msg_data(msg_data),
+MessageView::MessageView() :
+state(DISABLED),
+msg_data(""),
 string_idx(0){}
 
-MessageView* MessageView::create(std::string msg_data)
+MessageView* MessageView::create()
 {
-    auto ret = new MessageView(msg_data);
+    auto ret = new MessageView();
     if (ret && ret->initWithFile("ui/message_window.png")) {
         ret->autorelease();
         
@@ -32,6 +33,9 @@ MessageView* MessageView::create(std::string msg_data)
         msg_label->setPosition(8, 40);
         msg_label->setTag(MESSAGE_LABEL);
         ret->addChild(msg_label);
+        
+        // disabled view
+        ret->setVisible(false);
     } else {
         delete ret;
         ret = NULL;
@@ -39,9 +43,12 @@ MessageView* MessageView::create(std::string msg_data)
     return ret;
 }
 
-void MessageView::onEnter()
+void MessageView::viewMessages(std::string msg_data)
 {
-    Sprite::onEnter();
+    this->msg_data = msg_data;
+    this->state    = PROGRESS;
+    
+    setVisible(true);
     
     auto move  = MoveTo::create(0.3f, Point(16, 176));
     auto moved = CallFunc::create([=]() {
@@ -56,15 +63,25 @@ void MessageView::updateMessage(float dt)
     string_idx = string_idx >= msg_data.length() ? msg_data.length() : string_idx;
     
     auto output = msg_data.substr(0, string_idx);
-    if (output.empty()) {
-        return ;
-    }
-    
     auto msg_label = (LabelTTF*)getChildByTag(MESSAGE_LABEL);
     msg_label->setString(output.c_str());
     
     if (string_idx == msg_data.length()) {
         unschedule(schedule_selector(MessageView::updateMessage));
-        this->removeFromParent();
+        state = WAIT;
     }
+}
+
+void MessageView::releaseMessages()
+{
+    auto move  = MoveTo::create(0.1f, Point(16, 96));
+    auto moved = CallFunc::create([=]() {
+        state = DISABLED;
+        string_idx = 0;
+        setVisible(false);
+        
+        auto msg_label = (LabelTTF*)getChildByTag(MESSAGE_LABEL);
+        msg_label->setString("");
+    });
+    runAction(Sequence::create(move, moved, NULL));
 }

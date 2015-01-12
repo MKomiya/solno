@@ -12,12 +12,14 @@
 #include <stdio.h>
 #include <cocos2d.h>
 
+#include "MessageView.h"
+
 enum PlayerActionTags {
     MOVE_SEQUENCE = 11,
 };
 
-class PlayerView;
 struct FieldObject;
+class PlayerView;
 class FieldLayer : public cocos2d::Layer
 {
 public:
@@ -41,10 +43,14 @@ public:
     bool isRunningMapScroll();
     
     void addRunActionAfterMove(cocos2d::FiniteTimeAction* action);
+    void viewMessages(std::string msg_data);
+    void releaseMessages();
+    MessageView::ViewState getMessageState();
     
 private:
     cocos2d::TMXTiledMap* map;
     PlayerView* player_sprite;
+    MessageView* msg_view;
     cocos2d::Node* objects_root;
 };
 
