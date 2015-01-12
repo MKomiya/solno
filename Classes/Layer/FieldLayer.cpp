@@ -33,7 +33,7 @@ bool FieldLayer::init()
     // invisible meta
     auto meta_layer = map->getLayer("meta");
     auto obj_layer  = map->getLayer("object");
-    meta_layer->setVisible(true);
+    meta_layer->setVisible(false);
     obj_layer->setVisible(false);
     
     // player character view
@@ -41,6 +41,10 @@ bool FieldLayer::init()
     player_sprite->setAnchorPoint(Point(0, 1));
     player_sprite->setPosition(Point(16, s.height - 16));
     addChild(player_sprite);
+    
+    // msg_view
+    msg_view = MessageView::create();
+    addChild(msg_view);
     
     return true;
 }
@@ -127,4 +131,19 @@ bool FieldLayer::isRunningMapScroll()
 void FieldLayer::addRunActionAfterMove(cocos2d::FiniteTimeAction *action)
 {
     player_sprite->addRunActionAfterMove(action);
+}
+
+void FieldLayer::viewMessages(std::string msg_data)
+{
+    msg_view->viewMessages(msg_data);
+}
+
+void FieldLayer::releaseMessages()
+{
+    msg_view->releaseMessages();
+}
+
+MessageView::ViewState FieldLayer::getMessageState()
+{
+    return msg_view->getState();
 }

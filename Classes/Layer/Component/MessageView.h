@@ -18,13 +18,27 @@ public:
     enum ChildTag {
         MESSAGE_LABEL = 1,
     };
-    MessageView(std::string msg_data);
+    enum ViewState {
+        DISABLED = 1,
+        PROGRESS,
+        HIGH_SPEED,
+        WAIT,
+        NEXT,
+        END,
+    };
+    MessageView();
     
-    static MessageView* create(std::string msg_data);
-    virtual void onEnter();
+    static MessageView* create();
+    void viewMessages(std::string msg_data);
     void updateMessage(float dt);
+    void releaseMessages();
+    
+    inline ViewState getState() {
+        return state;
+    }
     
 private:
+    ViewState state;
     std::string msg_data;
     int string_idx;
 };
