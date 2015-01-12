@@ -65,6 +65,7 @@
 		D020AD741A616A2000BB01A9 /* MessageView.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D020AD721A616A2000BB01A9 /* MessageView.cpp */; };
 		D048D9BC1A4E623500EE9339 /* ControllerLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D048D9BA1A4E623500EE9339 /* ControllerLayer.cpp */; };
 		D048D9BE1A4E65CD00EE9339 /* ui in Resources */ = {isa = PBXBuildFile; fileRef = D048D9BD1A4E65CD00EE9339 /* ui */; };
+		D05758BF1A63780D00BD2107 /* Direction.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D05758BD1A63780D00BD2107 /* Direction.cpp */; };
 		D083A2A71A4DAB59009A9099 /* FieldLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D083A2A51A4DAB59009A9099 /* FieldLayer.cpp */; };
 		D083A2A91A4DAE08009A9099 /* tmx in Resources */ = {isa = PBXBuildFile; fileRef = D083A2A81A4DAE08009A9099 /* tmx */; };
 		D083A2AC1A4DB1EF009A9099 /* chara in Resources */ = {isa = PBXBuildFile; fileRef = D083A2AB1A4DB1EF009A9099 /* chara */; };
@@ -170,6 +171,8 @@
 		D048D9BA1A4E623500EE9339 /* ControllerLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ControllerLayer.cpp; path = Layer/ControllerLayer.cpp; sourceTree = "<group>"; };
 		D048D9BB1A4E623500EE9339 /* ControllerLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ControllerLayer.h; path = Layer/ControllerLayer.h; sourceTree = "<group>"; };
 		D048D9BD1A4E65CD00EE9339 /* ui */ = {isa = PBXFileReference; lastKnownFileType = folder; path = ui; sourceTree = "<group>"; };
+		D05758BD1A63780D00BD2107 /* Direction.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Direction.cpp; path = Entity/Direction.cpp; sourceTree = "<group>"; };
+		D05758BE1A63780D00BD2107 /* Direction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Direction.h; path = Entity/Direction.h; sourceTree = "<group>"; };
 		D083A2A51A4DAB59009A9099 /* FieldLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = FieldLayer.cpp; path = Layer/FieldLayer.cpp; sourceTree = "<group>"; };
 		D083A2A61A4DAB59009A9099 /* FieldLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FieldLayer.h; path = Layer/FieldLayer.h; sourceTree = "<group>"; };
 		D083A2A81A4DAE08009A9099 /* tmx */ = {isa = PBXFileReference; lastKnownFileType = folder; path = tmx; sourceTree = "<group>"; };
@@ -323,6 +326,7 @@
 		46880B8319C43A87006E1F66 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				D05758BC1A6377D000BD2107 /* Entity */,
 				D0EBE61B1A52759B00E36888 /* State */,
 				D0EBE6141A526F0F00E36888 /* Module */,
 				D083A2AA1A4DAF46009A9099 /* Layer */,
@@ -381,6 +385,15 @@
 			name = Icons;
 			path = ios;
 			sourceTree = SOURCE_ROOT;
+		};
+		D05758BC1A6377D000BD2107 /* Entity */ = {
+			isa = PBXGroup;
+			children = (
+				D05758BD1A63780D00BD2107 /* Direction.cpp */,
+				D05758BE1A63780D00BD2107 /* Direction.h */,
+			);
+			name = Entity;
+			sourceTree = "<group>";
 		};
 		D083A2AA1A4DAF46009A9099 /* Layer */ = {
 			isa = PBXGroup;
@@ -604,6 +617,7 @@
 				503AE10217EB989F00D1A890 /* RootViewController.mm in Sources */,
 				503AE10117EB989F00D1A890 /* main.m in Sources */,
 				D0EBE61A1A52709B00E36888 /* InputModule.cpp in Sources */,
+				D05758BF1A63780D00BD2107 /* Direction.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
