@@ -26,4 +26,12 @@
    eJxjYBhegHegHTAKRgEFYDT9joJRMApGwSggFgAAzswAGw==
   </data>
  </layer>
+ <objectgroup name="Event" width="25" height="25">
+  <object name="movable_rock" type="1" gid="13" x="80" y="48"/>
+  <object name="message" type="2" gid="13" x="64" y="80">
+   <properties>
+    <property name="msg_data" value="[&quot;メッセージテスト&quot;,&quot;二番目メッセージテスト&quot;]"/>
+   </properties>
+  </object>
+ </objectgroup>
 </map>
