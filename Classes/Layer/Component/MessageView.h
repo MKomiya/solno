@@ -31,6 +31,7 @@ public:
     static MessageView* create();
     void viewMessages(std::string msg_data);
     void updateMessage(float dt);
+    void nextMessage();
     void releaseMessages();
     
     inline ViewState getState() {
@@ -39,8 +40,10 @@ public:
     
 private:
     ViewState state;
-    std::string msg_data;
+    std::vector<std::string> msg_data;
+    std::string now_msg;
     int string_idx;
+    int msg_idx;
 };
 
 #endif /* defined(__solno__MessageView__) */

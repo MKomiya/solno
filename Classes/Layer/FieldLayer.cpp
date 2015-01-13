@@ -140,7 +140,7 @@ void FieldLayer::viewMessages(std::string msg_data)
 
 void FieldLayer::releaseMessages()
 {
-    msg_view->releaseMessages();
+    msg_view->nextMessage();
 }
 
 MessageView::ViewState FieldLayer::getMessageState()

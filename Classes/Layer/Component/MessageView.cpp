@@ -6,14 +6,15 @@
 //
 //
 
+#include <json11.hpp>
 #include "MessageView.h"
 
 USING_NS_CC;
 
 MessageView::MessageView() :
 state(DISABLED),
-msg_data(""),
-string_idx(0){}
+string_idx(0),
+msg_idx(0){}
 
 MessageView* MessageView::create()
 {
@@ -45,7 +46,14 @@ MessageView* MessageView::create()
 
 void MessageView::viewMessages(std::string msg_data)
 {
-    this->msg_data = msg_data;
+    std::string err;
+    auto decoded_data = json11::Json::parse(msg_data, err);
+    auto json_array   = decoded_data.array_items();
+    for (auto item : json_array) {
+        this->msg_data.push_back(item.string_value());
+    }
+    
+    this->now_msg  = this->msg_data.front();
     this->state    = PROGRESS;
     
     setVisible(true);
@@ -60,16 +68,33 @@ void MessageView::viewMessages(std::string msg_data)
 void MessageView::updateMessage(float dt)
 {
     string_idx += 3;
-    string_idx = string_idx >= msg_data.length() ? msg_data.length() : string_idx;
+    string_idx = string_idx >= now_msg.length() ? now_msg.length() : string_idx;
     
-    auto output = msg_data.substr(0, string_idx);
+    auto output = now_msg.substr(0, string_idx);
     auto msg_label = (LabelTTF*)getChildByTag(MESSAGE_LABEL);
     msg_label->setString(output.c_str());
     
-    if (string_idx == msg_data.length()) {
+    if (string_idx == now_msg.length()) {
         unschedule(schedule_selector(MessageView::updateMessage));
         state = WAIT;
     }
+}
+
+void MessageView::nextMessage()
+{
+    msg_idx++;
+    string_idx = 0;
+    now_msg = msg_data[msg_idx];
+    
+    if (msg_idx == msg_data.size()) {
+        releaseMessages();
+        return ;
+    }
+    
+    auto msg_label = (LabelTTF*)getChildByTag(MESSAGE_LABEL);
+    msg_label->setString("");
+    
+    schedule(schedule_selector(MessageView::updateMessage), 0.03f);
 }
 
 void MessageView::releaseMessages()
