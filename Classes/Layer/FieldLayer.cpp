@@ -97,13 +97,13 @@ TMXLayer* FieldLayer::getMapCollider()
     return ret;
 }
 
-TMXLayer* FieldLayer::getObjectsLayer()
+TMXObjectGroup* FieldLayer::getObjectsGroup()
 {
-    auto ret = map->getLayer("object");
-    if (ret == nullptr) {
-        throw "object layer is not found";
+    auto group = map->getObjectGroup("Event");
+    if (group == nullptr) {
+        throw "object group is not found";
     }
-    return ret;
+    return group;
 }
 
 void FieldLayer::scrollField(cocos2d::Point move_vec, cocos2d::Point scroll_vec)
@@ -140,7 +140,7 @@ void FieldLayer::viewMessages(std::string msg_data)
 
 void FieldLayer::releaseMessages()
 {
-    msg_view->releaseMessages();
+    msg_view->nextMessage();
 }
 
 MessageView::ViewState FieldLayer::getMessageState()

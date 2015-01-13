@@ -22,18 +22,30 @@ player_direction("down"),
 view(view),
 controller(controller)
 {
-    auto obj_layer = view->getObjectsLayer();
-    auto tiles     = obj_layer->getTiles();
+    // map size取得のためにcollider layerで代用する
+    auto obj_layer = view->getMapCollider();
     auto size      = obj_layer->getLayerSize();
+    auto obj_group = view->getObjectsGroup();
     
-    int id = 100;
-    for (int i=0; i < size.width * size.height; ++i) {
-        if (tiles[i] > 0) {
-            Point pos(i % (int)size.width, i / (int)size.height);
+    {
+        int id = 100;
+        for (auto object : obj_group->getObjects()) {
+            auto object_data = object.asValueMap();
             
-            auto obj = new FieldObject(id, pos, MOVABLE_ROCK);
-            objects.push_back(obj);
+            float x  = object_data["x"].asFloat() / 16;
+            float y  = size.height - object_data["y"].asFloat() / 16;
             
+            std::string type_str = object_data["type"].asString();
+            ObjectType type;
+            std::string optional_params = "";
+            if (type_str == "1") {
+                type = MOVABLE_ROCK;
+            } else if (type_str == "2") {
+                type = MESSAGE_POINT;
+                optional_params = object_data["msg_data"].asString();
+            }
+            auto ret = new FieldObject(id, Point(x, y), type, optional_params);
+            objects.push_back(ret);
             ++id;
         }
     }
@@ -146,7 +158,7 @@ void FieldState::movePlayerCharacter(InputEvent event)
             if (obj->type == ObjectType::MESSAGE_POINT) {
                 controller->setEnableArrowButtons(false);
                 auto action = CallFunc::create([=]() {
-                    view->viewMessages("メッセージテスト");
+                    view->viewMessages(obj->optional_params);
                 });
                 view->addRunActionAfterMove(action);
             }

@@ -28,11 +28,16 @@ struct FieldObject {
     int id;
     cocos2d::Point pos;
     ObjectType type;
+    std::string optional_params;
     
-    FieldObject(int i, cocos2d::Point p, ObjectType t) {
+    FieldObject(int i, cocos2d::Point p, ObjectType t, std::string o) {
         id   = i;
         pos  = p;
         type = t;
+        optional_params = o;
+    }
+    FieldObject(int i, cocos2d::Point p, ObjectType t) {
+        FieldObject(i, p, t, "");
     }
 };
 
