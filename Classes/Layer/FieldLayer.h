@@ -37,7 +37,7 @@ public:
     void runObjectMoveAction(int object_id, cocos2d::Point move_vec);
     
     cocos2d::TMXLayer* getMapCollider();
-    cocos2d::TMXLayer* getObjectsLayer();
+    cocos2d::TMXObjectGroup* getObjectsGroup();
     void scrollField(cocos2d::Point move_vec, cocos2d::Point scroll_vec);
     bool isRunningPlayerView();
     bool isRunningMapScroll();
