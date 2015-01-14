@@ -43,6 +43,10 @@ controller(controller)
             } else if (type_str == "2") {
                 type = MESSAGE_POINT;
                 optional_params = object_data["msg_data"].asString();
+            } else if (type_str == "3") {
+                type = START_POINT;
+                
+                player_map_pos = Point(x, y);
             }
             auto ret = new FieldObject(id, Point(x, y), type, optional_params);
             objects.push_back(ret);
