@@ -37,10 +37,12 @@ bool FieldLayer::init()
     obj_layer->setVisible(false);
     
     // player character view
+    /*
     player_sprite = PlayerView::create();
     player_sprite->setAnchorPoint(Point(0, 1));
     player_sprite->setPosition(Point(16, s.height - 16));
     addChild(player_sprite);
+    */
     
     // msg_view
     msg_view = MessageView::create();
@@ -58,16 +60,36 @@ void FieldLayer::initFieldObject(std::vector<FieldObject *> objects)
     map->addChild(objects_root);
     
     for (auto object : objects) {
-        auto sprite = Sprite::create("tmx/movable_rock.png");
-        Point pos;
-        pos.x = object->pos.x * 16;
-        pos.y = s.height - (object->pos.y * 16);
-        
-        sprite->getTexture()->setAliasTexParameters();
-        sprite->setAnchorPoint(Point(0, 1));
-        sprite->setPosition(pos);
-        sprite->setTag(object->id);
-        objects_root->addChild(sprite);
+        if (object->type == ObjectType::START_POINT) {
+            Point map_scroll_vec;
+            map_scroll_vec.x = floorf(object->pos.x / 8) * -32 * 9;
+            map_scroll_vec.y = floorf(object->pos.y / 8) * 32 * 9;
+            map->setPosition(map->getPosition() + map_scroll_vec);
+            
+            auto obj_x = object->pos.x > 8 ? (int)object->pos.x % 9 : object->pos.x;
+            auto obj_y = object->pos.y > 8 ? (int)object->pos.y % 9 : object->pos.y;
+            
+            auto win_size = Director::getInstance()->getWinSize();
+            Point pos;
+            pos.x = obj_x * 32  + 16;
+            pos.y = obj_y * -32 + (win_size.height - 16);
+            
+            player_sprite = PlayerView::create();
+            player_sprite->setAnchorPoint(Point(0, 1));
+            player_sprite->setPosition(pos);
+            addChild(player_sprite);
+        } else {
+            Point pos;
+            pos.x = object->pos.x * 16;
+            pos.y = s.height - (object->pos.y * 16);
+            
+            auto sprite = Sprite::create("tmx/movable_rock.png");
+            sprite->getTexture()->setAliasTexParameters();
+            sprite->setAnchorPoint(Point(0, 1));
+            sprite->setPosition(pos);
+            sprite->setTag(object->id);
+            objects_root->addChild(sprite);
+        }
     }
 }
 
