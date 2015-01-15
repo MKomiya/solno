@@ -13,12 +13,12 @@
  </layer>
  <layer name="optional" width="25" height="25">
   <data encoding="base64" compression="zlib">
-   eJzFlosKwCAIRaO1/f8nr0ExEcvrAzoQ0dRmdV0r5af21opOHU1Ci1/FeeB5XMr7JDuyXsoTtCNU1kfmiILuz86P2zI14OEePZqH5mfVUBa7GtQ0RGvBeh7oejNq4YPmatlryZc/m+NIrll69s6DxK32zavd0zVM4d/1mVtjYxTJ36IP6Z7JZuYTOYfsPFf7dkJjPLZtbN5/mUwid9ELQKwA0Q==
+   eJzFlosKwCAIRaO1/f8nb4NiIprXB+xARNOW+aha++hPG82mzyZhzdfmReB2HMZ6khzZL+VKyhE66zP/yIL6Z6fHZZU5EOGcPWqHpefNoSp2NWjlEK0FbzzQ/VbUwgu11eNrSZd/W+OMrVX5bMVKOr/Q9TW/8f2jfvi7hincL8u2wcYokr4nP7Q4VbLsycSh2k7Nb9HzsfL+GxtZ9C1TSeYuugGF9ADj
   </data>
  </layer>
  <layer name="meta" width="25" height="25">
   <data encoding="base64" compression="zlib">
-   eJzNVUEOACAI8gv9/7Md21ppJIXcmgbotMwGmp2hAbmruyzMPlbcUfxGMxNHNDJczD6zofaG9lftdwfPV1Qjey8ijQo8rzTUdSrms9JOzF6iM8qHcvyc1wpz6/Gp/J28jQwdFjJ/UQcaUAMg
+   eJzVVEEOACAI8gv9/7Md25xlJKVxaxqgaSIDTfbQgFzrLgvah8XtxU80I3FEI8LF7DMb2d7Q/mb7nWHly6uRvReeRgWeWxq360TeMqr9405oL94Z5UM5Xs5rhbld8WX52/kbGTosRPauAySHA2Q=
   </data>
  </layer>
  <layer name="object" width="25" height="25">
@@ -33,5 +33,6 @@
     <property name="msg_data" value="[&quot;メッセージテスト&quot;,&quot;二番目メッセージテスト&quot;]"/>
    </properties>
   </object>
+  <object name="start" type="3" gid="13" x="192" y="256"/>
  </objectgroup>
 </map>

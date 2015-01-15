@@ -23,6 +23,7 @@ enum MapColliderType {
 enum ObjectType {
     MOVABLE_ROCK = 1,
     MESSAGE_POINT,
+    START_POINT,
 };
 struct FieldObject {
     int id;

@@ -33,7 +33,7 @@ controller(controller)
             auto object_data = object.asValueMap();
             
             float x  = object_data["x"].asFloat() / 16;
-            float y  = size.height - object_data["y"].asFloat() / 16;
+            float y  = size.height - object_data["y"].asFloat() / 16 - 1;
             
             std::string type_str = object_data["type"].asString();
             ObjectType type;
@@ -43,6 +43,9 @@ controller(controller)
             } else if (type_str == "2") {
                 type = MESSAGE_POINT;
                 optional_params = object_data["msg_data"].asString();
+            } else if (type_str == "3") {
+                type = START_POINT;
+                player_map_pos = Point(x, y);
             }
             auto ret = new FieldObject(id, Point(x, y), type, optional_params);
             objects.push_back(ret);
@@ -134,6 +137,7 @@ void FieldState::movePlayerCharacter(InputEvent event)
     
     // update player position
     player_map_pos = next_pos;
+    CCLOG("pos: (%f, %f)", player_map_pos.x, player_map_pos.y);
     
     // run scroll field if player pos is scroll point
     if (((int)player_map_pos.x % 9 == 0 && event == InputEvent::PRESS_RIGHT) ||
