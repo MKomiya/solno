@@ -6,6 +6,8 @@
 #include "FieldLayer.h"
 #include "ControllerLayer.h"
 
+#include "StoryState.h"
+
 USING_NS_CC;
 
 Scene* HelloWorld::createScene()
@@ -44,6 +46,9 @@ bool HelloWorld::init()
     StateMachineModule::getInstance()->registerState("field", state);
     StateMachineModule::getInstance()->setNowState("field");
     scheduleUpdate();
+    
+    auto test = new StoryState();
+    delete test;
     
     return true;
 }

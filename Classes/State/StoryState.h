@@ -18,5 +18,8 @@ public:
     StoryState();
     virtual ~StoryState();
     virtual void update();
+    
+private:
+    
 };
 #endif /* defined(__solno__StoryState__) */
