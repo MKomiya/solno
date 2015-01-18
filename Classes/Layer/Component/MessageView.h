@@ -29,7 +29,7 @@ public:
     MessageView();
     
     static MessageView* create();
-    void viewMessages(std::string msg_data);
+    void viewMessages(std::vector<std::string> msg_data);
     void updateMessage(float dt);
     void nextMessage();
     void releaseMessages();

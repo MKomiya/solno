@@ -13,9 +13,14 @@
 #include <fstream>
 #include <iostream>
 
+#include "InputModule.h"
+#include "StoryLayer.h"
+
 USING_NS_CC;
 
-StoryState::StoryState()
+StoryState::StoryState(StoryLayer* view) :
+view(view),
+story_idx(0),msg_idx(0)
 {
     auto path = FileUtils::getInstance()->fullPathForFilename("story/mock.json");
     
@@ -28,13 +33,19 @@ StoryState::StoryState()
     
     auto data = json11::Json::parse(mock_data, err);
     for (auto item : data.array_items()) {
-        if (item["msg_data"].is_null()) {
+        if (item["type"].is_null() || item["type"].int_value() != 1) {
+            CCLOG("invalid story node. type: %d", item["type"].int_value());
             continue;
         }
+        
+        std::vector<std::string> msg_data;
         for (auto msg : item["msg_data"].array_items()) {
-            CCLOG("%s", msg.string_value().c_str());
+            msg_data.push_back(msg.string_value());
         }
+        story_data.push_back(StoryNode(1, msg_data));
     }
+    
+    view->viewMessages(story_data[0].msg_data);
 }
 
 StoryState::~StoryState()
@@ -43,4 +54,17 @@ StoryState::~StoryState()
 
 void StoryState::update()
 {
+    auto event = InputModule::getInstance()->popEvent();
+    
+    if (event == InputEvent::RELEASE_DECIDE) {
+        // message view disabled
+        if (view->getMessageState() == MessageView::WAIT) {
+            if (story_data[story_idx].msg_data.size() <= ++msg_idx) {
+                story_idx++; msg_idx = 0;
+                view->viewMessages(story_data[story_idx].msg_data);
+            } else {
+                view->releaseMessages();
+            }
+        }
+    }
 }

@@ -43,7 +43,7 @@ public:
     bool isRunningMapScroll();
     
     void addRunActionAfterMove(cocos2d::FiniteTimeAction* action);
-    void viewMessages(std::string msg_data);
+    void viewMessages(std::vector<std::string> msg_data);
     void releaseMessages();
     MessageView::ViewState getMessageState();
     

@@ -7,6 +7,7 @@
 #include "ControllerLayer.h"
 
 #include "StoryState.h"
+#include "StoryLayer.h"
 
 USING_NS_CC;
 
@@ -35,6 +36,7 @@ bool HelloWorld::init()
         return false;
     }
     
+    /*
     // initialize view
     auto field      = FieldLayer::create();
     auto controller = ControllerLayer::create();
@@ -46,9 +48,17 @@ bool HelloWorld::init()
     StateMachineModule::getInstance()->registerState("field", state);
     StateMachineModule::getInstance()->setNowState("field");
     scheduleUpdate();
+    */
     
-    auto test = new StoryState();
-    delete test;
+    auto story      = StoryLayer::create();
+    auto controller = ControllerLayer::create();
+    LayerManager::getInstance()->push(story);
+    LayerManager::getInstance()->push(controller);
+    
+    auto state = new StoryState(story);
+    StateMachineModule::getInstance()->registerState("story", state);
+    StateMachineModule::getInstance()->setNowState("story");
+    scheduleUpdate();
     
     return true;
 }

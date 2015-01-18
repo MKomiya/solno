@@ -20,7 +20,7 @@ public:
     virtual bool init();
     CREATE_FUNC(StoryLayer);
     
-    void viewMessages(std::string msg_data);
+    void viewMessages(std::vector<std::string> msg_data);
     void releaseMessages();
     MessageView::ViewState getMessageState();
     

@@ -14,6 +14,8 @@
 
 #include "Direction.h"
 
+#include <json11.hpp>
+
 USING_NS_CC;
 
 FieldState::FieldState(FieldLayer* view, ControllerLayer* controller) :
@@ -162,7 +164,13 @@ void FieldState::movePlayerCharacter(InputEvent event)
             if (obj->type == ObjectType::MESSAGE_POINT) {
                 controller->setEnableArrowButtons(false);
                 auto action = CallFunc::create([=]() {
-                    view->viewMessages(obj->optional_params);
+                    std::vector<std::string> args;
+                    std::string err;
+                    auto data = json11::Json::parse(obj->optional_params, err);
+                    for (auto item : data.array_items()) {
+                        args.push_back(item.string_value());
+                    }
+                    view->viewMessages(args);
                 });
                 view->addRunActionAfterMove(action);
             }

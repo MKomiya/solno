@@ -20,7 +20,7 @@ bool StoryLayer::init()
     return true;
 }
 
-void StoryLayer::viewMessages(std::string msg_data)
+void StoryLayer::viewMessages(std::vector<std::string> msg_data)
 {
     msg_view->viewMessages(msg_data);
 }
