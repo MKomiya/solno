@@ -206,7 +206,7 @@
 		D0EBE61D1A5275B900E36888 /* FieldState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FieldState.h; path = State/FieldState.h; sourceTree = "<group>"; };
 		D0EBE61F1A52771D00E36888 /* StateMachineModule.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = StateMachineModule.cpp; path = Module/StateMachineModule.cpp; sourceTree = "<group>"; };
 		D0EBE6201A52771D00E36888 /* StateMachineModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StateMachineModule.h; path = Module/StateMachineModule.h; sourceTree = "<group>"; };
-		D0EBE6221A527C1400E36888 /* IState.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = IState.h; path = State/IState.h; sourceTree = "<group>"; };
+		D0EBE6221A527C1400E36888 /* StateBase.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = StateBase.h; path = State/StateBase.h; sourceTree = "<group>"; };
 		D0FBAE2A1A69443400A06481 /* StorageModule.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = StorageModule.cpp; path = Module/StorageModule.cpp; sourceTree = "<group>"; };
 		D0FBAE2B1A69443400A06481 /* StorageModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StorageModule.h; path = Module/StorageModule.h; sourceTree = "<group>"; };
 		D0FF46DB1A6242EB005EBDE7 /* MenuDecideItem.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = MenuDecideItem.cpp; path = Layer/Widget/MenuDecideItem.cpp; sourceTree = "<group>"; };
@@ -486,7 +486,7 @@
 			children = (
 				D0EBE61C1A5275B900E36888 /* FieldState.cpp */,
 				D0EBE61D1A5275B900E36888 /* FieldState.h */,
-				D0EBE6221A527C1400E36888 /* IState.h */,
+				D0EBE6221A527C1400E36888 /* StateBase.h */,
 				D04876141A697B2B0097D6BB /* StoryState.cpp */,
 				D04876151A697B2B0097D6BB /* StoryState.h */,
 			);

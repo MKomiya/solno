@@ -12,7 +12,7 @@
 #include <stdio.h>
 #include <cocos2d.h>
 
-#include "IState.h"
+#include "StateBase.h"
 
 #include "InputModule.h"
 
@@ -44,7 +44,7 @@ struct FieldObject {
 
 class FieldLayer;
 class ControllerLayer;
-class FieldState : public IState {
+class FieldState : public StateBase {
 public:
     FieldState(FieldLayer* view, ControllerLayer* controller);
     virtual ~FieldState();

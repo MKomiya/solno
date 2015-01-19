@@ -29,5 +29,9 @@ Story* Story::create(int type, std::vector<std::string> msg_data)
     }
     
     ret->autorelease();
+    
+    ret->setType(type);
+    ret->setMsgData(msg_data);
+    
     return ret;
 }

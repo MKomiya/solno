@@ -10,11 +10,13 @@
 #define __solno__StoryState__
 
 #include <stdio.h>
-#include "IState.h"
+
+#include "StateBase.h"
+#include "Story.h"
 
 class Story;
 class StoryLayer;
-class StoryState : public IState
+class StoryState : public StateBase
 {
 public:
     StoryState(StoryLayer* view);
@@ -23,7 +25,7 @@ public:
     
 private:
     StoryLayer* view;
-    std::queue<Story*> story_data;
+    cocos2d::Vector<Story*> story_data;
     Story* running_story;
     
     int msg_idx;

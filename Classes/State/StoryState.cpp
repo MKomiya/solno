@@ -40,13 +40,11 @@ view(view),msg_idx(0)
             continue;
         }
         auto s = Story::createByJson(item);
-        story_data.push(s);
-        s->retain();
+        story_data.pushBack(s);
     }
     
     running_story = story_data.front();
     view->viewMessages(running_story->getMsgData());
-    story_data.pop();
 }
 
 StoryState::~StoryState()
@@ -61,6 +59,7 @@ void StoryState::update()
         // message view disabled
         if (view->getMessageState() == MessageView::WAIT) {
             if (running_story->getMsgData().size() <= ++msg_idx) {
+                story_data.erase(0);
                 if (story_data.empty()) {
                     view->releaseMessages();
                     return;
@@ -69,8 +68,6 @@ void StoryState::update()
                 msg_idx = 0;
                 running_story = story_data.front();
                 view->viewMessages(running_story->getMsgData());
-                story_data.pop();
-                
             } else {
                 view->releaseMessages();
             }
