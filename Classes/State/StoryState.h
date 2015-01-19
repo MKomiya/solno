@@ -12,17 +12,7 @@
 #include <stdio.h>
 #include "IState.h"
 
-struct StoryNode
-{
-    int type;
-    std::vector<std::string> msg_data;
-    
-    StoryNode(int t, std::vector<std::string> m) {
-        type     = t;
-        msg_data = m;
-    }
-};
-
+class Story;
 class StoryLayer;
 class StoryState : public IState
 {
@@ -33,8 +23,8 @@ public:
     
 private:
     StoryLayer* view;
-    std::queue<StoryNode> story_data;
-    StoryNode running_story;
+    std::queue<Story*> story_data;
+    Story* running_story;
     
     int msg_idx;
 };

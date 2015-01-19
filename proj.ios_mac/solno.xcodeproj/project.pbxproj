@@ -69,10 +69,11 @@
 		D04876191A697B880097D6BB /* StoryLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D04876171A697B880097D6BB /* StoryLayer.cpp */; };
 		D048D9BC1A4E623500EE9339 /* ControllerLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D048D9BA1A4E623500EE9339 /* ControllerLayer.cpp */; };
 		D048D9BE1A4E65CD00EE9339 /* ui in Resources */ = {isa = PBXBuildFile; fileRef = D048D9BD1A4E65CD00EE9339 /* ui */; };
-		D05758BF1A63780D00BD2107 /* Direction.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D05758BD1A63780D00BD2107 /* Direction.cpp */; };
 		D083A2A71A4DAB59009A9099 /* FieldLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D083A2A51A4DAB59009A9099 /* FieldLayer.cpp */; };
 		D083A2A91A4DAE08009A9099 /* tmx in Resources */ = {isa = PBXBuildFile; fileRef = D083A2A81A4DAE08009A9099 /* tmx */; };
 		D083A2AC1A4DB1EF009A9099 /* chara in Resources */ = {isa = PBXBuildFile; fileRef = D083A2AB1A4DB1EF009A9099 /* chara */; };
+		D094BFB61A6D3F2500D6C383 /* Direction.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D094BFB41A6D3F2500D6C383 /* Direction.cpp */; };
+		D094BFB91A6D3F3800D6C383 /* Story.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D094BFB71A6D3F3800D6C383 /* Story.cpp */; };
 		D0A505441A6559A2004C2C4E /* json11.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D0A505421A6559A2004C2C4E /* json11.cpp */; };
 		D0CDF0A71A5AB331009E5E98 /* PlayerView.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D0CDF0A51A5AB331009E5E98 /* PlayerView.cpp */; };
 		D0CDF0AA1A5ABB27009E5E98 /* LayerManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D0CDF0A81A5ABB27009E5E98 /* LayerManager.cpp */; };
@@ -183,12 +184,14 @@
 		D048D9BA1A4E623500EE9339 /* ControllerLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ControllerLayer.cpp; path = Layer/ControllerLayer.cpp; sourceTree = "<group>"; };
 		D048D9BB1A4E623500EE9339 /* ControllerLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ControllerLayer.h; path = Layer/ControllerLayer.h; sourceTree = "<group>"; };
 		D048D9BD1A4E65CD00EE9339 /* ui */ = {isa = PBXFileReference; lastKnownFileType = folder; path = ui; sourceTree = "<group>"; };
-		D05758BD1A63780D00BD2107 /* Direction.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Direction.cpp; path = Entity/Direction.cpp; sourceTree = "<group>"; };
-		D05758BE1A63780D00BD2107 /* Direction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Direction.h; path = Entity/Direction.h; sourceTree = "<group>"; };
 		D083A2A51A4DAB59009A9099 /* FieldLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = FieldLayer.cpp; path = Layer/FieldLayer.cpp; sourceTree = "<group>"; };
 		D083A2A61A4DAB59009A9099 /* FieldLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FieldLayer.h; path = Layer/FieldLayer.h; sourceTree = "<group>"; };
 		D083A2A81A4DAE08009A9099 /* tmx */ = {isa = PBXFileReference; lastKnownFileType = folder; path = tmx; sourceTree = "<group>"; };
 		D083A2AB1A4DB1EF009A9099 /* chara */ = {isa = PBXFileReference; lastKnownFileType = folder; path = chara; sourceTree = "<group>"; };
+		D094BFB41A6D3F2500D6C383 /* Direction.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Direction.cpp; path = Model/Direction.cpp; sourceTree = "<group>"; };
+		D094BFB51A6D3F2500D6C383 /* Direction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Direction.h; path = Model/Direction.h; sourceTree = "<group>"; };
+		D094BFB71A6D3F3800D6C383 /* Story.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Story.cpp; path = Model/Story.cpp; sourceTree = "<group>"; };
+		D094BFB81A6D3F3800D6C383 /* Story.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Story.h; path = Model/Story.h; sourceTree = "<group>"; };
 		D0A505421A6559A2004C2C4E /* json11.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = json11.cpp; path = Library/json11.cpp; sourceTree = "<group>"; };
 		D0A505431A6559A2004C2C4E /* json11.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = json11.hpp; path = Library/json11.hpp; sourceTree = "<group>"; };
 		D0CDF0A51A5AB331009E5E98 /* PlayerView.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = PlayerView.cpp; path = Layer/Component/PlayerView.cpp; sourceTree = "<group>"; };
@@ -346,7 +349,7 @@
 			isa = PBXGroup;
 			children = (
 				D0A505411A65598F004C2C4E /* Library */,
-				D05758BC1A6377D000BD2107 /* Entity */,
+				D05758BC1A6377D000BD2107 /* Model */,
 				D0EBE61B1A52759B00E36888 /* State */,
 				D0EBE6141A526F0F00E36888 /* Module */,
 				D083A2AA1A4DAF46009A9099 /* Layer */,
@@ -406,13 +409,15 @@
 			path = ios;
 			sourceTree = SOURCE_ROOT;
 		};
-		D05758BC1A6377D000BD2107 /* Entity */ = {
+		D05758BC1A6377D000BD2107 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				D05758BD1A63780D00BD2107 /* Direction.cpp */,
-				D05758BE1A63780D00BD2107 /* Direction.h */,
+				D094BFB41A6D3F2500D6C383 /* Direction.cpp */,
+				D094BFB51A6D3F2500D6C383 /* Direction.h */,
+				D094BFB71A6D3F3800D6C383 /* Story.cpp */,
+				D094BFB81A6D3F3800D6C383 /* Story.h */,
 			);
-			name = Entity;
+			name = Model;
 			sourceTree = "<group>";
 		};
 		D083A2AA1A4DAF46009A9099 /* Layer */ = {
@@ -643,6 +648,7 @@
 				46880B8819C43A87006E1F66 /* AppDelegate.cpp in Sources */,
 				D0EBE6171A526F7200E36888 /* MenuArrowItem.cpp in Sources */,
 				D048D9BC1A4E623500EE9339 /* ControllerLayer.cpp in Sources */,
+				D094BFB91A6D3F3800D6C383 /* Story.cpp in Sources */,
 				D0A505441A6559A2004C2C4E /* json11.cpp in Sources */,
 				D020AD741A616A2000BB01A9 /* MessageView.cpp in Sources */,
 				D0FF46DD1A6242EB005EBDE7 /* MenuDecideItem.cpp in Sources */,
@@ -657,7 +663,7 @@
 				D0FBAE2C1A69443400A06481 /* StorageModule.cpp in Sources */,
 				D04876161A697B2B0097D6BB /* StoryState.cpp in Sources */,
 				D0EBE61A1A52709B00E36888 /* InputModule.cpp in Sources */,
-				D05758BF1A63780D00BD2107 /* Direction.cpp in Sources */,
+				D094BFB61A6D3F2500D6C383 /* Direction.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
