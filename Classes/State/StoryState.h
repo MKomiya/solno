@@ -10,21 +10,13 @@
 #define __solno__StoryState__
 
 #include <stdio.h>
-#include "IState.h"
 
-struct StoryNode
-{
-    int type;
-    std::vector<std::string> msg_data;
-    
-    StoryNode(int t, std::vector<std::string> m) {
-        type     = t;
-        msg_data = m;
-    }
-};
+#include "StateBase.h"
+#include "Story.h"
 
+class Story;
 class StoryLayer;
-class StoryState : public IState
+class StoryState : public StateBase
 {
 public:
     StoryState(StoryLayer* view);
@@ -33,8 +25,8 @@ public:
     
 private:
     StoryLayer* view;
-    std::queue<StoryNode> story_data;
-    StoryNode running_story;
+    cocos2d::Vector<Story*> story_data;
+    Story* running_story;
     
     int msg_idx;
 };

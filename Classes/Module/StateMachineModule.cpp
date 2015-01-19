@@ -8,21 +8,20 @@
 
 #include "StateMachineModule.h"
 
-#include "FieldState.h"
+USING_NS_CC;
 
 StateMachineModule* StateMachineModule::_instance;
 
-void StateMachineModule::releaseStates()
+void StateMachineModule::release()
 {
-    for (auto state : _state_hash) {
-        delete state.second;
-    }
     _state_hash.clear();
+    
+    Ref::release();
 }
 
-void StateMachineModule::registerState(std::string key, IState *state)
+void StateMachineModule::registerState(std::string key, StateBase *state)
 {
-    _state_hash.insert(std::make_pair(key, state));
+    _state_hash.insert(key, state);
 }
 
 void StateMachineModule::setNowState(std::string key)
