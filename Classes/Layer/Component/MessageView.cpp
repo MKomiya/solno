@@ -50,6 +50,8 @@ void MessageView::viewMessages(std::vector<std::string> msg_data)
     
     this->now_msg  = this->msg_data.front();
     this->state    = PROGRESS;
+    this->msg_idx  = 0;
+    this->string_idx = 0;
     
     setVisible(true);
     

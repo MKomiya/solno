@@ -19,8 +19,8 @@
 USING_NS_CC;
 
 StoryState::StoryState(StoryLayer* view) :
-view(view),
-story_idx(0),msg_idx(0)
+running_story(StoryNode(0, std::vector<std::string>())),
+view(view),msg_idx(0)
 {
     auto path = FileUtils::getInstance()->fullPathForFilename("story/mock.json");
     
@@ -42,10 +42,12 @@ story_idx(0),msg_idx(0)
         for (auto msg : item["msg_data"].array_items()) {
             msg_data.push_back(msg.string_value());
         }
-        story_data.push_back(StoryNode(1, msg_data));
+        story_data.push(StoryNode(1, msg_data));
     }
     
-    view->viewMessages(story_data[0].msg_data);
+    running_story = story_data.front();
+    view->viewMessages(running_story.msg_data);
+    story_data.pop();
 }
 
 StoryState::~StoryState()
@@ -59,9 +61,17 @@ void StoryState::update()
     if (event == InputEvent::RELEASE_DECIDE) {
         // message view disabled
         if (view->getMessageState() == MessageView::WAIT) {
-            if (story_data[story_idx].msg_data.size() <= ++msg_idx) {
-                story_idx++; msg_idx = 0;
-                view->viewMessages(story_data[story_idx].msg_data);
+            if (running_story.msg_data.size() <= ++msg_idx) {
+                if (story_data.empty()) {
+                    view->releaseMessages();
+                    return;
+                }
+                
+                msg_idx = 0;
+                running_story = story_data.front();
+                view->viewMessages(running_story.msg_data);
+                story_data.pop();
+                
             } else {
                 view->releaseMessages();
             }

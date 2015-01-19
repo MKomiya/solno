@@ -33,8 +33,9 @@ public:
     
 private:
     StoryLayer* view;
-    std::vector<StoryNode> story_data;
+    std::queue<StoryNode> story_data;
+    StoryNode running_story;
     
-    int story_idx, msg_idx;
+    int msg_idx;
 };
 #endif /* defined(__solno__StoryState__) */
