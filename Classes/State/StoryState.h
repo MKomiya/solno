@@ -19,9 +19,13 @@ class StoryLayer;
 class StoryState : public StateBase
 {
 public:
+    static StoryState* create(StoryLayer* view);
     StoryState(StoryLayer* view);
     virtual ~StoryState();
-    virtual void update();
+    
+    virtual void enter() override;
+    virtual void update() override;
+    virtual void exit() override;
     
 private:
     StoryLayer* view;

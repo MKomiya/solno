@@ -20,9 +20,29 @@
 
 USING_NS_CC;
 
+StoryState* StoryState::create(StoryLayer *view)
+{
+    auto ret = new StoryState(view);
+    if (!ret) {
+        CC_SAFE_DELETE(ret);
+        return nullptr;
+    }
+    
+    ret->autorelease();
+    return ret;
+}
+
 StoryState::StoryState(StoryLayer* view) :
 running_story(nullptr),
 view(view),msg_idx(0)
+{
+}
+
+StoryState::~StoryState()
+{
+}
+
+void StoryState::enter()
 {
     auto path = FileUtils::getInstance()->fullPathForFilename("story/mock.json");
     
@@ -47,10 +67,6 @@ view(view),msg_idx(0)
     view->viewMessages(running_story->getMsgData());
 }
 
-StoryState::~StoryState()
-{
-}
-
 void StoryState::update()
 {
     auto event = InputModule::getInstance()->popEvent();
@@ -73,4 +89,9 @@ void StoryState::update()
             }
         }
     }
+}
+
+void StoryState::exit()
+{
+    story_data.clear();
 }

@@ -44,8 +44,7 @@ bool HelloWorld::init()
     LayerManager::getInstance()->push(controller);
     
     // publish state
-    auto state = new FieldState(field, controller);
-    StateMachineModule::getInstance()->registerState("field", state);
+    StateMachineModule::getInstance()->registerState("field", FieldState::create(field, controller););
     StateMachineModule::getInstance()->setNowState("field");
     scheduleUpdate();
     */
@@ -55,9 +54,8 @@ bool HelloWorld::init()
     LayerManager::getInstance()->push(story);
     LayerManager::getInstance()->push(controller);
     
-    auto state = new StoryState(story);
-    StateMachineModule::getInstance()->registerState("story", state);
-    StateMachineModule::getInstance()->setNowState("story");
+    StateMachineModule::getInstance()->registerState("story", StoryState::create(story));
+    StateMachineModule::getInstance()->changeState("story");
     scheduleUpdate();
     
     return true;

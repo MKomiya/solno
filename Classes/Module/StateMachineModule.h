@@ -22,23 +22,24 @@ public:
     static StateMachineModule* getInstance() {
         static dispatch_once_t token;
         dispatch_once(&token, ^{
-            if (!_instance) {
-                _instance = new StateMachineModule();
+            if (!instance) {
+                instance = new StateMachineModule();
+                instance->current_state = nullptr;
             }
         });
-        return _instance;
+        return instance;
     }
 
     virtual void release();
     void registerState(std::string key, StateBase* state);
-    void setNowState(std::string key);
+    void changeState(std::string key);
     void update();
     
 private:
-    static StateMachineModule* _instance;
-    cocos2d::Map<std::string, StateBase*> _state_hash;
+    static StateMachineModule* instance;
     
-    std::string _now_state;
+    cocos2d::Map<std::string, StateBase*> _state_hash;
+    StateBase* current_state;
 };
 
 #endif /* defined(__solno__StateMachineModule__) */

@@ -65,6 +65,7 @@
 		D01DE4C81A6B706600235525 /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D01DE4C71A6B706600235525 /* libsqlite3.0.dylib */; };
 		D01DE4CC1A6B70D200235525 /* story in Resources */ = {isa = PBXBuildFile; fileRef = D01DE4CB1A6B70D200235525 /* story */; };
 		D020AD741A616A2000BB01A9 /* MessageView.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D020AD721A616A2000BB01A9 /* MessageView.cpp */; };
+		D0332E911A6E81CE004FCA4C /* StateBase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D0332E901A6E81CE004FCA4C /* StateBase.cpp */; };
 		D04876161A697B2B0097D6BB /* StoryState.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D04876141A697B2B0097D6BB /* StoryState.cpp */; };
 		D04876191A697B880097D6BB /* StoryLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D04876171A697B880097D6BB /* StoryLayer.cpp */; };
 		D048D9BC1A4E623500EE9339 /* ControllerLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D048D9BA1A4E623500EE9339 /* ControllerLayer.cpp */; };
@@ -178,6 +179,7 @@
 		D01DE4CB1A6B70D200235525 /* story */ = {isa = PBXFileReference; lastKnownFileType = folder; path = story; sourceTree = "<group>"; };
 		D020AD721A616A2000BB01A9 /* MessageView.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = MessageView.cpp; path = Layer/Component/MessageView.cpp; sourceTree = "<group>"; };
 		D020AD731A616A2000BB01A9 /* MessageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MessageView.h; path = Layer/Component/MessageView.h; sourceTree = "<group>"; };
+		D0332E901A6E81CE004FCA4C /* StateBase.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = StateBase.cpp; path = State/StateBase.cpp; sourceTree = "<group>"; };
 		D04876141A697B2B0097D6BB /* StoryState.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = StoryState.cpp; path = State/StoryState.cpp; sourceTree = "<group>"; };
 		D04876151A697B2B0097D6BB /* StoryState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StoryState.h; path = State/StoryState.h; sourceTree = "<group>"; };
 		D04876171A697B880097D6BB /* StoryLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = StoryLayer.cpp; path = Layer/StoryLayer.cpp; sourceTree = "<group>"; };
@@ -492,6 +494,7 @@
 				D0EBE61C1A5275B900E36888 /* FieldState.cpp */,
 				D0EBE61D1A5275B900E36888 /* FieldState.h */,
 				D0EBE6221A527C1400E36888 /* StateBase.h */,
+				D0332E901A6E81CE004FCA4C /* StateBase.cpp */,
 				D04876141A697B2B0097D6BB /* StoryState.cpp */,
 				D04876151A697B2B0097D6BB /* StoryState.h */,
 			);
@@ -666,6 +669,7 @@
 				503AE10217EB989F00D1A890 /* RootViewController.mm in Sources */,
 				503AE10117EB989F00D1A890 /* main.m in Sources */,
 				D0FBAE2C1A69443400A06481 /* StorageModule.cpp in Sources */,
+				D0332E911A6E81CE004FCA4C /* StateBase.cpp in Sources */,
 				D04876161A697B2B0097D6BB /* StoryState.cpp in Sources */,
 				D0C983E21A6E64DA00761742 /* Template.cpp in Sources */,
 				D0EBE61A1A52709B00E36888 /* InputModule.cpp in Sources */,

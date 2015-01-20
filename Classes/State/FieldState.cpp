@@ -18,11 +18,31 @@
 
 USING_NS_CC;
 
+FieldState* FieldState::create(FieldLayer *view, ControllerLayer *controller)
+{
+    auto ret = new FieldState(view, controller);
+    if (!ret) {
+        CC_SAFE_DELETE(ret);
+        return nullptr;
+    }
+    
+    ret->autorelease();
+    return ret;
+}
+
 FieldState::FieldState(FieldLayer* view, ControllerLayer* controller) :
 player_map_pos(Point(0, 0)),
 player_direction("down"),
 view(view),
 controller(controller)
+{
+}
+
+FieldState::~FieldState()
+{
+}
+
+void FieldState::enter()
 {
     // map size取得のためにcollider layerで代用する
     auto obj_layer = view->getMapCollider();
@@ -58,10 +78,6 @@ controller(controller)
     view->initFieldObject(objects);
 }
 
-FieldState::~FieldState()
-{
-}
-
 void FieldState::update()
 {
     
@@ -78,6 +94,14 @@ void FieldState::update()
     if (event != InputEvent::RELEASE_DECIDE && event != InputEvent::PRESS_DECIDE && event != 0) {
         movePlayerCharacter(event);
     }
+}
+
+void FieldState::exit()
+{
+    std::for_each(objects.begin(), objects.end(), [](FieldObject* o) {
+        delete o; o = nullptr;
+    });
+    objects.clear();
 }
 
 void FieldState::movePlayerCharacter(InputEvent event)
