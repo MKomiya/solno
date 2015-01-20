@@ -36,7 +36,6 @@ bool HelloWorld::init()
         return false;
     }
     
-    /*
     // initialize view
     auto field      = FieldLayer::create();
     auto controller = ControllerLayer::create();
@@ -44,11 +43,11 @@ bool HelloWorld::init()
     LayerManager::getInstance()->push(controller);
     
     // publish state
-    StateMachineModule::getInstance()->registerState("field", FieldState::create(field, controller););
-    StateMachineModule::getInstance()->setNowState("field");
+    StateMachineModule::getInstance()->registerState("field", FieldState::create(field, controller));
+    StateMachineModule::getInstance()->changeState("field");
     scheduleUpdate();
-    */
     
+    /*
     auto story      = StoryLayer::create();
     auto controller = ControllerLayer::create();
     LayerManager::getInstance()->push(story);
@@ -57,7 +56,8 @@ bool HelloWorld::init()
     StateMachineModule::getInstance()->registerState("story", StoryState::create(story));
     StateMachineModule::getInstance()->changeState("story");
     scheduleUpdate();
-    
+    */
+     
     return true;
 }
 

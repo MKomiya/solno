@@ -6,10 +6,15 @@
 //
 //
 
+#include "StateMachineModule.h"
 #include "FieldState.h"
+#include "StoryState.h"
 
+#include "LayerManager.h"
 #include "FieldLayer.h"
 #include "ControllerLayer.h"
+#include "StoryLayer.h"
+
 #include "MessageView.h"
 
 #include "Direction.h"
@@ -102,6 +107,8 @@ void FieldState::exit()
         delete o; o = nullptr;
     });
     objects.clear();
+    
+    LayerManager::getInstance()->pop();
 }
 
 void FieldState::movePlayerCharacter(InputEvent event)
@@ -188,6 +195,7 @@ void FieldState::movePlayerCharacter(InputEvent event)
             if (obj->type == ObjectType::MESSAGE_POINT) {
                 controller->setEnableArrowButtons(false);
                 auto action = CallFunc::create([=]() {
+                    /*
                     std::vector<std::string> args;
                     std::string err;
                     auto data = json11::Json::parse(obj->optional_params, err);
@@ -195,6 +203,12 @@ void FieldState::movePlayerCharacter(InputEvent event)
                         args.push_back(item.string_value());
                     }
                     view->viewMessages(args);
+                    */
+                    auto story = StoryLayer::create();
+                    LayerManager::getInstance()->push(story);
+                    StateMachineModule::getInstance()->registerState("story", StoryState::create(story));
+                    StateMachineModule::getInstance()->changeState("story");
+                    
                 });
                 view->addRunActionAfterMove(action);
             }
