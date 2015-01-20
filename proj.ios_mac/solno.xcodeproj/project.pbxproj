@@ -62,20 +62,28 @@
 		BF171245129291EC00B8313A /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF170DB012928DE900B8313A /* OpenGLES.framework */; };
 		BF1712471292920000B8313A /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = BF170DB412928DE900B8313A /* libz.dylib */; };
 		BF1C47F01293687400B63C5D /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF1C47EA1293683800B63C5D /* QuartzCore.framework */; };
+		D01DE4C81A6B706600235525 /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D01DE4C71A6B706600235525 /* libsqlite3.0.dylib */; };
+		D01DE4CC1A6B70D200235525 /* story in Resources */ = {isa = PBXBuildFile; fileRef = D01DE4CB1A6B70D200235525 /* story */; };
 		D020AD741A616A2000BB01A9 /* MessageView.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D020AD721A616A2000BB01A9 /* MessageView.cpp */; };
+		D0332E911A6E81CE004FCA4C /* StateBase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D0332E901A6E81CE004FCA4C /* StateBase.cpp */; };
+		D04876161A697B2B0097D6BB /* StoryState.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D04876141A697B2B0097D6BB /* StoryState.cpp */; };
+		D04876191A697B880097D6BB /* StoryLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D04876171A697B880097D6BB /* StoryLayer.cpp */; };
 		D048D9BC1A4E623500EE9339 /* ControllerLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D048D9BA1A4E623500EE9339 /* ControllerLayer.cpp */; };
 		D048D9BE1A4E65CD00EE9339 /* ui in Resources */ = {isa = PBXBuildFile; fileRef = D048D9BD1A4E65CD00EE9339 /* ui */; };
-		D05758BF1A63780D00BD2107 /* Direction.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D05758BD1A63780D00BD2107 /* Direction.cpp */; };
 		D083A2A71A4DAB59009A9099 /* FieldLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D083A2A51A4DAB59009A9099 /* FieldLayer.cpp */; };
 		D083A2A91A4DAE08009A9099 /* tmx in Resources */ = {isa = PBXBuildFile; fileRef = D083A2A81A4DAE08009A9099 /* tmx */; };
 		D083A2AC1A4DB1EF009A9099 /* chara in Resources */ = {isa = PBXBuildFile; fileRef = D083A2AB1A4DB1EF009A9099 /* chara */; };
+		D094BFB61A6D3F2500D6C383 /* Direction.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D094BFB41A6D3F2500D6C383 /* Direction.cpp */; };
+		D094BFB91A6D3F3800D6C383 /* Story.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D094BFB71A6D3F3800D6C383 /* Story.cpp */; };
 		D0A505441A6559A2004C2C4E /* json11.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D0A505421A6559A2004C2C4E /* json11.cpp */; };
+		D0C983E21A6E64DA00761742 /* Template.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D0C983E01A6E64DA00761742 /* Template.cpp */; };
 		D0CDF0A71A5AB331009E5E98 /* PlayerView.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D0CDF0A51A5AB331009E5E98 /* PlayerView.cpp */; };
 		D0CDF0AA1A5ABB27009E5E98 /* LayerManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D0CDF0A81A5ABB27009E5E98 /* LayerManager.cpp */; };
 		D0EBE6171A526F7200E36888 /* MenuArrowItem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D0EBE6151A526F7200E36888 /* MenuArrowItem.cpp */; };
 		D0EBE61A1A52709B00E36888 /* InputModule.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D0EBE6181A52709B00E36888 /* InputModule.cpp */; };
 		D0EBE61E1A5275B900E36888 /* FieldState.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D0EBE61C1A5275B900E36888 /* FieldState.cpp */; };
 		D0EBE6211A52771D00E36888 /* StateMachineModule.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D0EBE61F1A52771D00E36888 /* StateMachineModule.cpp */; };
+		D0FBAE2C1A69443400A06481 /* StorageModule.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D0FBAE2A1A69443400A06481 /* StorageModule.cpp */; };
 		D0FF46DD1A6242EB005EBDE7 /* MenuDecideItem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D0FF46DB1A6242EB005EBDE7 /* MenuDecideItem.cpp */; };
 		D44C620C132DFF330009C878 /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D44C620B132DFF330009C878 /* OpenAL.framework */; };
 		D44C620E132DFF430009C878 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D44C620D132DFF430009C878 /* AVFoundation.framework */; };
@@ -167,19 +175,30 @@
 		BF170DB012928DE900B8313A /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		BF170DB412928DE900B8313A /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		BF1C47EA1293683800B63C5D /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		D01DE4C71A6B706600235525 /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.1.sdk/usr/lib/libsqlite3.0.dylib; sourceTree = DEVELOPER_DIR; };
+		D01DE4CB1A6B70D200235525 /* story */ = {isa = PBXFileReference; lastKnownFileType = folder; path = story; sourceTree = "<group>"; };
 		D020AD721A616A2000BB01A9 /* MessageView.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = MessageView.cpp; path = Layer/Component/MessageView.cpp; sourceTree = "<group>"; };
 		D020AD731A616A2000BB01A9 /* MessageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MessageView.h; path = Layer/Component/MessageView.h; sourceTree = "<group>"; };
+		D0332E901A6E81CE004FCA4C /* StateBase.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = StateBase.cpp; path = State/StateBase.cpp; sourceTree = "<group>"; };
+		D04876141A697B2B0097D6BB /* StoryState.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = StoryState.cpp; path = State/StoryState.cpp; sourceTree = "<group>"; };
+		D04876151A697B2B0097D6BB /* StoryState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StoryState.h; path = State/StoryState.h; sourceTree = "<group>"; };
+		D04876171A697B880097D6BB /* StoryLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = StoryLayer.cpp; path = Layer/StoryLayer.cpp; sourceTree = "<group>"; };
+		D04876181A697B880097D6BB /* StoryLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StoryLayer.h; path = Layer/StoryLayer.h; sourceTree = "<group>"; };
 		D048D9BA1A4E623500EE9339 /* ControllerLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ControllerLayer.cpp; path = Layer/ControllerLayer.cpp; sourceTree = "<group>"; };
 		D048D9BB1A4E623500EE9339 /* ControllerLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ControllerLayer.h; path = Layer/ControllerLayer.h; sourceTree = "<group>"; };
 		D048D9BD1A4E65CD00EE9339 /* ui */ = {isa = PBXFileReference; lastKnownFileType = folder; path = ui; sourceTree = "<group>"; };
-		D05758BD1A63780D00BD2107 /* Direction.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Direction.cpp; path = Entity/Direction.cpp; sourceTree = "<group>"; };
-		D05758BE1A63780D00BD2107 /* Direction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Direction.h; path = Entity/Direction.h; sourceTree = "<group>"; };
 		D083A2A51A4DAB59009A9099 /* FieldLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = FieldLayer.cpp; path = Layer/FieldLayer.cpp; sourceTree = "<group>"; };
 		D083A2A61A4DAB59009A9099 /* FieldLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FieldLayer.h; path = Layer/FieldLayer.h; sourceTree = "<group>"; };
 		D083A2A81A4DAE08009A9099 /* tmx */ = {isa = PBXFileReference; lastKnownFileType = folder; path = tmx; sourceTree = "<group>"; };
 		D083A2AB1A4DB1EF009A9099 /* chara */ = {isa = PBXFileReference; lastKnownFileType = folder; path = chara; sourceTree = "<group>"; };
+		D094BFB41A6D3F2500D6C383 /* Direction.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Direction.cpp; path = Model/Direction.cpp; sourceTree = "<group>"; };
+		D094BFB51A6D3F2500D6C383 /* Direction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Direction.h; path = Model/Direction.h; sourceTree = "<group>"; };
+		D094BFB71A6D3F3800D6C383 /* Story.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Story.cpp; path = Model/Story.cpp; sourceTree = "<group>"; };
+		D094BFB81A6D3F3800D6C383 /* Story.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Story.h; path = Model/Story.h; sourceTree = "<group>"; };
 		D0A505421A6559A2004C2C4E /* json11.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = json11.cpp; path = Library/json11.cpp; sourceTree = "<group>"; };
 		D0A505431A6559A2004C2C4E /* json11.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = json11.hpp; path = Library/json11.hpp; sourceTree = "<group>"; };
+		D0C983E01A6E64DA00761742 /* Template.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Template.cpp; path = Model/Template.cpp; sourceTree = "<group>"; };
+		D0C983E11A6E64DA00761742 /* Template.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Template.h; path = Model/Template.h; sourceTree = "<group>"; };
 		D0CDF0A51A5AB331009E5E98 /* PlayerView.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = PlayerView.cpp; path = Layer/Component/PlayerView.cpp; sourceTree = "<group>"; };
 		D0CDF0A61A5AB331009E5E98 /* PlayerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PlayerView.h; path = Layer/Component/PlayerView.h; sourceTree = "<group>"; };
 		D0CDF0A81A5ABB27009E5E98 /* LayerManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = LayerManager.cpp; path = Layer/LayerManager.cpp; sourceTree = "<group>"; };
@@ -192,7 +211,9 @@
 		D0EBE61D1A5275B900E36888 /* FieldState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FieldState.h; path = State/FieldState.h; sourceTree = "<group>"; };
 		D0EBE61F1A52771D00E36888 /* StateMachineModule.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = StateMachineModule.cpp; path = Module/StateMachineModule.cpp; sourceTree = "<group>"; };
 		D0EBE6201A52771D00E36888 /* StateMachineModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StateMachineModule.h; path = Module/StateMachineModule.h; sourceTree = "<group>"; };
-		D0EBE6221A527C1400E36888 /* IState.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = IState.h; path = State/IState.h; sourceTree = "<group>"; };
+		D0EBE6221A527C1400E36888 /* StateBase.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = StateBase.h; path = State/StateBase.h; sourceTree = "<group>"; };
+		D0FBAE2A1A69443400A06481 /* StorageModule.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = StorageModule.cpp; path = Module/StorageModule.cpp; sourceTree = "<group>"; };
+		D0FBAE2B1A69443400A06481 /* StorageModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StorageModule.h; path = Module/StorageModule.h; sourceTree = "<group>"; };
 		D0FF46DB1A6242EB005EBDE7 /* MenuDecideItem.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = MenuDecideItem.cpp; path = Layer/Widget/MenuDecideItem.cpp; sourceTree = "<group>"; };
 		D0FF46DC1A6242EB005EBDE7 /* MenuDecideItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MenuDecideItem.h; path = Layer/Widget/MenuDecideItem.h; sourceTree = "<group>"; };
 		D44C620B132DFF330009C878 /* OpenAL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenAL.framework; path = System/Library/Frameworks/OpenAL.framework; sourceTree = SDKROOT; };
@@ -206,6 +227,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D01DE4C81A6B706600235525 /* libsqlite3.0.dylib in Frameworks */,
 				1AC6FB30180E99EB004C840B /* libcocos2d iOS.a in Frameworks */,
 				D6B0611B1803AB670077942B /* CoreMotion.framework in Frameworks */,
 				1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */,
@@ -291,6 +313,7 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D01DE4C71A6B706600235525 /* libsqlite3.0.dylib */,
 				D6B0611A1803AB670077942B /* CoreMotion.framework */,
 				503AE11A17EB9C5A00D1A890 /* IOKit.framework */,
 				503AE11117EB99EE00D1A890 /* libcurl.dylib */,
@@ -318,8 +341,9 @@
 				D083A2A81A4DAE08009A9099 /* tmx */,
 				D083A2AB1A4DB1EF009A9099 /* chara */,
 				D048D9BD1A4E65CD00EE9339 /* ui */,
-				46880B7619C43A67006E1F66 /* CloseNormal.png */,
+				D01DE4CB1A6B70D200235525 /* story */,
 				46880B7719C43A67006E1F66 /* CloseSelected.png */,
+				46880B7619C43A67006E1F66 /* CloseNormal.png */,
 				46880B7A19C43A67006E1F66 /* HelloWorld.png */,
 			);
 			name = Resources;
@@ -330,7 +354,7 @@
 			isa = PBXGroup;
 			children = (
 				D0A505411A65598F004C2C4E /* Library */,
-				D05758BC1A6377D000BD2107 /* Entity */,
+				D05758BC1A6377D000BD2107 /* Model */,
 				D0EBE61B1A52759B00E36888 /* State */,
 				D0EBE6141A526F0F00E36888 /* Module */,
 				D083A2AA1A4DAF46009A9099 /* Layer */,
@@ -390,13 +414,17 @@
 			path = ios;
 			sourceTree = SOURCE_ROOT;
 		};
-		D05758BC1A6377D000BD2107 /* Entity */ = {
+		D05758BC1A6377D000BD2107 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				D05758BD1A63780D00BD2107 /* Direction.cpp */,
-				D05758BE1A63780D00BD2107 /* Direction.h */,
+				D094BFB41A6D3F2500D6C383 /* Direction.cpp */,
+				D094BFB51A6D3F2500D6C383 /* Direction.h */,
+				D094BFB71A6D3F3800D6C383 /* Story.cpp */,
+				D094BFB81A6D3F3800D6C383 /* Story.h */,
+				D0C983E01A6E64DA00761742 /* Template.cpp */,
+				D0C983E11A6E64DA00761742 /* Template.h */,
 			);
-			name = Entity;
+			name = Model;
 			sourceTree = "<group>";
 		};
 		D083A2AA1A4DAF46009A9099 /* Layer */ = {
@@ -410,6 +438,8 @@
 				D048D9BB1A4E623500EE9339 /* ControllerLayer.h */,
 				D0CDF0A81A5ABB27009E5E98 /* LayerManager.cpp */,
 				D0CDF0A91A5ABB27009E5E98 /* LayerManager.h */,
+				D04876171A697B880097D6BB /* StoryLayer.cpp */,
+				D04876181A697B880097D6BB /* StoryLayer.h */,
 			);
 			name = Layer;
 			sourceTree = "<group>";
@@ -452,6 +482,8 @@
 				D0EBE6191A52709B00E36888 /* InputModule.h */,
 				D0EBE61F1A52771D00E36888 /* StateMachineModule.cpp */,
 				D0EBE6201A52771D00E36888 /* StateMachineModule.h */,
+				D0FBAE2A1A69443400A06481 /* StorageModule.cpp */,
+				D0FBAE2B1A69443400A06481 /* StorageModule.h */,
 			);
 			name = Module;
 			sourceTree = "<group>";
@@ -461,7 +493,10 @@
 			children = (
 				D0EBE61C1A5275B900E36888 /* FieldState.cpp */,
 				D0EBE61D1A5275B900E36888 /* FieldState.h */,
-				D0EBE6221A527C1400E36888 /* IState.h */,
+				D0EBE6221A527C1400E36888 /* StateBase.h */,
+				D0332E901A6E81CE004FCA4C /* StateBase.cpp */,
+				D04876141A697B2B0097D6BB /* StoryState.cpp */,
+				D04876151A697B2B0097D6BB /* StoryState.h */,
 			);
 			name = State;
 			sourceTree = "<group>";
@@ -584,6 +619,7 @@
 				5087E78017EB970100C73F5D /* Icon-114.png in Resources */,
 				50EF62A217ECD613001EB2F8 /* Icon-29.png in Resources */,
 				50EF629617ECD46A001EB2F8 /* Icon-40.png in Resources */,
+				D01DE4CC1A6B70D200235525 /* story in Resources */,
 				5087E78217EB970100C73F5D /* Icon-144.png in Resources */,
 				3EACC98F19EE6D4300EB3C5E /* res in Resources */,
 				50EF629817ECD46A001EB2F8 /* Icon-80.png in Resources */,
@@ -616,9 +652,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				D0EBE61E1A5275B900E36888 /* FieldState.cpp in Sources */,
+				D04876191A697B880097D6BB /* StoryLayer.cpp in Sources */,
 				46880B8819C43A87006E1F66 /* AppDelegate.cpp in Sources */,
 				D0EBE6171A526F7200E36888 /* MenuArrowItem.cpp in Sources */,
 				D048D9BC1A4E623500EE9339 /* ControllerLayer.cpp in Sources */,
+				D094BFB91A6D3F3800D6C383 /* Story.cpp in Sources */,
 				D0A505441A6559A2004C2C4E /* json11.cpp in Sources */,
 				D020AD741A616A2000BB01A9 /* MessageView.cpp in Sources */,
 				D0FF46DD1A6242EB005EBDE7 /* MenuDecideItem.cpp in Sources */,
@@ -630,8 +668,12 @@
 				D0EBE6211A52771D00E36888 /* StateMachineModule.cpp in Sources */,
 				503AE10217EB989F00D1A890 /* RootViewController.mm in Sources */,
 				503AE10117EB989F00D1A890 /* main.m in Sources */,
+				D0FBAE2C1A69443400A06481 /* StorageModule.cpp in Sources */,
+				D0332E911A6E81CE004FCA4C /* StateBase.cpp in Sources */,
+				D04876161A697B2B0097D6BB /* StoryState.cpp in Sources */,
+				D0C983E21A6E64DA00761742 /* Template.cpp in Sources */,
 				D0EBE61A1A52709B00E36888 /* InputModule.cpp in Sources */,
-				D05758BF1A63780D00BD2107 /* Direction.cpp in Sources */,
+				D094BFB61A6D3F2500D6C383 /* Direction.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

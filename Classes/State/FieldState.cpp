@@ -6,21 +6,48 @@
 //
 //
 
+#include "StateMachineModule.h"
 #include "FieldState.h"
+#include "StoryState.h"
 
+#include "LayerManager.h"
 #include "FieldLayer.h"
 #include "ControllerLayer.h"
+#include "StoryLayer.h"
+
 #include "MessageView.h"
 
 #include "Direction.h"
 
+#include <json11.hpp>
+
 USING_NS_CC;
+
+FieldState* FieldState::create(FieldLayer *view, ControllerLayer *controller)
+{
+    auto ret = new FieldState(view, controller);
+    if (!ret) {
+        CC_SAFE_DELETE(ret);
+        return nullptr;
+    }
+    
+    ret->autorelease();
+    return ret;
+}
 
 FieldState::FieldState(FieldLayer* view, ControllerLayer* controller) :
 player_map_pos(Point(0, 0)),
 player_direction("down"),
 view(view),
 controller(controller)
+{
+}
+
+FieldState::~FieldState()
+{
+}
+
+void FieldState::enter()
 {
     // map size取得のためにcollider layerで代用する
     auto obj_layer = view->getMapCollider();
@@ -56,10 +83,6 @@ controller(controller)
     view->initFieldObject(objects);
 }
 
-FieldState::~FieldState()
-{
-}
-
 void FieldState::update()
 {
     
@@ -76,6 +99,16 @@ void FieldState::update()
     if (event != InputEvent::RELEASE_DECIDE && event != InputEvent::PRESS_DECIDE && event != 0) {
         movePlayerCharacter(event);
     }
+}
+
+void FieldState::exit()
+{
+    std::for_each(objects.begin(), objects.end(), [](FieldObject* o) {
+        delete o; o = nullptr;
+    });
+    objects.clear();
+    
+    LayerManager::getInstance()->pop();
 }
 
 void FieldState::movePlayerCharacter(InputEvent event)
@@ -162,7 +195,20 @@ void FieldState::movePlayerCharacter(InputEvent event)
             if (obj->type == ObjectType::MESSAGE_POINT) {
                 controller->setEnableArrowButtons(false);
                 auto action = CallFunc::create([=]() {
-                    view->viewMessages(obj->optional_params);
+                    /*
+                    std::vector<std::string> args;
+                    std::string err;
+                    auto data = json11::Json::parse(obj->optional_params, err);
+                    for (auto item : data.array_items()) {
+                        args.push_back(item.string_value());
+                    }
+                    view->viewMessages(args);
+                    */
+                    auto story = StoryLayer::create();
+                    LayerManager::getInstance()->push(story);
+                    StateMachineModule::getInstance()->registerState("story", StoryState::create(story));
+                    StateMachineModule::getInstance()->changeState("story");
+                    
                 });
                 view->addRunActionAfterMove(action);
             }

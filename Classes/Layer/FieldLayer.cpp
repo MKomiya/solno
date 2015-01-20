@@ -155,7 +155,7 @@ void FieldLayer::addRunActionAfterMove(cocos2d::FiniteTimeAction *action)
     player_sprite->addRunActionAfterMove(action);
 }
 
-void FieldLayer::viewMessages(std::string msg_data)
+void FieldLayer::viewMessages(std::vector<std::string> msg_data)
 {
     msg_view->viewMessages(msg_data);
 }

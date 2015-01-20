@@ -11,28 +11,35 @@
 
 #include <stdio.h>
 #include <unordered_map>
+#include <dispatch/dispatch.h>
+#include <cocos2d.h>
 
-class IState;
-class StateMachineModule
+#include <StateBase.h>
+
+class StateMachineModule : cocos2d::Ref
 {
 public:
     static StateMachineModule* getInstance() {
-        if (!_instance) {
-            _instance = new StateMachineModule();
-        }
-        return _instance;
+        static dispatch_once_t token;
+        dispatch_once(&token, ^{
+            if (!instance) {
+                instance = new StateMachineModule();
+                instance->current_state = nullptr;
+            }
+        });
+        return instance;
     }
 
-    void releaseStates();
-    void registerState(std::string key, IState* state);
-    void setNowState(std::string key);
+    virtual void release();
+    void registerState(std::string key, StateBase* state);
+    void changeState(std::string key);
     void update();
     
 private:
-    static StateMachineModule* _instance;
-    std::unordered_map<std::string, IState*> _state_hash;
+    static StateMachineModule* instance;
     
-    std::string _now_state;
+    cocos2d::Map<std::string, StateBase*> _state_hash;
+    StateBase* current_state;
 };
 
 #endif /* defined(__solno__StateMachineModule__) */

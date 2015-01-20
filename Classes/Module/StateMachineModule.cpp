@@ -8,34 +8,34 @@
 
 #include "StateMachineModule.h"
 
-#include "FieldState.h"
+USING_NS_CC;
 
-StateMachineModule* StateMachineModule::_instance;
+StateMachineModule* StateMachineModule::instance;
 
-void StateMachineModule::releaseStates()
+void StateMachineModule::release()
 {
-    for (auto state : _state_hash) {
-        delete state.second;
-    }
     _state_hash.clear();
+    
+    Ref::release();
 }
 
-void StateMachineModule::registerState(std::string key, IState *state)
+void StateMachineModule::registerState(std::string key, StateBase *state)
 {
-    _state_hash.insert(std::make_pair(key, state));
+    _state_hash.insert(key, state);
 }
 
-void StateMachineModule::setNowState(std::string key)
+void StateMachineModule::changeState(std::string key)
 {
     if (_state_hash.find(key) == _state_hash.end()) {
         throw "invalid state key";
     }
-    _now_state = key;
+    
+    if (current_state) current_state->exit();
+    current_state = _state_hash.find(key)->second;
+    current_state->enter();
 }
 
 void StateMachineModule::update()
 {
-    auto it = _state_hash.find(_now_state);
-    auto state = it->second;
-    state->update();
+    current_state->update();
 }

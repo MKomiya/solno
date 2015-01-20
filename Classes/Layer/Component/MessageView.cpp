@@ -44,17 +44,14 @@ MessageView* MessageView::create()
     return ret;
 }
 
-void MessageView::viewMessages(std::string msg_data)
+void MessageView::viewMessages(std::vector<std::string> msg_data)
 {
-    std::string err;
-    auto decoded_data = json11::Json::parse(msg_data, err);
-    auto json_array   = decoded_data.array_items();
-    for (auto item : json_array) {
-        this->msg_data.push_back(item.string_value());
-    }
+    this->msg_data = msg_data;
     
     this->now_msg  = this->msg_data.front();
     this->state    = PROGRESS;
+    this->msg_idx  = 0;
+    this->string_idx = 0;
     
     setVisible(true);
     

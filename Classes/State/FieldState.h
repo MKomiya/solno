@@ -12,7 +12,7 @@
 #include <stdio.h>
 #include <cocos2d.h>
 
-#include "IState.h"
+#include "StateBase.h"
 
 #include "InputModule.h"
 
@@ -44,11 +44,15 @@ struct FieldObject {
 
 class FieldLayer;
 class ControllerLayer;
-class FieldState : public IState {
+class FieldState : public StateBase {
 public:
+    static FieldState* create(FieldLayer* view, ControllerLayer* controller);
     FieldState(FieldLayer* view, ControllerLayer* controller);
     virtual ~FieldState();
-    virtual void update();
+    
+    virtual void enter() override;
+    virtual void update() override;
+    virtual void exit() override;
     
 private:
     void movePlayerCharacter(InputEvent event);

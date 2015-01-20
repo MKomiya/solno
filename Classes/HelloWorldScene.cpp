@@ -6,6 +6,9 @@
 #include "FieldLayer.h"
 #include "ControllerLayer.h"
 
+#include "StoryState.h"
+#include "StoryLayer.h"
+
 USING_NS_CC;
 
 Scene* HelloWorld::createScene()
@@ -40,11 +43,21 @@ bool HelloWorld::init()
     LayerManager::getInstance()->push(controller);
     
     // publish state
-    auto state = new FieldState(field, controller);
-    StateMachineModule::getInstance()->registerState("field", state);
-    StateMachineModule::getInstance()->setNowState("field");
+    StateMachineModule::getInstance()->registerState("field", FieldState::create(field, controller));
+    StateMachineModule::getInstance()->changeState("field");
     scheduleUpdate();
     
+    /*
+    auto story      = StoryLayer::create();
+    auto controller = ControllerLayer::create();
+    LayerManager::getInstance()->push(story);
+    LayerManager::getInstance()->push(controller);
+    
+    StateMachineModule::getInstance()->registerState("story", StoryState::create(story));
+    StateMachineModule::getInstance()->changeState("story");
+    scheduleUpdate();
+    */
+     
     return true;
 }
 
