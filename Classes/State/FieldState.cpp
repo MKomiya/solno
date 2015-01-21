@@ -18,6 +18,7 @@
 #include "MessageView.h"
 
 #include "Direction.h"
+#include "FieldObject.h"
 
 #include <json11.hpp>
 
@@ -61,20 +62,15 @@ void FieldState::enter()
             
             float x  = object_data["x"].asFloat() / 16;
             float y  = size.height - object_data["y"].asFloat() / 16 - 1;
+            auto pos = Point(x, y);
             
             std::string type_str = object_data["type"].asString();
-            ObjectType type;
             std::string optional_params = "";
-            if (type_str == "1") {
-                type = MOVABLE_ROCK;
-            } else if (type_str == "2") {
-                type = MESSAGE_POINT;
+            if (object_data["msg_data"].isNull()) {
                 optional_params = object_data["msg_data"].asString();
-            } else if (type_str == "3") {
-                type = START_POINT;
-                player_map_pos = Point(x, y);
             }
-            auto ret = new FieldObject(id, Point(x, y), type, optional_params);
+            
+            auto ret = FieldObject::create(id, pos, type_str, optional_params);
             objects.push_back(ret);
             ++id;
         }
@@ -141,25 +137,8 @@ void FieldState::movePlayerCharacter(InputEvent event)
     
     // check object collidable
     for (auto obj : objects) {
-        if (obj->pos == next_pos) {
-            // check collidable behind movable rock
-            if (obj->type == ObjectType::MOVABLE_ROCK) {
-                Point check_pos = obj->pos;
-                check_pos += direction_entity.getMapPointVec();
-                if (isCollidable(check_pos.x, check_pos.y)) {
-                    return ;
-                }
-                
-                // moving rock action
-                Point move_vec;
-                obj->pos += direction_entity.getMapPointVec();
-                move_vec  = direction_entity.getUnitVec() * 16;
-                
-                // send run action map object
-                view->runObjectMoveAction(obj->id, move_vec);
-                
-                break;
-            }
+        if (obj->getPosition() == next_pos) {
+            obj->executePreMoveAction(direction_entity, view);
         }
     }
     
@@ -191,27 +170,8 @@ void FieldState::movePlayerCharacter(InputEvent event)
     
     // check object collidable after move
     for (auto obj : objects) {
-        if (obj->pos == player_map_pos) {
-            if (obj->type == ObjectType::MESSAGE_POINT) {
-                controller->setEnableArrowButtons(false);
-                auto action = CallFunc::create([=]() {
-                    /*
-                    std::vector<std::string> args;
-                    std::string err;
-                    auto data = json11::Json::parse(obj->optional_params, err);
-                    for (auto item : data.array_items()) {
-                        args.push_back(item.string_value());
-                    }
-                    view->viewMessages(args);
-                    */
-                    auto story = StoryLayer::create();
-                    LayerManager::getInstance()->push(story);
-                    StateMachineModule::getInstance()->registerState("story", StoryState::create(story));
-                    StateMachineModule::getInstance()->changeState("story");
-                    
-                });
-                view->addRunActionAfterMove(action);
-            }
+        if (obj->getPosition() == player_map_pos) {
+            obj->executeMovedAction(view);
         }
     }
 }
