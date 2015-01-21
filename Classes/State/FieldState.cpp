@@ -65,6 +65,11 @@ void FieldState::enter()
             auto pos = Point(x, y);
             
             std::string type_str = object_data["type"].asString();
+            if (type_str == "3") {
+                player_map_pos = pos;
+                continue;
+            }
+            
             std::string optional_params = "";
             if (object_data["msg_data"].isNull()) {
                 optional_params = object_data["msg_data"].asString();
