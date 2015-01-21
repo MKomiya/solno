@@ -76,9 +76,6 @@
 		D094BFB61A6D3F2500D6C383 /* Direction.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D094BFB41A6D3F2500D6C383 /* Direction.cpp */; };
 		D094BFB91A6D3F3800D6C383 /* Story.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D094BFB71A6D3F3800D6C383 /* Story.cpp */; };
 		D0A505441A6559A2004C2C4E /* json11.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D0A505421A6559A2004C2C4E /* json11.cpp */; };
-		D0BD84191A6FE9F300980989 /* FieldObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D0BD84171A6FE9F300980989 /* FieldObject.cpp */; };
-		D0BD84251A6FF21000980989 /* MessagePoint.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D0BD84211A6FF21000980989 /* MessagePoint.cpp */; };
-		D0BD84261A6FF21000980989 /* MovableRock.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D0BD84231A6FF21000980989 /* MovableRock.cpp */; };
 		D0C983E21A6E64DA00761742 /* Template.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D0C983E01A6E64DA00761742 /* Template.cpp */; };
 		D0CDF0A71A5AB331009E5E98 /* PlayerView.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D0CDF0A51A5AB331009E5E98 /* PlayerView.cpp */; };
 		D0CDF0AA1A5ABB27009E5E98 /* LayerManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D0CDF0A81A5ABB27009E5E98 /* LayerManager.cpp */; };
@@ -200,12 +197,6 @@
 		D094BFB81A6D3F3800D6C383 /* Story.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Story.h; path = Model/Story.h; sourceTree = "<group>"; };
 		D0A505421A6559A2004C2C4E /* json11.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = json11.cpp; path = Library/json11.cpp; sourceTree = "<group>"; };
 		D0A505431A6559A2004C2C4E /* json11.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = json11.hpp; path = Library/json11.hpp; sourceTree = "<group>"; };
-		D0BD84171A6FE9F300980989 /* FieldObject.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = FieldObject.cpp; path = Model/FieldObject.cpp; sourceTree = "<group>"; };
-		D0BD84181A6FE9F300980989 /* FieldObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FieldObject.h; path = Model/FieldObject.h; sourceTree = "<group>"; };
-		D0BD84211A6FF21000980989 /* MessagePoint.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = MessagePoint.cpp; path = Model/FieldObject/MessagePoint.cpp; sourceTree = "<group>"; };
-		D0BD84221A6FF21000980989 /* MessagePoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MessagePoint.h; path = Model/FieldObject/MessagePoint.h; sourceTree = "<group>"; };
-		D0BD84231A6FF21000980989 /* MovableRock.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = MovableRock.cpp; path = Model/FieldObject/MovableRock.cpp; sourceTree = "<group>"; };
-		D0BD84241A6FF21000980989 /* MovableRock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MovableRock.h; path = Model/FieldObject/MovableRock.h; sourceTree = "<group>"; };
 		D0C983E01A6E64DA00761742 /* Template.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Template.cpp; path = Model/Template.cpp; sourceTree = "<group>"; };
 		D0C983E11A6E64DA00761742 /* Template.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Template.h; path = Model/Template.h; sourceTree = "<group>"; };
 		D0CDF0A51A5AB331009E5E98 /* PlayerView.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = PlayerView.cpp; path = Layer/Component/PlayerView.cpp; sourceTree = "<group>"; };
@@ -426,15 +417,12 @@
 		D05758BC1A6377D000BD2107 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				D0BD841A1A6FEB1000980989 /* FieldObject */,
 				D094BFB41A6D3F2500D6C383 /* Direction.cpp */,
 				D094BFB51A6D3F2500D6C383 /* Direction.h */,
 				D094BFB71A6D3F3800D6C383 /* Story.cpp */,
 				D094BFB81A6D3F3800D6C383 /* Story.h */,
 				D0C983E01A6E64DA00761742 /* Template.cpp */,
 				D0C983E11A6E64DA00761742 /* Template.h */,
-				D0BD84171A6FE9F300980989 /* FieldObject.cpp */,
-				D0BD84181A6FE9F300980989 /* FieldObject.h */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -463,17 +451,6 @@
 				D0A505431A6559A2004C2C4E /* json11.hpp */,
 			);
 			name = Library;
-			sourceTree = "<group>";
-		};
-		D0BD841A1A6FEB1000980989 /* FieldObject */ = {
-			isa = PBXGroup;
-			children = (
-				D0BD84211A6FF21000980989 /* MessagePoint.cpp */,
-				D0BD84221A6FF21000980989 /* MessagePoint.h */,
-				D0BD84231A6FF21000980989 /* MovableRock.cpp */,
-				D0BD84241A6FF21000980989 /* MovableRock.h */,
-			);
-			name = FieldObject;
 			sourceTree = "<group>";
 		};
 		D0CDF0A41A5AB26E009E5E98 /* Component */ = {
@@ -677,13 +654,11 @@
 				D0EBE61E1A5275B900E36888 /* FieldState.cpp in Sources */,
 				D04876191A697B880097D6BB /* StoryLayer.cpp in Sources */,
 				46880B8819C43A87006E1F66 /* AppDelegate.cpp in Sources */,
-				D0BD84261A6FF21000980989 /* MovableRock.cpp in Sources */,
 				D0EBE6171A526F7200E36888 /* MenuArrowItem.cpp in Sources */,
 				D048D9BC1A4E623500EE9339 /* ControllerLayer.cpp in Sources */,
 				D094BFB91A6D3F3800D6C383 /* Story.cpp in Sources */,
 				D0A505441A6559A2004C2C4E /* json11.cpp in Sources */,
 				D020AD741A616A2000BB01A9 /* MessageView.cpp in Sources */,
-				D0BD84191A6FE9F300980989 /* FieldObject.cpp in Sources */,
 				D0FF46DD1A6242EB005EBDE7 /* MenuDecideItem.cpp in Sources */,
 				46880B8A19C43A87006E1F66 /* HelloWorldScene.cpp in Sources */,
 				D083A2A71A4DAB59009A9099 /* FieldLayer.cpp in Sources */,
@@ -693,7 +668,6 @@
 				D0EBE6211A52771D00E36888 /* StateMachineModule.cpp in Sources */,
 				503AE10217EB989F00D1A890 /* RootViewController.mm in Sources */,
 				503AE10117EB989F00D1A890 /* main.m in Sources */,
-				D0BD84251A6FF21000980989 /* MessagePoint.cpp in Sources */,
 				D0FBAE2C1A69443400A06481 /* StorageModule.cpp in Sources */,
 				D0332E911A6E81CE004FCA4C /* StateBase.cpp in Sources */,
 				D04876161A697B2B0097D6BB /* StoryState.cpp in Sources */,
