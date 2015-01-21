@@ -25,6 +25,8 @@ enum ObjectType {
     MESSAGE_POINT,
     START_POINT,
 };
+
+/*
 struct FieldObject {
     int id;
     cocos2d::Point pos;
@@ -41,9 +43,11 @@ struct FieldObject {
         FieldObject(i, p, t, "");
     }
 };
+ */
 
 class FieldLayer;
 class ControllerLayer;
+class FieldObject;
 class FieldState : public StateBase {
 public:
     static FieldState* create(FieldLayer* view, ControllerLayer* controller);
