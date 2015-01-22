@@ -19,6 +19,10 @@ class MovableRock : public FieldObject
 {
 public:
     virtual void executePreMoveAction(Direction direction, FieldLayer* view) override;
+    virtual bool isPassablePlayer() override;
+    
+private:
+    bool isCollidable(cocos2d::Point pos, FieldLayer* view);
 };
 
 #endif /* defined(__solno__MovableRock__) */
