@@ -15,22 +15,27 @@ void LayerManager::init(cocos2d::Scene *root)
     root_scene = root;
 }
 
-void LayerManager::push(cocos2d::Layer *layer)
+void LayerManager::release()
+{
+    root_scene = nullptr;
+}
+
+void LayerManager::push(std::string key, cocos2d::Layer *layer)
 {
     root_scene->addChild(layer);
-    layer_list.push_back(layer);
+    layer_map.insert(std::make_pair(key, layer));
 }
 
 cocos2d::Layer* LayerManager::pop()
 {
-    if (layer_list.empty()) {
+    if (layer_map.empty()) {
         return nullptr;
     }
     
-    auto ret = layer_list.front();
+    auto ret = layer_map.begin();
     
-    root_scene->removeChild(ret);
-    layer_list.pop_front();
+    root_scene->removeChild(ret->second);
+    layer_map.erase(ret);
     
-    return ret;
+    return ret->second;
 }

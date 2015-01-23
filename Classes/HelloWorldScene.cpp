@@ -39,8 +39,8 @@ bool HelloWorld::init()
     // initialize view
     auto field      = FieldLayer::create();
     auto controller = ControllerLayer::create();
-    LayerManager::getInstance()->push(field);
-    LayerManager::getInstance()->push(controller);
+    LayerManager::getInstance()->push("field", field);
+    LayerManager::getInstance()->push("controller", controller);
     
     // publish state
     StateMachineModule::getInstance()->registerState("field", FieldState::create(field, controller));
