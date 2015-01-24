@@ -29,7 +29,9 @@ MessageView* MessageView::create()
         ret->getTexture()->setAliasTexParameters();
         
         // 空のstring
-        auto msg_label = LabelTTF::create("", "Arial", 6);
+        //auto msg_label = LabelTTF::create("", "PixelMPlus10", 8);
+        auto msg_label = Label::createWithBMFont("fonts/message_font.fnt", "");
+        msg_label->getTexture()->setAliasTexParameters();
         msg_label->setAnchorPoint(Point(0, 1));
         msg_label->setPosition(8, 40);
         msg_label->setTag(MESSAGE_LABEL);
@@ -68,7 +70,7 @@ void MessageView::updateMessage(float dt)
     string_idx = string_idx >= now_msg.length() ? now_msg.length() : string_idx;
     
     auto output = now_msg.substr(0, string_idx);
-    auto msg_label = (LabelTTF*)getChildByTag(MESSAGE_LABEL);
+    auto msg_label = (Label*)getChildByTag(MESSAGE_LABEL);
     msg_label->setString(output.c_str());
     
     if (string_idx == now_msg.length()) {
@@ -88,7 +90,7 @@ void MessageView::nextMessage()
         return ;
     }
     
-    auto msg_label = (LabelTTF*)getChildByTag(MESSAGE_LABEL);
+    auto msg_label = (Label*)getChildByTag(MESSAGE_LABEL);
     msg_label->setString("");
     
     schedule(schedule_selector(MessageView::updateMessage), 0.03f);
@@ -102,7 +104,7 @@ void MessageView::releaseMessages()
         string_idx = 0;
         setVisible(false);
         
-        auto msg_label = (LabelTTF*)getChildByTag(MESSAGE_LABEL);
+        auto msg_label = (Label*)getChildByTag(MESSAGE_LABEL);
         msg_label->setString("");
     });
     runAction(Sequence::create(move, moved, NULL));
