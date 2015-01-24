@@ -27,13 +27,13 @@ bool ControllerLayer::init()
     addChild(frame);
     
     auto button = MenuArrowItem::create("up");
-    button->setPosition(250, 100);
+    button->setPosition(230, 117);
     auto button2 = MenuArrowItem::create("left");
-    button2->setPosition(210, 80);
+    button2->setPosition(191, 82);
     auto button3 = MenuArrowItem::create("down");
-    button3->setPosition(250, 60);
+    button3->setPosition(230, 48);
     auto button4 = MenuArrowItem::create("right");
-    button4->setPosition(290, 80);
+    button4->setPosition(269, 82);
     
     auto decide_button = MenuDecideItem::create();
     decide_button->setPosition(100, 80);

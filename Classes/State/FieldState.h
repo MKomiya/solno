@@ -20,30 +20,10 @@ enum MapColliderType {
     NO_COLLISION = 0,
     COLLIDABLE   = 17, // タイルが増えるとGIDが変わるので別途検討
 };
-enum ObjectType {
-    MOVABLE_ROCK = 1,
-    MESSAGE_POINT,
-    START_POINT,
-};
-struct FieldObject {
-    int id;
-    cocos2d::Point pos;
-    ObjectType type;
-    std::string optional_params;
-    
-    FieldObject(int i, cocos2d::Point p, ObjectType t, std::string o) {
-        id   = i;
-        pos  = p;
-        type = t;
-        optional_params = o;
-    }
-    FieldObject(int i, cocos2d::Point p, ObjectType t) {
-        FieldObject(i, p, t, "");
-    }
-};
 
 class FieldLayer;
 class ControllerLayer;
+class FieldObject;
 class FieldState : public StateBase {
 public:
     static FieldState* create(FieldLayer* view, ControllerLayer* controller);

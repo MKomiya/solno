@@ -11,6 +11,7 @@
 
 #include <stdio.h>
 #include <cocos2d.h>
+#include <unordered_map>
 
 class LayerManager
 {
@@ -23,13 +24,16 @@ public:
     }
     
     void init(cocos2d::Scene* root);
-    void push(cocos2d::Layer* layer);
+    void release();
+    
+    void push(std::string key, cocos2d::Layer* layer);
     cocos2d::Layer* pop();
 
 private:
     static LayerManager* instance;
     
-    std::list<cocos2d::Layer*> layer_list;
+    std::unordered_map<std::string, cocos2d::Layer*> layer_map;
+    
     cocos2d::Scene* root_scene;
 };
 

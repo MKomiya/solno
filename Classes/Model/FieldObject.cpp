@@ -18,8 +18,13 @@ FieldObject* FieldObject::create(int id, cocos2d::Point pos, std::string type_st
     FieldObject* ret;
     if (type_str == "1") {
         ret = new MovableRock();
+        ret->setObjectType(MOVABLE_ROCK);
     } else if (type_str == "2") {
         ret = new MessagePoint();
+        ret->setObjectType(MESSAGE_POINT);
+    } else if (type_str == "3") {
+        ret = new FieldObject();
+        ret->setObjectType(START_POINT);
     }
     
     ret->setId(id);
@@ -35,4 +40,9 @@ void FieldObject::executePreMoveAction(Direction d, FieldLayer* v)
 
 void FieldObject::executeMovedAction(FieldLayer* v)
 {
+}
+
+bool FieldObject::isPassablePlayer()
+{
+    return true;
 }

@@ -12,6 +12,7 @@
 
 #include "StateMachineModule.h"
 #include "FieldState.h"
+#include "FieldObject.h"
 
 USING_NS_CC;
 
@@ -36,14 +37,6 @@ bool FieldLayer::init()
     meta_layer->setVisible(false);
     obj_layer->setVisible(false);
     
-    // player character view
-    /*
-    player_sprite = PlayerView::create();
-    player_sprite->setAnchorPoint(Point(0, 1));
-    player_sprite->setPosition(Point(16, s.height - 16));
-    addChild(player_sprite);
-    */
-    
     // msg_view
     msg_view = MessageView::create();
     addChild(msg_view);
@@ -59,15 +52,16 @@ void FieldLayer::initFieldObject(std::vector<FieldObject *> objects)
     objects_root->setPosition(Point::ZERO);
     map->addChild(objects_root);
     
-    for (auto object : objects) {
-        if (object->type == ObjectType::START_POINT) {
+    for (FieldObject* object : objects) {
+        auto obj_pos = object->getPosition();
+        if (object->getObjectType() == FieldObject::ObjectType::START_POINT) {
             Point map_scroll_vec;
-            map_scroll_vec.x = floorf(object->pos.x / 8) * -32 * 9;
-            map_scroll_vec.y = floorf(object->pos.y / 8) * 32 * 9;
+            map_scroll_vec.x = floorf(object->getPosition().x / 8) * -32 * 9;
+            map_scroll_vec.y = floorf(object->getPosition().y / 8) * 32 * 9;
             map->setPosition(map->getPosition() + map_scroll_vec);
             
-            auto obj_x = object->pos.x > 8 ? (int)object->pos.x % 9 : object->pos.x;
-            auto obj_y = object->pos.y > 8 ? (int)object->pos.y % 9 : object->pos.y;
+            auto obj_x = obj_pos.x > 8 ? (int)obj_pos.x % 9 : obj_pos.x;
+            auto obj_y = obj_pos.y > 8 ? (int)obj_pos.y % 9 : obj_pos.y;
             
             auto win_size = Director::getInstance()->getWinSize();
             Point pos;
@@ -80,14 +74,14 @@ void FieldLayer::initFieldObject(std::vector<FieldObject *> objects)
             addChild(player_sprite);
         } else {
             Point pos;
-            pos.x = object->pos.x * 16;
-            pos.y = s.height - (object->pos.y * 16);
+            pos.x = obj_pos.x * 16;
+            pos.y = s.height - (obj_pos.y * 16);
             
             auto sprite = Sprite::create("tmx/movable_rock.png");
             sprite->getTexture()->setAliasTexParameters();
             sprite->setAnchorPoint(Point(0, 1));
             sprite->setPosition(pos);
-            sprite->setTag(object->id);
+            sprite->setTag(object->getId());
             objects_root->addChild(sprite);
         }
     }
