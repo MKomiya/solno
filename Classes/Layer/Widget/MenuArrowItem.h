@@ -13,7 +13,7 @@
 #include <cocos2d.h>
 
 
-class MenuArrowItem : public cocos2d::MenuItemFont
+class MenuArrowItem : public cocos2d::MenuItemSprite
 {
 public:
     MenuArrowItem(std::string direction);
