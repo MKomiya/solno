@@ -9,30 +9,57 @@
 #include "MenuArrowItem.h"
 #include "InputModule.h"
 
+USING_NS_CC;
+
 MenuArrowItem::MenuArrowItem(std::string direction) :
 _direction(direction) {}
 
 MenuArrowItem* MenuArrowItem::create(std::string direction)
 {
     auto pRet = new MenuArrowItem(direction);
-    if (pRet && pRet->initWithString(direction.c_str(), nullptr)) {
+    
+    auto sprite = Sprite::create("ui/ui_arrow_button.png");
+    
+    /*
+    if (direction == "right") {
+        sprite->setAnchorPoint(Point(0, 0.5f));
+        sprite->setRotation(90.0f);
+    } else if (direction == "up") {
+        sprite->setAnchorPoint(Point(0.5f, 0));
+        sprite->setRotation(180.0f);
+    } else if (direction == "left") {
+        sprite->setAnchorPoint(Point(1.0f, 0.5f));
+        sprite->setRotation(-90.0f);
+    }*/
+    
+    if (pRet && pRet->initWithNormalSprite(sprite, sprite, sprite, nullptr)) {
         pRet->autorelease();
         pRet->scheduleUpdate();
     } else {
         delete pRet;
         pRet = NULL;
     }
+    
+    pRet->setAnchorPoint(Point(0.5f, 0.5f));
+    if (direction == "up") {
+        pRet->setRotation(180.0f);
+    } else if (direction == "right") {
+        pRet->setRotation(-90.0f);
+    } else if (direction == "left") {
+        pRet->setRotation(90.0f);
+    }
+    
     return pRet;
 }
 
 void MenuArrowItem::selected()
 {
-    MenuItemFont::selected();
+    MenuItemSprite::selected();
 }
 
 void MenuArrowItem::unselected()
 {
-    MenuItemFont::unselected();
+    MenuItemSprite::unselected();
     
     InputEvent event;
     if (_direction == "up") {
