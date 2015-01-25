@@ -88,11 +88,7 @@ void FieldState::update()
     auto event = InputModule::getInstance()->popEvent();
     
     if (event == InputEvent::RELEASE_DECIDE) {
-        // message view disabled
-        if (view->getMessageState() == MessageView::WAIT) {
-            view->releaseMessages();
-            controller->setEnableArrowButtons(true);
-        }
+        decideAction();
     }
     
     if (event != InputEvent::RELEASE_DECIDE && event != InputEvent::PRESS_DECIDE && event != 0) {
@@ -108,6 +104,27 @@ void FieldState::exit()
     objects.clear();
     
     LayerManager::getInstance()->pop();
+}
+
+void FieldState::decideAction()
+{
+    // message view disabled
+    if (view->getMessageState() == MessageView::WAIT) {
+        view->releaseMessages();
+        controller->setEnableArrowButtons(true);
+        return ;
+    }
+    
+
+    auto direction_entity = Direction::createInstance(player_direction);
+    auto next_pos = player_map_pos + direction_entity.getMapPointVec();
+    
+    // check object executable
+    for (auto obj : objects) {
+        if (obj->getPosition() == next_pos) {
+            obj->executeDecideAction();
+        }
+    }
 }
 
 void FieldState::movePlayerCharacter(InputEvent event)

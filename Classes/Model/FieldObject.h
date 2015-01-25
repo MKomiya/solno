@@ -26,6 +26,7 @@ public:
     static FieldObject* create(int id, cocos2d::Point pos, std::string type_str, std::string optional_params);
     
     virtual void executePreMoveAction(Direction, FieldLayer*);
+    virtual void executeDecideAction();
     virtual void executeMovedAction(FieldLayer*);
     virtual bool isPassablePlayer();
     
