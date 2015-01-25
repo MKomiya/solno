@@ -38,6 +38,10 @@ void FieldObject::executePreMoveAction(Direction d, FieldLayer* v)
 {
 }
 
+void FieldObject::executeDecideAction()
+{
+}
+
 void FieldObject::executeMovedAction(FieldLayer* v)
 {
 }

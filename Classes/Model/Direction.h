@@ -18,6 +18,7 @@ class Direction
 {
 public:
     static Direction createInstance(InputEvent event);
+    static Direction createInstance(std::string direction_str);
     inline cocos2d::Vec2 getUnitVec() const {
         return vec;
     }

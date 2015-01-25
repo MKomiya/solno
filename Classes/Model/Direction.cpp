@@ -28,3 +28,19 @@ Direction Direction::createInstance(InputEvent event)
     }
     return ret;
 }
+
+Direction Direction::createInstance(std::string direction_str)
+{
+    Direction ret;
+    ret.str = direction_str;
+    if (ret.str == "down") {
+        ret.vec = Vec2(0, -1);
+    } else if (ret.str == "left") {
+        ret.vec = Vec2(-1, 0);
+    } else if (ret.str == "right") {
+        ret.vec = Vec2(1, 0);
+    } else if (ret.str == "up") {
+        ret.vec = Vec2(0, 1);
+    }
+    return ret;
+}
