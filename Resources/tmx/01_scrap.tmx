@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="36" height="36" tilewidth="16" tileheight="16">
+ <tileset firstgid="1" name="map" tilewidth="16" tileheight="16">
+  <image source="map.png" width="48" height="80"/>
+ </tileset>
+ <tileset firstgid="16" name="meta" tilewidth="16" tileheight="16">
+  <image source="meta.png" width="48" height="16"/>
+ </tileset>
+ <layer name="background" width="36" height="36">
+  <data encoding="base64" compression="zlib">
+   eJztwzENAAAMA6B+9e+45yYCEhIAADhVVdV38GcRuQ==
+  </data>
+ </layer>
+ <layer name="optional" width="36" height="36">
+  <data encoding="base64" compression="zlib">
+   eJztktEKgDAIRaWm///J0YMgNzciSnu4B4bLCZ7cRAghhBBCCCGEdLN3CwAmPU4jyblHl1PmMcK+ykkhGnhJyFc77SF6/3NVzknlOpsYDerx+wufEZz+QvTx+9mSuoo35H01yaGTwZlCTfYPT4gz8SWQm3lqcvaW14pVj+g0m+0dDj91AP8=
+  </data>
+ </layer>
+ <layer name="meta" width="36" height="36">
+  <data encoding="base64" compression="zlib">
+   eJztk1EKACEIBb2C97/sfgXysGiXVvuYgbAieAOpGQAAAAAAAHTj3QKC2z1OHmqnk0sd+yonzc98xrnTKa5Kp5gx89L3f/tU5Lwl89m9O81sprJ8/d+sx067rfp4x71qFlcZmcsXpwejbQQf
+  </data>
+ </layer>
+ <objectgroup name="Event" width="36" height="36">
+  <object name="start" type="3" gid="13" x="64" y="496"/>
+  <object name="movable_rock" type="1" gid="13" x="176" y="512"/>
+  <object name="message" type="2" gid="13" x="208" y="496">
+   <properties>
+    <property name="decide_trigger" value="true"/>
+    <property name="msg_data" value="[&quot;スクラップオキバ&quot;]"/>
+   </properties>
+  </object>
+ </objectgroup>
+</map>
