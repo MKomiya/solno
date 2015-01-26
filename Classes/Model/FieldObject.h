@@ -23,17 +23,16 @@ public:
         START_POINT,
     };
     
-    static FieldObject* create(int id, cocos2d::Point pos, std::string type_str, std::string optional_params);
+    static FieldObject* create(int id, cocos2d::Point pos, cocos2d::ValueMap data);
     
     virtual void executePreMoveAction(Direction, FieldLayer*);
-    virtual void executeDecideAction();
+    virtual void executeDecideAction(FieldLayer*);
     virtual void executeMovedAction(FieldLayer*);
     virtual bool isPassablePlayer();
     
     CC_SYNTHESIZE(int, id, Id);
     CC_SYNTHESIZE(cocos2d::Point, pos, Position);
     CC_SYNTHESIZE(ObjectType, obj_type, ObjectType);
-    CC_SYNTHESIZE(std::string, optional_params, OptionalParams);
 };
 
 #endif /* defined(__solno__FieldObject__) */

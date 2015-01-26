@@ -16,7 +16,16 @@ class FieldLayer;
 class MessagePoint : public FieldObject
 {
 public:
+    static MessagePoint* create();
     virtual void executeMovedAction(FieldLayer* view) override;
+    virtual void executeDecideAction(FieldLayer* view) override;
+    virtual bool isPassablePlayer() override;
+    
+    CC_SYNTHESIZE(std::string, msg_data, MessageData);
+    CC_SYNTHESIZE(bool, decide_trigger, DecideTrigger);
+    
+private:
+    cocos2d::CallFunc* getViewMessageAction(FieldLayer* view);
 };
 
 #endif /* defined(__solno__MessagePoint__) */

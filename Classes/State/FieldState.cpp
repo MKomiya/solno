@@ -64,12 +64,7 @@ void FieldState::enter()
             float y  = size.height - object_data["y"].asFloat() / 16 - 1;
             auto pos = Point(x, y);
             
-            std::string type_str = object_data["type"].asString();
-            std::string optional_params = "";
-            if (type_str == "2") {
-                optional_params = object_data["msg_data"].asString();
-            }
-            auto ret = FieldObject::create(id, pos, type_str, optional_params);
+            auto ret = FieldObject::create(id, pos, object_data);
             objects.push_back(ret);
             ++id;
             
@@ -122,7 +117,7 @@ void FieldState::decideAction()
     // check object executable
     for (auto obj : objects) {
         if (obj->getPosition() == next_pos) {
-            obj->executeDecideAction();
+            obj->executeDecideAction(view);
         }
     }
 }
