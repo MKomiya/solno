@@ -35,6 +35,7 @@ public:
     virtual void exit() override;
     
 private:
+    void decideAction();
     void movePlayerCharacter(InputEvent event);
     bool isCollidable(int map_x, int map_y);
     

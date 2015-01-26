@@ -30,6 +30,7 @@
   <object name="movable_rock" type="1" gid="13" x="80" y="48"/>
   <object name="message" type="2" gid="13" x="64" y="80">
    <properties>
+    <property name="decide_trigger" value="true"/>
     <property name="msg_data" value="[&quot;メッセージテスト&quot;,&quot;二番目メッセージテスト&quot;]"/>
    </properties>
   </object>

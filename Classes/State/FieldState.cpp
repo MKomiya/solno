@@ -64,12 +64,7 @@ void FieldState::enter()
             float y  = size.height - object_data["y"].asFloat() / 16 - 1;
             auto pos = Point(x, y);
             
-            std::string type_str = object_data["type"].asString();
-            std::string optional_params = "";
-            if (type_str == "2") {
-                optional_params = object_data["msg_data"].asString();
-            }
-            auto ret = FieldObject::create(id, pos, type_str, optional_params);
+            auto ret = FieldObject::create(id, pos, object_data);
             objects.push_back(ret);
             ++id;
             
@@ -88,11 +83,7 @@ void FieldState::update()
     auto event = InputModule::getInstance()->popEvent();
     
     if (event == InputEvent::RELEASE_DECIDE) {
-        // message view disabled
-        if (view->getMessageState() == MessageView::WAIT) {
-            view->releaseMessages();
-            controller->setEnableArrowButtons(true);
-        }
+        decideAction();
     }
     
     if (event != InputEvent::RELEASE_DECIDE && event != InputEvent::PRESS_DECIDE && event != 0) {
@@ -108,6 +99,27 @@ void FieldState::exit()
     objects.clear();
     
     LayerManager::getInstance()->pop();
+}
+
+void FieldState::decideAction()
+{
+    // message view disabled
+    if (view->getMessageState() == MessageView::WAIT) {
+        view->releaseMessages();
+        controller->setEnableArrowButtons(true);
+        return ;
+    }
+    
+
+    auto direction_entity = Direction::createInstance(player_direction);
+    auto next_pos = player_map_pos + direction_entity.getMapPointVec();
+    
+    // check object executable
+    for (auto obj : objects) {
+        if (obj->getPosition() == next_pos) {
+            obj->executeDecideAction(view);
+        }
+    }
 }
 
 void FieldState::movePlayerCharacter(InputEvent event)
