@@ -25,7 +25,7 @@ bool FieldLayer::init()
     auto s = Director::getInstance()->getWinSize();
     
     // map view
-    map = TMXTiledMap::create("tmx/largemap.tmx");
+    map = TMXTiledMap::create("tmx/01_scrap.tmx");
     map->setAnchorPoint(Point(0, 1));
     map->setPosition(Point(16, s.height - 16));
     map->setScale(2.0f);
@@ -33,9 +33,7 @@ bool FieldLayer::init()
     
     // invisible meta
     auto meta_layer = map->getLayer("meta");
-    auto obj_layer  = map->getLayer("object");
     meta_layer->setVisible(false);
-    obj_layer->setVisible(false);
     
     // msg_view
     msg_view = MessageView::create();

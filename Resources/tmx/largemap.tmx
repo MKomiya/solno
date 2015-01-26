@@ -21,11 +21,6 @@
    eJzVVEEOACAI8gv9/7Md25xlJKVxaxqgaSIDTfbQgFzrLgvah8XtxU80I3FEI8LF7DMb2d7Q/mb7nWHly6uRvReeRgWeWxq360TeMqr9405oL94Z5UM5Xs5rhbld8WX52/kbGTosRPauAySHA2Q=
   </data>
  </layer>
- <layer name="object" width="25" height="25">
-  <data encoding="base64" compression="zlib">
-   eJxjYBhegHegHTAKRgEFYDT9joJRMApGwSggFgAAzswAGw==
-  </data>
- </layer>
  <objectgroup name="Event" width="25" height="25">
   <object name="movable_rock" type="1" gid="13" x="80" y="48"/>
   <object name="message" type="2" gid="13" x="64" y="80">
