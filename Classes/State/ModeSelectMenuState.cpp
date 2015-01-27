@@ -7,9 +7,12 @@
 //
 
 #include "ModeSelectMenuState.h"
+#include "StateMachineModule.h"
 
 #include "LayerManager.h"
 #include "ModeSelectMenuLayer.h"
+
+#include "InputModule.h"
 
 USING_NS_CC;
 
@@ -32,15 +35,13 @@ void ModeSelectMenuState::enter()
 
 void ModeSelectMenuState::update()
 {
-    /*
     auto event = InputModule::getInstance()->popEvent();
     
-    if (event == InputEvent::RELEASE_DECIDE) {
-        // アイテムステート発行
-        auto next_state = ItemState::create();
+    if (event == InputEvent::PRESS_MODE_SELECT_ITEM) {
         StateMachineModule::getInstance()->changeState("item_menu");
+    } else if (event == InputEvent::PRESS_MODE_SELECT_MAKE) {
+        CCLOG("next state is MakeMenuState");
     }
-    */
 }
 
 void ModeSelectMenuState::exit()

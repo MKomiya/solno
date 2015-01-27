@@ -13,9 +13,14 @@
 
 enum InputEvent {
     NOTHING = 0,
+    
+    /* Controller Layer */
     PRESS_UP, PRESS_RIGHT, PRESS_DOWN, PRESS_LEFT,
     RELEASE_UP, RELEASE_RIGHT, RELEASE_DOWN, RELEASE_LEFT,
     PRESS_DECIDE, RELEASE_DECIDE,
+    
+    /* ModeSelectMenu Layer */
+    PRESS_MODE_SELECT_ITEM, PRESS_MODE_SELECT_MAKE,
 };
 
 class InputModule

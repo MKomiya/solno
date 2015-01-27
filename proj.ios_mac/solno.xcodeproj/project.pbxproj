@@ -85,6 +85,9 @@
 		D0C983E21A6E64DA00761742 /* Template.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D0C983E01A6E64DA00761742 /* Template.cpp */; };
 		D0CDF0A71A5AB331009E5E98 /* PlayerView.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D0CDF0A51A5AB331009E5E98 /* PlayerView.cpp */; };
 		D0CDF0AA1A5ABB27009E5E98 /* LayerManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D0CDF0A81A5ABB27009E5E98 /* LayerManager.cpp */; };
+		D0E15D011A7839A800E2AB46 /* ItemMenuState.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D0E15CFF1A7839A800E2AB46 /* ItemMenuState.cpp */; };
+		D0E15D041A783A6200E2AB46 /* ItemMenuLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D0E15D021A783A6200E2AB46 /* ItemMenuLayer.cpp */; };
+		D0E15D071A783B0B00E2AB46 /* Item.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D0E15D051A783B0B00E2AB46 /* Item.cpp */; };
 		D0EBE6171A526F7200E36888 /* MenuArrowItem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D0EBE6151A526F7200E36888 /* MenuArrowItem.cpp */; };
 		D0EBE61A1A52709B00E36888 /* InputModule.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D0EBE6181A52709B00E36888 /* InputModule.cpp */; };
 		D0EBE61E1A5275B900E36888 /* FieldState.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D0EBE61C1A5275B900E36888 /* FieldState.cpp */; };
@@ -221,6 +224,12 @@
 		D0CDF0A61A5AB331009E5E98 /* PlayerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PlayerView.h; path = Layer/Component/PlayerView.h; sourceTree = "<group>"; };
 		D0CDF0A81A5ABB27009E5E98 /* LayerManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = LayerManager.cpp; path = Layer/LayerManager.cpp; sourceTree = "<group>"; };
 		D0CDF0A91A5ABB27009E5E98 /* LayerManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LayerManager.h; path = Layer/LayerManager.h; sourceTree = "<group>"; };
+		D0E15CFF1A7839A800E2AB46 /* ItemMenuState.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ItemMenuState.cpp; path = State/ItemMenuState.cpp; sourceTree = "<group>"; };
+		D0E15D001A7839A800E2AB46 /* ItemMenuState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ItemMenuState.h; path = State/ItemMenuState.h; sourceTree = "<group>"; };
+		D0E15D021A783A6200E2AB46 /* ItemMenuLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ItemMenuLayer.cpp; path = Layer/ItemMenuLayer.cpp; sourceTree = "<group>"; };
+		D0E15D031A783A6200E2AB46 /* ItemMenuLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ItemMenuLayer.h; path = Layer/ItemMenuLayer.h; sourceTree = "<group>"; };
+		D0E15D051A783B0B00E2AB46 /* Item.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Item.cpp; path = Model/Item.cpp; sourceTree = "<group>"; };
+		D0E15D061A783B0B00E2AB46 /* Item.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Item.h; path = Model/Item.h; sourceTree = "<group>"; };
 		D0EBE6151A526F7200E36888 /* MenuArrowItem.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = MenuArrowItem.cpp; path = Layer/Widget/MenuArrowItem.cpp; sourceTree = "<group>"; };
 		D0EBE6161A526F7200E36888 /* MenuArrowItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MenuArrowItem.h; path = Layer/Widget/MenuArrowItem.h; sourceTree = "<group>"; };
 		D0EBE6181A52709B00E36888 /* InputModule.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = InputModule.cpp; path = Module/InputModule.cpp; sourceTree = "<group>"; };
@@ -444,6 +453,8 @@
 				D0C983E11A6E64DA00761742 /* Template.h */,
 				D0BD84171A6FE9F300980989 /* FieldObject.cpp */,
 				D0BD84181A6FE9F300980989 /* FieldObject.h */,
+				D0E15D051A783B0B00E2AB46 /* Item.cpp */,
+				D0E15D061A783B0B00E2AB46 /* Item.h */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -463,6 +474,8 @@
 				D04876181A697B880097D6BB /* StoryLayer.h */,
 				D00907491A77C6B400AD6790 /* ModeSelectMenuLayer.cpp */,
 				D009074A1A77C6B400AD6790 /* ModeSelectMenuLayer.h */,
+				D0E15D021A783A6200E2AB46 /* ItemMenuLayer.cpp */,
+				D0E15D031A783A6200E2AB46 /* ItemMenuLayer.h */,
 			);
 			name = Layer;
 			sourceTree = "<group>";
@@ -535,6 +548,8 @@
 				D00907441A77C56100AD6790 /* MenuState.h */,
 				D00907461A77C60B00AD6790 /* ModeSelectMenuState.cpp */,
 				D00907471A77C60B00AD6790 /* ModeSelectMenuState.h */,
+				D0E15CFF1A7839A800E2AB46 /* ItemMenuState.cpp */,
+				D0E15D001A7839A800E2AB46 /* ItemMenuState.h */,
 			);
 			name = State;
 			sourceTree = "<group>";
@@ -697,6 +712,7 @@
 				D048D9BC1A4E623500EE9339 /* ControllerLayer.cpp in Sources */,
 				D094BFB91A6D3F3800D6C383 /* Story.cpp in Sources */,
 				D00907451A77C56100AD6790 /* MenuState.cpp in Sources */,
+				D0E15D071A783B0B00E2AB46 /* Item.cpp in Sources */,
 				D0A505441A6559A2004C2C4E /* json11.cpp in Sources */,
 				D020AD741A616A2000BB01A9 /* MessageView.cpp in Sources */,
 				D0BD84191A6FE9F300980989 /* FieldObject.cpp in Sources */,
@@ -712,12 +728,14 @@
 				503AE10217EB989F00D1A890 /* RootViewController.mm in Sources */,
 				503AE10117EB989F00D1A890 /* main.m in Sources */,
 				D0BD84251A6FF21000980989 /* MessagePoint.cpp in Sources */,
+				D0E15D011A7839A800E2AB46 /* ItemMenuState.cpp in Sources */,
 				D0FBAE2C1A69443400A06481 /* StorageModule.cpp in Sources */,
 				D0332E911A6E81CE004FCA4C /* StateBase.cpp in Sources */,
 				D04876161A697B2B0097D6BB /* StoryState.cpp in Sources */,
 				D0C983E21A6E64DA00761742 /* Template.cpp in Sources */,
 				D0EBE61A1A52709B00E36888 /* InputModule.cpp in Sources */,
 				D094BFB61A6D3F2500D6C383 /* Direction.cpp in Sources */,
+				D0E15D041A783A6200E2AB46 /* ItemMenuLayer.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
