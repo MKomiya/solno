@@ -93,16 +93,22 @@ void FieldState::update()
 
 void FieldState::exit()
 {
+    view->stopPlayerAnimation();
+    /*
     std::for_each(objects.begin(), objects.end(), [](FieldObject* o) {
         delete o; o = nullptr;
     });
     objects.clear();
     
     LayerManager::getInstance()->pop();
+    */
 }
 
 void FieldState::decideAction()
 {
+    StateMachineModule::getInstance()->changeState("mode_select_menu");
+    return ;
+    
     // message view disabled
     if (view->getMessageState() == MessageView::WAIT) {
         view->releaseMessages();

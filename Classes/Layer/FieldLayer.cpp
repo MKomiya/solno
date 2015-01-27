@@ -90,6 +90,11 @@ void FieldLayer::changePlayerAnimation(std::string direction)
     player_sprite->setIdlingAnimate(direction.c_str());
 }
 
+void FieldLayer::stopPlayerAnimation()
+{
+    player_sprite->setIdlingAnimate("stop");
+}
+
 void FieldLayer::runMoveAction(cocos2d::Point move_vec)
 {
     player_sprite->runMoveAction(move_vec);

@@ -9,6 +9,8 @@
 #include "StoryState.h"
 #include "StoryLayer.h"
 
+#include "ModeSelectMenuState.h"
+
 USING_NS_CC;
 
 Scene* HelloWorld::createScene()
@@ -44,6 +46,7 @@ bool HelloWorld::init()
     
     // publish state
     StateMachineModule::getInstance()->registerState("field", FieldState::create(field, controller));
+    StateMachineModule::getInstance()->registerState("mode_select_menu", ModeSelectMenuState::create());
     StateMachineModule::getInstance()->changeState("field");
     scheduleUpdate();
     

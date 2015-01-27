@@ -62,6 +62,9 @@
 		BF171245129291EC00B8313A /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF170DB012928DE900B8313A /* OpenGLES.framework */; };
 		BF1712471292920000B8313A /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = BF170DB412928DE900B8313A /* libz.dylib */; };
 		BF1C47F01293687400B63C5D /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF1C47EA1293683800B63C5D /* QuartzCore.framework */; };
+		D00907451A77C56100AD6790 /* MenuState.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D00907431A77C56100AD6790 /* MenuState.cpp */; };
+		D00907481A77C60B00AD6790 /* ModeSelectMenuState.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D00907461A77C60B00AD6790 /* ModeSelectMenuState.cpp */; };
+		D009074B1A77C6B400AD6790 /* ModeSelectMenuLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D00907491A77C6B400AD6790 /* ModeSelectMenuLayer.cpp */; };
 		D01DE4C81A6B706600235525 /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D01DE4C71A6B706600235525 /* libsqlite3.0.dylib */; };
 		D01DE4CC1A6B70D200235525 /* story in Resources */ = {isa = PBXBuildFile; fileRef = D01DE4CB1A6B70D200235525 /* story */; };
 		D020AD741A616A2000BB01A9 /* MessageView.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D020AD721A616A2000BB01A9 /* MessageView.cpp */; };
@@ -178,6 +181,12 @@
 		BF170DB012928DE900B8313A /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		BF170DB412928DE900B8313A /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		BF1C47EA1293683800B63C5D /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		D00907431A77C56100AD6790 /* MenuState.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = MenuState.cpp; path = State/MenuState.cpp; sourceTree = "<group>"; };
+		D00907441A77C56100AD6790 /* MenuState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MenuState.h; path = State/MenuState.h; sourceTree = "<group>"; };
+		D00907461A77C60B00AD6790 /* ModeSelectMenuState.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ModeSelectMenuState.cpp; path = State/ModeSelectMenuState.cpp; sourceTree = "<group>"; };
+		D00907471A77C60B00AD6790 /* ModeSelectMenuState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ModeSelectMenuState.h; path = State/ModeSelectMenuState.h; sourceTree = "<group>"; };
+		D00907491A77C6B400AD6790 /* ModeSelectMenuLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ModeSelectMenuLayer.cpp; path = Layer/ModeSelectMenuLayer.cpp; sourceTree = "<group>"; };
+		D009074A1A77C6B400AD6790 /* ModeSelectMenuLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ModeSelectMenuLayer.h; path = Layer/ModeSelectMenuLayer.h; sourceTree = "<group>"; };
 		D01DE4C71A6B706600235525 /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.1.sdk/usr/lib/libsqlite3.0.dylib; sourceTree = DEVELOPER_DIR; };
 		D01DE4CB1A6B70D200235525 /* story */ = {isa = PBXFileReference; lastKnownFileType = folder; path = story; sourceTree = "<group>"; };
 		D020AD721A616A2000BB01A9 /* MessageView.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = MessageView.cpp; path = Layer/Component/MessageView.cpp; sourceTree = "<group>"; };
@@ -452,6 +461,8 @@
 				D0CDF0A91A5ABB27009E5E98 /* LayerManager.h */,
 				D04876171A697B880097D6BB /* StoryLayer.cpp */,
 				D04876181A697B880097D6BB /* StoryLayer.h */,
+				D00907491A77C6B400AD6790 /* ModeSelectMenuLayer.cpp */,
+				D009074A1A77C6B400AD6790 /* ModeSelectMenuLayer.h */,
 			);
 			name = Layer;
 			sourceTree = "<group>";
@@ -520,6 +531,10 @@
 				D0332E901A6E81CE004FCA4C /* StateBase.cpp */,
 				D04876141A697B2B0097D6BB /* StoryState.cpp */,
 				D04876151A697B2B0097D6BB /* StoryState.h */,
+				D00907431A77C56100AD6790 /* MenuState.cpp */,
+				D00907441A77C56100AD6790 /* MenuState.h */,
+				D00907461A77C60B00AD6790 /* ModeSelectMenuState.cpp */,
+				D00907471A77C60B00AD6790 /* ModeSelectMenuState.h */,
 			);
 			name = State;
 			sourceTree = "<group>";
@@ -681,6 +696,7 @@
 				D0EBE6171A526F7200E36888 /* MenuArrowItem.cpp in Sources */,
 				D048D9BC1A4E623500EE9339 /* ControllerLayer.cpp in Sources */,
 				D094BFB91A6D3F3800D6C383 /* Story.cpp in Sources */,
+				D00907451A77C56100AD6790 /* MenuState.cpp in Sources */,
 				D0A505441A6559A2004C2C4E /* json11.cpp in Sources */,
 				D020AD741A616A2000BB01A9 /* MessageView.cpp in Sources */,
 				D0BD84191A6FE9F300980989 /* FieldObject.cpp in Sources */,
@@ -688,7 +704,9 @@
 				46880B8A19C43A87006E1F66 /* HelloWorldScene.cpp in Sources */,
 				D083A2A71A4DAB59009A9099 /* FieldLayer.cpp in Sources */,
 				503AE10017EB989F00D1A890 /* AppController.mm in Sources */,
+				D00907481A77C60B00AD6790 /* ModeSelectMenuState.cpp in Sources */,
 				D0CDF0AA1A5ABB27009E5E98 /* LayerManager.cpp in Sources */,
+				D009074B1A77C6B400AD6790 /* ModeSelectMenuLayer.cpp in Sources */,
 				D0CDF0A71A5AB331009E5E98 /* PlayerView.cpp in Sources */,
 				D0EBE6211A52771D00E36888 /* StateMachineModule.cpp in Sources */,
 				503AE10217EB989F00D1A890 /* RootViewController.mm in Sources */,
