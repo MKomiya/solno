@@ -40,7 +40,7 @@ void ModeSelectMenuState::update()
     if (event == InputEvent::PRESS_MODE_SELECT_ITEM) {
         StateMachineModule::getInstance()->changeState("item_menu");
     } else if (event == InputEvent::PRESS_MODE_SELECT_MAKE) {
-        CCLOG("next state is MakeMenuState");
+        StateMachineModule::getInstance()->changeState("make_menu");
     }
 }
 
