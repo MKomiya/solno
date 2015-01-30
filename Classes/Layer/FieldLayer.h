@@ -32,8 +32,9 @@ public:
     void initFieldObject(std::vector<FieldObject*> objects);
     
     void changePlayerAnimation(std::string direction);
-    void runMoveAction(cocos2d::Point move_vec);
+    void stopPlayerAnimation();
     
+    void runMoveAction(cocos2d::Point move_vec);
     void runObjectMoveAction(int object_id, cocos2d::Point move_vec);
     
     cocos2d::TMXLayer* getMapCollider();

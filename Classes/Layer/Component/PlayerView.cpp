@@ -36,6 +36,10 @@ void PlayerView::setIdlingAnimate(std::string direction)
 {
     // 既存のアニメーションを止める
     stopActionByTag(IDLING_ANIMATE);
+    // 停止命令ならそのまま止める
+    if (direction == "stop") {
+        return ;
+    }
     
     auto anime_name = direction + "_anime";
     auto animation  = AnimationCache::getInstance()->getAnimation(anime_name.c_str());
