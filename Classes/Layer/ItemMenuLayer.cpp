@@ -25,36 +25,38 @@ bool ItemMenuLayer::init()
     addChild(frame);
     
     // add test data
-    for (int i=0; i < 12; ++i) {
+    for (int i=0; i < 10; ++i) {
         item_list.pushBack(Item::create());
     }
     
     // 取り敢えずアタッチされたItemを先頭から順に16個取得して表示する
+    auto base_pos = Point(27, frame->getContentSize().height - 80);
+    
+    auto vec = Vector<MenuItem*>();
     for (int y = 0; y < VIEW_ITEM_H; ++y) {
-        auto vec = Vector<MenuItem*>();
         for (int x = 0; x < VIEW_ITEM_W; ++x) {
             int idx = x + y * VIEW_ITEM_W;
             
-            if (item_list.size() <= idx) break;
-            auto item = item_list.at(idx);
+            if (item_list.size() <= idx) {
+                break;
+            }
             
+            auto item = item_list.at(idx);
             auto filepath = Template::create("item/#item_id#.png");
             filepath->assign("#item_id#", 1); // item->getItemId()
             auto image_name = filepath->getString();
             
             auto item_menu_value = MenuItemImage::create(image_name, image_name);
+            item_menu_value->setPosition(base_pos.x + x * 41, base_pos.y - 40 * y);
             vec.pushBack(item_menu_value);
         }
-        
-        if (vec.empty()) break;
-        
-        auto menu = Menu::createWithArray(vec);
-        menu->alignItemsHorizontallyWithPadding(25);
-        
-        auto base_pos = Point(88, frame->getContentSize().height - 80);
-        menu->setPosition(base_pos.x, base_pos.y - 40 * y);
-        frame->addChild(menu);
     }
     
+    if (!vec.empty()) {
+        auto menu = Menu::createWithArray(vec);
+        menu->setPosition(Point::ZERO);
+        frame->addChild(menu);
+    }
+
     return true;
 }
