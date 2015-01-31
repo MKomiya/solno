@@ -81,6 +81,7 @@
 		D094BFB61A6D3F2500D6C383 /* Direction.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D094BFB41A6D3F2500D6C383 /* Direction.cpp */; };
 		D094BFB91A6D3F3800D6C383 /* Story.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D094BFB71A6D3F3800D6C383 /* Story.cpp */; };
 		D0A505441A6559A2004C2C4E /* json11.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D0A505421A6559A2004C2C4E /* json11.cpp */; };
+		D0B25F2A1A7CC1AA00D0D367 /* item in Resources */ = {isa = PBXBuildFile; fileRef = D0B25F291A7CC1AA00D0D367 /* item */; };
 		D0BD84191A6FE9F300980989 /* FieldObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D0BD84171A6FE9F300980989 /* FieldObject.cpp */; };
 		D0BD84251A6FF21000980989 /* MessagePoint.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D0BD84211A6FF21000980989 /* MessagePoint.cpp */; };
 		D0BD84261A6FF21000980989 /* MovableRock.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D0BD84231A6FF21000980989 /* MovableRock.cpp */; };
@@ -218,6 +219,7 @@
 		D094BFB81A6D3F3800D6C383 /* Story.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Story.h; path = Model/Story.h; sourceTree = "<group>"; };
 		D0A505421A6559A2004C2C4E /* json11.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = json11.cpp; path = Library/json11.cpp; sourceTree = "<group>"; };
 		D0A505431A6559A2004C2C4E /* json11.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = json11.hpp; path = Library/json11.hpp; sourceTree = "<group>"; };
+		D0B25F291A7CC1AA00D0D367 /* item */ = {isa = PBXFileReference; lastKnownFileType = folder; path = item; sourceTree = "<group>"; };
 		D0BD84171A6FE9F300980989 /* FieldObject.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = FieldObject.cpp; path = Model/FieldObject.cpp; sourceTree = "<group>"; };
 		D0BD84181A6FE9F300980989 /* FieldObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FieldObject.h; path = Model/FieldObject.h; sourceTree = "<group>"; };
 		D0BD84211A6FF21000980989 /* MessagePoint.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = MessagePoint.cpp; path = Model/FieldObject/MessagePoint.cpp; sourceTree = "<group>"; };
@@ -369,6 +371,7 @@
 		46880B7519C43A67006E1F66 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				D0B25F291A7CC1AA00D0D367 /* item */,
 				521A8EA819F11F5000D177D7 /* fonts */,
 				3EACC98E19EE6D4300EB3C5E /* res */,
 				D083A2A81A4DAE08009A9099 /* tmx */,
@@ -675,6 +678,7 @@
 				46880B7D19C43A67006E1F66 /* CloseSelected.png in Resources */,
 				5087E77D17EB970100C73F5D /* Default-568h@2x.png in Resources */,
 				5087E78517EB970100C73F5D /* Icon-72.png in Resources */,
+				D0B25F2A1A7CC1AA00D0D367 /* item in Resources */,
 				521A8E6519F0C34300D177D7 /* Default-736h@3x.png in Resources */,
 				521A8EA919F11F5000D177D7 /* fonts in Resources */,
 				50EF62A317ECD613001EB2F8 /* Icon-50.png in Resources */,

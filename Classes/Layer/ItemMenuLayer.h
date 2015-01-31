@@ -17,6 +17,9 @@
 class ItemMenuLayer : public cocos2d::Layer
 {
 public:
+    static const int VIEW_ITEM_W = 4;
+    static const int VIEW_ITEM_H = 4;
+    
     virtual bool init();
     CREATE_FUNC(ItemMenuLayer);
     

@@ -8,6 +8,8 @@
 
 #include "ItemMenuLayer.h"
 
+#include "Template.h"
+
 USING_NS_CC;
 
 bool ItemMenuLayer::init()
@@ -21,6 +23,38 @@ bool ItemMenuLayer::init()
     auto frame = Sprite::create("ui/ui_menu_item_frame.png");
     frame->setPosition(Point(s.width / 2.0f, s.height * 2.0f / 3.0f));
     addChild(frame);
+    
+    // add test data
+    for (int i=0; i < 12; ++i) {
+        item_list.pushBack(Item::create());
+    }
+    
+    // 取り敢えずアタッチされたItemを先頭から順に16個取得して表示する
+    for (int y = 0; y < VIEW_ITEM_H; ++y) {
+        auto vec = Vector<MenuItem*>();
+        for (int x = 0; x < VIEW_ITEM_W; ++x) {
+            int idx = x + y * VIEW_ITEM_W;
+            
+            if (item_list.size() <= idx) break;
+            auto item = item_list.at(idx);
+            
+            auto filepath = Template::create("item/#item_id#.png");
+            filepath->assign("#item_id#", 1); // item->getItemId()
+            auto image_name = filepath->getString();
+            
+            auto item_menu_value = MenuItemImage::create(image_name, image_name);
+            vec.pushBack(item_menu_value);
+        }
+        
+        if (vec.empty()) break;
+        
+        auto menu = Menu::createWithArray(vec);
+        menu->alignItemsHorizontallyWithPadding(25);
+        
+        auto base_pos = Point(88, frame->getContentSize().height - 80);
+        menu->setPosition(base_pos.x, base_pos.y - 40 * y);
+        frame->addChild(menu);
+    }
     
     return true;
 }
