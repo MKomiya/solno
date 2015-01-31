@@ -26,6 +26,8 @@ void ItemMenuState::enter()
     // repositoryからitem list読込
     
     // ItemMenuLayerへset
+    auto view = ItemMenuLayer::create();
+    LayerManager::getInstance()->push("item_menu", view);
 }
 
 void ItemMenuState::update()
@@ -35,5 +37,5 @@ void ItemMenuState::update()
 
 void ItemMenuState::exit()
 {
-    
+    LayerManager::getInstance()->pop();
 }
