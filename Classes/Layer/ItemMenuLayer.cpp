@@ -10,6 +10,8 @@
 
 #include "Template.h"
 
+#include "InputModule.h"
+
 USING_NS_CC;
 
 bool ItemMenuLayer::init()
@@ -48,6 +50,10 @@ bool ItemMenuLayer::init()
             
             auto item_menu_value = MenuItemImage::create(image_name, image_name);
             item_menu_value->setPosition(base_pos.x + x * 41, base_pos.y - 40 * y);
+            item_menu_value->setCallback([idx, this](Ref* s) {
+                InputModule::getInstance()->pushEvent(InputEvent::PRESS_ITEM_SELECT);
+                InputModule::getInstance()->pushParam(idx + 1);
+            });
             vec.pushBack(item_menu_value);
         }
     }

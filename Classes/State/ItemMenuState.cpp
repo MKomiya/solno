@@ -11,6 +11,8 @@
 #include "ItemMenuLayer.h"
 #include "LayerManager.h"
 
+#include "InputModule.h"
+
 ItemMenuState* ItemMenuState::create()
 {
     auto ret = new ItemMenuState();
@@ -32,7 +34,12 @@ void ItemMenuState::enter()
 
 void ItemMenuState::update()
 {
+    auto e = InputModule::getInstance()->popEvent();
+    auto p = InputModule::getInstance()->popParam();
     
+    if (e == InputEvent::PRESS_ITEM_SELECT) {
+        CCLOG("アイテム選択：%d", p);
+    }
 }
 
 void ItemMenuState::exit()
