@@ -21,6 +21,9 @@ enum InputEvent {
     
     /* ModeSelectMenu Layer */
     PRESS_MODE_SELECT_ITEM, PRESS_MODE_SELECT_MAKE,
+    
+    /* ItemMenu Layer */
+    PRESS_ITEM_SELECT,
 };
 
 class InputModule
@@ -34,11 +37,14 @@ public:
     }
     
     void pushEvent(InputEvent e);
+    void pushParam(int params);
     InputEvent popEvent();
+    int popParam();
     
 private:
     static InputModule* _instance;
     std::stack<InputEvent> _event_stack;
+    std::stack<int> _param_stack;
 };
 
 #endif /* defined(__solno__InputModule__) */

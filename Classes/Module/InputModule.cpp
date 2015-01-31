@@ -25,3 +25,19 @@ InputEvent InputModule::popEvent()
     _event_stack.pop();
     return ret;
 }
+
+void InputModule::pushParam(int params)
+{
+    _param_stack.push(params);
+}
+
+int InputModule::popParam()
+{
+    if (_param_stack.empty()) {
+        return 0;
+    }
+    
+    auto ret = _param_stack.top();
+    _param_stack.pop();
+    return ret;
+}
