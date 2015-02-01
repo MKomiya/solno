@@ -76,6 +76,7 @@
 		D048D9BC1A4E623500EE9339 /* ControllerLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D048D9BA1A4E623500EE9339 /* ControllerLayer.cpp */; };
 		D048D9BE1A4E65CD00EE9339 /* ui in Resources */ = {isa = PBXBuildFile; fileRef = D048D9BD1A4E65CD00EE9339 /* ui */; };
 		D07D33AB1A7E024000061831 /* MasterStorageModule.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D07D33A91A7E024000061831 /* MasterStorageModule.cpp */; };
+		D07D33B21A7E102200061831 /* UserStorageModule.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D07D33B01A7E102200061831 /* UserStorageModule.cpp */; };
 		D083A2A71A4DAB59009A9099 /* FieldLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D083A2A51A4DAB59009A9099 /* FieldLayer.cpp */; };
 		D083A2A91A4DAE08009A9099 /* tmx in Resources */ = {isa = PBXBuildFile; fileRef = D083A2A81A4DAE08009A9099 /* tmx */; };
 		D083A2AC1A4DB1EF009A9099 /* chara in Resources */ = {isa = PBXBuildFile; fileRef = D083A2AB1A4DB1EF009A9099 /* chara */; };
@@ -211,6 +212,8 @@
 		D048D9BD1A4E65CD00EE9339 /* ui */ = {isa = PBXFileReference; lastKnownFileType = folder; path = ui; sourceTree = "<group>"; };
 		D07D33A91A7E024000061831 /* MasterStorageModule.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = MasterStorageModule.cpp; path = Module/MasterStorageModule.cpp; sourceTree = "<group>"; };
 		D07D33AA1A7E024000061831 /* MasterStorageModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MasterStorageModule.h; path = Module/MasterStorageModule.h; sourceTree = "<group>"; };
+		D07D33B01A7E102200061831 /* UserStorageModule.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = UserStorageModule.cpp; path = Module/UserStorageModule.cpp; sourceTree = "<group>"; };
+		D07D33B11A7E102200061831 /* UserStorageModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UserStorageModule.h; path = Module/UserStorageModule.h; sourceTree = "<group>"; };
 		D083A2A51A4DAB59009A9099 /* FieldLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = FieldLayer.cpp; path = Layer/FieldLayer.cpp; sourceTree = "<group>"; };
 		D083A2A61A4DAB59009A9099 /* FieldLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FieldLayer.h; path = Layer/FieldLayer.h; sourceTree = "<group>"; };
 		D083A2A81A4DAE08009A9099 /* tmx */ = {isa = PBXFileReference; lastKnownFileType = folder; path = tmx; sourceTree = "<group>"; };
@@ -536,6 +539,8 @@
 		D0EBE6141A526F0F00E36888 /* Module */ = {
 			isa = PBXGroup;
 			children = (
+				D07D33B01A7E102200061831 /* UserStorageModule.cpp */,
+				D07D33B11A7E102200061831 /* UserStorageModule.h */,
 				D0EBE6181A52709B00E36888 /* InputModule.cpp */,
 				D0EBE6191A52709B00E36888 /* InputModule.h */,
 				D0EBE61F1A52771D00E36888 /* StateMachineModule.cpp */,
@@ -724,6 +729,7 @@
 				D0BD84261A6FF21000980989 /* MovableRock.cpp in Sources */,
 				D0EBE6171A526F7200E36888 /* MenuArrowItem.cpp in Sources */,
 				D048D9BC1A4E623500EE9339 /* ControllerLayer.cpp in Sources */,
+				D07D33B21A7E102200061831 /* UserStorageModule.cpp in Sources */,
 				D094BFB91A6D3F3800D6C383 /* Story.cpp in Sources */,
 				D00907451A77C56100AD6790 /* MenuState.cpp in Sources */,
 				D0E15D071A783B0B00E2AB46 /* Item.cpp in Sources */,

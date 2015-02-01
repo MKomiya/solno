@@ -17,9 +17,9 @@ class Item : public cocos2d::Ref
 public:
     static Item* create();
     
-    CC_SYNTHESIZE(unsigned int, id, Id);
-    CC_SYNTHESIZE(unsigned int, item_id, ItemId);
-    CC_SYNTHESIZE(unsigned int, num, Num);
+    CC_SYNTHESIZE(int, id, Id);
+    CC_SYNTHESIZE(int, item_id, ItemId);
+    CC_SYNTHESIZE(int, num, Num);
     CC_SYNTHESIZE(std::string, item_name, ItemName);
     CC_SYNTHESIZE(cocos2d::Texture2D*, thumb_texture, ThumbnailTexture);
 };
