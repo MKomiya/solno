@@ -15,5 +15,6 @@ Item* Item::create()
         CC_SAFE_DELETE(ret);
         return ret;
     }
+    ret->setEventId(1);
     return ret;
 }
