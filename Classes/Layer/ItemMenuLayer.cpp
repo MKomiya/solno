@@ -64,5 +64,26 @@ bool ItemMenuLayer::init()
         frame->addChild(menu);
     }
 
+    // カーソル表示（最初はinvisible）
+    
     return true;
+}
+
+void ItemMenuLayer::updateViewItem(int index)
+{
+    if (index < 0 || index >= item_list.size()) {
+        return ;
+    }
+    
+    auto item  = item_list.at(index);
+    
+    // カーソル位置切り替え
+    int idx_x = index % 4;
+    int idx_y = index / 4;
+    //current_cursor->setPosition(base_pos.x + x * 41, base_pos.y - 40 * y);
+    
+    /*
+    // 名前表示切り替え
+    name_label->setString(item->getName());
+    */
 }

@@ -23,6 +23,9 @@ public:
     virtual bool init();
     CREATE_FUNC(ItemMenuLayer);
     
+    // カーソルアイテム更新
+    void updateViewItem(int index);
+    
     CC_SYNTHESIZE(cocos2d::Vector<Item*>, item_list, ItemList);
 };
 
