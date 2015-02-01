@@ -17,7 +17,7 @@ class MakeMenuState : public StateBase
 public:
     static MakeMenuState* create();
     
-    virtual void enter() override;
+    virtual void enter(int gate) override;
     virtual void update() override;
     virtual void exit() override;
 };

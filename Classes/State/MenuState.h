@@ -15,7 +15,7 @@
 class MenuState : public StateBase
 {
 public:
-    virtual void enter() override;
+    virtual void enter(int gate) override;
     virtual void update() override;
     virtual void exit() override;
 };

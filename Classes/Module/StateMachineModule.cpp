@@ -24,7 +24,7 @@ void StateMachineModule::registerState(std::string key, StateBase *state)
     _state_hash.insert(key, state);
 }
 
-void StateMachineModule::changeState(std::string key)
+void StateMachineModule::changeState(std::string key, int gate)
 {
     if (_state_hash.find(key) == _state_hash.end()) {
         throw "invalid state key";
@@ -32,7 +32,12 @@ void StateMachineModule::changeState(std::string key)
     
     if (current_state) current_state->exit();
     current_state = _state_hash.find(key)->second;
-    current_state->enter();
+    current_state->enter(gate);
+}
+
+void StateMachineModule::changeState(std::string key)
+{
+    changeState(key, 0);
 }
 
 void StateMachineModule::update()

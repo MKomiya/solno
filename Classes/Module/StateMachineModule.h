@@ -32,6 +32,7 @@ public:
 
     virtual void release();
     void registerState(std::string key, StateBase* state);
+    void changeState(std::string key, int gate);
     void changeState(std::string key);
     void update();
     

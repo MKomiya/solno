@@ -48,7 +48,7 @@ FieldState::~FieldState()
 {
 }
 
-void FieldState::enter()
+void FieldState::enter(int gate)
 {
     // map size取得のためにcollider layerで代用する
     auto obj_layer = view->getMapCollider();

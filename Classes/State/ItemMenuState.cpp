@@ -26,7 +26,7 @@ ItemMenuState* ItemMenuState::create()
     return ret;
 }
 
-void ItemMenuState::enter()
+void ItemMenuState::enter(int gate)
 {
     // repositoryからitem list読込
     // add test data

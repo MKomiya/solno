@@ -27,7 +27,7 @@ ModeSelectMenuState* ModeSelectMenuState::create()
     return ret;
 }
 
-void ModeSelectMenuState::enter()
+void ModeSelectMenuState::enter(int gate)
 {
     view = ModeSelectMenuLayer::create();
     LayerManager::getInstance()->push("mode_select_menu", view);

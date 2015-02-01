@@ -23,7 +23,7 @@ public:
     StoryState(StoryLayer* view);
     virtual ~StoryState();
     
-    virtual void enter() override;
+    virtual void enter(int gate) override;
     virtual void update() override;
     virtual void exit() override;
     

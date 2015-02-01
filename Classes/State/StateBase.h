@@ -15,7 +15,7 @@
 class StateBase : public cocos2d::Ref {
 public:
     virtual ~StateBase(){}
-    virtual void enter();
+    virtual void enter(int gate);
     virtual void update();
     virtual void exit();
 };
