@@ -15,6 +15,11 @@
 class Item : public cocos2d::Ref
 {
 public:
+    enum EventType {
+        BREAK_TREE = 1,
+        BREAK_SCRAP,
+    };
+    
     static Item* create();
     
     CC_SYNTHESIZE(int, id, Id);

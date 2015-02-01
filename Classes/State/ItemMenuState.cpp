@@ -50,7 +50,8 @@ void ItemMenuState::update()
         }
         
         auto item = item_list.at(p);
-        CCLOG("アイテム使用　event_id: %d", item->getEventId());
+        auto event_id = item->getEventId();
+        CCLOG("アイテム使用　event_id: %d", event_id);
         
         StateMachineModule::getInstance()->changeState("field");
     }
