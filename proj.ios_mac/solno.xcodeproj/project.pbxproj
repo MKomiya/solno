@@ -95,7 +95,6 @@
 		D0EBE61A1A52709B00E36888 /* InputModule.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D0EBE6181A52709B00E36888 /* InputModule.cpp */; };
 		D0EBE61E1A5275B900E36888 /* FieldState.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D0EBE61C1A5275B900E36888 /* FieldState.cpp */; };
 		D0EBE6211A52771D00E36888 /* StateMachineModule.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D0EBE61F1A52771D00E36888 /* StateMachineModule.cpp */; };
-		D0FBAE2C1A69443400A06481 /* StorageModule.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D0FBAE2A1A69443400A06481 /* StorageModule.cpp */; };
 		D0FF46DD1A6242EB005EBDE7 /* MenuDecideItem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D0FF46DB1A6242EB005EBDE7 /* MenuDecideItem.cpp */; };
 		D44C620C132DFF330009C878 /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D44C620B132DFF330009C878 /* OpenAL.framework */; };
 		D44C620E132DFF430009C878 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D44C620D132DFF430009C878 /* AVFoundation.framework */; };
@@ -247,8 +246,6 @@
 		D0EBE61F1A52771D00E36888 /* StateMachineModule.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = StateMachineModule.cpp; path = Module/StateMachineModule.cpp; sourceTree = "<group>"; };
 		D0EBE6201A52771D00E36888 /* StateMachineModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StateMachineModule.h; path = Module/StateMachineModule.h; sourceTree = "<group>"; };
 		D0EBE6221A527C1400E36888 /* StateBase.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = StateBase.h; path = State/StateBase.h; sourceTree = "<group>"; };
-		D0FBAE2A1A69443400A06481 /* StorageModule.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = StorageModule.cpp; path = Module/StorageModule.cpp; sourceTree = "<group>"; };
-		D0FBAE2B1A69443400A06481 /* StorageModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StorageModule.h; path = Module/StorageModule.h; sourceTree = "<group>"; };
 		D0FF46DB1A6242EB005EBDE7 /* MenuDecideItem.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = MenuDecideItem.cpp; path = Layer/Widget/MenuDecideItem.cpp; sourceTree = "<group>"; };
 		D0FF46DC1A6242EB005EBDE7 /* MenuDecideItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MenuDecideItem.h; path = Layer/Widget/MenuDecideItem.h; sourceTree = "<group>"; };
 		D44C620B132DFF330009C878 /* OpenAL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenAL.framework; path = System/Library/Frameworks/OpenAL.framework; sourceTree = SDKROOT; };
@@ -540,8 +537,6 @@
 				D0EBE6191A52709B00E36888 /* InputModule.h */,
 				D0EBE61F1A52771D00E36888 /* StateMachineModule.cpp */,
 				D0EBE6201A52771D00E36888 /* StateMachineModule.h */,
-				D0FBAE2A1A69443400A06481 /* StorageModule.cpp */,
-				D0FBAE2B1A69443400A06481 /* StorageModule.h */,
 			);
 			name = Module;
 			sourceTree = "<group>";
@@ -745,7 +740,6 @@
 				503AE10117EB989F00D1A890 /* main.m in Sources */,
 				D0BD84251A6FF21000980989 /* MessagePoint.cpp in Sources */,
 				D0E15D011A7839A800E2AB46 /* ItemMenuState.cpp in Sources */,
-				D0FBAE2C1A69443400A06481 /* StorageModule.cpp in Sources */,
 				D0332E911A6E81CE004FCA4C /* StateBase.cpp in Sources */,
 				D04876161A697B2B0097D6BB /* StoryState.cpp in Sources */,
 				D0C983E21A6E64DA00761742 /* Template.cpp in Sources */,
