@@ -17,4 +17,3 @@ Item* Item::create()
     }
     return ret;
 }
-

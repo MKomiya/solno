@@ -7,11 +7,14 @@
 //
 
 #include "ItemMenuState.h"
+#include "StateMachineModule.h"
 
 #include "ItemMenuLayer.h"
 #include "LayerManager.h"
 
 #include "InputModule.h"
+
+#include "Item.h"
 
 ItemMenuState* ItemMenuState::create()
 {
@@ -26,9 +29,13 @@ ItemMenuState* ItemMenuState::create()
 void ItemMenuState::enter()
 {
     // repositoryからitem list読込
+    // add test data
+    for (int i=0; i < 10; ++i) {
+        item_list.pushBack(Item::create());
+    }
     
     // ItemMenuLayerへset
-    auto view = ItemMenuLayer::create();
+    auto view = ItemMenuLayer::create(item_list);
     LayerManager::getInstance()->push("item_menu", view);
 }
 
@@ -38,7 +45,14 @@ void ItemMenuState::update()
     auto p = InputModule::getInstance()->popParam();
     
     if (e == InputEvent::PRESS_ITEM_SELECT) {
-        CCLOG("アイテム選択：%d", p);
+        if (p < 0 || p >= item_list.size()) {
+            return ;
+        }
+        
+        auto item = item_list.at(p);
+        CCLOG("アイテム使用　event_id: %d", item->getEventId());
+        
+        StateMachineModule::getInstance()->changeState("field");
     }
 }
 

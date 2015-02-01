@@ -12,6 +12,7 @@
 #include <stdio.h>
 #include "StateBase.h"
 
+class Item;
 class ItemMenuState : public StateBase
 {
 public:
@@ -20,6 +21,9 @@ public:
     virtual void enter() override;
     virtual void update() override;
     virtual void exit() override;
+    
+private:
+    cocos2d::Vector<Item*> item_list;
 };
 
 #endif /* defined(__solno__ItemMenuState__) */

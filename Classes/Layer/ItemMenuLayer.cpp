@@ -14,6 +14,21 @@
 
 USING_NS_CC;
 
+ItemMenuLayer* ItemMenuLayer::create(cocos2d::Vector<Item *> &item_list)
+{
+    auto ret = new ItemMenuLayer();
+    if (ret && ret->init()) {
+        ret->setItemList(item_list);
+        if (ret->init()) {
+            ret->autorelease();
+            return ret;
+        }
+    }
+    
+    CC_SAFE_DELETE(ret);
+    return nullptr;
+}
+
 bool ItemMenuLayer::init()
 {
     if (!Layer::init()) {
@@ -25,11 +40,6 @@ bool ItemMenuLayer::init()
     auto frame = Sprite::create("ui/ui_menu_item_frame.png");
     frame->setPosition(Point(s.width / 2.0f, s.height * 2.0f / 3.0f));
     addChild(frame);
-    
-    // add test data
-    for (int i=0; i < 10; ++i) {
-        item_list.pushBack(Item::create());
-    }
     
     // 取り敢えずアタッチされたItemを先頭から順に16個取得して表示する
     auto base_pos = Point(27, frame->getContentSize().height - 80);
@@ -52,7 +62,7 @@ bool ItemMenuLayer::init()
             item_menu_value->setPosition(base_pos.x + x * 41, base_pos.y - 40 * y);
             item_menu_value->setCallback([idx, this](Ref* s) {
                 InputModule::getInstance()->pushEvent(InputEvent::PRESS_ITEM_SELECT);
-                InputModule::getInstance()->pushParam(idx + 1);
+                InputModule::getInstance()->pushParam(idx);
             });
             vec.pushBack(item_menu_value);
         }
