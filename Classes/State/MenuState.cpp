@@ -8,7 +8,7 @@
 
 #include "MenuState.h"
 
-void MenuState::enter(int gate)
+void MenuState::enter()
 {
     
 }

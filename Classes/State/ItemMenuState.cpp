@@ -26,7 +26,7 @@ ItemMenuState* ItemMenuState::create()
     return ret;
 }
 
-void ItemMenuState::enter(int gate)
+void ItemMenuState::enter()
 {
     // repositoryからitem list読込
     // add test data
@@ -52,7 +52,7 @@ void ItemMenuState::update()
         auto item = item_list.at(p);
         auto event_id = item->getEventId();
         
-        StateMachineModule::getInstance()->changeState("field", event_id);
+        StateMachineModule::getInstance()->changeState("field");
     }
 }
 

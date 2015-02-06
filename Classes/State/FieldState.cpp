@@ -48,14 +48,8 @@ FieldState::~FieldState()
 {
 }
 
-void FieldState::enter(int gate)
+void FieldState::enter()
 {
-    if (gate != 0) {
-        CCLOG("フィールドアイテム使用　event_id: %d", gate);
-        view->changePlayerAnimation(player_direction);
-        return ;
-    }
-    
     // map size取得のためにcollider layerで代用する
     auto obj_layer = view->getMapCollider();
     auto size      = obj_layer->getLayerSize();

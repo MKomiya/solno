@@ -18,7 +18,7 @@ class ModeSelectMenuState : public MenuState
 public:
     static ModeSelectMenuState* create();
     
-    virtual void enter(int gate) override;
+    virtual void enter() override;
     virtual void update() override;
     virtual void exit() override;
     

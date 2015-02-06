@@ -42,7 +42,7 @@ StoryState::~StoryState()
 {
 }
 
-void StoryState::enter(int gate)
+void StoryState::enter()
 {
     auto path = FileUtils::getInstance()->fullPathForFilename("story/mock.json");
     

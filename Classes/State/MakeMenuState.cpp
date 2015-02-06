@@ -21,7 +21,7 @@ MakeMenuState* MakeMenuState::create()
     return ret;
 }
 
-void MakeMenuState::enter(int gate)
+void MakeMenuState::enter()
 {
     auto view = MakeMenuLayer::create();
     LayerManager::getInstance()->push("make_menu", view);

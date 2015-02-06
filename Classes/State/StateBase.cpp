@@ -8,7 +8,7 @@
 
 #include "StateBase.h"
 
-void StateBase::enter(int gate)
+void StateBase::enter()
 {
 }
 
