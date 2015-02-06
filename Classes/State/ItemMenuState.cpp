@@ -7,6 +7,7 @@
 //
 
 #include "ItemMenuState.h"
+#include "FieldState.h"
 #include "StateMachineModule.h"
 
 #include "ItemMenuLayer.h"
@@ -53,7 +54,8 @@ void ItemMenuState::update()
         auto event_id = item->getEventId();
         
         auto fsm = StateMachineModule::getInstance();
-        auto field_state = fsm->getState("field");
+        FieldState* field_state = (FieldState*)fsm->getState("field");
+        field_state->addExecuteItem(event_id);
         fsm->changeState("field");
     }
 }

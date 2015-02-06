@@ -34,6 +34,8 @@ public:
     virtual void update() override;
     virtual void exit() override;
     
+    void addExecuteItem(int item_id);
+    
 private:
     void decideAction();
     void movePlayerCharacter(InputEvent event);
@@ -44,6 +46,8 @@ private:
     FieldLayer* view;
     ControllerLayer* controller;
     std::vector<FieldObject*> objects;
+    
+    int execute_item_id;
 };
 
 #endif /* defined(__solno__FieldState__) */

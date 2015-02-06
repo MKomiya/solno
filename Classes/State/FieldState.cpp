@@ -20,6 +20,8 @@
 #include "Direction.h"
 #include "FieldObject.h"
 
+#include "Item.h"
+
 #include <json11.hpp>
 
 USING_NS_CC;
@@ -40,7 +42,8 @@ FieldState::FieldState(FieldLayer* view, ControllerLayer* controller) :
 player_map_pos(Point(0, 0)),
 player_direction("down"),
 view(view),
-controller(controller)
+controller(controller),
+execute_item_id(0)
 {
 }
 
@@ -50,6 +53,14 @@ FieldState::~FieldState()
 
 void FieldState::enter()
 {
+    if (execute_item_id != 0) {
+        CCLOG("アイテム使用: item_event_id: %d", execute_item_id);
+        execute_item_id = 0;
+        
+        view->changePlayerAnimation(player_direction);
+        return ;
+    }
+    
     // map size取得のためにcollider layerで代用する
     auto obj_layer = view->getMapCollider();
     auto size      = obj_layer->getLayerSize();
@@ -102,6 +113,11 @@ void FieldState::exit()
     
     LayerManager::getInstance()->pop();
     */
+}
+
+void FieldState::addExecuteItem(int item_id)
+{
+    execute_item_id = item_id;
 }
 
 void FieldState::decideAction()
