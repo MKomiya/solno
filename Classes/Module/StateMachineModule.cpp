@@ -35,6 +35,15 @@ void StateMachineModule::changeState(std::string key)
     current_state->enter();
 }
 
+StateBase* StateMachineModule::getState(std::string key)
+{
+    auto it = _state_hash.find(key);
+    if (it == _state_hash.end()) {
+        throw "invalid state key";
+    }
+    return it->second;
+}
+
 void StateMachineModule::update()
 {
     current_state->update();

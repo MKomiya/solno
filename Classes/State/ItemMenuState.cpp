@@ -52,7 +52,9 @@ void ItemMenuState::update()
         auto item = item_list.at(p);
         auto event_id = item->getEventId();
         
-        StateMachineModule::getInstance()->changeState("field");
+        auto fsm = StateMachineModule::getInstance();
+        auto field_state = fsm->getState("field");
+        fsm->changeState("field");
     }
 }
 
