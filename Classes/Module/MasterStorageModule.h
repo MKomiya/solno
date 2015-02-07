@@ -36,6 +36,7 @@ public:
 #pragma mark Read master data
     json11::Json::array getAll(std::string ns);
     json11::Json::object getOne(std::string ns, int id);
+    json11::Json::array findPrepareItemIdsByItemId(int item_id);
 
 #pragma mark Private funcs
 private:

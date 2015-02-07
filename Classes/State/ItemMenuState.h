@@ -13,6 +13,12 @@
 #include "StateBase.h"
 
 class Item;
+
+struct MakeTreeData {
+    Item* prepare_item_1, *prepare_item_2, *prepare_item_3;
+    Item* make_item;
+};
+
 class ItemMenuState : public StateBase
 {
 public:
@@ -21,6 +27,8 @@ public:
     virtual void enter() override;
     virtual void update() override;
     virtual void exit() override;
+    
+    MakeTreeData updateMakeTreeData();
     
 private:
     cocos2d::Vector<Item*> item_list;

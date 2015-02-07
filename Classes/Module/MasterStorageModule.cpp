@@ -47,6 +47,21 @@ json11::Json::object MasterStorageModule::getOne(std::string ns, int id)
     return empty;
 }
 
+json11::Json::array MasterStorageModule::findPrepareItemIdsByItemId(int item_id)
+{
+    auto ret = json11::Json::array();
+    
+    auto data = master_data[MASTER_NS_ITEM].array_items();
+    for (auto elem : data) {
+        if (elem["prepare_item_1_id"] == item_id ||
+            elem["prepare_item_2_id"] == item_id ||
+            elem["prepare_item_3_id"] == item_id) {
+            ret.push_back(elem["item_id"].int_value());
+        }
+    }
+    return ret;
+}
+
 #pragma mark Private funcs
 json11::Json MasterStorageModule::loadJsonData(std::string filepath)
 {

@@ -35,6 +35,9 @@ public:
     CC_SYNTHESIZE(int, type, Type);
     CC_SYNTHESIZE(int, num, Num);
     CC_SYNTHESIZE(cocos2d::Texture2D*, thumb_texture, ThumbnailTexture);
+    CC_SYNTHESIZE(int, prepare_item_id_1, PrepareItemId1);
+    CC_SYNTHESIZE(int, prepare_item_id_2, PrepareItemId2);
+    CC_SYNTHESIZE(int, prepare_item_id_3, PrepareItemId3);
 };
 
 #endif /* defined(__solno__Item__) */

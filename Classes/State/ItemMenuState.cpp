@@ -9,13 +9,12 @@
 #include "ItemMenuState.h"
 #include "FieldState.h"
 #include "StateMachineModule.h"
+#include "Item.h"
+#include "MasterStorageModule.h"
+#include "InputModule.h"
 
 #include "ItemMenuLayer.h"
 #include "LayerManager.h"
-
-#include "InputModule.h"
-
-#include "Item.h"
 
 ItemMenuState* ItemMenuState::create()
 {
@@ -64,4 +63,15 @@ void ItemMenuState::update()
 void ItemMenuState::exit()
 {
     LayerManager::getInstance()->pop();
+}
+
+MakeTreeData ItemMenuState::updateMakeTreeData()
+{
+    int idx = 3;
+    
+    auto master = MasterStorageModule::getInstance();
+    auto current_item  = item_list.at(idx);
+    auto make_item_ids = master->findPrepareItemIdsByItemId(current_item->getItemId());
+    auto make_item_id  = make_item_ids.front().int_value();
+    auto make_item     = Item::create(0, make_item_id, 1);
 }
