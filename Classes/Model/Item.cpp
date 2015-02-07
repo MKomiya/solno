@@ -8,19 +8,25 @@
 
 #include "Item.h"
 
+#include "ObjectOperateItem.h"
+
 #pragma mark create method
 Item* Item::create(int id, int item_id, int type)
 {
-    auto ret = new Item();
-    if (!ret) {
-        CC_SAFE_DELETE(ret);
+    if (type == ItemType::OPERATE_OBJECT) {
+        auto ret = new ObjectOperateItem();
+        if (!ret) {
+            CC_SAFE_DELETE(ret);
+            return ret;
+        }
+        
+        ret->setId(id);
+        ret->setItemId(item_id);
+        ret->setType(type);
         return ret;
     }
-
-    ret->setId(id);
-    ret->setItemId(item_id);
-    ret->setType(type);
-    return ret;
+    
+    return nullptr;
 }
 
 #pragma mark override method
