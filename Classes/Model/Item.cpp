@@ -23,6 +23,7 @@ Item* Item::create(int id, int item_id, int type)
         ret->setId(id);
         ret->setItemId(item_id);
         ret->setType(type);
+        ret->setItemName("プラグイン：オノ");
         return ret;
     }
     

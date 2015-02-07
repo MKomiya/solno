@@ -27,6 +27,8 @@ public:
     void updateViewItem(int index);
     
     CC_SYNTHESIZE_PASS_BY_REF(cocos2d::Vector<Item*>, item_list, ItemList);
+    CC_SYNTHESIZE_READONLY(cocos2d::Sprite*, current_cursor, CurrentCursor);
+    CC_SYNTHESIZE_READONLY(cocos2d::Label*, name_label, NameLabel);
 };
 
 #endif /* defined(__solno__ItemMenuLayer__) */

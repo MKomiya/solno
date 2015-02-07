@@ -42,7 +42,7 @@ bool ItemMenuLayer::init()
     addChild(frame);
     
     // 取り敢えずアタッチされたItemを先頭から順に16個取得して表示する
-    auto base_pos = Point(27, frame->getContentSize().height - 80);
+    auto base_pos = Point(26, frame->getContentSize().height - 80);
     
     auto vec = Vector<MenuItem*>();
     for (int y = 0; y < VIEW_ITEM_H; ++y) {
@@ -61,8 +61,11 @@ bool ItemMenuLayer::init()
             auto item_menu_value = MenuItemImage::create(image_name, image_name);
             item_menu_value->setPosition(base_pos.x + x * 41, base_pos.y - 40 * y);
             item_menu_value->setCallback([idx, this](Ref* s) {
+                updateViewItem(idx);
+                /*
                 InputModule::getInstance()->pushEvent(InputEvent::PRESS_ITEM_SELECT);
                 InputModule::getInstance()->pushParam(idx);
+                 */
             });
             vec.pushBack(item_menu_value);
         }
@@ -75,6 +78,17 @@ bool ItemMenuLayer::init()
     }
 
     // カーソル表示（最初はinvisible）
+    current_cursor = Sprite::create("ui/ui_menu_item_cursor.png");
+    current_cursor->setPosition(base_pos);
+    frame->addChild(current_cursor);
+    
+    // ラベル表示
+    name_label = Label::createWithBMFont("fonts/message_font.fnt", "テスト");
+    name_label->getTexture()->setAliasTexParameters();
+    name_label->setAnchorPoint(Point(0, 0.5f));
+    name_label->setPosition(12, frame->getContentSize().height - 16);
+    name_label->setScale(2.0f);
+    frame->addChild(name_label);
     
     return true;
 }
@@ -88,12 +102,13 @@ void ItemMenuLayer::updateViewItem(int index)
     auto item  = item_list.at(index);
     
     // カーソル位置切り替え
+    auto frame = current_cursor->getParent();
+    auto base_pos = Point(26, frame->getContentSize().height - 80);
+    
     int idx_x = index % 4;
     int idx_y = index / 4;
-    //current_cursor->setPosition(base_pos.x + x * 41, base_pos.y - 40 * y);
-    
-    /*
+    current_cursor->setPosition(base_pos.x + idx_x * 41, base_pos.y - 40 * idx_y);
+
     // 名前表示切り替え
-    name_label->setString(item->getName());
-    */
+    name_label->setString(item->getItemName());
 }
