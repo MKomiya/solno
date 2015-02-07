@@ -90,6 +90,7 @@
 		D0C983E21A6E64DA00761742 /* Template.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D0C983E01A6E64DA00761742 /* Template.cpp */; };
 		D0CDF0A71A5AB331009E5E98 /* PlayerView.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D0CDF0A51A5AB331009E5E98 /* PlayerView.cpp */; };
 		D0CDF0AA1A5ABB27009E5E98 /* LayerManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D0CDF0A81A5ABB27009E5E98 /* LayerManager.cpp */; };
+		D0DCF5331A85AAAB003FE946 /* ObjectOperateItem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D0DCF5311A85AAAB003FE946 /* ObjectOperateItem.cpp */; };
 		D0E15D011A7839A800E2AB46 /* ItemMenuState.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D0E15CFF1A7839A800E2AB46 /* ItemMenuState.cpp */; };
 		D0E15D041A783A6200E2AB46 /* ItemMenuLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D0E15D021A783A6200E2AB46 /* ItemMenuLayer.cpp */; };
 		D0E15D071A783B0B00E2AB46 /* Item.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D0E15D051A783B0B00E2AB46 /* Item.cpp */; };
@@ -237,6 +238,8 @@
 		D0CDF0A61A5AB331009E5E98 /* PlayerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PlayerView.h; path = Layer/Component/PlayerView.h; sourceTree = "<group>"; };
 		D0CDF0A81A5ABB27009E5E98 /* LayerManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = LayerManager.cpp; path = Layer/LayerManager.cpp; sourceTree = "<group>"; };
 		D0CDF0A91A5ABB27009E5E98 /* LayerManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LayerManager.h; path = Layer/LayerManager.h; sourceTree = "<group>"; };
+		D0DCF5311A85AAAB003FE946 /* ObjectOperateItem.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ObjectOperateItem.cpp; path = Model/Item/ObjectOperateItem.cpp; sourceTree = "<group>"; };
+		D0DCF5321A85AAAB003FE946 /* ObjectOperateItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ObjectOperateItem.h; path = Model/Item/ObjectOperateItem.h; sourceTree = "<group>"; };
 		D0E15CFF1A7839A800E2AB46 /* ItemMenuState.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ItemMenuState.cpp; path = State/ItemMenuState.cpp; sourceTree = "<group>"; };
 		D0E15D001A7839A800E2AB46 /* ItemMenuState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ItemMenuState.h; path = State/ItemMenuState.h; sourceTree = "<group>"; };
 		D0E15D021A783A6200E2AB46 /* ItemMenuLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ItemMenuLayer.cpp; path = Layer/ItemMenuLayer.cpp; sourceTree = "<group>"; };
@@ -456,6 +459,7 @@
 		D05758BC1A6377D000BD2107 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				D0DCF5301A85AA85003FE946 /* Item */,
 				D0BD841A1A6FEB1000980989 /* FieldObject */,
 				D094BFB41A6D3F2500D6C383 /* Direction.cpp */,
 				D094BFB51A6D3F2500D6C383 /* Direction.h */,
@@ -523,6 +527,15 @@
 				D020AD731A616A2000BB01A9 /* MessageView.h */,
 			);
 			name = Component;
+			sourceTree = "<group>";
+		};
+		D0DCF5301A85AA85003FE946 /* Item */ = {
+			isa = PBXGroup;
+			children = (
+				D0DCF5311A85AAAB003FE946 /* ObjectOperateItem.cpp */,
+				D0DCF5321A85AAAB003FE946 /* ObjectOperateItem.h */,
+			);
+			name = Item;
 			sourceTree = "<group>";
 		};
 		D0EBE6131A52606800E36888 /* Widget */ = {
@@ -747,6 +760,7 @@
 				D009074B1A77C6B400AD6790 /* ModeSelectMenuLayer.cpp in Sources */,
 				D0CDF0A71A5AB331009E5E98 /* PlayerView.cpp in Sources */,
 				D0EBE6211A52771D00E36888 /* StateMachineModule.cpp in Sources */,
+				D0DCF5331A85AAAB003FE946 /* ObjectOperateItem.cpp in Sources */,
 				503AE10217EB989F00D1A890 /* RootViewController.mm in Sources */,
 				503AE10117EB989F00D1A890 /* main.m in Sources */,
 				D0BD84251A6FF21000980989 /* MessagePoint.cpp in Sources */,

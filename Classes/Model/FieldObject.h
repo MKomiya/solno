@@ -18,9 +18,10 @@ class FieldObject : public cocos2d::Ref
 {
 public:
     enum ObjectType {
-        MOVABLE_ROCK = 1,
-        MESSAGE_POINT,
-        START_POINT,
+        MOVABLE_ROCK = 1,  // 動かせる岩
+        MESSAGE_POINT,     // 会話が流れるポイント
+        START_POINT,       // スタート地点
+        TREE,              // 破壊出来る木
     };
     
     static FieldObject* create(int id, cocos2d::Point pos, cocos2d::ValueMap data);

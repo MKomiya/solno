@@ -8,13 +8,22 @@
 
 #include "Item.h"
 
-Item* Item::create()
+#pragma mark create method
+Item* Item::create(int id, int item_id, int type)
 {
     auto ret = new Item();
     if (!ret) {
         CC_SAFE_DELETE(ret);
         return ret;
     }
-    ret->setEventId(1);
+
+    ret->setId(id);
+    ret->setItemId(item_id);
+    ret->setType(type);
     return ret;
+}
+
+#pragma mark override method
+void Item::useItem()
+{
 }

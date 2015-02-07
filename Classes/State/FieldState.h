@@ -28,13 +28,14 @@ class FieldState : public StateBase {
 public:
     static FieldState* create(FieldLayer* view, ControllerLayer* controller);
     FieldState(FieldLayer* view, ControllerLayer* controller);
-    virtual ~FieldState();
     
     virtual void enter() override;
     virtual void update() override;
     virtual void exit() override;
     
     void addExecuteItem(int item_id);
+    FieldObject* findPlayerDirectionAbutObject();
+    void deleteObject(FieldObject* target);
     
 private:
     void decideAction();

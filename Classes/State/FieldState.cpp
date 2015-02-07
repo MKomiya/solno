@@ -47,16 +47,11 @@ execute_item_id(0)
 {
 }
 
-FieldState::~FieldState()
-{
-}
-
 void FieldState::enter()
 {
     if (execute_item_id != 0) {
         CCLOG("アイテム使用: item_event_id: %d", execute_item_id);
         execute_item_id = 0;
-        
         view->changePlayerAnimation(player_direction);
         return ;
     }
@@ -105,19 +100,37 @@ void FieldState::update()
 void FieldState::exit()
 {
     view->stopPlayerAnimation();
-    /*
-    std::for_each(objects.begin(), objects.end(), [](FieldObject* o) {
-        delete o; o = nullptr;
-    });
-    objects.clear();
-    
-    LayerManager::getInstance()->pop();
-    */
 }
 
 void FieldState::addExecuteItem(int item_id)
 {
     execute_item_id = item_id;
+}
+
+FieldObject* FieldState::findPlayerDirectionAbutObject()
+{
+    auto direction  = Direction::createInstance(player_direction);
+    auto search_pos = player_map_pos + direction.getMapPointVec();
+    
+    for (auto obj : objects) {
+        if (obj->getPosition() == search_pos) {
+            return obj;
+        }
+    }
+    return nullptr;
+}
+
+void FieldState::deleteObject(FieldObject *target)
+{
+    auto it = objects.begin();
+    for (; it != objects.end(); ++it) {
+        if ((*it) == target) {
+            objects.erase(it);
+            return ;
+        }
+    }
+    
+    CCLOG("破壊オブジェクトがないよ");
 }
 
 void FieldState::decideAction()
