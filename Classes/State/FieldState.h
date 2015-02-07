@@ -24,6 +24,7 @@ enum MapColliderType {
 class FieldLayer;
 class ControllerLayer;
 class FieldObject;
+class Item;
 class FieldState : public StateBase {
 public:
     static FieldState* create(FieldLayer* view, ControllerLayer* controller);
@@ -33,7 +34,7 @@ public:
     virtual void update() override;
     virtual void exit() override;
     
-    void addExecuteItem(int item_id);
+    void addExecuteItem(Item* item);
     FieldObject* findPlayerDirectionAbutObject();
     void deleteObject(FieldObject* target);
     
@@ -48,7 +49,7 @@ private:
     ControllerLayer* controller;
     std::vector<FieldObject*> objects;
     
-    int execute_item_id;
+    Item* execute_item;
 };
 
 #endif /* defined(__solno__FieldState__) */

@@ -33,6 +33,7 @@ public:
     CC_SYNTHESIZE(int, item_id, ItemId);
     CC_SYNTHESIZE(std::string, item_name, ItemName);
     CC_SYNTHESIZE(int, type, Type);
+    CC_SYNTHESIZE(int, num, Num);
     CC_SYNTHESIZE(cocos2d::Texture2D*, thumb_texture, ThumbnailTexture);
 };
 

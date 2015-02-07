@@ -478,22 +478,12 @@
 		D083A2AA1A4DAF46009A9099 /* Layer */ = {
 			isa = PBXGroup;
 			children = (
-				D0CDF0A41A5AB26E009E5E98 /* Component */,
-				D0EBE6131A52606800E36888 /* Widget */,
-				D083A2A51A4DAB59009A9099 /* FieldLayer.cpp */,
-				D083A2A61A4DAB59009A9099 /* FieldLayer.h */,
-				D048D9BA1A4E623500EE9339 /* ControllerLayer.cpp */,
-				D048D9BB1A4E623500EE9339 /* ControllerLayer.h */,
+				D0DCF5391A85B47F003FE946 /* Story */,
+				D0DCF53A1A85B530003FE946 /* Menu */,
+				D0DCF5371A85B42F003FE946 /* Field */,
+				D0DCF5381A85B44C003FE946 /* Controller */,
 				D0CDF0A81A5ABB27009E5E98 /* LayerManager.cpp */,
 				D0CDF0A91A5ABB27009E5E98 /* LayerManager.h */,
-				D04876171A697B880097D6BB /* StoryLayer.cpp */,
-				D04876181A697B880097D6BB /* StoryLayer.h */,
-				D00907491A77C6B400AD6790 /* ModeSelectMenuLayer.cpp */,
-				D009074A1A77C6B400AD6790 /* ModeSelectMenuLayer.h */,
-				D0E15D021A783A6200E2AB46 /* ItemMenuLayer.cpp */,
-				D0E15D031A783A6200E2AB46 /* ItemMenuLayer.h */,
-				697244CC1A7A45A600D0C3B6 /* MakeMenuLayer.cpp */,
-				697244CD1A7A45A600D0C3B6 /* MakeMenuLayer.h */,
 			);
 			name = Layer;
 			sourceTree = "<group>";
@@ -538,6 +528,81 @@
 			name = Item;
 			sourceTree = "<group>";
 		};
+		D0DCF5341A85B3F5003FE946 /* Field */ = {
+			isa = PBXGroup;
+			children = (
+				D0EBE61C1A5275B900E36888 /* FieldState.cpp */,
+				D0EBE61D1A5275B900E36888 /* FieldState.h */,
+			);
+			name = Field;
+			sourceTree = "<group>";
+		};
+		D0DCF5351A85B403003FE946 /* Menu */ = {
+			isa = PBXGroup;
+			children = (
+				D00907431A77C56100AD6790 /* MenuState.cpp */,
+				D00907441A77C56100AD6790 /* MenuState.h */,
+				D00907461A77C60B00AD6790 /* ModeSelectMenuState.cpp */,
+				D00907471A77C60B00AD6790 /* ModeSelectMenuState.h */,
+				D0E15CFF1A7839A800E2AB46 /* ItemMenuState.cpp */,
+				D0E15D001A7839A800E2AB46 /* ItemMenuState.h */,
+				697244C91A7A44D600D0C3B6 /* MakeMenuState.cpp */,
+				697244CA1A7A44D600D0C3B6 /* MakeMenuState.h */,
+			);
+			name = Menu;
+			sourceTree = "<group>";
+		};
+		D0DCF5361A85B415003FE946 /* Story */ = {
+			isa = PBXGroup;
+			children = (
+				D04876141A697B2B0097D6BB /* StoryState.cpp */,
+				D04876151A697B2B0097D6BB /* StoryState.h */,
+			);
+			name = Story;
+			sourceTree = "<group>";
+		};
+		D0DCF5371A85B42F003FE946 /* Field */ = {
+			isa = PBXGroup;
+			children = (
+				D0CDF0A41A5AB26E009E5E98 /* Component */,
+				D083A2A51A4DAB59009A9099 /* FieldLayer.cpp */,
+				D083A2A61A4DAB59009A9099 /* FieldLayer.h */,
+			);
+			name = Field;
+			sourceTree = "<group>";
+		};
+		D0DCF5381A85B44C003FE946 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				D0EBE6131A52606800E36888 /* Widget */,
+				D048D9BA1A4E623500EE9339 /* ControllerLayer.cpp */,
+				D048D9BB1A4E623500EE9339 /* ControllerLayer.h */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		D0DCF5391A85B47F003FE946 /* Story */ = {
+			isa = PBXGroup;
+			children = (
+				D04876171A697B880097D6BB /* StoryLayer.cpp */,
+				D04876181A697B880097D6BB /* StoryLayer.h */,
+			);
+			name = Story;
+			sourceTree = "<group>";
+		};
+		D0DCF53A1A85B530003FE946 /* Menu */ = {
+			isa = PBXGroup;
+			children = (
+				D00907491A77C6B400AD6790 /* ModeSelectMenuLayer.cpp */,
+				D009074A1A77C6B400AD6790 /* ModeSelectMenuLayer.h */,
+				D0E15D021A783A6200E2AB46 /* ItemMenuLayer.cpp */,
+				D0E15D031A783A6200E2AB46 /* ItemMenuLayer.h */,
+				697244CC1A7A45A600D0C3B6 /* MakeMenuLayer.cpp */,
+				697244CD1A7A45A600D0C3B6 /* MakeMenuLayer.h */,
+			);
+			name = Menu;
+			sourceTree = "<group>";
+		};
 		D0EBE6131A52606800E36888 /* Widget */ = {
 			isa = PBXGroup;
 			children = (
@@ -567,20 +632,11 @@
 		D0EBE61B1A52759B00E36888 /* State */ = {
 			isa = PBXGroup;
 			children = (
-				D0EBE61C1A5275B900E36888 /* FieldState.cpp */,
-				D0EBE61D1A5275B900E36888 /* FieldState.h */,
+				D0DCF5361A85B415003FE946 /* Story */,
+				D0DCF5351A85B403003FE946 /* Menu */,
+				D0DCF5341A85B3F5003FE946 /* Field */,
 				D0EBE6221A527C1400E36888 /* StateBase.h */,
 				D0332E901A6E81CE004FCA4C /* StateBase.cpp */,
-				D04876141A697B2B0097D6BB /* StoryState.cpp */,
-				D04876151A697B2B0097D6BB /* StoryState.h */,
-				D00907431A77C56100AD6790 /* MenuState.cpp */,
-				D00907441A77C56100AD6790 /* MenuState.h */,
-				D00907461A77C60B00AD6790 /* ModeSelectMenuState.cpp */,
-				D00907471A77C60B00AD6790 /* ModeSelectMenuState.h */,
-				D0E15CFF1A7839A800E2AB46 /* ItemMenuState.cpp */,
-				D0E15D001A7839A800E2AB46 /* ItemMenuState.h */,
-				697244C91A7A44D600D0C3B6 /* MakeMenuState.cpp */,
-				697244CA1A7A44D600D0C3B6 /* MakeMenuState.h */,
 			);
 			name = State;
 			sourceTree = "<group>";

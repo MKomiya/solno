@@ -43,15 +43,15 @@ player_map_pos(Point(0, 0)),
 player_direction("down"),
 view(view),
 controller(controller),
-execute_item_id(0)
+execute_item(nullptr)
 {
 }
 
 void FieldState::enter()
 {
-    if (execute_item_id != 0) {
-        CCLOG("アイテム使用: item_event_id: %d", execute_item_id);
-        execute_item_id = 0;
+    if (execute_item != 0) {
+        CCLOG("use item. item_id: %d, item_type: %d", execute_item->getItemId(), execute_item->getType());
+        execute_item = nullptr;
         view->changePlayerAnimation(player_direction);
         return ;
     }
@@ -102,9 +102,9 @@ void FieldState::exit()
     view->stopPlayerAnimation();
 }
 
-void FieldState::addExecuteItem(int item_id)
+void FieldState::addExecuteItem(Item* item)
 {
-    execute_item_id = item_id;
+    execute_item = item;
 }
 
 FieldObject* FieldState::findPlayerDirectionAbutObject()

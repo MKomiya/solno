@@ -32,7 +32,7 @@ void ItemMenuState::enter()
     // repositoryからitem list読込
     // add test data
     for (int i=0; i < 10; ++i) {
-        item_list.pushBack(Item::create());
+        item_list.pushBack(Item::create(i+1, 3, Item::ItemType::OPERATE_OBJECT));
     }
     
     // ItemMenuLayerへset
@@ -51,11 +51,10 @@ void ItemMenuState::update()
         }
         
         auto item = item_list.at(p);
-        auto event_id = item->getEventId();
         
         auto fsm = StateMachineModule::getInstance();
         FieldState* field_state = (FieldState*)fsm->getState("field");
-        field_state->addExecuteItem(event_id);
+        field_state->addExecuteItem(item);
         fsm->changeState("field");
     }
 }
