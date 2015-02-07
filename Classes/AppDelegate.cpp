@@ -1,6 +1,7 @@
 #include "AppDelegate.h"
 #include "StateMachineModule.h"
 #include "HelloWorldScene.h"
+#include "MasterStorageModule.h"
 
 USING_NS_CC;
 
@@ -42,6 +43,9 @@ bool AppDelegate::applicationDidFinishLaunching() {
     director->setAnimationInterval(1.0 / 60);
     
     director->setProjection(Director::Projection::_2D);
+    
+    // initialize master data
+    MasterStorageModule::getInstance()->init();
     
     // create a scene. it's an autorelease object
     auto scene = HelloWorld::createScene();

@@ -91,6 +91,7 @@
 		D0CDF0A71A5AB331009E5E98 /* PlayerView.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D0CDF0A51A5AB331009E5E98 /* PlayerView.cpp */; };
 		D0CDF0AA1A5ABB27009E5E98 /* LayerManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D0CDF0A81A5ABB27009E5E98 /* LayerManager.cpp */; };
 		D0DCF5331A85AAAB003FE946 /* ObjectOperateItem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D0DCF5311A85AAAB003FE946 /* ObjectOperateItem.cpp */; };
+		D0DCF53E1A85F1B1003FE946 /* data in Resources */ = {isa = PBXBuildFile; fileRef = D0DCF53D1A85F1B1003FE946 /* data */; };
 		D0E15D011A7839A800E2AB46 /* ItemMenuState.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D0E15CFF1A7839A800E2AB46 /* ItemMenuState.cpp */; };
 		D0E15D041A783A6200E2AB46 /* ItemMenuLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D0E15D021A783A6200E2AB46 /* ItemMenuLayer.cpp */; };
 		D0E15D071A783B0B00E2AB46 /* Item.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D0E15D051A783B0B00E2AB46 /* Item.cpp */; };
@@ -240,6 +241,7 @@
 		D0CDF0A91A5ABB27009E5E98 /* LayerManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LayerManager.h; path = Layer/LayerManager.h; sourceTree = "<group>"; };
 		D0DCF5311A85AAAB003FE946 /* ObjectOperateItem.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ObjectOperateItem.cpp; path = Model/Item/ObjectOperateItem.cpp; sourceTree = "<group>"; };
 		D0DCF5321A85AAAB003FE946 /* ObjectOperateItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ObjectOperateItem.h; path = Model/Item/ObjectOperateItem.h; sourceTree = "<group>"; };
+		D0DCF53D1A85F1B1003FE946 /* data */ = {isa = PBXFileReference; lastKnownFileType = folder; path = data; sourceTree = "<group>"; };
 		D0E15CFF1A7839A800E2AB46 /* ItemMenuState.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ItemMenuState.cpp; path = State/ItemMenuState.cpp; sourceTree = "<group>"; };
 		D0E15D001A7839A800E2AB46 /* ItemMenuState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ItemMenuState.h; path = State/ItemMenuState.h; sourceTree = "<group>"; };
 		D0E15D021A783A6200E2AB46 /* ItemMenuLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ItemMenuLayer.cpp; path = Layer/ItemMenuLayer.cpp; sourceTree = "<group>"; };
@@ -377,6 +379,7 @@
 		46880B7519C43A67006E1F66 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				D0DCF53D1A85F1B1003FE946 /* data */,
 				D0B25F291A7CC1AA00D0D367 /* item */,
 				521A8EA819F11F5000D177D7 /* fonts */,
 				3EACC98E19EE6D4300EB3C5E /* res */,
@@ -761,6 +764,7 @@
 				50EF62A217ECD613001EB2F8 /* Icon-29.png in Resources */,
 				50EF629617ECD46A001EB2F8 /* Icon-40.png in Resources */,
 				D01DE4CC1A6B70D200235525 /* story in Resources */,
+				D0DCF53E1A85F1B1003FE946 /* data in Resources */,
 				5087E78217EB970100C73F5D /* Icon-144.png in Resources */,
 				3EACC98F19EE6D4300EB3C5E /* res in Resources */,
 				50EF629817ECD46A001EB2F8 /* Icon-80.png in Resources */,

@@ -53,9 +53,9 @@ json11::Json::array MasterStorageModule::findPrepareItemIdsByItemId(int item_id)
     
     auto data = master_data[MASTER_NS_ITEM].array_items();
     for (auto elem : data) {
-        if (elem["prepare_item_1_id"] == item_id ||
-            elem["prepare_item_2_id"] == item_id ||
-            elem["prepare_item_3_id"] == item_id) {
+        if (elem["preparent_item_1_id"].int_value() == item_id ||
+            elem["preparent_item_2_id"].int_value() == item_id ||
+            elem["preparent_item_3_id"].int_value() == item_id) {
             ret.push_back(elem["item_id"].int_value());
         }
     }

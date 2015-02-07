@@ -14,6 +14,7 @@
 #include "Direction.h"
 #include "FieldObject.h"
 #include "Item.h"
+#include "MasterStorageModule.h"
 
 #include "LayerManager.h"
 #include "FieldLayer.h"
