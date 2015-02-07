@@ -6,45 +6,39 @@
 //
 //
 
+#include <json11.hpp>
+
 #include "StateMachineModule.h"
 #include "FieldState.h"
 #include "StoryState.h"
+#include "Direction.h"
+#include "FieldObject.h"
+#include "Item.h"
 
 #include "LayerManager.h"
 #include "FieldLayer.h"
 #include "ControllerLayer.h"
 #include "StoryLayer.h"
-
 #include "MessageView.h"
-
-#include "Direction.h"
-#include "FieldObject.h"
-
-#include "Item.h"
-
-#include <json11.hpp>
 
 USING_NS_CC;
 
 FieldState* FieldState::create(FieldLayer *view, ControllerLayer *controller)
 {
-    auto ret = new FieldState(view, controller);
+    auto ret = new FieldState();
     if (!ret) {
         CC_SAFE_DELETE(ret);
         return nullptr;
     }
     
+    ret->setPlayerMapPosition(Point(0, 0));
+    ret->setPlayerDirection("down");
+    ret->setFieldView(view);
+    ret->setControllerView(controller);
+    ret->setExecuteItem(nullptr);
+    
     ret->autorelease();
     return ret;
-}
-
-FieldState::FieldState(FieldLayer* view, ControllerLayer* controller) :
-player_map_pos(Point(0, 0)),
-player_direction("down"),
-view(view),
-controller(controller),
-execute_item(nullptr)
-{
 }
 
 void FieldState::enter()
@@ -85,7 +79,6 @@ void FieldState::enter()
 
 void FieldState::update()
 {
-    
     auto event = InputModule::getInstance()->popEvent();
     
     if (event == InputEvent::RELEASE_DECIDE) {

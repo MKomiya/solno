@@ -24,6 +24,8 @@ ItemMenuState* ItemMenuState::create()
         CC_SAFE_DELETE(ret);
         return nullptr;
     }
+    
+    ret->autorelease();
     return ret;
 }
 
