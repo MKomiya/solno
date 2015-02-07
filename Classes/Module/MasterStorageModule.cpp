@@ -38,7 +38,7 @@ json11::Json::object MasterStorageModule::getOne(std::string ns, int id)
     
     auto data = master_data[ns].array_items();
     for (auto elem : data) {
-        if (elem[primary_key_label] == id) {
+        if (elem[primary_key_label].int_value() == id) {
             return elem.object_items();
         }
     }
