@@ -15,7 +15,7 @@
 class Item;
 
 struct MakeTreeData {
-    Item* prepare_item_1, *prepare_item_2, *prepare_item_3;
+    std::vector<Item*> prepare_items;
     Item* make_item;
 };
 
