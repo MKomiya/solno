@@ -26,6 +26,7 @@ public:
     };
     
     static Item* create(int id, int item_id, int type);
+    static Item* createByMaster(int item_id);
     
     virtual void useItem();
     
