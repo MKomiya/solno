@@ -6,50 +6,50 @@
 //
 //
 
+#include <json11.hpp>
+
 #include "StateMachineModule.h"
 #include "FieldState.h"
 #include "StoryState.h"
+#include "Direction.h"
+#include "FieldObject.h"
+#include "Item.h"
 
 #include "LayerManager.h"
 #include "FieldLayer.h"
 #include "ControllerLayer.h"
 #include "StoryLayer.h"
-
 #include "MessageView.h"
-
-#include "Direction.h"
-#include "FieldObject.h"
-
-#include <json11.hpp>
 
 USING_NS_CC;
 
 FieldState* FieldState::create(FieldLayer *view, ControllerLayer *controller)
 {
-    auto ret = new FieldState(view, controller);
+    auto ret = new FieldState();
     if (!ret) {
         CC_SAFE_DELETE(ret);
         return nullptr;
     }
     
+    ret->setPlayerMapPosition(Point(0, 0));
+    ret->setPlayerDirection("down");
+    ret->setFieldView(view);
+    ret->setControllerView(controller);
+    ret->setExecuteItem(nullptr);
+    
     ret->autorelease();
     return ret;
 }
 
-FieldState::FieldState(FieldLayer* view, ControllerLayer* controller) :
-player_map_pos(Point(0, 0)),
-player_direction("down"),
-view(view),
-controller(controller)
-{
-}
-
-FieldState::~FieldState()
-{
-}
-
 void FieldState::enter()
 {
+    if (execute_item != 0) {
+        CCLOG("use item. item_id: %d, item_type: %d", execute_item->getItemId(), execute_item->getType());
+        execute_item = nullptr;
+        view->changePlayerAnimation(player_direction);
+        return ;
+    }
+    
     // map size取得のためにcollider layerで代用する
     auto obj_layer = view->getMapCollider();
     auto size      = obj_layer->getLayerSize();
@@ -79,7 +79,6 @@ void FieldState::enter()
 
 void FieldState::update()
 {
-    
     auto event = InputModule::getInstance()->popEvent();
     
     if (event == InputEvent::RELEASE_DECIDE) {
@@ -94,14 +93,37 @@ void FieldState::update()
 void FieldState::exit()
 {
     view->stopPlayerAnimation();
-    /*
-    std::for_each(objects.begin(), objects.end(), [](FieldObject* o) {
-        delete o; o = nullptr;
-    });
-    objects.clear();
+}
+
+void FieldState::addExecuteItem(Item* item)
+{
+    execute_item = item;
+}
+
+FieldObject* FieldState::findPlayerDirectionAbutObject()
+{
+    auto direction  = Direction::createInstance(player_direction);
+    auto search_pos = player_map_pos + direction.getMapPointVec();
     
-    LayerManager::getInstance()->pop();
-    */
+    for (auto obj : objects) {
+        if (obj->getPosition() == search_pos) {
+            return obj;
+        }
+    }
+    return nullptr;
+}
+
+void FieldState::deleteObject(FieldObject *target)
+{
+    auto it = objects.begin();
+    for (; it != objects.end(); ++it) {
+        if ((*it) == target) {
+            objects.erase(it);
+            return ;
+        }
+    }
+    
+    CCLOG("破壊オブジェクトがないよ");
 }
 
 void FieldState::decideAction()

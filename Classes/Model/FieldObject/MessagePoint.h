@@ -16,7 +16,6 @@ class FieldLayer;
 class MessagePoint : public FieldObject
 {
 public:
-    static MessagePoint* create();
     virtual void executeMovedAction(FieldLayer* view) override;
     virtual void executeDecideAction(FieldLayer* view) override;
     virtual bool isPassablePlayer() override;

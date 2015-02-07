@@ -24,26 +24,30 @@ enum MapColliderType {
 class FieldLayer;
 class ControllerLayer;
 class FieldObject;
+class Item;
 class FieldState : public StateBase {
 public:
     static FieldState* create(FieldLayer* view, ControllerLayer* controller);
-    FieldState(FieldLayer* view, ControllerLayer* controller);
-    virtual ~FieldState();
     
     virtual void enter() override;
     virtual void update() override;
     virtual void exit() override;
     
+    void addExecuteItem(Item* item);
+    FieldObject* findPlayerDirectionAbutObject();
+    void deleteObject(FieldObject* target);
+    
+    CC_SYNTHESIZE(cocos2d::Point, player_map_pos, PlayerMapPosition);
+    CC_SYNTHESIZE(std::string, player_direction, PlayerDirection);
+    CC_SYNTHESIZE(FieldLayer*, view, FieldView);
+    CC_SYNTHESIZE(ControllerLayer*, controller, ControllerView);
+    CC_SYNTHESIZE(std::vector<FieldObject*>, objects, MapObjects);
+    CC_SYNTHESIZE(Item*, execute_item, ExecuteItem);
+    
 private:
     void decideAction();
     void movePlayerCharacter(InputEvent event);
     bool isCollidable(int map_x, int map_y);
-    
-    cocos2d::Point player_map_pos;
-    std::string player_direction;
-    FieldLayer* view;
-    ControllerLayer* controller;
-    std::vector<FieldObject*> objects;
 };
 
 #endif /* defined(__solno__FieldState__) */

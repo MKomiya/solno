@@ -1,0 +1,35 @@
+//
+//  ObjectOperateItem.cpp
+//  solno
+//
+//  Created by S_Wyvern on 2015/02/07.
+//
+//
+
+#include "ObjectOperateItem.h"
+
+#include "StateMachineModule.h"
+#include "FieldState.h"
+
+#include "FieldObject.h"
+
+void ObjectOperateItem::useItem()
+{
+    auto fsm = StateMachineModule::getInstance();
+    FieldState* state = (FieldState*)fsm->getState("field");
+    
+    auto break_object = state->findPlayerDirectionAbutObject();
+    if (break_object == nullptr) {
+        CCLOG("ここでは使えない");
+        return ;
+    }
+    
+    if (break_object->getObjectType() != FieldObject::ObjectType::TREE) {
+        auto name = getItemName();
+        CCLOG("%sでは壊せそうもない", name.c_str());
+        return ;
+    }
+    
+    // 破壊処理（とりあえず木を壊すだけ）
+    state->deleteObject(break_object);
+}

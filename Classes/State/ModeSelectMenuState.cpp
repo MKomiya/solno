@@ -24,6 +24,7 @@ ModeSelectMenuState* ModeSelectMenuState::create()
         return nullptr;
     }
     
+    ret->autorelease();
     return ret;
 }
 
