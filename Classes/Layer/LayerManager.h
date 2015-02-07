@@ -33,6 +33,7 @@ private:
     static LayerManager* instance;
     
     std::unordered_map<std::string, cocos2d::Layer*> layer_map;
+    std::list<cocos2d::Layer*> layer_list;
     
     cocos2d::Scene* root_scene;
 };

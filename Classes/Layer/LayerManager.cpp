@@ -24,6 +24,7 @@ void LayerManager::push(std::string key, cocos2d::Layer *layer)
 {
     root_scene->addChild(layer);
     layer_map.insert(std::make_pair(key, layer));
+    layer_list.push_back(layer);
 }
 
 cocos2d::Layer* LayerManager::pop()
@@ -32,10 +33,17 @@ cocos2d::Layer* LayerManager::pop()
         return nullptr;
     }
     
-    auto ret = layer_map.begin();
+    auto ret = layer_list.back();
     
-    root_scene->removeChild(ret->second);
-    layer_map.erase(ret);
+    for (auto value : layer_map) {
+        if (value.second == ret) {
+            layer_map.erase(value.first);
+            break;
+        }
+    }
     
-    return ret->second;
+    root_scene->removeChild(ret);
+    layer_list.pop_back();
+    
+    return ret;
 }
