@@ -22,14 +22,16 @@ bool ControllerLayer::init()
     auto texture = Director::getInstance()->getTextureCache()->addImage("ui/ui_common_frame.png");
     texture->setAliasTexParameters();
     
+    /*
     auto mask = Sprite::create("ui/mask.png");
     mask->setAnchorPoint(Point(0, 1));
     mask->setPosition(16, visible_size.height - 16);
     addChild(mask);
-    
+    */
+     
     auto mask2 = Sprite::create("ui/mask2.png");
     mask2->setAnchorPoint(Point(0, 1));
-    mask2->setPosition(mask->getPosition());
+    mask2->setPosition(16, visible_size.height - 16);
     addChild(mask2);
     
     auto mask3 = Sprite::create("ui/mask2.png");
