@@ -21,6 +21,7 @@ ItemMenuLayer* ItemMenuLayer::create(cocos2d::Vector<Item *> &item_list)
         ret->setItemList(item_list);
         if (ret->init()) {
             ret->autorelease();
+            ret->setCurrentItemIdx(0);
             return ret;
         }
     }
@@ -89,6 +90,8 @@ bool ItemMenuLayer::init()
     name_label->setPosition(12, frame->getContentSize().height - 16);
     name_label->setScale(2.0f);
     frame->addChild(name_label);
+    
+    updateViewItem(current_item_idx);
     
     return true;
 }
