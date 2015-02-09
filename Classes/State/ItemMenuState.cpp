@@ -24,6 +24,7 @@ ItemMenuState* ItemMenuState::create()
         return nullptr;
     }
     
+    ret->setCurrentItemIndex(0);
     ret->autorelease();
     return ret;
 }
@@ -51,12 +52,32 @@ void ItemMenuState::update()
             return ;
         }
         
+        if (current_item_idx != p) {
+            current_item_idx = p;
+            return ;
+        }
+        
         auto item = item_list.at(p);
         
         auto fsm = StateMachineModule::getInstance();
         FieldState* field_state = (FieldState*)fsm->getState("field");
         field_state->addExecuteItem(item);
         fsm->changeState("field");
+        return ;
+    }
+    
+    if (e == InputEvent::RELEASE_DECIDE) {
+        if (p < 0 || p >= item_list.size()) {
+            return ;
+        }
+        
+        auto item = item_list.at(p);
+        
+        auto fsm = StateMachineModule::getInstance();
+        FieldState* field_state = (FieldState*)fsm->getState("field");
+        field_state->addExecuteItem(item);
+        fsm->changeState("field");
+        return ;
     }
 }
 

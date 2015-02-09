@@ -30,6 +30,8 @@ public:
     
     MakeTreeData updateMakeTreeData();
     
+    CC_SYNTHESIZE(int, current_item_idx, CurrentItemIndex);
+    
 private:
     cocos2d::Vector<Item*> item_list;
 };
