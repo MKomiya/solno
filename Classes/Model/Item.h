@@ -29,6 +29,8 @@ public:
     static Item* createByMaster(int item_id);
     
     virtual void useItem();
+
+    cocos2d::Texture2D* getPrepareItemTexture(int prepare_index);
     
     CC_SYNTHESIZE(int, id, Id);
     CC_SYNTHESIZE(int, item_id, ItemId);

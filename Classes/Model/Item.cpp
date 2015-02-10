@@ -11,6 +11,8 @@
 
 #include "MasterStorageModule.h"
 
+USING_NS_CC;
+
 #pragma mark create method
 Item* Item::create(int id, int item_id, int type)
 {
@@ -58,4 +60,22 @@ Item* Item::createByMaster(int item_id)
 #pragma mark override method
 void Item::useItem()
 {
+}
+
+#pragma mark getter method
+Texture2D* Item::getPrepareItemTexture(int prepare_index)
+{
+    int prepare_item_id;
+    if (prepare_index == 1) {
+        prepare_item_id = prepare_item_id_1;
+    } else if (prepare_index == 2) {
+        prepare_item_id = prepare_item_id_2;
+    } else if (prepare_index == 3) {
+        prepare_item_id = prepare_item_id_3;
+    } else {
+        throw "Invalid prepare item index";
+    }
+    
+    auto prepare_item = Item::createByMaster(prepare_item_id);
+    return prepare_item->getThumbnailTexture();
 }
