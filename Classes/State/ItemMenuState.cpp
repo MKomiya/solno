@@ -52,12 +52,14 @@ void ItemMenuState::update()
             return ;
         }
         
+        auto item = item_list.at(p);
         if (current_item_idx != p) {
             current_item_idx = p;
+            
+            // view->updateMakeTreeView(current_item);
+            
             return ;
         }
-        
-        auto item = item_list.at(p);
         
         auto fsm = StateMachineModule::getInstance();
         FieldState* field_state = (FieldState*)fsm->getState("field");
@@ -84,40 +86,4 @@ void ItemMenuState::update()
 void ItemMenuState::exit()
 {
     LayerManager::getInstance()->pop();
-}
-
-MakeTreeData ItemMenuState::updateMakeTreeData()
-{
-    int idx = 3;
-    
-    auto master = MasterStorageModule::getInstance();
-    auto current_item  = item_list.at(idx);
-    auto make_item_ids = master->findPrepareItemIdsByItemId(current_item->getItemId());
-    auto make_item_id  = make_item_ids.front().int_value();
-    auto make_item     = Item::createByMaster(make_item_id);
-    
-    std::vector<int> preparent_item_ids;
-    preparent_item_ids.push_back(make_item->getPrepareItemId1());
-    preparent_item_ids.push_back(make_item->getPrepareItemId2());
-    preparent_item_ids.push_back(make_item->getPrepareItemId3());
-    
-    auto it = std::remove_if(preparent_item_ids.begin(), preparent_item_ids.end(), [current_item](int v) -> bool{
-        return v == current_item->getItemId();
-    });
-    preparent_item_ids.erase(it, preparent_item_ids.end());
-    
-    std::vector<Item*> preparent_items;
-    preparent_items.push_back(current_item);
-    
-    // いちいちItem Model作らずともTextureだけとれればよさそう
-    for (auto preparent_item_id : preparent_item_ids) {
-        auto item = Item::createByMaster(preparent_item_id);
-        preparent_items.push_back(item);
-    }
-    
-    MakeTreeData ret;
-    ret.prepare_items = preparent_items;
-    ret.make_item     = make_item;
-    
-    return ret;
 }

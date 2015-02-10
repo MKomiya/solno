@@ -14,11 +14,6 @@
 
 class Item;
 
-struct MakeTreeData {
-    std::vector<Item*> prepare_items;
-    Item* make_item;
-};
-
 class ItemMenuState : public StateBase
 {
 public:
@@ -27,8 +22,6 @@ public:
     virtual void enter() override;
     virtual void update() override;
     virtual void exit() override;
-    
-    MakeTreeData updateMakeTreeData();
     
     CC_SYNTHESIZE(int, current_item_idx, CurrentItemIndex);
     
