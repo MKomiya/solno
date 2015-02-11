@@ -18,8 +18,7 @@ USING_NS_CC;
 
 void UserStorageModule::init()
 {
-    //auto user_item_json = readJsonFile(NS_USER_ITEM);
-    auto user_item_json = readMockData();
+    auto user_item_json = readJsonFile(NS_USER_ITEM);
     
     for (auto value : user_item_json) {
         auto data = value.object_items();
@@ -66,8 +65,15 @@ void UserStorageModule::updateUserItem(int id, int num)
 void UserStorageModule::writeJsonFile(std::string ns, std::string data)
 {
     auto fu = FileUtils::getInstance();
+    
+    std::string userdata_root =
+        fu->getWritablePath() + "userdata/";
     std::string filepath =
-        fu->getWritablePath() + "userdata/user_" + ns + ".json";
+        userdata_root + "user_" + ns + ".json";
+    
+    if (!fu->isDirectoryExist(userdata_root)) {
+        fu->createDirectory(userdata_root);
+    }
     
     std::ofstream file(filepath.c_str());
     file << data.c_str();
@@ -82,7 +88,10 @@ json11::Json::array UserStorageModule::readJsonFile(std::string ns)
 
     std::string json_string, err;
     std::ifstream file(filepath.c_str());
-    file >> json_string;
+    while(!file.eof()) {
+        std::string buf; file >> buf;
+        json_string += buf;
+    }
     file.close();
     
     return json11::Json::parse(json_string, err).array_items();
