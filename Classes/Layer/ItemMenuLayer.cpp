@@ -82,7 +82,7 @@ bool ItemMenuLayer::init()
     frame->addChild(current_cursor);
     
     // ラベル表示
-    name_label = Label::createWithBMFont("fonts/message_font.fnt", "テスト");
+    name_label = Label::createWithBMFont("fonts/message_font.fnt", "");
     name_label->getTexture()->setAliasTexParameters();
     name_label->setAnchorPoint(Point(0, 0.5f));
     name_label->setPosition(12, frame->getContentSize().height - 16);
@@ -90,16 +90,19 @@ bool ItemMenuLayer::init()
     frame->addChild(name_label);
     
     // 調合ツリー表示
-    prepare_item_1 = Sprite::create();
-    prepare_item_1->setPosition(200, 100);
+    prepare_item_1 = Sprite::create("item/1.png");
+    prepare_item_1->setAnchorPoint(Point(0, 1));
+    prepare_item_1->setPosition(190, frame->getContentSize().height - 82);
     prepare_item_1->setVisible(false);
     frame->addChild(prepare_item_1);
-    prepare_item_2 = Sprite::create();
-    prepare_item_2->setPosition(250, 100);
+    prepare_item_2 = Sprite::create("item/1.png");
+    prepare_item_2->setAnchorPoint(Point(0, 1));
+    prepare_item_2->setPosition(222, frame->getContentSize().height - 82);
     prepare_item_2->setVisible(false);
     frame->addChild(prepare_item_2);
-    prepare_item_3 = Sprite::create();
-    prepare_item_3->setPosition(225, 150);
+    prepare_item_3 = Sprite::create("item/1.png");
+    prepare_item_3->setAnchorPoint(Point(0, 1));
+    prepare_item_3->setPosition(206, frame->getContentSize().height - 56);
     prepare_item_3->setVisible(false);
     frame->addChild(prepare_item_3);
     

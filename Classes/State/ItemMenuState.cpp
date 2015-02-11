@@ -34,7 +34,7 @@ void ItemMenuState::enter()
     // repositoryからitem list読込
     // add test data
     for (int i=0; i < 10; ++i) {
-        item_list.pushBack(Item::create(i+1, 3, Item::ItemType::OPERATE_OBJECT));
+        item_list.pushBack(Item::createMock(i+1));
     }
     
     // ItemMenuLayerへset
