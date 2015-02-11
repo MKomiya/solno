@@ -128,9 +128,10 @@ void ItemMenuLayer::updateViewItem(int index)
     name_label->setString(item->getItemName());
     
     // 調合ツリーの表示更新
-    auto thumb1 = item->getPrepareItemTexture(1);
-    auto thumb2 = item->getPrepareItemTexture(2);
-    auto thumb3 = item->getPrepareItemTexture(3);
+    auto make_item = item->getMakeItem();
+    auto thumb1    = make_item->getPrepareItemTexture(1);
+    auto thumb2    = make_item->getPrepareItemTexture(2);
+    auto thumb3    = make_item->getPrepareItemTexture(3);
 
     if (thumb1) {
         prepare_item_1->setTexture(thumb1);

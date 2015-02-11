@@ -31,7 +31,8 @@ public:
     virtual void useItem();
 
     cocos2d::Texture2D* getPrepareItemTexture(int prepare_index);
-    
+    Item* getMakeItem();
+
     CC_SYNTHESIZE(int, id, Id);
     CC_SYNTHESIZE(int, item_id, ItemId);
     CC_SYNTHESIZE(std::string, item_name, ItemName);

@@ -55,6 +55,8 @@ Item* Item::createByMaster(int item_id)
         ret->setPrepareItemId3(data["preparent_item_3_id"].int_value());
         return ret;
     }
+    
+    return nullptr;
 }
 
 #pragma mark override method
@@ -78,4 +80,14 @@ Texture2D* Item::getPrepareItemTexture(int prepare_index)
     
     auto prepare_item = Item::createByMaster(prepare_item_id);
     return prepare_item->getThumbnailTexture();
+}
+
+Item* Item::getMakeItem()
+{
+    auto master           = MasterStorageModule::getInstance();
+    auto prepare_item_ids = master->findPrepareItemIdsByItemId(item_id);
+    auto prepare_item_id  = prepare_item_ids.front().int_value();
+    auto make_item = Item::createByMaster(prepare_item_id);
+    
+    return make_item;
 }
