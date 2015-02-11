@@ -129,6 +129,10 @@ void ItemMenuLayer::updateViewItem(int index)
     
     // 調合ツリーの表示更新
     auto make_item = item->getMakeItem();
+    if (make_item == nullptr) {
+        return ;
+    }
+    
     auto thumb1    = make_item->getPrepareItemTexture(1);
     auto thumb2    = make_item->getPrepareItemTexture(2);
     auto thumb3    = make_item->getPrepareItemTexture(3);
