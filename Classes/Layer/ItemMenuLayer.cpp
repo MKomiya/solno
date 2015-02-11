@@ -46,28 +46,27 @@ bool ItemMenuLayer::init()
     auto base_pos = Point(26, frame->getContentSize().height - 80);
     
     auto vec = Vector<MenuItem*>();
-    for (int y = 0; y < VIEW_ITEM_H; ++y) {
-        for (int x = 0; x < VIEW_ITEM_W; ++x) {
-            int idx = x + y * VIEW_ITEM_W;
-            
-            if (item_list.size() <= idx) {
-                break;
-            }
-            
-            auto item = item_list.at(idx);
-            auto filepath = Template::create("item/#item_id#.png");
-            filepath->assign("#item_id#", 1); // item->getItemId()
-            auto image_name = filepath->getString();
-            
-            auto item_menu_value = MenuItemImage::create(image_name, image_name);
-            item_menu_value->setPosition(base_pos.x + x * 41, base_pos.y - 40 * y);
-            item_menu_value->setCallback([idx, this](Ref* s) {
-                updateViewItem(idx);
-                InputModule::getInstance()->pushEvent(InputEvent::PRESS_ITEM_SELECT);
-                InputModule::getInstance()->pushParam(idx);
-            });
-            vec.pushBack(item_menu_value);
+    for (int idx = 0; idx < VIEW_ITEM_H * VIEW_ITEM_W; ++idx) {
+        int x = idx % VIEW_ITEM_W;
+        int y = idx / VIEW_ITEM_W;
+        
+        if (item_list.size() <= idx) {
+            break;
         }
+        
+        auto item = item_list.at(idx);
+        auto filepath = Template::create("item/#item_id#.png");
+        filepath->assign("#item_id#", 1); // item->getItemId()
+        auto image_name = filepath->getString();
+        
+        auto item_menu_value = MenuItemImage::create(image_name, image_name);
+        item_menu_value->setPosition(base_pos.x + x * 41, base_pos.y - 40 * y);
+        item_menu_value->setCallback([idx, this](Ref* s) {
+            updateViewItem(idx);
+            InputModule::getInstance()->pushEvent(InputEvent::PRESS_ITEM_SELECT);
+            InputModule::getInstance()->pushParam(idx);
+        });
+        vec.pushBack(item_menu_value);
     }
     
     if (!vec.empty()) {
