@@ -89,6 +89,20 @@ bool ItemMenuLayer::init()
     name_label->setScale(2.0f);
     frame->addChild(name_label);
     
+    // 調合ツリー表示
+    prepare_item_1 = Sprite::create();
+    prepare_item_1->setPosition(200, 100);
+    prepare_item_1->setVisible(false);
+    frame->addChild(prepare_item_1);
+    prepare_item_2 = Sprite::create();
+    prepare_item_2->setPosition(250, 100);
+    prepare_item_2->setVisible(false);
+    frame->addChild(prepare_item_2);
+    prepare_item_3 = Sprite::create();
+    prepare_item_3->setPosition(225, 150);
+    prepare_item_3->setVisible(false);
+    frame->addChild(prepare_item_3);
+    
     updateViewItem(current_item_idx);
     
     return true;
@@ -112,4 +126,24 @@ void ItemMenuLayer::updateViewItem(int index)
 
     // 名前表示切り替え
     name_label->setString(item->getItemName());
+    
+    // 調合ツリーの表示更新
+    auto thumb1 = item->getPrepareItemTexture(1);
+    auto thumb2 = item->getPrepareItemTexture(2);
+    auto thumb3 = item->getPrepareItemTexture(3);
+
+    if (thumb1) {
+        prepare_item_1->setTexture(thumb1);
+        prepare_item_1->setVisible(true);
+    }
+    
+    if (thumb2) {
+        prepare_item_2->setTexture(thumb2);
+        prepare_item_2->setVisible(true);
+    }
+    
+    if (thumb3) {
+        prepare_item_3->setTexture(thumb3);
+        prepare_item_3->setVisible(true);
+    }
 }
