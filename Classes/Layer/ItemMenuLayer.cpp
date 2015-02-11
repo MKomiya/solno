@@ -133,6 +133,9 @@ void ItemMenuLayer::updateViewItem(int index)
     // 調合ツリーの表示更新
     auto make_item = item->getMakeItem();
     if (make_item == nullptr) {
+        prepare_item_1->setVisible(false);
+        prepare_item_2->setVisible(false);
+        prepare_item_3->setVisible(false);
         return ;
     }
     

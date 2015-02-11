@@ -15,6 +15,7 @@
 #include "FieldObject.h"
 #include "Item.h"
 #include "MasterStorageModule.h"
+#include "UserStorageModule.h"
 
 #include "LayerManager.h"
 #include "FieldLayer.h"
@@ -46,6 +47,7 @@ void FieldState::enter()
 {
     if (execute_item != 0) {
         CCLOG("use item. item_id: %d, item_type: %d", execute_item->getItemId(), execute_item->getType());
+        execute_item->useItem();
         execute_item = nullptr;
         view->changePlayerAnimation(player_direction);
         return ;

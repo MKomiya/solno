@@ -47,12 +47,19 @@ void UserStorageModule::updateUserItem(Item *item)
 
 void UserStorageModule::writeValueMap(std::string ns, ValueMap data)
 {
-    std::string filepath = "data/user_" + ns + ".plist";
-    FileUtils::getInstance()->writeToFile(data, filepath);
+    auto fu = FileUtils::getInstance();
+    std::string filepath =
+        fu->getWritablePath() + "userdata/user_" + ns + ".plist";
+    fu->writeToFile(data, filepath);
 }
 
 ValueMap UserStorageModule::readValueMap(std::string ns)
 {
-    std::string filepath = "data/user_" + ns + ".plist";
-    return FileUtils::getInstance()->getValueMapFromFile(filepath);
+    auto fu = FileUtils::getInstance();
+    /*
+    std::string filepath =
+        fu->getWritablePath() + "userdata/user_" + ns + ".plist";
+    */
+    std::string filepath = fu->fullPathForFilename("data/userdata.plist");
+    return fu->getValueMapFromFile(filepath);
 }

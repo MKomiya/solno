@@ -39,10 +39,10 @@ public:
 #pragma mark Update user data
     void updateUserItem(Item* item);
     
-private:
     void writeValueMap(std::string ns, cocos2d::ValueMap data);
     cocos2d::ValueMap readValueMap(std::string ns);
     
+private:
     static UserStorageModule* instance;
     cocos2d::ValueMap user_item;
 };
