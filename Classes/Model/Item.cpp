@@ -24,12 +24,12 @@ Item* Item::createMock(int id)
         }
         
         ret->setId(id);
-        ret->setItemId(3);
+        ret->setItemId(999);
         ret->setType(ItemType::OPERATE_OBJECT);
-        ret->setItemName("プラグイン：オノ");
-        ret->setPrepareItemId1(3);
-        ret->setPrepareItemId2(3);
-        ret->setPrepareItemId3(3);
+        ret->setItemName("モックアイテム");
+        ret->setPrepareItemId1(999);
+        ret->setPrepareItemId2(999);
+        ret->setPrepareItemId3(999);
         
         auto tc = Director::getInstance()->getTextureCache();
         auto texture = tc->addImage("item/1.png");
@@ -43,9 +43,9 @@ Item* Item::createMock(int id)
 Item* Item::createByMaster(int item_id)
 {
     auto master = MasterStorageModule::getInstance();
-    auto data   = master->getOne(MasterStorageModule::MASTER_NS_ITEM, item_id);
+    auto data   = master->getOne(item_id);
     
-    auto type   = data["type"].int_value();
+    auto type   = data.type;
     if (type == ItemType::OPERATE_OBJECT || ItemType::MATERIAL_ITEM) {
         auto ret = new ObjectOperateItem();
         if (!ret) {
@@ -56,10 +56,10 @@ Item* Item::createByMaster(int item_id)
         ret->setId(1);
         ret->setItemId(item_id);
         ret->setType(type);
-        ret->setItemName(data["name"].string_value());
-        ret->setPrepareItemId1(data["preparent_item_1_id"].int_value());
-        ret->setPrepareItemId2(data["preparent_item_2_id"].int_value());
-        ret->setPrepareItemId3(data["preparent_item_3_id"].int_value());
+        ret->setItemName(data.name);
+        ret->setPrepareItemId1(data.prepare_item_1_id);
+        ret->setPrepareItemId2(data.prepare_item_2_id);
+        ret->setPrepareItemId3(data.prepare_item_3_id);
         
         auto tc = Director::getInstance()->getTextureCache();
         auto texture = tc->addImage("item/1.png");
@@ -101,7 +101,7 @@ Item* Item::getMakeItem()
         return nullptr;
     }
     
-    auto prepare_item_id  = prepare_item_ids.front().int_value();
+    auto prepare_item_id  = prepare_item_ids.front();
     auto make_item = Item::createByMaster(prepare_item_id);
     
     return make_item;

@@ -18,45 +18,36 @@ USING_NS_CC;
 void MasterStorageModule::init()
 {
     auto master = loadJsonData("data/master.json");
-    master_data = master.object_items();
+    for (auto data : master[MASTER_NS_ITEM].array_items()) {
+        auto master_item = MasterItem(data.object_items());
+        master_item_list.push_back(master_item);
+    }
 }
 
 #pragma mark Read master data
-json11::Json::array MasterStorageModule::getAll(std::string ns)
+std::vector<MasterItem> MasterStorageModule::getAll()
 {
-    return master_data[ns].array_items();
+    return master_item_list;
 }
 
-json11::Json::object MasterStorageModule::getOne(std::string ns, int id)
+MasterItem MasterStorageModule::getOne(int id)
 {
-    std::string primary_key_label = "id";
-    if (!ns.empty()) {
-        auto tmp_model = Template::create("#ns#_id");
-        tmp_model->assign("#ns#", ns);
-        primary_key_label = tmp_model->getString();
-    }
-    
-    auto data = master_data[ns].array_items();
-    for (auto elem : data) {
-        if (elem[primary_key_label].int_value() == id) {
-            return elem.object_items();
+    for (auto master_item : master_item_list) {
+        if (master_item.item_id == id) {
+            return master_item;
         }
     }
-    
-    auto empty = json11::Json::object{};
-    return empty;
+    return MasterItemNull;
 }
 
-json11::Json::array MasterStorageModule::findPrepareItemIdsByItemId(int item_id)
+std::vector<int> MasterStorageModule::findPrepareItemIdsByItemId(int item_id)
 {
-    auto ret = json11::Json::array();
-    
-    auto data = master_data[MASTER_NS_ITEM].array_items();
-    for (auto elem : data) {
-        if (elem["preparent_item_1_id"].int_value() == item_id ||
-            elem["preparent_item_2_id"].int_value() == item_id ||
-            elem["preparent_item_3_id"].int_value() == item_id) {
-            ret.push_back(elem["item_id"].int_value());
+    auto ret = std::vector<int>();
+    for (auto master_item : master_item_list) {
+        if (master_item.prepare_item_1_id == item_id ||
+            master_item.prepare_item_2_id == item_id ||
+            master_item.prepare_item_3_id == item_id) {
+            ret.push_back(master_item.item_id);
         }
     }
     return ret;
