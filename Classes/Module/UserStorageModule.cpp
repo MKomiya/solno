@@ -34,6 +34,11 @@ void UserStorageModule::flush()
 }
 
 #pragma mark Read user data
+std::vector<UserItem> UserStorageModule::getAllUserItem()
+{
+    return user_item;
+}
+
 UserItem UserStorageModule::getOneUserItem(int id)
 {
     for (auto value : user_item) {

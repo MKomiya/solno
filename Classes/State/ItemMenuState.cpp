@@ -11,6 +11,7 @@
 #include "StateMachineModule.h"
 #include "Item.h"
 #include "MasterStorageModule.h"
+#include "UserStorageModule.h"
 #include "InputModule.h"
 
 #include "ItemMenuLayer.h"
@@ -32,9 +33,10 @@ ItemMenuState* ItemMenuState::create()
 void ItemMenuState::enter()
 {
     // repositoryからitem list読込
-    // add test data
-    for (int i=0; i < 10; ++i) {
-        item_list.pushBack(Item::createMock(i+1));
+    auto user_item_list = UserStorageModule::getInstance()->getAllUserItem();
+    for (auto user_item : user_item_list) {
+        auto item = Item::createByMaster(user_item.item_id);
+        item_list.pushBack(item);
     }
     
     // ItemMenuLayerへset

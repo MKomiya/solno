@@ -40,8 +40,7 @@ FieldState* FieldState::create(FieldLayer *view, ControllerLayer *controller)
     ret->setExecuteItem(nullptr);
     
     UserStorageModule::getInstance()->init();
-    
-    UserStorageModule::getInstance()->updateUserItem(1, 99);
+    UserStorageModule::getInstance()->updateUserItem(1, 1);
     
     ret->autorelease();
     return ret;

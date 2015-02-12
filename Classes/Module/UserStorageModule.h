@@ -58,6 +58,7 @@ public:
     void flush();
     
 #pragma mark Read user data
+    std::vector<UserItem> getAllUserItem();
     UserItem getOneUserItem(int id);
     
 #pragma mark Update user data
