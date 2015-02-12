@@ -22,15 +22,9 @@ void UserStorageModule::init()
     
     for (auto value : user_item_json) {
         auto data = value.object_items();
-        auto ret  = UserItem(data["id"].int_value(),
-                             data["item_id"].int_value(),
-                             data["num"].int_value());
+        auto ret  = UserItem(data);
         user_item.push_back(ret);
-        
-        CCLOG("id: %d, item_id: %d, num: %d", ret.id, ret.item_id, ret.num);
     }
-    
-    CCLOG("dump userdata: %s", json11::Json(user_item).dump().c_str());
 }
 
 void UserStorageModule::flush()

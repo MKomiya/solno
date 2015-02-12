@@ -20,9 +20,11 @@ class UserItem
 public:
     int id, item_id, num;
     UserItem() :
-    id(-1), item_id(0), num(0) {}
-    UserItem(int id, int item_id, int num) :
-        id(id), item_id(item_id), num(num) {}
+        id(-1), item_id(0), num(0) {}
+    UserItem(json11::Json::object data) :
+        id(data["id"].int_value()),
+        item_id(data["item_id"].int_value()),
+        num(data["num"].int_value()) {}
     
     json11::Json to_json() const
     {
