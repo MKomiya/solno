@@ -87,5 +87,6 @@ void ItemMenuState::update()
 
 void ItemMenuState::exit()
 {
+    item_list.clear();
     LayerManager::getInstance()->pop();
 }
