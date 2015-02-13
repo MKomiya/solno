@@ -61,8 +61,9 @@ Item* Item::createByMaster(int item_id)
         ret->setPrepareItemId2(data.prepare_item_2_id);
         ret->setPrepareItemId3(data.prepare_item_3_id);
         
+        auto path = "item/" + std::to_string(item_id) + ".png";
         auto tc = Director::getInstance()->getTextureCache();
-        auto texture = tc->addImage("item/1.png");
+        auto texture = tc->addImage(path);
         ret->setThumbnailTexture(texture);
         return ret;
     }
