@@ -21,15 +21,15 @@ class MasterItem
 public:
     int item_id, type;
     std::string name;
-    int prepare_item_1_id, prepare_item_2_id, prepare_item_3_id;
+    int preparent_item_1_id, preparent_item_2_id, preparent_item_3_id;
     
     MasterItem() : item_id(0) {}
     MasterItem(json11::Json::object data) :
         item_id(data["item_id"].int_value()), type(data["type"].int_value()),
         name(data["name"].string_value()),
-        prepare_item_1_id(data["prepare_item_1_id"].int_value()),
-        prepare_item_2_id(data["prepare_item_2_id"].int_value()),
-        prepare_item_3_id(data["prepare_item_3_id"].int_value())
+        preparent_item_1_id(data["preparent_item_1_id"].int_value()),
+        preparent_item_2_id(data["preparent_item_2_id"].int_value()),
+        preparent_item_3_id(data["preparent_item_3_id"].int_value())
     {}
 };
 

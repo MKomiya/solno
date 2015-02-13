@@ -44,9 +44,9 @@ std::vector<int> MasterStorageModule::findPrepareItemIdsByItemId(int item_id)
 {
     auto ret = std::vector<int>();
     for (auto master_item : master_item_list) {
-        if (master_item.prepare_item_1_id == item_id ||
-            master_item.prepare_item_2_id == item_id ||
-            master_item.prepare_item_3_id == item_id) {
+        if (master_item.preparent_item_1_id == item_id ||
+            master_item.preparent_item_2_id == item_id ||
+            master_item.preparent_item_3_id == item_id) {
             ret.push_back(master_item.item_id);
         }
     }
