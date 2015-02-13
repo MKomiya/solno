@@ -57,9 +57,9 @@ Item* Item::createByMaster(int item_id)
         ret->setItemId(item_id);
         ret->setType(type);
         ret->setItemName(data.name);
-        ret->setPrepareItemId1(data.prepare_item_1_id);
-        ret->setPrepareItemId2(data.prepare_item_2_id);
-        ret->setPrepareItemId3(data.prepare_item_3_id);
+        ret->setPrepareItemId1(data.preparent_item_1_id);
+        ret->setPrepareItemId2(data.preparent_item_2_id);
+        ret->setPrepareItemId3(data.preparent_item_3_id);
         
         auto path = "item/" + std::to_string(item_id) + ".png";
         auto tc = Director::getInstance()->getTextureCache();
@@ -88,6 +88,10 @@ Texture2D* Item::getPrepareItemTexture(int prepare_index)
         prepare_item_id = prepare_item_id_3;
     } else {
         throw "Invalid prepare item index";
+    }
+    
+    if (prepare_item_id == 0) {
+        return nullptr;
     }
     
     auto prepare_item = Item::createByMaster(prepare_item_id);
