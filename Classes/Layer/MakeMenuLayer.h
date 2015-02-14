@@ -19,6 +19,9 @@ class MakeMenuLayer : public cocos2d::Layer
 public:
     virtual bool init();
     CREATE_FUNC(MakeMenuLayer);
+
+private:
+    cocos2d::Sprite* current_cursor;
 };
 
 #endif /* defined(__solno__MakeMenuLayer__) */
