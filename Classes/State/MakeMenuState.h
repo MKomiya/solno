@@ -27,7 +27,7 @@ public:
     void updatePreparentItem(Item* item);
     
     CC_SYNTHESIZE_PASS_BY_REF(cocos2d::Vector<Item*>, item_list, ItemList);
-    CC_SYNTHESIZE_PASS_BY_REF(cocos2d::Vector<Item*>, preparent_item_list, PreparentItemList);
+    CC_SYNTHESIZE_PASS_BY_REF(std::vector<int>, preparent_item_ids, PreparentItemList);
     CC_SYNTHESIZE_READONLY(MakeMenuLayer*, view, View);
     CC_SYNTHESIZE(int, current_item_idx, CurrentItemIndex);
     CC_SYNTHESIZE(Item*, make_item, MakeItem);

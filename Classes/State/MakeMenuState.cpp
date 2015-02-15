@@ -65,7 +65,7 @@ void MakeMenuState::update()
 
 void MakeMenuState::exit()
 {
-    preparent_item_list.clear();
+    preparent_item_ids.clear();
     item_list.clear();
     LayerManager::getInstance()->pop();
 }
@@ -74,7 +74,7 @@ void MakeMenuState::updatePreparentItem(Item *item)
 {
     view->invisibleItemIconAll();
     
-    preparent_item_list.pushBack(item);
+    preparent_item_ids.push_back(item->getItemId());
     
     if (!make_item) {
         make_item = item->getMakeItem();
@@ -82,9 +82,10 @@ void MakeMenuState::updatePreparentItem(Item *item)
     
     std::vector<int> indices;
     for (auto item : item_list) {
-        if (item->getItemId() == make_item->getPrepareItemId1() ||
-            item->getItemId() == make_item->getPrepareItemId2() ||
-            item->getItemId() == make_item->getPrepareItemId3())
+        if ((item->getItemId() == make_item->getPrepareItemId1() ||
+             item->getItemId() == make_item->getPrepareItemId2() ||
+             item->getItemId() == make_item->getPrepareItemId3()) &&
+            (std::find(preparent_item_ids.begin(), preparent_item_ids.end(), item->getItemId()) == preparent_item_ids.end()))
         {
             auto idx = item_list.getIndex(item);
             indices.push_back(idx);
