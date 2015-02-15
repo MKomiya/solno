@@ -21,7 +21,6 @@ ItemMenuLayer* ItemMenuLayer::create(cocos2d::Vector<Item *> &item_list)
         ret->setItemList(item_list);
         if (ret->init()) {
             ret->autorelease();
-            ret->setCurrentItemIdx(0);
             return ret;
         }
     }
@@ -105,7 +104,7 @@ bool ItemMenuLayer::init()
     prepare_item_3->setVisible(false);
     frame->addChild(prepare_item_3);
     
-    updateViewItem(current_item_idx);
+    updateViewItem(0);
     
     return true;
 }
