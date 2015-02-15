@@ -24,6 +24,9 @@ enum InputEvent {
     
     /* ItemMenu Layer */
     PRESS_ITEM_SELECT,
+    
+    /* MakeMenu Layer */
+    PRESS_PREPARENT_ITEM_SELECT,
 };
 
 class InputModule

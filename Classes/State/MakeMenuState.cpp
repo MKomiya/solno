@@ -61,6 +61,43 @@ void MakeMenuState::update()
         updatePreparentItem(item);
         return ;
     }
+    
+    if (e == InputEvent::PRESS_PREPARENT_ITEM_SELECT) {
+        if (p < 0 || p > preparent_item_ids.size()) {
+            return ;
+        }
+        
+        auto item_id = preparent_item_ids.at(p - 1);
+        auto it = std::find(preparent_item_ids.begin(),
+                            preparent_item_ids.end(),
+                            item_id);
+        preparent_item_ids.erase(it);
+        view->invisiblePreparentItem(p);
+        
+        if (preparent_item_ids.empty()) {
+            view->setOpacityItemIconAll(255);
+            make_item = nullptr;
+            return ;
+        }
+        
+        view->setOpacityItemIconAll(64);
+        std::vector<int> indices;
+        for (auto item : item_list) {
+            if ((item->getItemId() == make_item->getPrepareItemId1() ||
+                 item->getItemId() == make_item->getPrepareItemId2() ||
+                 item->getItemId() == make_item->getPrepareItemId3()) &&
+                (std::find(preparent_item_ids.begin(), preparent_item_ids.end(), item->getItemId()) == preparent_item_ids.end()))
+            {
+                auto idx = item_list.getIndex(item);
+                indices.push_back(idx);
+            }
+        }
+        if (!indices.empty()) {
+            view->visibleItemIcons(indices);
+        }
+        
+        return ;
+    }
 }
 
 void MakeMenuState::exit()
@@ -72,7 +109,7 @@ void MakeMenuState::exit()
 
 void MakeMenuState::updatePreparentItem(Item *item)
 {
-    view->invisibleItemIconAll();
+    view->setOpacityItemIconAll(64);
     
     preparent_item_ids.push_back(item->getItemId());
     view->setPreparentItemTexture(preparent_item_ids.size(), item->getThumbnailTexture());

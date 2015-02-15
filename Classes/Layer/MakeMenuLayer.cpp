@@ -90,21 +90,41 @@ bool MakeMenuLayer::init()
     frame->addChild(name_label);
     
     // 選択されたアイテムの表示
-    prepare_item_1 = Sprite::create("item/1.png");
+    auto prepare_item_1_sprite = Sprite::create("item/1.png");
+    auto prepare_item_2_sprite = Sprite::create("item/1.png");
+    auto prepare_item_3_sprite = Sprite::create("item/1.png");
+    
+    prepare_item_1 = MenuItemSprite::create(prepare_item_1_sprite, prepare_item_1_sprite);
     prepare_item_1->setAnchorPoint(Point(0, 1));
     prepare_item_1->setPosition(190, frame->getContentSize().height - 82);
     prepare_item_1->setVisible(false);
-    frame->addChild(prepare_item_1);
-    prepare_item_2 = Sprite::create("item/1.png");
+    prepare_item_1->setCallback([this](Ref* s) {
+        auto im = InputModule::getInstance();
+        im->pushEvent(InputEvent::PRESS_PREPARENT_ITEM_SELECT);
+        im->pushParam(1);
+    });
+    prepare_item_2 = MenuItemSprite::create(prepare_item_2_sprite, prepare_item_2_sprite);
     prepare_item_2->setAnchorPoint(Point(0, 1));
     prepare_item_2->setPosition(222, frame->getContentSize().height - 82);
     prepare_item_2->setVisible(false);
-    frame->addChild(prepare_item_2);
-    prepare_item_3 = Sprite::create("item/1.png");
+    prepare_item_2->setCallback([this](Ref* s) {
+        auto im = InputModule::getInstance();
+        im->pushEvent(InputEvent::PRESS_PREPARENT_ITEM_SELECT);
+        im->pushParam(2);
+    });
+    prepare_item_3 = MenuItemSprite::create(prepare_item_3_sprite, prepare_item_3_sprite);
     prepare_item_3->setAnchorPoint(Point(0, 1));
     prepare_item_3->setPosition(206, frame->getContentSize().height - 56);
     prepare_item_3->setVisible(false);
-    frame->addChild(prepare_item_3);
+    prepare_item_3->setCallback([this](Ref* s) {
+        auto im = InputModule::getInstance();
+        im->pushEvent(InputEvent::PRESS_PREPARENT_ITEM_SELECT);
+        im->pushParam(3);
+    });
+    
+    auto selected_item_menu = Menu::create(prepare_item_1, prepare_item_2, prepare_item_3, NULL);
+    selected_item_menu->setPosition(Point::ZERO);
+    frame->addChild(selected_item_menu);
     
     updateViewItem(current_item_idx);
     
@@ -141,10 +161,10 @@ void MakeMenuLayer::invisibleItemIcon(int index)
     icon->setOpacity(64);
 }
 
-void MakeMenuLayer::invisibleItemIconAll()
+void MakeMenuLayer::setOpacityItemIconAll(int value)
 {
     for (auto item_icon : item_icon_list) {
-        item_icon->setOpacity(64);
+        item_icon->setOpacity(value);
     }
 }
 
@@ -163,14 +183,30 @@ void MakeMenuLayer::visibleItemIcons(std::vector<int> indices)
 void MakeMenuLayer::setPreparentItemTexture(int preparent_index, cocos2d::Texture2D *texture)
 {
     if (preparent_index == 1) {
-        prepare_item_1->setTexture(texture);
+        auto sprite = (Sprite*)prepare_item_1->getNormalImage();
+        sprite->setTexture(texture);
         prepare_item_1->setVisible(true);
     } else if (preparent_index == 2) {
-        prepare_item_2->setTexture(texture);
+        auto sprite = (Sprite*)prepare_item_2->getNormalImage();
+        sprite->setTexture(texture);
         prepare_item_2->setVisible(true);
     } else if (preparent_index == 3) {
-        prepare_item_3->setTexture(texture);
+        auto sprite = (Sprite*)prepare_item_3->getNormalImage();
+        sprite->setTexture(texture);
         prepare_item_3->setVisible(true);
+    } else {
+        throw "Invalid preparent index";
+    }
+}
+
+void MakeMenuLayer::invisiblePreparentItem(int preparent_index)
+{
+    if (preparent_index == 1) {
+        prepare_item_1->setVisible(false);
+    } else if (preparent_index == 2) {
+        prepare_item_2->setVisible(false);
+    } else if (preparent_index == 3) {
+        prepare_item_3->setVisible(false);
     } else {
         throw "Invalid preparent index";
     }

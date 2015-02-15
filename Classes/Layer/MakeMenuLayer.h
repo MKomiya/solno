@@ -27,17 +27,18 @@ public:
     void updateViewItem(int index);
     
     void invisibleItemIcon(int index);
-    void invisibleItemIconAll();
+    void setOpacityItemIconAll(int value);
     void visibleItemIcons(std::vector<int> indices);
     void setPreparentItemTexture(int preparent_index, cocos2d::Texture2D* texture);
+    void invisiblePreparentItem(int preparent_index);
     
     CC_SYNTHESIZE_PASS_BY_REF(cocos2d::Vector<Item*>, item_list, ItemList);
     CC_SYNTHESIZE_PASS_BY_REF(cocos2d::Vector<cocos2d::MenuItem*>, item_icon_list, ItemIconList);
     CC_SYNTHESIZE_READONLY(cocos2d::Sprite*, current_cursor, CurrentCursor);
     CC_SYNTHESIZE_READONLY(cocos2d::Label*, name_label, NameLabel);
-    CC_SYNTHESIZE_READONLY(cocos2d::Sprite*, prepare_item_1, PrepareItem1);
-    CC_SYNTHESIZE_READONLY(cocos2d::Sprite*, prepare_item_2, PrepareItem2);
-    CC_SYNTHESIZE_READONLY(cocos2d::Sprite*, prepare_item_3, PrepareItem3);
+    CC_SYNTHESIZE_READONLY(cocos2d::MenuItemSprite*, prepare_item_1, PrepareItem1);
+    CC_SYNTHESIZE_READONLY(cocos2d::MenuItemSprite*, prepare_item_2, PrepareItem2);
+    CC_SYNTHESIZE_READONLY(cocos2d::MenuItemSprite*, prepare_item_3, PrepareItem3);
     CC_SYNTHESIZE(int, current_item_idx, CurrentItemIdx);
 };
 
