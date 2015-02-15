@@ -12,6 +12,8 @@
 #include <iostream>
 #include "StateBase.h"
 
+#include "Item.h"
+
 class MakeMenuState : public StateBase
 {
 public:
@@ -20,6 +22,9 @@ public:
     virtual void enter() override;
     virtual void update() override;
     virtual void exit() override;
+    
+    CC_SYNTHESIZE_PASS_BY_REF(cocos2d::Vector<Item*>, item_list, ItemList);
+    CC_SYNTHESIZE(int, current_item_idx, CurrentItemIndex);
 };
 
 #endif /* defined(__solno__MakeMenuState__) */
