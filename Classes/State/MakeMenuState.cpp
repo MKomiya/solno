@@ -75,6 +75,7 @@ void MakeMenuState::updatePreparentItem(Item *item)
     view->invisibleItemIconAll();
     
     preparent_item_ids.push_back(item->getItemId());
+    view->setPreparentItemTexture(preparent_item_ids.size(), item->getThumbnailTexture());
     
     if (!make_item) {
         make_item = item->getMakeItem();
@@ -95,6 +96,4 @@ void MakeMenuState::updatePreparentItem(Item *item)
     if (!indices.empty()) {
         view->visibleItemIcons(indices);
     }
-    
-    view->invisibleItemIcon(current_item_idx);
 }
