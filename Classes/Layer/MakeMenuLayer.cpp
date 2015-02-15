@@ -44,7 +44,7 @@ bool MakeMenuLayer::init()
     // 取り敢えずアタッチされたItemを先頭から順に16個取得して表示する
     auto base_pos = Point(26, frame->getContentSize().height - 80);
     
-    auto vec = Vector<MenuItem*>();
+    item_icon_list = Vector<MenuItem*>();
     for (int idx = 0; idx < VIEW_ITEM_H * VIEW_ITEM_W; ++idx) {
         int x = idx % VIEW_ITEM_W;
         int y = idx / VIEW_ITEM_W;
@@ -67,11 +67,11 @@ bool MakeMenuLayer::init()
             im->pushEvent(InputEvent::PRESS_ITEM_SELECT);
             im->pushParam(idx);
         });
-        vec.pushBack(item_menu_value);
+        item_icon_list.pushBack(item_menu_value);
     }
     
-    if (!vec.empty()) {
-        auto menu = Menu::createWithArray(vec);
+    if (!item_icon_list.empty()) {
+        auto menu = Menu::createWithArray(item_icon_list);
         menu->setPosition(Point::ZERO);
         frame->addChild(menu);
     }
@@ -112,6 +112,35 @@ void MakeMenuLayer::updateViewItem(int index)
     
     // 名前表示切り替え
     name_label->setString(item->getItemName());
+}
+
+void MakeMenuLayer::invisibleItemIcon(int index)
+{
+    if (index < 0 || index >= item_list.size()) {
+        return ;
+    }
+    
+    auto icon = item_icon_list.at(index);
+    icon->setOpacity(64);
+}
+
+void MakeMenuLayer::invisibleItemIconAll()
+{
+    for (auto item_icon : item_icon_list) {
+        item_icon->setOpacity(64);
+    }
+}
+
+void MakeMenuLayer::visibleItemIcons(std::vector<int> indices)
+{
+    for (int index : indices) {
+        if (index < 0 || index >= item_list.size()) {
+            return ;
+        }
+        
+        auto icon = item_icon_list.at(index);
+        icon->setOpacity(255);
+    }
 }
 
 /*

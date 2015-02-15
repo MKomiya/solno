@@ -21,6 +21,9 @@ MakeMenuState* MakeMenuState::create()
         CC_SAFE_DELETE(ret);
         return nullptr;
     }
+
+    ret->setCurrentItemIndex(0);
+    ret->setMakeItem(nullptr);
     ret->autorelease();
     return ret;
 }
@@ -35,7 +38,7 @@ void MakeMenuState::enter()
     }
     
     // ItemMenuLayerへset
-    auto view = MakeMenuLayer::create(item_list);
+    view = MakeMenuLayer::create(item_list);
     LayerManager::getInstance()->push("make_menu", view);
 }
 
@@ -54,12 +57,43 @@ void MakeMenuState::update()
             current_item_idx = p;
             return ;
         }
+        
+        updatePreparentItem(item);
         return ;
     }
 }
 
 void MakeMenuState::exit()
 {
+    preparent_item_list.clear();
     item_list.clear();
     LayerManager::getInstance()->pop();
+}
+
+void MakeMenuState::updatePreparentItem(Item *item)
+{
+    view->invisibleItemIconAll();
+    
+    preparent_item_list.pushBack(item);
+    
+    if (!make_item) {
+        make_item = item->getMakeItem();
+    }
+    
+    std::vector<int> indices;
+    for (auto item : item_list) {
+        if (item->getItemId() == make_item->getPrepareItemId1() ||
+            item->getItemId() == make_item->getPrepareItemId2() ||
+            item->getItemId() == make_item->getPrepareItemId3())
+        {
+            auto idx = item_list.getIndex(item);
+            indices.push_back(idx);
+        }
+    }
+    
+    if (!indices.empty()) {
+        view->visibleItemIcons(indices);
+    }
+    
+    view->invisibleItemIcon(current_item_idx);
 }

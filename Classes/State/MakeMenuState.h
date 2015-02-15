@@ -14,6 +14,7 @@
 
 #include "Item.h"
 
+class MakeMenuLayer;
 class MakeMenuState : public StateBase
 {
 public:
@@ -23,8 +24,13 @@ public:
     virtual void update() override;
     virtual void exit() override;
     
+    void updatePreparentItem(Item* item);
+    
     CC_SYNTHESIZE_PASS_BY_REF(cocos2d::Vector<Item*>, item_list, ItemList);
+    CC_SYNTHESIZE_PASS_BY_REF(cocos2d::Vector<Item*>, preparent_item_list, PreparentItemList);
+    CC_SYNTHESIZE_READONLY(MakeMenuLayer*, view, View);
     CC_SYNTHESIZE(int, current_item_idx, CurrentItemIndex);
+    CC_SYNTHESIZE(Item*, make_item, MakeItem);
 };
 
 #endif /* defined(__solno__MakeMenuState__) */
