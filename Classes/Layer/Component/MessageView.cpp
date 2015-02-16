@@ -29,7 +29,6 @@ MessageView* MessageView::create()
         ret->getTexture()->setAliasTexParameters();
         
         // 空のstring
-        //auto msg_label = LabelTTF::create("", "PixelMPlus10", 8);
         auto msg_label = Label::createWithBMFont("fonts/message_font.fnt", "");
         msg_label->getTexture()->setAliasTexParameters();
         msg_label->setAnchorPoint(Point(0, 1));
