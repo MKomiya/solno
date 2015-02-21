@@ -40,14 +40,8 @@ bool HelloWorld::init()
         return false;
     }
     
-    // initialize view
-    auto field      = FieldLayer::create();
-    auto controller = ControllerLayer::create();
-    LayerManager::getInstance()->push("field", field);
-    LayerManager::getInstance()->push("controller", controller);
-    
     // publish state
-    StateMachineModule::getInstance()->registerState("field", FieldState::create(field, controller));
+    StateMachineModule::getInstance()->registerState("field", FieldState::create());
     StateMachineModule::getInstance()->registerState("mode_select_menu", ModeSelectMenuState::create());
     StateMachineModule::getInstance()->registerState("item_menu", ItemMenuState::create());
     StateMachineModule::getInstance()->registerState("make_menu", MakeMenuState::create());

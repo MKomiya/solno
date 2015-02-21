@@ -25,7 +25,7 @@
 
 USING_NS_CC;
 
-FieldState* FieldState::create(FieldLayer *view, ControllerLayer *controller)
+FieldState* FieldState::create()
 {
     auto ret = new FieldState();
     if (!ret) {
@@ -33,9 +33,15 @@ FieldState* FieldState::create(FieldLayer *view, ControllerLayer *controller)
         return nullptr;
     }
     
+    // initialize view
+    auto field      = FieldLayer::create();
+    auto controller = ControllerLayer::create();
+    LayerManager::getInstance()->push("field", field);
+    LayerManager::getInstance()->push("controller", controller);
+    
     ret->setPlayerMapPosition(Point(0, 0));
     ret->setPlayerDirection("down");
-    ret->setFieldView(view);
+    ret->setFieldView(field);
     ret->setControllerView(controller);
     ret->setExecuteItem(nullptr);
     

@@ -27,7 +27,7 @@ class FieldObject;
 class Item;
 class FieldState : public StateBase {
 public:
-    static FieldState* create(FieldLayer* view, ControllerLayer* controller);
+    static FieldState* create();
     
     virtual void enter() override;
     virtual void update() override;
