@@ -82,6 +82,10 @@
 		D083A2AC1A4DB1EF009A9099 /* chara in Resources */ = {isa = PBXBuildFile; fileRef = D083A2AB1A4DB1EF009A9099 /* chara */; };
 		D094BFB61A6D3F2500D6C383 /* Direction.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D094BFB41A6D3F2500D6C383 /* Direction.cpp */; };
 		D094BFB91A6D3F3800D6C383 /* Story.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D094BFB71A6D3F3800D6C383 /* Story.cpp */; };
+		D09C59341A98DF450085B483 /* Dispatcher.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D09C592C1A98DF450085B483 /* Dispatcher.cpp */; };
+		D09C59351A98DF450085B483 /* Router.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D09C592E1A98DF450085B483 /* Router.cpp */; };
+		D09C59361A98DF450085B483 /* State.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D09C59301A98DF450085B483 /* State.cpp */; };
+		D09C59371A98DF450085B483 /* View.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D09C59321A98DF450085B483 /* View.cpp */; };
 		D0A505441A6559A2004C2C4E /* json11.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D0A505421A6559A2004C2C4E /* json11.cpp */; };
 		D0B25F2A1A7CC1AA00D0D367 /* item in Resources */ = {isa = PBXBuildFile; fileRef = D0B25F291A7CC1AA00D0D367 /* item */; };
 		D0BD84191A6FE9F300980989 /* FieldObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D0BD84171A6FE9F300980989 /* FieldObject.cpp */; };
@@ -225,6 +229,14 @@
 		D094BFB51A6D3F2500D6C383 /* Direction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Direction.h; path = Model/Direction.h; sourceTree = "<group>"; };
 		D094BFB71A6D3F3800D6C383 /* Story.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Story.cpp; path = Model/Story.cpp; sourceTree = "<group>"; };
 		D094BFB81A6D3F3800D6C383 /* Story.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Story.h; path = Model/Story.h; sourceTree = "<group>"; };
+		D09C592C1A98DF450085B483 /* Dispatcher.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Dispatcher.cpp; path = Library/raciela/src/Dispatcher.cpp; sourceTree = "<group>"; };
+		D09C592D1A98DF450085B483 /* Dispatcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Dispatcher.h; path = Library/raciela/src/Dispatcher.h; sourceTree = "<group>"; };
+		D09C592E1A98DF450085B483 /* Router.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Router.cpp; path = Library/raciela/src/Router.cpp; sourceTree = "<group>"; };
+		D09C592F1A98DF450085B483 /* Router.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Router.h; path = Library/raciela/src/Router.h; sourceTree = "<group>"; };
+		D09C59301A98DF450085B483 /* State.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = State.cpp; path = Library/raciela/src/State.cpp; sourceTree = "<group>"; };
+		D09C59311A98DF450085B483 /* State.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = State.h; path = Library/raciela/src/State.h; sourceTree = "<group>"; };
+		D09C59321A98DF450085B483 /* View.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = View.cpp; path = Library/raciela/src/View.cpp; sourceTree = "<group>"; };
+		D09C59331A98DF450085B483 /* View.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = View.h; path = Library/raciela/src/View.h; sourceTree = "<group>"; };
 		D0A505421A6559A2004C2C4E /* json11.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = json11.cpp; path = Library/json11.cpp; sourceTree = "<group>"; };
 		D0A505431A6559A2004C2C4E /* json11.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = json11.hpp; path = Library/json11.hpp; sourceTree = "<group>"; };
 		D0B25F291A7CC1AA00D0D367 /* item */ = {isa = PBXFileReference; lastKnownFileType = folder; path = item; sourceTree = "<group>"; };
@@ -497,6 +509,14 @@
 		D0A505411A65598F004C2C4E /* Library */ = {
 			isa = PBXGroup;
 			children = (
+				D09C592C1A98DF450085B483 /* Dispatcher.cpp */,
+				D09C592D1A98DF450085B483 /* Dispatcher.h */,
+				D09C592E1A98DF450085B483 /* Router.cpp */,
+				D09C592F1A98DF450085B483 /* Router.h */,
+				D09C59301A98DF450085B483 /* State.cpp */,
+				D09C59311A98DF450085B483 /* State.h */,
+				D09C59321A98DF450085B483 /* View.cpp */,
+				D09C59331A98DF450085B483 /* View.h */,
 				D0A505421A6559A2004C2C4E /* json11.cpp */,
 				D0A505431A6559A2004C2C4E /* json11.hpp */,
 			);
@@ -801,8 +821,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				D0EBE61E1A5275B900E36888 /* FieldState.cpp in Sources */,
+				D09C59341A98DF450085B483 /* Dispatcher.cpp in Sources */,
 				D04876191A697B880097D6BB /* StoryLayer.cpp in Sources */,
 				46880B8819C43A87006E1F66 /* AppDelegate.cpp in Sources */,
+				D09C59371A98DF450085B483 /* View.cpp in Sources */,
 				D0BD84261A6FF21000980989 /* MovableRock.cpp in Sources */,
 				D0EBE6171A526F7200E36888 /* MenuArrowItem.cpp in Sources */,
 				D048D9BC1A4E623500EE9339 /* ControllerLayer.cpp in Sources */,
@@ -827,9 +849,11 @@
 				D0DCF5331A85AAAB003FE946 /* ObjectOperateItem.cpp in Sources */,
 				503AE10217EB989F00D1A890 /* RootViewController.mm in Sources */,
 				503AE10117EB989F00D1A890 /* main.m in Sources */,
+				D09C59351A98DF450085B483 /* Router.cpp in Sources */,
 				D0BD84251A6FF21000980989 /* MessagePoint.cpp in Sources */,
 				D0E15D011A7839A800E2AB46 /* ItemMenuState.cpp in Sources */,
 				D0332E911A6E81CE004FCA4C /* StateBase.cpp in Sources */,
+				D09C59361A98DF450085B483 /* State.cpp in Sources */,
 				D07D33AB1A7E024000061831 /* MasterStorageModule.cpp in Sources */,
 				D04876161A697B2B0097D6BB /* StoryState.cpp in Sources */,
 				D0C983E21A6E64DA00761742 /* Template.cpp in Sources */,
