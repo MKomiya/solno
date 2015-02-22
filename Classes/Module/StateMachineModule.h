@@ -13,8 +13,7 @@
 #include <unordered_map>
 #include <dispatch/dispatch.h>
 #include <cocos2d.h>
-
-#include <StateBase.h>
+#include "State.h"
 
 class StateMachineModule : cocos2d::Ref
 {
@@ -31,16 +30,16 @@ public:
     }
 
     virtual void release();
-    void registerState(std::string key, StateBase* state);
+    void registerState(std::string key, Raciela::State* state);
     void changeState(std::string key);
-    StateBase* getState(std::string key);
+    Raciela::State* getState(std::string key);
     void update();
     
 private:
     static StateMachineModule* instance;
     
-    cocos2d::Map<std::string, StateBase*> _state_hash;
-    StateBase* current_state;
+    cocos2d::Map<std::string, Raciela::State*> _state_hash;
+    Raciela::State* current_state;
 };
 
 #endif /* defined(__solno__StateMachineModule__) */

@@ -19,7 +19,6 @@
 #include "Dispatcher.h"
 #include "Router.h"
 
-#include "LayerManager.h"
 #include "FieldLayer.h"
 #include "ControllerLayer.h"
 #include "StoryLayer.h"
@@ -39,8 +38,9 @@ FieldState* FieldState::create()
     // initialize view
     auto field      = FieldLayer::create();
     auto controller = ControllerLayer::create();
-    LayerManager::getInstance()->push("field", field);
-    LayerManager::getInstance()->push("controller", controller);
+    auto router     = Raciela::Router::getInstance();
+    router->addView(field);
+    router->addView(controller);
     
     ret->setMap(TMXTiledMap::create("tmx/01_scrap.tmx"));
     ret->setPlayerMapPosition(Point(0, 0));

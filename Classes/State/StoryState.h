@@ -11,12 +11,12 @@
 
 #include <stdio.h>
 
-#include "StateBase.h"
+#include "State.h"
 #include "Story.h"
 
 class Story;
 class StoryLayer;
-class StoryState : public StateBase
+class StoryState : public Raciela::State
 {
 public:
     static StoryState* create(StoryLayer* view);

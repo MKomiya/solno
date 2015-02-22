@@ -2,7 +2,6 @@
 #include "FieldState.h"
 #include "StateMachineModule.h"
 
-#include "LayerManager.h"
 #include "FieldLayer.h"
 #include "ControllerLayer.h"
 
@@ -22,7 +21,7 @@ Scene* HelloWorld::createScene()
     // 'scene' is an autorelease object
     auto scene = Scene::create();
     
-    LayerManager::getInstance()->init(scene);
+    //LayerManager::getInstance()->init(scene);
     
     // 'layer' is an autorelease object
     auto layer = HelloWorld::create();
@@ -50,9 +49,6 @@ bool HelloWorld::init()
     
     //StateMachineModule::getInstance()->changeState("field");
     //scheduleUpdate();
-    
-    auto router = Raciela::Router::getInstance();
-    router->pushState(FieldState::create());
     
     /*
     auto story      = StoryLayer::create();

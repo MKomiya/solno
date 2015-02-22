@@ -16,7 +16,7 @@
 #include "Dispatcher.h"
 
 #include "ItemMenuLayer.h"
-#include "LayerManager.h"
+#include "Router.h"
 
 ItemMenuState* ItemMenuState::create()
 {
@@ -42,7 +42,8 @@ void ItemMenuState::enter()
     
     // ItemMenuLayerへset
     auto view = ItemMenuLayer::create(item_list);
-    LayerManager::getInstance()->push("item_menu", view);
+    auto router = Raciela::Router::getInstance();
+    router->addView(view);
 }
 
 void ItemMenuState::update()
@@ -89,7 +90,7 @@ void ItemMenuState::update()
 void ItemMenuState::exit()
 {
     item_list.clear();
-    LayerManager::getInstance()->pop();
+    Raciela::Router::getInstance()->removeView(view);
 }
 
 void ItemMenuState::delegate()

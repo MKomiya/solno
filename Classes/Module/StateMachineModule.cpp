@@ -19,7 +19,7 @@ void StateMachineModule::release()
     Ref::release();
 }
 
-void StateMachineModule::registerState(std::string key, StateBase *state)
+void StateMachineModule::registerState(std::string key, Raciela::State *state)
 {
     _state_hash.insert(key, state);
 }
@@ -35,7 +35,7 @@ void StateMachineModule::changeState(std::string key)
     current_state->enter();
 }
 
-StateBase* StateMachineModule::getState(std::string key)
+Raciela::State* StateMachineModule::getState(std::string key)
 {
     auto it = _state_hash.find(key);
     if (it == _state_hash.end()) {

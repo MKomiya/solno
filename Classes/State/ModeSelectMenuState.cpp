@@ -9,7 +9,7 @@
 #include "ModeSelectMenuState.h"
 #include "StateMachineModule.h"
 
-#include "LayerManager.h"
+#include "Router.h"
 #include "ModeSelectMenuLayer.h"
 
 #include "InputModule.h"
@@ -36,7 +36,8 @@ ModeSelectMenuState* ModeSelectMenuState::create()
 void ModeSelectMenuState::enter()
 {
     view = ModeSelectMenuLayer::create();
-    LayerManager::getInstance()->push("mode_select_menu", view);
+    auto router = Raciela::Router::getInstance();
+    router->addView(view);
 }
 
 void ModeSelectMenuState::update()
@@ -52,7 +53,7 @@ void ModeSelectMenuState::update()
 
 void ModeSelectMenuState::exit()
 {
-    LayerManager::getInstance()->pop();
+    Raciela::Router::getInstance()->removeView(view);
 }
 
 void ModeSelectMenuState::delegate()
