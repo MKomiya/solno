@@ -14,13 +14,12 @@
 
 #include "State.h"
 
-#include "InputModule.h"
-
 enum MapColliderType {
     NO_COLLISION = 0,
     COLLIDABLE   = 17, // タイルが増えるとGIDが変わるので別途検討
 };
 
+enum class ArrowInputEvent;
 enum class MessageViewState;
 enum class PlayerViewState;
 enum class FieldViewState;
@@ -56,7 +55,7 @@ public:
     
 private:
     void decideAction();
-    void movePlayerCharacter(InputEvent event);
+    void movePlayerCharacter(ArrowInputEvent event);
 };
 
 #endif /* defined(__solno__FieldState__) */

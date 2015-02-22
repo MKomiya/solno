@@ -12,6 +12,18 @@
 #include <stdio.h>
 #include <cocos2d.h>
 
+enum class ArrowInputEvent
+{
+    PRESS_UP,
+    PRESS_RIGHT,
+    PRESS_DOWN,
+    PRESS_LEFT,
+    
+    RELEASE_UP,
+    RELEASE_RIGHT,
+    RELEASE_DOWN,
+    RELEASE_LEFT,
+};
 
 class MenuArrowItem : public cocos2d::MenuItemSprite
 {

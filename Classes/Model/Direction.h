@@ -12,12 +12,12 @@
 #include <stdio.h>
 #include <cocos2d.h>
 
-#include "InputModule.h"
+enum class ArrowInputEvent;
 
 class Direction
 {
 public:
-    static Direction createInstance(InputEvent event);
+    static Direction createInstance(ArrowInputEvent event);
     static Direction createInstance(std::string direction_str);
     inline cocos2d::Vec2 getUnitVec() const {
         return vec;

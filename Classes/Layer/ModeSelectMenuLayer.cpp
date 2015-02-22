@@ -8,7 +8,6 @@
 
 #include "ModeSelectMenuLayer.h"
 
-#include "InputModule.h"
 #include "Dispatcher.h"
 
 USING_NS_CC;

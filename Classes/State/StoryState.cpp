@@ -13,8 +13,8 @@
 #include <fstream>
 #include <iostream>
 
-#include "InputModule.h"
 #include "StoryLayer.h"
+#include "Dispatcher.h"
 
 #include "Story.h"
 
@@ -69,11 +69,11 @@ void StoryState::enter()
 
 void StoryState::update()
 {
+    /*
     auto event = InputModule::getInstance()->popEvent();
     
     if (event == InputEvent::RELEASE_DECIDE) {
         // message view disabled
-        /*
         if (view->getMessageState() == MessageView::WAIT) {
             if (running_story->getMsgData().size() <= ++msg_idx) {
                 story_data.erase(0);
@@ -89,8 +89,8 @@ void StoryState::update()
                 view->releaseMessages();
             }
         }
-        */
     }
+     */
 }
 
 void StoryState::exit()

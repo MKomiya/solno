@@ -24,6 +24,7 @@
 #include "StoryLayer.h"
 #include "MessageView.h"
 #include "PlayerView.h"
+#include "MenuArrowItem.h"
 
 USING_NS_CC;
 
@@ -98,15 +99,6 @@ void FieldState::enter()
 
 void FieldState::update()
 {
-    auto event = InputModule::getInstance()->popEvent();
-    
-    if (event == InputEvent::RELEASE_DECIDE) {
-        decideAction();
-    }
-    
-    if (event != InputEvent::RELEASE_DECIDE && event != InputEvent::PRESS_DECIDE && event != 0) {
-        movePlayerCharacter(event);
-    }
 }
 
 void FieldState::exit()
@@ -125,7 +117,7 @@ void FieldState::delegate()
         addExecuteItem(item);
     });
     
-    dispatcher->subscribe<void (InputEvent)>("move_player", [=](InputEvent e) {
+    dispatcher->subscribe<void (ArrowInputEvent)>("input_arrow", [=](ArrowInputEvent e) {
         movePlayerCharacter(e);
     });
     
@@ -191,17 +183,17 @@ void FieldState::decideAction()
     }
 }
 
-void FieldState::movePlayerCharacter(InputEvent event)
+void FieldState::movePlayerCharacter(ArrowInputEvent event)
 {
     if (player_view_state == PlayerViewState::RUNNING ||
         field_view_state == FieldViewState::SCROLL) {
         return ;
     }
     
-    if (event == InputEvent::RELEASE_DOWN  ||
-        event == InputEvent::RELEASE_LEFT  ||
-        event == InputEvent::RELEASE_RIGHT ||
-        event == InputEvent::RELEASE_UP) {
+    if (event == ArrowInputEvent::RELEASE_DOWN  ||
+        event == ArrowInputEvent::RELEASE_LEFT  ||
+        event == ArrowInputEvent::RELEASE_RIGHT ||
+        event == ArrowInputEvent::RELEASE_UP) {
         return ;
     }
     
@@ -237,10 +229,10 @@ void FieldState::movePlayerCharacter(InputEvent event)
     CCLOG("pos: (%f, %f)", player_map_pos.x, player_map_pos.y);
     
     // run scroll field if player pos is scroll point
-    if (((int)player_map_pos.x % 9 == 0 && event == InputEvent::PRESS_RIGHT) ||
-        ((int)player_map_pos.y % 9 == 0 && event == InputEvent::PRESS_DOWN)  ||
-        ((int)player_map_pos.x % 9 == 8 && event == InputEvent::PRESS_LEFT)  ||
-        ((int)player_map_pos.y % 9 == 8 && event == InputEvent::PRESS_UP))
+    if (((int)player_map_pos.x % 9 == 0 && event == ArrowInputEvent::PRESS_RIGHT) ||
+        ((int)player_map_pos.y % 9 == 0 && event == ArrowInputEvent::PRESS_DOWN)  ||
+        ((int)player_map_pos.x % 9 == 8 && event == ArrowInputEvent::PRESS_LEFT)  ||
+        ((int)player_map_pos.y % 9 == 8 && event == ArrowInputEvent::PRESS_UP))
     {
         Point move, scroll;
         move   = direction_entity.getUnitVec() * -32 * 8;

@@ -7,22 +7,23 @@
 //
 
 #include "Direction.h"
+#include "MenuArrowItem.h"
 
 USING_NS_CC;
 
-Direction Direction::createInstance(InputEvent event)
+Direction Direction::createInstance(ArrowInputEvent event)
 {
     Direction ret;
-    if (event == InputEvent::PRESS_DOWN) {
+    if (event == ArrowInputEvent::PRESS_DOWN) {
         ret.vec = Vec2(0, -1);
         ret.str = "down";
-    } else if (event == InputEvent::PRESS_LEFT) {
+    } else if (event == ArrowInputEvent::PRESS_LEFT) {
         ret.vec = Vec2(-1, 0);
         ret.str = "left";
-    } else if (event == InputEvent::PRESS_RIGHT) {
+    } else if (event == ArrowInputEvent::PRESS_RIGHT) {
         ret.vec = Vec2(1, 0);
         ret.str = "right";
-    } else if (event == InputEvent::PRESS_UP) {
+    } else if (event == ArrowInputEvent::PRESS_UP) {
         ret.vec = Vec2(0, 1);
         ret.str = "up";
     }

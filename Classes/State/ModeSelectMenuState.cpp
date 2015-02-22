@@ -12,7 +12,6 @@
 #include "Router.h"
 #include "ModeSelectMenuLayer.h"
 
-#include "InputModule.h"
 #include "Dispatcher.h"
 #include "Router.h"
 
@@ -42,13 +41,6 @@ void ModeSelectMenuState::enter()
 
 void ModeSelectMenuState::update()
 {
-    auto event = InputModule::getInstance()->popEvent();
-    
-    if (event == InputEvent::PRESS_MODE_SELECT_ITEM) {
-        StateMachineModule::getInstance()->changeState("item_menu");
-    } else if (event == InputEvent::PRESS_MODE_SELECT_MAKE) {
-        StateMachineModule::getInstance()->changeState("make_menu");
-    }
 }
 
 void ModeSelectMenuState::exit()
