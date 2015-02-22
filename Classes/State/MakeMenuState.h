@@ -10,12 +10,12 @@
 #define __solno__MakeMenuState__
 
 #include <iostream>
-#include "StateBase.h"
+#include "State.h"
 
 #include "Item.h"
 
 class MakeMenuLayer;
-class MakeMenuState : public StateBase
+class MakeMenuState : public Raciela::State
 {
 public:
     static MakeMenuState* create();
@@ -23,6 +23,7 @@ public:
     virtual void enter() override;
     virtual void update() override;
     virtual void exit() override;
+    virtual void delegate() override;
     
     void updatePreparentItem(Item* item);
     

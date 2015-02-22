@@ -21,6 +21,7 @@ public:
     virtual void enter() override;
     virtual void update() override;
     virtual void exit() override;
+    virtual void delegate() override;
     
 private:
     ModeSelectMenuLayer* view;

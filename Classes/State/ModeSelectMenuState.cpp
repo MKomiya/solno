@@ -13,6 +13,11 @@
 #include "ModeSelectMenuLayer.h"
 
 #include "InputModule.h"
+#include "Dispatcher.h"
+#include "Router.h"
+
+#include "ItemMenuState.h"
+#include "MakeMenuState.h"
 
 USING_NS_CC;
 
@@ -48,4 +53,15 @@ void ModeSelectMenuState::update()
 void ModeSelectMenuState::exit()
 {
     LayerManager::getInstance()->pop();
+}
+
+void ModeSelectMenuState::delegate()
+{
+    auto dispatcher = Raciela::Dispatcher::getInstance();
+    
+    dispatcher->subscribe<void ()>("selected_item", [=]() {
+    });
+    
+    dispatcher->subscribe<void ()>("selected_make", [=]() {
+    });
 }

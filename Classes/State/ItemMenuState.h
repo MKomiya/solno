@@ -10,11 +10,11 @@
 #define __solno__ItemMenuState__
 
 #include <stdio.h>
-#include "StateBase.h"
+#include "State.h"
 
 class Item;
 
-class ItemMenuState : public StateBase
+class ItemMenuState : public Raciela::State
 {
 public:
     static ItemMenuState* create();
@@ -22,6 +22,7 @@ public:
     virtual void enter() override;
     virtual void update() override;
     virtual void exit() override;
+    virtual void delegate() override;
     
     CC_SYNTHESIZE(int, current_item_idx, CurrentItemIndex);
     

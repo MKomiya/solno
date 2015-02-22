@@ -10,6 +10,7 @@
 
 #include "UserStorageModule.h"
 #include "InputModule.h"
+#include "Dispatcher.h"
 
 #include "MakeMenuLayer.h"
 #include "LayerManager.h"
@@ -105,6 +106,58 @@ void MakeMenuState::exit()
     preparent_item_ids.clear();
     item_list.clear();
     LayerManager::getInstance()->pop();
+}
+
+void MakeMenuState::delegate()
+{
+    dispatcher->subscribe<void (int)>("selected_item", [=](int idx) {
+        if (idx < 0 || idx >= item_list.size()) {
+            return ;
+        }
+        
+        auto item = item_list.at(idx);
+        if (current_item_idx != idx) {
+            current_item_idx = idx;
+            return ;
+        }
+        
+        updatePreparentItem(item);
+    });
+    
+    dispatcher->subscribe<void (int)>("cancel_preparent_item", [=](int idx) {
+        if (idx < 0 || idx > preparent_item_ids.size()) {
+            return ;
+        }
+        
+        auto item_id = preparent_item_ids.at(idx - 1);
+        auto it = std::find(preparent_item_ids.begin(),
+                            preparent_item_ids.end(),
+                            item_id);
+        preparent_item_ids.erase(it);
+        view->invisiblePreparentItem(idx);
+        
+        if (preparent_item_ids.empty()) {
+            view->setOpacityItemIconAll(255);
+            make_item = nullptr;
+            return ;
+        }
+        
+        view->setOpacityItemIconAll(64);
+        std::vector<int> indices;
+        for (auto item : item_list) {
+            if ((item->getItemId() == make_item->getPrepareItemId1() ||
+                 item->getItemId() == make_item->getPrepareItemId2() ||
+                 item->getItemId() == make_item->getPrepareItemId3()) &&
+                (std::find(preparent_item_ids.begin(), preparent_item_ids.end(), item->getItemId()) == preparent_item_ids.end()))
+            {
+                auto idx = item_list.getIndex(item);
+                indices.push_back(idx);
+            }
+        }
+        if (!indices.empty()) {
+            view->visibleItemIcons(indices);
+        }
+    });
 }
 
 void MakeMenuState::updatePreparentItem(Item *item)

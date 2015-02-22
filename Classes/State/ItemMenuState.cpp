@@ -13,6 +13,7 @@
 #include "MasterStorageModule.h"
 #include "UserStorageModule.h"
 #include "InputModule.h"
+#include "Dispatcher.h"
 
 #include "ItemMenuLayer.h"
 #include "LayerManager.h"
@@ -89,4 +90,20 @@ void ItemMenuState::exit()
 {
     item_list.clear();
     LayerManager::getInstance()->pop();
+}
+
+void ItemMenuState::delegate()
+{
+    dispatcher->subscribe<void (int)>("selected_item", [=](int index) {
+        if (index < 0 || index >= item_list.size()) {
+            return ;
+        }
+        
+        auto item = item_list.at(index);
+        if (current_item_idx != index) {
+            current_item_idx = index;
+            // view->updateMakeTreeView(current_item);
+            return ;
+        }
+    });
 }
