@@ -29,8 +29,3 @@ void StoryLayer::releaseMessages()
 {
     msg_view->nextMessage();
 }
-
-MessageView::ViewState StoryLayer::getMessageState()
-{
-    return msg_view->getState();
-}

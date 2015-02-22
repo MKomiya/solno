@@ -22,7 +22,6 @@ public:
     
     void viewMessages(std::vector<std::string> msg_data);
     void releaseMessages();
-    MessageView::ViewState getMessageState();
     
 private:
     MessageView* msg_view;

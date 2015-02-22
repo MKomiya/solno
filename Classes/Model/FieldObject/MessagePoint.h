@@ -16,8 +16,8 @@ class FieldLayer;
 class MessagePoint : public FieldObject
 {
 public:
-    virtual void executeMovedAction(FieldLayer* view) override;
-    virtual void executeDecideAction(FieldLayer* view) override;
+    virtual void executeMovedAction() override;
+    virtual void executeDecideAction() override;
     virtual bool isPassablePlayer() override;
     
     CC_SYNTHESIZE(std::string, msg_data, MessageData);

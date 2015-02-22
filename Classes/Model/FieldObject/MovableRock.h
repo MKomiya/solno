@@ -18,7 +18,7 @@ class FieldLayer;
 class MovableRock : public FieldObject
 {
 public:
-    virtual void executePreMoveAction(Direction direction, FieldLayer* view) override;
+    virtual void executePreMoveAction(Direction direction) override;
     virtual bool isPassablePlayer() override;
     
 private:

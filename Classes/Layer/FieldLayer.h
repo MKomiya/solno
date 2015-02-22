@@ -12,15 +12,21 @@
 #include <stdio.h>
 #include <cocos2d.h>
 
+#include "View.h"
 #include "MessageView.h"
 
 enum PlayerActionTags {
     MOVE_SEQUENCE = 11,
 };
 
+enum class FieldViewState {
+    NOTHING,
+    SCROLL,
+};
+
 struct FieldObject;
 class PlayerView;
-class FieldLayer : public cocos2d::Layer
+class FieldLayer : public Raciela::View
 {
 public:
     enum FieldActionTag {
@@ -29,6 +35,7 @@ public:
     
     virtual bool init();
     CREATE_FUNC(FieldLayer);
+    void initMapData(cocos2d::TMXTiledMap* value);
     void initFieldObject(std::vector<FieldObject*> objects);
     
     void changePlayerAnimation(std::string direction);
@@ -37,19 +44,15 @@ public:
     void runMoveAction(cocos2d::Point move_vec);
     void runObjectMoveAction(int object_id, cocos2d::Point move_vec);
     
-    cocos2d::TMXLayer* getMapCollider();
-    cocos2d::TMXObjectGroup* getObjectsGroup();
     void scrollField(cocos2d::Point move_vec, cocos2d::Point scroll_vec);
-    bool isRunningPlayerView();
-    bool isRunningMapScroll();
     
     void addRunActionAfterMove(cocos2d::FiniteTimeAction* action);
     void viewMessages(std::vector<std::string> msg_data);
     void releaseMessages();
-    MessageView::ViewState getMessageState();
+    
+    CC_SYNTHESIZE(cocos2d::TMXTiledMap*, map, Map);
     
 private:
-    cocos2d::TMXTiledMap* map;
     PlayerView* player_sprite;
     MessageView* msg_view;
     cocos2d::Node* objects_root;

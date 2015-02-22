@@ -8,13 +8,9 @@
 
 #include <json11.hpp>
 #include "MessageView.h"
+#include "Dispatcher.h"
 
 USING_NS_CC;
-
-MessageView::MessageView() :
-state(DISABLED),
-string_idx(0),
-msg_idx(0){}
 
 MessageView* MessageView::create()
 {
@@ -38,27 +34,33 @@ MessageView* MessageView::create()
         
         // disabled view
         ret->setVisible(false);
-    } else {
-        delete ret;
-        ret = NULL;
+        
+        ret->setStringIdx(0);
+        ret->setmsgIdx(0);
+        
+        return ret;
     }
-    return ret;
+    
+    CC_SAFE_DELETE(ret);
+    return nullptr;
 }
 
 void MessageView::viewMessages(std::vector<std::string> msg_data)
 {
     this->msg_data = msg_data;
     
-    this->now_msg  = this->msg_data.front();
-    this->state    = PROGRESS;
-    this->msg_idx  = 0;
-    this->string_idx = 0;
+    now_msg    = msg_data.front();
+    msg_idx    = 0;
+    string_idx = 0;
+    
+    auto dispatcher = Raciela::Dispatcher::getInstance();
+    dispatcher->dispatch("update_msg_state", MessageViewState::PROGRESS);
     
     setVisible(true);
     
     auto move  = MoveTo::create(0.3f, Point(16, 176));
-    auto moved = CallFunc::create([=]() {
-        this->schedule(schedule_selector(MessageView::updateMessage), 0.03f);
+    auto moved = CallFunc::create([this, dispatcher]() {
+        schedule(schedule_selector(MessageView::updateMessage), 0.03f);
     });
     runAction(Sequence::create(move, moved, NULL));
 }
@@ -74,7 +76,9 @@ void MessageView::updateMessage(float dt)
     
     if (string_idx == now_msg.length()) {
         unschedule(schedule_selector(MessageView::updateMessage));
-        state = WAIT;
+        
+        auto dispatcher = Raciela::Dispatcher::getInstance();
+        dispatcher->dispatch("update_msg_state", MessageViewState::WAIT);
     }
 }
 
@@ -99,7 +103,9 @@ void MessageView::releaseMessages()
 {
     auto move  = MoveTo::create(0.1f, Point(16, 96));
     auto moved = CallFunc::create([=]() {
-        state = DISABLED;
+        auto dispatcher = Raciela::Dispatcher::getInstance();
+        dispatcher->dispatch("update_msg_state", MessageViewState::DISABLED);
+        
         string_idx = 0;
         setVisible(false);
         

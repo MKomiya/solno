@@ -73,6 +73,7 @@ void StoryState::update()
     
     if (event == InputEvent::RELEASE_DECIDE) {
         // message view disabled
+        /*
         if (view->getMessageState() == MessageView::WAIT) {
             if (running_story->getMsgData().size() <= ++msg_idx) {
                 story_data.erase(0);
@@ -88,6 +89,7 @@ void StoryState::update()
                 view->releaseMessages();
             }
         }
+        */
     }
 }
 

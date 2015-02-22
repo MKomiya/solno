@@ -16,12 +16,15 @@
 #include "Item.h"
 #include "MasterStorageModule.h"
 #include "UserStorageModule.h"
+#include "Dispatcher.h"
+#include "Router.h"
 
 #include "LayerManager.h"
 #include "FieldLayer.h"
 #include "ControllerLayer.h"
 #include "StoryLayer.h"
 #include "MessageView.h"
+#include "PlayerView.h"
 
 USING_NS_CC;
 
@@ -39,14 +42,16 @@ FieldState* FieldState::create()
     LayerManager::getInstance()->push("field", field);
     LayerManager::getInstance()->push("controller", controller);
     
+    ret->setMap(TMXTiledMap::create("tmx/01_scrap.tmx"));
     ret->setPlayerMapPosition(Point(0, 0));
     ret->setPlayerDirection("down");
     ret->setFieldView(field);
     ret->setControllerView(controller);
     ret->setExecuteItem(nullptr);
     
-    UserStorageModule::getInstance()->init();
-    UserStorageModule::getInstance()->updateUserItem(1, 1);
+    ret->setMsgViewState(MessageViewState::DISABLED);
+    ret->setPlayerViewState(PlayerViewState::IDLING);
+    ret->setFieldViewState(FieldViewState::NOTHING);
     
     ret->autorelease();
     return ret;
@@ -54,8 +59,7 @@ FieldState* FieldState::create()
 
 void FieldState::enter()
 {
-    if (execute_item != 0) {
-        CCLOG("use item. item_id: %d, item_type: %d", execute_item->getItemId(), execute_item->getType());
+    if (execute_item != nullptr) {
         execute_item->useItem();
         execute_item = nullptr;
         view->changePlayerAnimation(player_direction);
@@ -63,30 +67,33 @@ void FieldState::enter()
     }
     
     // map size取得のためにcollider layerで代用する
-    auto obj_layer = view->getMapCollider();
+    auto obj_layer = map->getLayer("meta");
     auto size      = obj_layer->getLayerSize();
-    auto obj_group = view->getObjectsGroup();
+    auto obj_group = map->getObjectGroup("Event");
     
-    {
-        int id = 100;
-        for (auto object : obj_group->getObjects()) {
-            auto object_data = object.asValueMap();
-            
-            float x  = object_data["x"].asFloat() / 16;
-            float y  = size.height - object_data["y"].asFloat() / 16 - 1;
-            auto pos = Point(x, y);
-            
-            auto ret = FieldObject::create(id, pos, object_data);
-            objects.push_back(ret);
-            ++id;
-            
-            if (ret->getObjectType() == FieldObject::ObjectType::START_POINT) {
-                player_map_pos = ret->getPosition();
-            }
+    int id = 100;
+    for (auto object : obj_group->getObjects()) {
+        auto object_data = object.asValueMap();
+        
+        float x  = object_data["x"].asFloat() / 16;
+        float y  = size.height - object_data["y"].asFloat() / 16 - 1;
+        auto pos = Point(x, y);
+        
+        auto ret = FieldObject::create(this, id, pos, object_data);
+        objects.push_back(ret);
+        ++id;
+        
+        if (ret->getObjectType() == FieldObject::ObjectType::START_POINT) {
+            player_map_pos = ret->getPosition();
         }
     }
     
+    view->initMapData(map);
     view->initFieldObject(objects);
+    
+    auto router = Raciela::Router::getInstance();
+    router->addView(view);
+    router->addView(controller);
 }
 
 void FieldState::update()
@@ -110,6 +117,29 @@ void FieldState::exit()
 void FieldState::addExecuteItem(Item* item)
 {
     execute_item = item;
+}
+
+void FieldState::delegate()
+{
+    dispatcher->subscribe<void (Item*)>("execute_item", [=](Item* item) {
+        addExecuteItem(item);
+    });
+    
+    dispatcher->subscribe<void (InputEvent)>("move_player", [=](InputEvent e) {
+        movePlayerCharacter(e);
+    });
+    
+    dispatcher->subscribe<void (MessageViewState)>("update_msg_state", [=](MessageViewState state) {
+        msg_view_state = state;
+    });
+    
+    dispatcher->subscribe<void (PlayerViewState)>("update_player_state", [=](PlayerViewState state) {
+        player_view_state = state;
+    });
+    
+    dispatcher->subscribe<void (FieldViewState)>("update_field_state", [=](FieldViewState state) {
+        field_view_state = state;
+    });
 }
 
 FieldObject* FieldState::findPlayerDirectionAbutObject()
@@ -144,12 +174,11 @@ void FieldState::decideAction()
     return ;
     
     // message view disabled
-    if (view->getMessageState() == MessageView::WAIT) {
+    if (msg_view_state == MessageViewState::WAIT) {
         view->releaseMessages();
         controller->setEnableArrowButtons(true);
         return ;
     }
-    
 
     auto direction_entity = Direction::createInstance(player_direction);
     auto next_pos = player_map_pos + direction_entity.getMapPointVec();
@@ -157,14 +186,15 @@ void FieldState::decideAction()
     // check object executable
     for (auto obj : objects) {
         if (obj->getPosition() == next_pos) {
-            obj->executeDecideAction(view);
+            obj->executeDecideAction();
         }
     }
 }
 
 void FieldState::movePlayerCharacter(InputEvent event)
 {
-    if (view->isRunningPlayerView() || view->isRunningMapScroll()) {
+    if (player_view_state == PlayerViewState::RUNNING ||
+        field_view_state == FieldViewState::SCROLL) {
         return ;
     }
     
@@ -193,7 +223,7 @@ void FieldState::movePlayerCharacter(InputEvent event)
     // check object collidable
     for (auto obj : objects) {
         if (obj->getPosition() == next_pos) {
-            obj->executePreMoveAction(direction_entity, view);
+            obj->executePreMoveAction(direction_entity);
         }
     }
     
@@ -226,7 +256,7 @@ void FieldState::movePlayerCharacter(InputEvent event)
     // check object collidable after move
     for (auto obj : objects) {
         if (obj->getPosition() == player_map_pos) {
-            obj->executeMovedAction(view);
+            obj->executeMovedAction();
         }
     }
 }
@@ -237,7 +267,7 @@ bool FieldState::isCollidable(int map_x, int map_y)
         return true;
     }
     
-    auto tiled_gid = view->getMapCollider()->getTileGIDAt(Point(map_x, map_y));
+    auto tiled_gid = map->getLayer("meta")->getTileGIDAt(Point(map_x, map_y));
     
     if (tiled_gid > 0) {
         return true;

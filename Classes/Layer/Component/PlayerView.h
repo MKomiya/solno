@@ -12,6 +12,11 @@
 #include <stdio.h>
 #include <cocos2d.h>
 
+enum class PlayerViewState {
+    IDLING,
+    RUNNING,
+};
+
 class PlayerView : public cocos2d::Sprite
 {
 public:
@@ -23,7 +28,6 @@ public:
     static PlayerView* create();
     void setIdlingAnimate(std::string direction);
     void runMoveAction(cocos2d::Point move_vec);
-    bool isRunnningMoveAction();
     void addRunActionAfterMove(cocos2d::FiniteTimeAction* action);
     
 private:

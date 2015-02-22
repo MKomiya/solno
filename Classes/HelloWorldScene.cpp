@@ -13,6 +13,8 @@
 #include "ItemMenuState.h"
 #include "MakeMenuState.h"
 
+#include "Router.h"
+
 USING_NS_CC;
 
 Scene* HelloWorld::createScene()
@@ -41,13 +43,16 @@ bool HelloWorld::init()
     }
     
     // publish state
-    StateMachineModule::getInstance()->registerState("field", FieldState::create());
+    //StateMachineModule::getInstance()->registerState("field", FieldState::create());
     StateMachineModule::getInstance()->registerState("mode_select_menu", ModeSelectMenuState::create());
     StateMachineModule::getInstance()->registerState("item_menu", ItemMenuState::create());
     StateMachineModule::getInstance()->registerState("make_menu", MakeMenuState::create());
     
     StateMachineModule::getInstance()->changeState("field");
     scheduleUpdate();
+    
+    auto router = Raciela::Router::getInstance();
+    router->pushState(FieldState::create());
     
     /*
     auto story      = StoryLayer::create();

@@ -8,37 +8,24 @@
 
 #include "MovableRock.h"
 
+#include "FieldState.h"
 #include "FieldLayer.h"
 
-void MovableRock::executePreMoveAction(Direction direction, FieldLayer* view)
+void MovableRock::executePreMoveAction(Direction direction)
 {
     auto check_pos = this->getPosition() + direction.getMapPointVec();
-    if (this->isCollidable(check_pos, view)) {
+    if (state->isCollidable(check_pos.x, check_pos.y)) {
         return ;
     }
     
-    this->pos += direction.getMapPointVec();
+    pos += direction.getMapPointVec();
     auto move_vec = direction.getUnitVec() * 16;
     
-    view->runObjectMoveAction(this->getId(), move_vec);
+    auto view = state->getFieldView();
+    view->runObjectMoveAction(getId(), move_vec);
 }
 
 bool MovableRock::isPassablePlayer()
 {
-    return false;
-}
-
-bool MovableRock::isCollidable(cocos2d::Point pos, FieldLayer* view)
-{
-    if (pos.x < 0 || pos.y < 0) {
-        return true;
-    }
-    
-    auto tiled_gid = view->getMapCollider()->getTileGIDAt(pos);
-    
-    if (tiled_gid > 0) {
-        return true;
-    }
-    
     return false;
 }
