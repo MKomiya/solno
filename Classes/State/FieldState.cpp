@@ -43,6 +43,7 @@ FieldState* FieldState::create()
     router->addView(field);
     router->addView(controller);
     
+    ret->init();
     ret->setMap(TMXTiledMap::create("tmx/01_scrap.tmx"));
     ret->setPlayerMapPosition(Point(0, 0));
     ret->setPlayerDirection("down");
@@ -91,10 +92,6 @@ void FieldState::enter()
     
     view->initMapData(map);
     view->initFieldObject(objects);
-    
-    auto router = Raciela::Router::getInstance();
-    router->addView(view);
-    router->addView(controller);
 }
 
 void FieldState::update()
