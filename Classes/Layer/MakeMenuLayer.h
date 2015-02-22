@@ -11,10 +11,10 @@
 
 #include <iostream>
 #include <cocos2d.h>
-
+#include "View.h"
 #include "Item.h"
 
-class MakeMenuLayer : public cocos2d::Layer
+class MakeMenuLayer : public Raciela::View
 {
 public:
     static const int VIEW_ITEM_W = 4;

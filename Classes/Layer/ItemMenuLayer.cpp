@@ -11,6 +11,7 @@
 #include "Template.h"
 
 #include "InputModule.h"
+#include "Dispatcher.h"
 
 USING_NS_CC;
 
@@ -31,7 +32,7 @@ ItemMenuLayer* ItemMenuLayer::create(cocos2d::Vector<Item *> &item_list)
 
 bool ItemMenuLayer::init()
 {
-    if (!Layer::init()) {
+    if (!Raciela::View::init()) {
         return false;
     }
     
@@ -62,8 +63,9 @@ bool ItemMenuLayer::init()
         item_menu_value->setPosition(base_pos.x + x * 41, base_pos.y - 40 * y);
         item_menu_value->setCallback([idx, this](Ref* s) {
             updateViewItem(idx);
-            InputModule::getInstance()->pushEvent(InputEvent::PRESS_ITEM_SELECT);
-            InputModule::getInstance()->pushParam(idx);
+            
+            auto dispatcher = Raciela::Dispatcher::getInstance();
+            dispatcher->dispatch("item_select", idx);
         });
         vec.pushBack(item_menu_value);
     }

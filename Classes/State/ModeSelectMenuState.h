@@ -10,10 +10,10 @@
 #define __solno__ModeSelectMenuState__
 
 #include <stdio.h>
-#include "MenuState.h"
+#include "State.h"
 
 class ModeSelectMenuLayer;
-class ModeSelectMenuState : public MenuState
+class ModeSelectMenuState : public Raciela::State
 {
 public:
     static ModeSelectMenuState* create();

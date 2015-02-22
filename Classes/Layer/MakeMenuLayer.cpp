@@ -7,9 +7,8 @@
 //
 
 #include "MakeMenuLayer.h"
-
 #include "Template.h"
-#include "InputModule.h"
+#include "Dispatcher.h"
 
 USING_NS_CC;
 
@@ -30,7 +29,7 @@ MakeMenuLayer* MakeMenuLayer::create(cocos2d::Vector<Item *> &item_list)
 
 bool MakeMenuLayer::init()
 {
-    if (!Layer::init()) {
+    if (!Raciela::View::init()) {
         return false;
     }
     
@@ -62,9 +61,8 @@ bool MakeMenuLayer::init()
         item_menu_value->setCallback([idx, this](Ref* s) {
             updateViewItem(idx);
             
-            auto im = InputModule::getInstance();
-            im->pushEvent(InputEvent::PRESS_ITEM_SELECT);
-            im->pushParam(idx);
+            auto dispatcher = Raciela::Dispatcher::getInstance();
+            dispatcher->dispatch("selected_item", idx);
         });
         item_icon_list.pushBack(item_menu_value);
     }
@@ -98,27 +96,24 @@ bool MakeMenuLayer::init()
     prepare_item_1->setPosition(190, frame->getContentSize().height - 82);
     prepare_item_1->setVisible(false);
     prepare_item_1->setCallback([this](Ref* s) {
-        auto im = InputModule::getInstance();
-        im->pushEvent(InputEvent::PRESS_PREPARENT_ITEM_SELECT);
-        im->pushParam(1);
+        auto dispacher = Raciela::Dispatcher::getInstance();
+        dispacher->dispatch("cancel_preparent_item", 1);
     });
     prepare_item_2 = MenuItemSprite::create(prepare_item_2_sprite, prepare_item_2_sprite);
     prepare_item_2->setAnchorPoint(Point(0, 1));
     prepare_item_2->setPosition(222, frame->getContentSize().height - 82);
     prepare_item_2->setVisible(false);
     prepare_item_2->setCallback([this](Ref* s) {
-        auto im = InputModule::getInstance();
-        im->pushEvent(InputEvent::PRESS_PREPARENT_ITEM_SELECT);
-        im->pushParam(2);
+        auto dispacher = Raciela::Dispatcher::getInstance();
+        dispacher->dispatch("cancel_preparent_item", 2);
     });
     prepare_item_3 = MenuItemSprite::create(prepare_item_3_sprite, prepare_item_3_sprite);
     prepare_item_3->setAnchorPoint(Point(0, 1));
     prepare_item_3->setPosition(206, frame->getContentSize().height - 56);
     prepare_item_3->setVisible(false);
     prepare_item_3->setCallback([this](Ref* s) {
-        auto im = InputModule::getInstance();
-        im->pushEvent(InputEvent::PRESS_PREPARENT_ITEM_SELECT);
-        im->pushParam(3);
+        auto dispacher = Raciela::Dispatcher::getInstance();
+        dispacher->dispatch("cancel_preparent_item", 3);
     });
     
     auto selected_item_menu = Menu::create(prepare_item_1, prepare_item_2, prepare_item_3, NULL);

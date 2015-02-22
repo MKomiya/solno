@@ -9,12 +9,13 @@
 #include "ModeSelectMenuLayer.h"
 
 #include "InputModule.h"
+#include "Dispatcher.h"
 
 USING_NS_CC;
 
 bool ModeSelectMenuLayer::init()
 {
-    if (!Layer::init()) {
+    if (!Raciela::View::init()) {
         return false;
     }
     
@@ -27,7 +28,8 @@ bool ModeSelectMenuLayer::init()
     menu_item->setScale(3.0f);
     menu_item->setPosition(Point(s.width / 2.0f, s.height * 3.0f / 4.0f));
     menu_item->setCallback([=](Ref* sender) {
-        InputModule::getInstance()->pushEvent(InputEvent::PRESS_MODE_SELECT_ITEM);
+        auto dispatcher = Raciela::Dispatcher::getInstance();
+        dispatcher->dispatch("selected_item");
     });
     
     auto make_label = Label::createWithBMFont("fonts/message_font.fnt", "MAKE");
@@ -37,7 +39,8 @@ bool ModeSelectMenuLayer::init()
     menu_make->setScale(3.0f);
     menu_make->setPosition(Point(s.width / 2.0f, s.height * 2.5f / 4.0f));
     menu_make->setCallback([=](Ref* sender) {
-        InputModule::getInstance()->pushEvent(InputEvent::PRESS_MODE_SELECT_MAKE);
+        auto dispatcher = Raciela::Dispatcher::getInstance();
+        dispatcher->dispatch("selected_make");
     });
     
     auto menu = Menu::create(menu_item, menu_make, NULL);
