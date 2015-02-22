@@ -53,8 +53,12 @@ void ModeSelectMenuState::delegate()
     auto dispatcher = Raciela::Dispatcher::getInstance();
     
     dispatcher->subscribe<void ()>("selected_item", [=]() {
+        auto router = Raciela::Router::getInstance();
+        router->pushState(ItemMenuState::create());
     });
     
     dispatcher->subscribe<void ()>("selected_make", [=]() {
+        auto router = Raciela::Router::getInstance();
+        router->pushState(MakeMenuState::create());
     });
 }

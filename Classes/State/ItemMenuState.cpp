@@ -68,5 +68,8 @@ void ItemMenuState::delegate()
             // view->updateMakeTreeView(current_item);
             return ;
         }
+        
+        auto router = Raciela::Router::getInstance();
+        router->popState();
     });
 }

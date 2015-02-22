@@ -10,7 +10,7 @@
 
 #include "StateMachineModule.h"
 #include "FieldState.h"
-#include "StoryState.h"
+#include "ModeSelectMenuState.h"
 #include "Direction.h"
 #include "FieldObject.h"
 #include "Item.h"
@@ -119,6 +119,11 @@ void FieldState::delegate()
     
     dispatcher->subscribe<void (ArrowInputEvent)>("input_arrow", [=](ArrowInputEvent e) {
         movePlayerCharacter(e);
+    });
+    
+    dispatcher->subscribe<void ()>("release_decide", [=]() {
+        auto router = Raciela::Router::getInstance();
+        router->pushState(ModeSelectMenuState::create());
     });
     
     dispatcher->subscribe<void (MessageViewState)>("update_msg_state", [=](MessageViewState state) {
