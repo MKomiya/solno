@@ -14,7 +14,7 @@ USING_NS_CC;
 
 bool ControllerLayer::init()
 {
-    if (!Layer::init()) {
+    if (!Raciela::View::init()) {
         return false;
     }
     

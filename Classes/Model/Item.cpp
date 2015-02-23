@@ -72,7 +72,7 @@ Item* Item::createByMaster(int item_id)
 }
 
 #pragma mark override method
-void Item::useItem()
+void Item::useItem(FieldState *state)
 {
 }
 

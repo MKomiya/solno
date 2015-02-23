@@ -7,12 +7,15 @@
 //
 
 #include "ModeSelectMenuState.h"
-#include "StateMachineModule.h"
 
-#include "LayerManager.h"
+#include "Router.h"
 #include "ModeSelectMenuLayer.h"
 
-#include "InputModule.h"
+#include "Dispatcher.h"
+#include "Router.h"
+
+#include "ItemMenuState.h"
+#include "MakeMenuState.h"
 
 USING_NS_CC;
 
@@ -24,6 +27,7 @@ ModeSelectMenuState* ModeSelectMenuState::create()
         return nullptr;
     }
     
+    ret->init();
     ret->autorelease();
     return ret;
 }
@@ -31,21 +35,31 @@ ModeSelectMenuState* ModeSelectMenuState::create()
 void ModeSelectMenuState::enter()
 {
     view = ModeSelectMenuLayer::create();
-    LayerManager::getInstance()->push("mode_select_menu", view);
+    auto router = Raciela::Router::getInstance();
+    router->addView(view);
 }
 
 void ModeSelectMenuState::update()
 {
-    auto event = InputModule::getInstance()->popEvent();
-    
-    if (event == InputEvent::PRESS_MODE_SELECT_ITEM) {
-        StateMachineModule::getInstance()->changeState("item_menu");
-    } else if (event == InputEvent::PRESS_MODE_SELECT_MAKE) {
-        StateMachineModule::getInstance()->changeState("make_menu");
-    }
 }
 
 void ModeSelectMenuState::exit()
 {
-    LayerManager::getInstance()->pop();
+    Raciela::Router::getInstance()->removeView(view);
+}
+
+void ModeSelectMenuState::delegate()
+{
+    auto dispatcher = Raciela::Dispatcher::getInstance();
+    
+    dispatcher->subscribe<void ()>("selected_item", [=]() {
+        auto router = Raciela::Router::getInstance();
+        router->popState();
+        router->pushState(ItemMenuState::create());
+    });
+    
+    dispatcher->subscribe<void ()>("selected_make", [=]() {
+        auto router = Raciela::Router::getInstance();
+        router->pushState(MakeMenuState::create());
+    });
 }

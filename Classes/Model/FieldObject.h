@@ -13,7 +13,7 @@
 #include <cocos2d.h>
 
 class Direction;
-class FieldLayer;
+class FieldState;
 class FieldObject : public cocos2d::Ref
 {
 public:
@@ -24,16 +24,17 @@ public:
         TREE,              // 破壊出来る木
     };
     
-    static FieldObject* create(int id, cocos2d::Point pos, cocos2d::ValueMap data);
+    static FieldObject* create(FieldState* state, int id, cocos2d::Point pos, cocos2d::ValueMap data);
     
-    virtual void executePreMoveAction(Direction, FieldLayer*);
-    virtual void executeDecideAction(FieldLayer*);
-    virtual void executeMovedAction(FieldLayer*);
+    virtual void executePreMoveAction(Direction);
+    virtual void executeDecideAction();
+    virtual void executeMovedAction();
     virtual bool isPassablePlayer();
     
     CC_SYNTHESIZE(int, id, Id);
     CC_SYNTHESIZE(cocos2d::Point, pos, Position);
     CC_SYNTHESIZE(ObjectType, obj_type, ObjectType);
+    CC_SYNTHESIZE(FieldState*, state, FieldState);
 };
 
 #endif /* defined(__solno__FieldObject__) */

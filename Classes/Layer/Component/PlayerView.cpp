@@ -7,6 +7,7 @@
 //
 
 #include "PlayerView.h"
+#include "Dispatcher.h"
 
 USING_NS_CC;
 
@@ -25,11 +26,12 @@ PlayerView* PlayerView::create()
         auto animate   = Animate::create(animation);
         animate->setTag(IDLING_ANIMATE);
         ret->runAction(animate);
-    } else {
-        delete ret;
-        ret = NULL;
+        
+        return ret;
     }
-    return ret;
+    
+    CC_SAFE_DELETE(ret);
+    return nullptr;
 }
 
 void PlayerView::setIdlingAnimate(std::string direction)
@@ -50,32 +52,28 @@ void PlayerView::setIdlingAnimate(std::string direction)
 
 void PlayerView::runMoveAction(Point move_vec)
 {
+    auto dispatcher = Raciela::Dispatcher::getInstance();
+    
     auto move_action = MoveBy::create(0.3f, move_vec);
-    auto moved_action = CallFunc::create([=]() {
+    auto moved_action = CallFunc::create([this,dispatcher]() {
         if (after_move_action.size() == 0) {
+            dispatcher->dispatch("update_player_state", PlayerViewState::IDLING);
             return ;
         }
         
         auto seq = Sequence::create(after_move_action);
-        auto after = CallFunc::create([=]{
+        auto after = CallFunc::create([this,dispatcher]{
+            dispatcher->dispatch("update_player_state", PlayerViewState::IDLING);
             after_move_action.clear();
         });
         
-        this->runAction(Sequence::create(seq, after, NULL));
+        runAction(Sequence::create(seq, after, NULL));
     });
     auto action = Sequence::create(move_action, moved_action, NULL);
     action->setTag(MOVE_SEQUENCE);
     
-    this->runAction(action);
-}
-
-bool PlayerView::isRunnningMoveAction()
-{
-    auto running_action = this->getActionByTag(MOVE_SEQUENCE);
-    if (running_action && !running_action->isDone()) {
-        return true;
-    }
-    return false;
+    dispatcher->dispatch("update_player_state", PlayerViewState::RUNNING);
+    runAction(action);
 }
 
 void PlayerView::addRunActionAfterMove(cocos2d::FiniteTimeAction *action)

@@ -12,7 +12,9 @@
 #include <stdio.h>
 #include <cocos2d.h>
 
-class ControllerLayer : public cocos2d::Layer
+#include "View.h"
+
+class ControllerLayer : public Raciela::View
 {
 public:
     virtual bool init();

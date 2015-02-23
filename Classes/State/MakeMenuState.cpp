@@ -9,10 +9,10 @@
 #include "MakeMenuState.h"
 
 #include "UserStorageModule.h"
-#include "InputModule.h"
+#include "Dispatcher.h"
 
 #include "MakeMenuLayer.h"
-#include "LayerManager.h"
+#include "Router.h"
 
 MakeMenuState* MakeMenuState::create()
 {
@@ -39,40 +39,48 @@ void MakeMenuState::enter()
     
     // ItemMenuLayerへset
     view = MakeMenuLayer::create(item_list);
-    LayerManager::getInstance()->push("make_menu", view);
+    auto router = Raciela::Router::getInstance();
+    router->addView(view);
 }
 
 void MakeMenuState::update()
 {
-    auto e = InputModule::getInstance()->popEvent();
-    auto p = InputModule::getInstance()->popParam();
-    
-    if (e == InputEvent::PRESS_ITEM_SELECT) {
-        if (p < 0 || p >= item_list.size()) {
+}
+
+void MakeMenuState::exit()
+{
+    preparent_item_ids.clear();
+    item_list.clear();
+    Raciela::Router::getInstance()->removeView(view);
+}
+
+void MakeMenuState::delegate()
+{
+    dispatcher->subscribe<void (int)>("selected_item", [=](int idx) {
+        if (idx < 0 || idx >= item_list.size()) {
             return ;
         }
         
-        auto item = item_list.at(p);
-        if (current_item_idx != p) {
-            current_item_idx = p;
+        auto item = item_list.at(idx);
+        if (current_item_idx != idx) {
+            current_item_idx = idx;
             return ;
         }
         
         updatePreparentItem(item);
-        return ;
-    }
+    });
     
-    if (e == InputEvent::PRESS_PREPARENT_ITEM_SELECT) {
-        if (p < 0 || p > preparent_item_ids.size()) {
+    dispatcher->subscribe<void (int)>("cancel_preparent_item", [=](int idx) {
+        if (idx < 0 || idx > preparent_item_ids.size()) {
             return ;
         }
         
-        auto item_id = preparent_item_ids.at(p - 1);
+        auto item_id = preparent_item_ids.at(idx - 1);
         auto it = std::find(preparent_item_ids.begin(),
                             preparent_item_ids.end(),
                             item_id);
         preparent_item_ids.erase(it);
-        view->invisiblePreparentItem(p);
+        view->invisiblePreparentItem(idx);
         
         if (preparent_item_ids.empty()) {
             view->setOpacityItemIconAll(255);
@@ -95,16 +103,7 @@ void MakeMenuState::update()
         if (!indices.empty()) {
             view->visibleItemIcons(indices);
         }
-        
-        return ;
-    }
-}
-
-void MakeMenuState::exit()
-{
-    preparent_item_ids.clear();
-    item_list.clear();
-    LayerManager::getInstance()->pop();
+    });
 }
 
 void MakeMenuState::updatePreparentItem(Item *item)

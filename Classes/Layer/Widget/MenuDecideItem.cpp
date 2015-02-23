@@ -7,7 +7,7 @@
 //
 
 #include "MenuDecideItem.h"
-#include "InputModule.h"
+#include "Dispatcher.h"
 
 USING_NS_CC;
 
@@ -27,12 +27,14 @@ void MenuDecideItem::selected()
 {
     MenuItemFont::selected();
     
-    InputModule::getInstance()->pushEvent(InputEvent::PRESS_DECIDE);
+    auto dispatcher = Raciela::Dispatcher::getInstance();
+    dispatcher->dispatch("press_decide");
 }
 
 void MenuDecideItem::unselected()
 {
     MenuItemFont::unselected();
     
-    InputModule::getInstance()->pushEvent(InputEvent::RELEASE_DECIDE);
+    auto dispatcher = Raciela::Dispatcher::getInstance();
+    dispatcher->dispatch("release_decide");
 }

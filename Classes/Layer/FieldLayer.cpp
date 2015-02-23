@@ -10,22 +10,31 @@
 #include "PlayerView.h"
 #include "MessageView.h"
 
-#include "StateMachineModule.h"
 #include "FieldState.h"
 #include "FieldObject.h"
+#include "Dispatcher.h"
 
 USING_NS_CC;
 
 bool FieldLayer::init()
 {
-    if (!Layer::init()) {
+    if (!Raciela::View::init()) {
         return false;
     }
+    
+    // msg_view
+    msg_view = MessageView::create();
+    addChild(msg_view);
+    
+    return true;
+}
 
+void FieldLayer::initMapData(cocos2d::TMXTiledMap *value)
+{
     auto s = Director::getInstance()->getWinSize();
     
     // map view
-    map = TMXTiledMap::create("tmx/01_scrap.tmx");
+    map = value;
     map->setAnchorPoint(Point(0, 1));
     map->setPosition(Point(16, s.height - 16));
     map->setScale(2.0f);
@@ -34,12 +43,6 @@ bool FieldLayer::init()
     // invisible meta
     auto meta_layer = map->getLayer("meta");
     meta_layer->setVisible(false);
-    
-    // msg_view
-    msg_view = MessageView::create();
-    addChild(msg_view);
-    
-    return true;
 }
 
 void FieldLayer::initFieldObject(std::vector<FieldObject *> objects)
@@ -70,18 +73,20 @@ void FieldLayer::initFieldObject(std::vector<FieldObject *> objects)
             player_sprite->setAnchorPoint(Point(0, 1));
             player_sprite->setPosition(pos);
             addChild(player_sprite);
-        } else {
-            Point pos;
-            pos.x = obj_pos.x * 16;
-            pos.y = s.height - (obj_pos.y * 16);
             
-            auto sprite = Sprite::create("tmx/movable_rock.png");
-            sprite->getTexture()->setAliasTexParameters();
-            sprite->setAnchorPoint(Point(0, 1));
-            sprite->setPosition(pos);
-            sprite->setTag(object->getId());
-            objects_root->addChild(sprite);
+            continue;
         }
+        
+        Point pos;
+        pos.x = obj_pos.x * 16;
+        pos.y = s.height - (obj_pos.y * 16);
+        
+        auto sprite = Sprite::create("tmx/movable_rock.png");
+        sprite->getTexture()->setAliasTexParameters();
+        sprite->setAnchorPoint(Point(0, 1));
+        sprite->setPosition(pos);
+        sprite->setTag(object->getId());
+        objects_root->addChild(sprite);
     }
 }
 
@@ -107,44 +112,20 @@ void FieldLayer::runObjectMoveAction(int object_id, cocos2d::Point move_vec)
     obj->runAction(MoveBy::create(0.3, move_vec));
 }
 
-TMXLayer* FieldLayer::getMapCollider()
-{
-    auto ret = map->getLayer("meta");
-    if (ret == nullptr) {
-        throw "meta layer is not found";
-    }
-    return ret;
-}
-
-TMXObjectGroup* FieldLayer::getObjectsGroup()
-{
-    auto group = map->getObjectGroup("Event");
-    if (group == nullptr) {
-        throw "object group is not found";
-    }
-    return group;
-}
-
 void FieldLayer::scrollField(cocos2d::Point move_vec, cocos2d::Point scroll_vec)
 {
-    auto action = Spawn::create(TargetedAction::create(player_sprite, MoveBy::create(0.4, move_vec)),
-                                TargetedAction::create(map, MoveBy::create(0.4, scroll_vec)), nullptr);
+    auto dispatcher = Raciela::Dispatcher::getInstance();
+    
+    auto action = Sequence::create(
+                                   Spawn::create(TargetedAction::create(player_sprite, MoveBy::create(0.4, move_vec)),
+                                                 TargetedAction::create(map, MoveBy::create(0.4, scroll_vec)), nullptr),
+                                   CallFunc::create([dispatcher]() {
+                                       dispatcher->dispatch("update_field_state", FieldViewState::NOTHING);
+                                   }), nullptr);
     action->setTag(SCROLL_ACTION);
-    this->runAction(action);
-}
-
-bool FieldLayer::isRunningPlayerView()
-{
-    return player_sprite->isRunnningMoveAction();
-}
-
-bool FieldLayer::isRunningMapScroll()
-{
-    auto action = this->getActionByTag(SCROLL_ACTION);
-    if (action && !action->isDone()) {
-        return true;
-    }
-    return false;
+    
+    dispatcher->dispatch("update_field_state", FieldViewState::SCROLL);
+    runAction(action);
 }
 
 void FieldLayer::addRunActionAfterMove(cocos2d::FiniteTimeAction *action)
@@ -160,9 +141,4 @@ void FieldLayer::viewMessages(std::vector<std::string> msg_data)
 void FieldLayer::releaseMessages()
 {
     msg_view->nextMessage();
-}
-
-MessageView::ViewState FieldLayer::getMessageState()
-{
-    return msg_view->getState();
 }
