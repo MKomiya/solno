@@ -8,7 +8,6 @@
 
 #include <json11.hpp>
 
-#include "StateMachineModule.h"
 #include "FieldState.h"
 #include "ModeSelectMenuState.h"
 #include "Direction.h"
@@ -55,19 +54,15 @@ FieldState* FieldState::create()
     ret->setPlayerViewState(PlayerViewState::IDLING);
     ret->setFieldViewState(FieldViewState::NOTHING);
     
+    UserStorageModule::getInstance()->init();
+    UserStorageModule::getInstance()->updateUserItem(1, 1);
+    
     ret->autorelease();
     return ret;
 }
 
 void FieldState::enter()
 {
-    if (execute_item != nullptr) {
-        execute_item->useItem();
-        execute_item = nullptr;
-        view->changePlayerAnimation(player_direction);
-        return ;
-    }
-    
     // map size取得のためにcollider layerで代用する
     auto obj_layer = map->getLayer("meta");
     auto size      = obj_layer->getLayerSize();
@@ -96,6 +91,12 @@ void FieldState::enter()
 
 void FieldState::update()
 {
+    if (execute_item != nullptr) {
+        execute_item->useItem();
+        execute_item = nullptr;
+        view->changePlayerAnimation(player_direction);
+        return ;
+    }
 }
 
 void FieldState::exit()
@@ -134,6 +135,10 @@ void FieldState::delegate()
     dispatcher->subscribe<void (FieldViewState)>("update_field_state", [=](FieldViewState state) {
         field_view_state = state;
     });
+    
+    dispatcher->subscribe<void (Item*)>("use_item", [=](Item* item) {
+        addExecuteItem(item);
+    });
 }
 
 FieldObject* FieldState::findPlayerDirectionAbutObject()
@@ -163,10 +168,7 @@ void FieldState::deleteObject(FieldObject *target)
 }
 
 void FieldState::decideAction()
-{
-    StateMachineModule::getInstance()->changeState("mode_select_menu");
-    return ;
-    
+{    
     // message view disabled
     if (msg_view_state == MessageViewState::WAIT) {
         view->releaseMessages();

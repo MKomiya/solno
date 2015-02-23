@@ -7,17 +7,13 @@
 //
 
 #include "ObjectOperateItem.h"
-
-#include "StateMachineModule.h"
 #include "FieldState.h"
-
 #include "FieldObject.h"
 
 void ObjectOperateItem::useItem()
 {
-    auto fsm = StateMachineModule::getInstance();
-    FieldState* state = (FieldState*)fsm->getState("field");
-    
+    CCLOG("アイテム使用");
+    /*
     auto break_object = state->findPlayerDirectionAbutObject();
     if (break_object == nullptr) {
         CCLOG("ここでは使えない");
@@ -32,4 +28,5 @@ void ObjectOperateItem::useItem()
     
     // 破壊処理（とりあえず木を壊すだけ）
     state->deleteObject(break_object);
+    */
 }

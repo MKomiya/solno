@@ -10,7 +10,6 @@
 #include "PlayerView.h"
 #include "MessageView.h"
 
-#include "StateMachineModule.h"
 #include "FieldState.h"
 #include "FieldObject.h"
 #include "Dispatcher.h"

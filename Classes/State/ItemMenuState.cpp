@@ -8,7 +8,6 @@
 
 #include "ItemMenuState.h"
 #include "FieldState.h"
-#include "StateMachineModule.h"
 #include "Item.h"
 #include "MasterStorageModule.h"
 #include "UserStorageModule.h"
@@ -25,6 +24,7 @@ ItemMenuState* ItemMenuState::create()
         return nullptr;
     }
     
+    ret->init();
     ret->setCurrentItemIndex(0);
     ret->autorelease();
     return ret;
@@ -40,7 +40,7 @@ void ItemMenuState::enter()
     }
     
     // ItemMenuLayerへset
-    auto view = ItemMenuLayer::create(item_list);
+    view = ItemMenuLayer::create(item_list);
     auto router = Raciela::Router::getInstance();
     router->addView(view);
 }
@@ -69,6 +69,7 @@ void ItemMenuState::delegate()
             return ;
         }
         
+        dispatcher->dispatch("use_item", item);
         auto router = Raciela::Router::getInstance();
         router->popState();
     });

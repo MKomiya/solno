@@ -64,7 +64,7 @@ bool ItemMenuLayer::init()
             updateViewItem(idx);
             
             auto dispatcher = Raciela::Dispatcher::getInstance();
-            dispatcher->dispatch("item_select", idx);
+            dispatcher->dispatch("selected_item", idx);
         });
         vec.pushBack(item_menu_value);
     }

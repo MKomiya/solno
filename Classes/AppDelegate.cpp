@@ -1,6 +1,4 @@
 #include "AppDelegate.h"
-#include "StateMachineModule.h"
-#include "HelloWorldScene.h"
 #include "MasterStorageModule.h"
 #include "Router.h"
 #include "FieldState.h"
@@ -54,6 +52,9 @@ bool AppDelegate::applicationDidFinishLaunching() {
 
     auto router = Raciela::Router::getInstance();
     auto scene  = router->getRootScene();
+    scene->schedule([router](float t) {
+        router->update(t);
+    }, "update_state");
     
     // initialize state
     router->pushState(FieldState::create());

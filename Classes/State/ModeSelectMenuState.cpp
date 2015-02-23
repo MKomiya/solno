@@ -7,7 +7,6 @@
 //
 
 #include "ModeSelectMenuState.h"
-#include "StateMachineModule.h"
 
 #include "Router.h"
 #include "ModeSelectMenuLayer.h"
@@ -28,6 +27,7 @@ ModeSelectMenuState* ModeSelectMenuState::create()
         return nullptr;
     }
     
+    ret->init();
     ret->autorelease();
     return ret;
 }
@@ -54,6 +54,7 @@ void ModeSelectMenuState::delegate()
     
     dispatcher->subscribe<void ()>("selected_item", [=]() {
         auto router = Raciela::Router::getInstance();
+        router->popState();
         router->pushState(ItemMenuState::create());
     });
     
