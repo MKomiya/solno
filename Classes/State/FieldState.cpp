@@ -92,7 +92,7 @@ void FieldState::enter()
 void FieldState::update()
 {
     if (execute_item != nullptr) {
-        execute_item->useItem();
+        execute_item->useItem(this);
         execute_item = nullptr;
         view->changePlayerAnimation(player_direction);
         return ;

@@ -10,10 +10,8 @@
 #include "FieldState.h"
 #include "FieldObject.h"
 
-void ObjectOperateItem::useItem()
+void ObjectOperateItem::useItem(FieldState* state)
 {
-    CCLOG("アイテム使用");
-    /*
     auto break_object = state->findPlayerDirectionAbutObject();
     if (break_object == nullptr) {
         CCLOG("ここでは使えない");
@@ -28,5 +26,4 @@ void ObjectOperateItem::useItem()
     
     // 破壊処理（とりあえず木を壊すだけ）
     state->deleteObject(break_object);
-    */
 }

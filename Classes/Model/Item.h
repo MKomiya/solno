@@ -12,6 +12,7 @@
 #include <stdio.h>
 #include <cocos2d.h>
 
+class FieldState;
 class Item : public cocos2d::Ref
 {
 public:
@@ -28,7 +29,7 @@ public:
     static Item* createMock(int id);
     static Item* createByMaster(int item_id);
     
-    virtual void useItem();
+    virtual void useItem(FieldState* state);
 
     cocos2d::Texture2D* getPrepareItemTexture(int prepare_index);
     Item* getMakeItem();
