@@ -29,6 +29,7 @@ StoryState* StoryState::create(StoryLayer *view)
     }
     
     ret->autorelease();
+    ret->created();
     return ret;
 }
 

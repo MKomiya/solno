@@ -58,10 +58,11 @@ FieldState* FieldState::create()
     UserStorageModule::getInstance()->updateUserItem(1, 1);
     
     ret->autorelease();
+    ret->created();
     return ret;
 }
 
-void FieldState::enter()
+void FieldState::created()
 {
     // map size取得のためにcollider layerで代用する
     auto obj_layer = map->getLayer("meta");
@@ -87,6 +88,10 @@ void FieldState::enter()
     
     view->initMapData(map);
     view->initFieldObject(objects);
+}
+
+void FieldState::enter()
+{
 }
 
 void FieldState::update()

@@ -27,6 +27,7 @@ ItemMenuState* ItemMenuState::create()
     ret->init();
     ret->setCurrentItemIndex(0);
     ret->autorelease();
+    ret->created();
     return ret;
 }
 
