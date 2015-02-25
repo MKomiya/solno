@@ -23,6 +23,7 @@ MakeMenuState* MakeMenuState::create()
         return nullptr;
     }
 
+    ret->init();
     ret->setCurrentItemIndex(0);
     ret->setMakeItem(nullptr);
     ret->autorelease();
@@ -46,6 +47,8 @@ void MakeMenuState::enter()
 
     controller = MakeMenuControllerLayer::create();
     router->addView(controller);
+    
+    controller->setVisible(false);
 }
 
 void MakeMenuState::update()
@@ -111,16 +114,18 @@ void MakeMenuState::delegate()
         }
     });
 
-    dispatcher->subscribe<void ()>("decide_make", [=]() {
-       // auto us = UserStorageModule::getInstance();
-       // us->addItem(make_item);
-       //
-       // view->showResult(make_item);
+    dispatcher->subscribe<void ()>("release_decide", [=]() {
+        CCLOG("%s を調合した！", make_item->getItemName().c_str());
+        
+        auto us   = UserStorageModule::getInstance();
+        auto data = us->getOneUserItem(make_item->getItemId());
+        us->updateUserItem(make_item->getItemId(), data.num + 1);
+        //view->showResult(make_item);
     });
 
     dispatcher->subscribe<void ()>("touched_result", [=]() {
-        // auto router = Raciela::Router::getInstance();
-        // router->popState();
+        auto router = Raciela::Router::getInstance();
+        router->popState();
     });
 }
 
@@ -153,7 +158,7 @@ void MakeMenuState::updatePreparentItem(Item *item)
 
     // 条件が揃っていたらOKボタンを表示する
     if (canMakeItem(make_item, indices)) {
-        //view->showDecideButton();
+        controller->setVisible(true);
     }
 }
 
@@ -164,13 +169,16 @@ bool MakeMenuState::canMakeItem(const Item* make_item, const std::vector<int> se
     auto preparent_item_3_id = make_item->getPrepareItemId3();
 
     // @todo: preparent_item_idがnilのときの検証
-    if (std::find(preparent_item_ids.begin(), preparent_item_ids.end(), preparent_item_1_id) == preparent_item_ids.end()) {
+    if (preparent_item_1_id != 0 &&
+        std::find(preparent_item_ids.begin(), preparent_item_ids.end(), preparent_item_1_id) == preparent_item_ids.end()) {
         return false;
     }
-    if (std::find(preparent_item_ids.begin(), preparent_item_ids.end(), preparent_item_2_id) == preparent_item_ids.end()) {
+    if (preparent_item_2_id != 0 &&
+        std::find(preparent_item_ids.begin(), preparent_item_ids.end(), preparent_item_2_id) == preparent_item_ids.end()) {
         return false;
     }
-    if (std::find(preparent_item_ids.begin(), preparent_item_ids.end(), preparent_item_3_id) == preparent_item_ids.end()) {
+    if (preparent_item_3_id != 0 &&
+        std::find(preparent_item_ids.begin(), preparent_item_ids.end(), preparent_item_3_id) == preparent_item_ids.end()) {
         return false;
     }
     return true;

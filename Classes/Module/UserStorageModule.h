@@ -18,6 +18,8 @@
 class UserItem
 {
 public:
+    static int index;
+    
     int id, item_id, num;
     UserItem() :
         id(-1), item_id(0), num(0) {}
@@ -64,7 +66,7 @@ public:
     UserItem getOneUserItem(int id);
     
 #pragma mark Update user data
-    void updateUserItem(int id, int item_id, int num);
+    void updateUserItem(int item_id, int num);
     
 private:
     void writeJsonFile(std::string ns, std::string data);

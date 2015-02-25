@@ -55,7 +55,6 @@ FieldState* FieldState::create()
     ret->setFieldViewState(FieldViewState::NOTHING);
     
     UserStorageModule::getInstance()->init();
-    UserStorageModule::getInstance()->updateUserItem(1, 1, 1);
     
     ret->autorelease();
     ret->created();
@@ -92,6 +91,9 @@ void FieldState::created()
 
 void FieldState::enter()
 {
+    if (controller) {
+        controller->setVisible(true);
+    }
 }
 
 void FieldState::update()
@@ -107,6 +109,7 @@ void FieldState::update()
 void FieldState::exit()
 {
     view->stopPlayerAnimation();
+    controller->setVisible(false);
 }
 
 void FieldState::addExecuteItem(Item* item)

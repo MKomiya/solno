@@ -11,6 +11,7 @@
 #include "UserStorageModule.h"
 #include "Item.h"
 
+int UserItem::index = 1;
 std::string UserStorageModule::NS_USER_ITEM = "item";
 UserStorageModule* UserStorageModule::instance;
 
@@ -39,10 +40,10 @@ std::vector<UserItem> UserStorageModule::getAllUserItem()
     return user_item;
 }
 
-UserItem UserStorageModule::getOneUserItem(int id)
+UserItem UserStorageModule::getOneUserItem(int item_id)
 {
     for (auto value : user_item) {
-        if (value.id == id) {
+        if (value.item_id == item_id) {
             return value;
         }
     }
@@ -50,17 +51,17 @@ UserItem UserStorageModule::getOneUserItem(int id)
 }
 
 #pragma mark Update user data
-void UserStorageModule::updateUserItem(int id, int item_id, int num)
+void UserStorageModule::updateUserItem(int item_id, int num)
 {
     for (UserItem& value : user_item) {
-        if (value.id == id && value.item_id == item_id) {
+        if (value.item_id == item_id) {
             value.num = num;
             flush();
             return ;
         }
     }
 
-    user_item.push_back(UserItem(id, item_id, num));
+    user_item.push_back(UserItem(UserItem::index++, item_id, num));
     flush();
 }
 

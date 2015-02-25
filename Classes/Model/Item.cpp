@@ -10,6 +10,7 @@
 #include "ObjectOperateItem.h"
 
 #include "MasterStorageModule.h"
+#include "UserStorageModule.h"
 
 USING_NS_CC;
 
