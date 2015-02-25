@@ -57,6 +57,8 @@ void MakeMenuState::update()
 
 void MakeMenuState::exit()
 {
+    dispatcher->removeAllListener();
+    
     preparent_item_ids.clear();
     item_list.clear();
     Raciela::Router::getInstance()->removeView(controller);

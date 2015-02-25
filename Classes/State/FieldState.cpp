@@ -91,6 +91,8 @@ void FieldState::created()
 
 void FieldState::enter()
 {
+    delegate();
+    
     if (controller) {
         controller->setVisible(true);
     }
