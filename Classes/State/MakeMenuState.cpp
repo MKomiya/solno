@@ -12,6 +12,7 @@
 #include "Dispatcher.h"
 
 #include "MakeMenuLayer.h"
+#include "MakeMenuControllerLayer.h"
 #include "Router.h"
 
 MakeMenuState* MakeMenuState::create()
@@ -42,6 +43,9 @@ void MakeMenuState::enter()
     view = MakeMenuLayer::create(item_list);
     auto router = Raciela::Router::getInstance();
     router->addView(view);
+
+    controller = MakeMenuControllerLayer::create();
+    router->addView(controller);
 }
 
 void MakeMenuState::update()
@@ -52,6 +56,7 @@ void MakeMenuState::exit()
 {
     preparent_item_ids.clear();
     item_list.clear();
+    Raciela::Router::getInstance()->removeView(controller);
     Raciela::Router::getInstance()->removeView(view);
 }
 
