@@ -105,6 +105,18 @@ void MakeMenuState::delegate()
             view->visibleItemIcons(indices);
         }
     });
+
+    dispatcher->subscribe<void ()>("decide_make", [=]() {
+       // auto us = UserStorageModule::getInstance();
+       // us->addItem(make_item);
+       //
+       // view->showResult(make_item);
+    });
+
+    dispatcher->subscribe<void ()>("touched_result", [=]() {
+        // auto router = Raciela::Router::getInstance();
+        // router->popState();
+    });
 }
 
 void MakeMenuState::updatePreparentItem(Item *item)
@@ -133,4 +145,28 @@ void MakeMenuState::updatePreparentItem(Item *item)
     if (!indices.empty()) {
         view->visibleItemIcons(indices);
     }
+
+    // 条件が揃っていたらOKボタンを表示する
+    if (canMakeItem(make_item, indices)) {
+        //view->showDecideButton();
+    }
+}
+
+bool MakeMenuState::canMakeItem(const Item* make_item, const std::vector<int> selected_item_ids)
+{
+    auto preparent_item_1_id = make_item->getPrepareItemId1();
+    auto preparent_item_2_id = make_item->getPrepareItemId2();
+    auto preparent_item_3_id = make_item->getPrepareItemId3();
+
+    // @todo: preparent_item_idがnilのときの検証
+    if (std::find(preparent_item_ids.begin(), preparent_item_ids.end(), preparent_item_1_id) == preparent_item_ids.end()) {
+        return false;
+    }
+    if (std::find(preparent_item_ids.begin(), preparent_item_ids.end(), preparent_item_2_id) == preparent_item_ids.end()) {
+        return false;
+    }
+    if (std::find(preparent_item_ids.begin(), preparent_item_ids.end(), preparent_item_3_id) == preparent_item_ids.end()) {
+        return false;
+    }
+    return true;
 }

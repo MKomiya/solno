@@ -32,6 +32,8 @@ public:
     CC_SYNTHESIZE_READONLY(MakeMenuLayer*, view, View);
     CC_SYNTHESIZE(int, current_item_idx, CurrentItemIndex);
     CC_SYNTHESIZE(Item*, make_item, MakeItem);
+private:
+    bool canMakeItem(const Item* make_item, const std::vector<int> selected_item_ids);
 };
 
 #endif /* defined(__solno__MakeMenuState__) */
