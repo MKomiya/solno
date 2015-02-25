@@ -14,6 +14,7 @@
 
 class Item;
 
+class ItemMenuLayer;
 class ItemMenuState : public Raciela::State
 {
 public:
@@ -24,6 +25,7 @@ public:
     virtual void exit() override;
     virtual void delegate() override;
     
+    CC_SYNTHESIZE_READONLY(ItemMenuLayer*, view, View);
     CC_SYNTHESIZE(int, current_item_idx, CurrentItemIndex);
     
 private:

@@ -55,7 +55,7 @@ FieldState* FieldState::create()
     ret->setFieldViewState(FieldViewState::NOTHING);
     
     UserStorageModule::getInstance()->init();
-    UserStorageModule::getInstance()->updateUserItem(1, 1);
+    UserStorageModule::getInstance()->updateUserItem(1, 1, 1);
     
     ret->autorelease();
     ret->created();

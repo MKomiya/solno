@@ -7,6 +7,7 @@
 //
 
 #include "MakeMenuControllerLayer.h"
+#include "MenuDecideItem.h"
 
 USING_NS_CC;
 

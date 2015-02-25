@@ -62,6 +62,7 @@
 		BF171245129291EC00B8313A /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF170DB012928DE900B8313A /* OpenGLES.framework */; };
 		BF1712471292920000B8313A /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = BF170DB412928DE900B8313A /* libz.dylib */; };
 		BF1C47F01293687400B63C5D /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF1C47EA1293683800B63C5D /* QuartzCore.framework */; };
+		D004B8751A9E071C008CFCEC /* MakeMenuControllerLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D004B8731A9E071C008CFCEC /* MakeMenuControllerLayer.cpp */; };
 		D00907481A77C60B00AD6790 /* ModeSelectMenuState.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D00907461A77C60B00AD6790 /* ModeSelectMenuState.cpp */; };
 		D009074B1A77C6B400AD6790 /* ModeSelectMenuLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D00907491A77C6B400AD6790 /* ModeSelectMenuLayer.cpp */; };
 		D01DE4C81A6B706600235525 /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D01DE4C71A6B706600235525 /* libsqlite3.0.dylib */; };
@@ -189,6 +190,8 @@
 		BF170DB012928DE900B8313A /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		BF170DB412928DE900B8313A /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		BF1C47EA1293683800B63C5D /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		D004B8731A9E071C008CFCEC /* MakeMenuControllerLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = MakeMenuControllerLayer.cpp; path = Layer/MakeMenuControllerLayer.cpp; sourceTree = "<group>"; };
+		D004B8741A9E071C008CFCEC /* MakeMenuControllerLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MakeMenuControllerLayer.h; path = Layer/MakeMenuControllerLayer.h; sourceTree = "<group>"; };
 		D00907461A77C60B00AD6790 /* ModeSelectMenuState.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ModeSelectMenuState.cpp; path = State/ModeSelectMenuState.cpp; sourceTree = "<group>"; };
 		D00907471A77C60B00AD6790 /* ModeSelectMenuState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ModeSelectMenuState.h; path = State/ModeSelectMenuState.h; sourceTree = "<group>"; };
 		D00907491A77C6B400AD6790 /* ModeSelectMenuLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ModeSelectMenuLayer.cpp; path = Layer/ModeSelectMenuLayer.cpp; sourceTree = "<group>"; };
@@ -591,6 +594,8 @@
 		D0DCF53A1A85B530003FE946 /* Menu */ = {
 			isa = PBXGroup;
 			children = (
+				D004B8731A9E071C008CFCEC /* MakeMenuControllerLayer.cpp */,
+				D004B8741A9E071C008CFCEC /* MakeMenuControllerLayer.h */,
 				D00907491A77C6B400AD6790 /* ModeSelectMenuLayer.cpp */,
 				D009074A1A77C6B400AD6790 /* ModeSelectMenuLayer.h */,
 				D0E15D021A783A6200E2AB46 /* ItemMenuLayer.cpp */,
@@ -803,6 +808,7 @@
 				D0FF46DD1A6242EB005EBDE7 /* MenuDecideItem.cpp in Sources */,
 				D083A2A71A4DAB59009A9099 /* FieldLayer.cpp in Sources */,
 				503AE10017EB989F00D1A890 /* AppController.mm in Sources */,
+				D004B8751A9E071C008CFCEC /* MakeMenuControllerLayer.cpp in Sources */,
 				D00907481A77C60B00AD6790 /* ModeSelectMenuState.cpp in Sources */,
 				697244CB1A7A44D600D0C3B6 /* MakeMenuState.cpp in Sources */,
 				D009074B1A77C6B400AD6790 /* ModeSelectMenuLayer.cpp in Sources */,
