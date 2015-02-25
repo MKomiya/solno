@@ -21,6 +21,8 @@ public:
     int id, item_id, num;
     UserItem() :
         id(-1), item_id(0), num(0) {}
+    UserItem(int id, int item_id, int num) :
+        id(id), item_id(item_id), num(num) {}
     UserItem(json11::Json::object data) :
         id(data["id"].int_value()),
         item_id(data["item_id"].int_value()),
@@ -62,7 +64,7 @@ public:
     UserItem getOneUserItem(int id);
     
 #pragma mark Update user data
-    void updateUserItem(int id, int num);
+    void updateUserItem(int id, int item_id, int num);
     
 private:
     void writeJsonFile(std::string ns, std::string data);

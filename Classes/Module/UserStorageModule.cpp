@@ -50,15 +50,18 @@ UserItem UserStorageModule::getOneUserItem(int id)
 }
 
 #pragma mark Update user data
-void UserStorageModule::updateUserItem(int id, int num)
+void UserStorageModule::updateUserItem(int id, int item_id, int num)
 {
     for (UserItem& value : user_item) {
-        if (value.id == id) {
+        if (value.id == id && value.item_id == item_id) {
             value.num = num;
             flush();
             return ;
         }
     }
+
+    user_item.push_back(UserItem(id, item_id, num));
+    flush();
 }
 
 void UserStorageModule::writeJsonFile(std::string ns, std::string data)
