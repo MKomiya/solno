@@ -1,6 +1,7 @@
 #include "AppDelegate.h"
-#include "StateMachineModule.h"
-#include "HelloWorldScene.h"
+#include "MasterStorageModule.h"
+#include "Router.h"
+#include "FieldState.h"
 
 USING_NS_CC;
 
@@ -43,9 +44,21 @@ bool AppDelegate::applicationDidFinishLaunching() {
     
     director->setProjection(Director::Projection::_2D);
     
+    // initialize master data
+    MasterStorageModule::getInstance()->init();
+    
     // create a scene. it's an autorelease object
-    auto scene = HelloWorld::createScene();
+    //auto scene = HelloWorld::createScene();
 
+    auto router = Raciela::Router::getInstance();
+    auto scene  = router->getRootScene();
+    scene->schedule([router](float t) {
+        router->update(t);
+    }, "update_state");
+    
+    // initialize state
+    router->pushState(FieldState::create());
+    
     // run
     director->runWithScene(scene);
 

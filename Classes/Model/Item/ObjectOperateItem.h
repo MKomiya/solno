@@ -12,9 +12,10 @@
 #include <stdio.h>
 #include "Item.h"
 
+class FieldState;
 class ObjectOperateItem : public Item
 {
-    virtual void useItem() override;
+    virtual void useItem(FieldState* state) override;
 };
 
 #endif /* defined(__solno__ObjectOperateItem__) */

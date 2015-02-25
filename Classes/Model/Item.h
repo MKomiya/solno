@@ -12,6 +12,7 @@
 #include <stdio.h>
 #include <cocos2d.h>
 
+class FieldState;
 class Item : public cocos2d::Ref
 {
 public:
@@ -25,10 +26,14 @@ public:
         FLAGMENT_ITEM,      // フラグに影響を及ぼすアイテム
     };
     
-    static Item* create(int id, int item_id, int type);
+    static Item* createMock(int id);
+    static Item* createByMaster(int item_id);
     
-    virtual void useItem();
-    
+    virtual void useItem(FieldState* state);
+
+    cocos2d::Texture2D* getPrepareItemTexture(int prepare_index);
+    Item* getMakeItem();
+
     CC_SYNTHESIZE(int, id, Id);
     CC_SYNTHESIZE(int, item_id, ItemId);
     CC_SYNTHESIZE(std::string, item_name, ItemName);

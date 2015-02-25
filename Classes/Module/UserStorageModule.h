@@ -15,6 +15,33 @@
 
 #include "json11.hpp"
 
+class UserItem
+{
+public:
+    static int index;
+    
+    int id, item_id, num;
+    UserItem() :
+        id(-1), item_id(0), num(0) {}
+    UserItem(int id, int item_id, int num) :
+        id(id), item_id(item_id), num(num) {}
+    UserItem(json11::Json::object data) :
+        id(data["id"].int_value()),
+        item_id(data["item_id"].int_value()),
+        num(data["num"].int_value()) {}
+    
+    json11::Json to_json() const
+    {
+        return json11::Json::object {
+            { "id", id },
+            { "item_id", item_id },
+            { "num", num }
+        };
+    }
+};
+
+const UserItem UserItemNull;
+
 class Item;
 class UserStorageModule
 {
@@ -32,19 +59,22 @@ public:
     }
     
     void init();
+    void flush();
     
 #pragma mark Read user data
-    cocos2d::ValueMap getOneUserItem(int id);
+    std::vector<UserItem> getAllUserItem();
+    UserItem getOneUserItem(int id);
     
 #pragma mark Update user data
-    void updateUserItem(Item* item);
+    void updateUserItem(int item_id, int num);
     
 private:
-    void writeValueMap(std::string ns, cocos2d::ValueMap data);
-    cocos2d::ValueMap readValueMap(std::string ns);
-    
+    void writeJsonFile(std::string ns, std::string data);
+    json11::Json::array readJsonFile(std::string ns);
+    json11::Json::array readMockData();
+
     static UserStorageModule* instance;
-    cocos2d::ValueMap user_item;
+    std::vector<UserItem> user_item;
 };
 
 #endif /* defined(__solno__UserStorageModule__) */

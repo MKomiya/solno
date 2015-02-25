@@ -7,7 +7,7 @@
 //
 
 #include "MenuArrowItem.h"
-#include "InputModule.h"
+#include "Dispatcher.h"
 
 USING_NS_CC;
 
@@ -17,20 +17,7 @@ _direction(direction) {}
 MenuArrowItem* MenuArrowItem::create(std::string direction)
 {
     auto pRet = new MenuArrowItem(direction);
-    
     auto sprite = Sprite::create("ui/ui_arrow_button.png");
-    
-    /*
-    if (direction == "right") {
-        sprite->setAnchorPoint(Point(0, 0.5f));
-        sprite->setRotation(90.0f);
-    } else if (direction == "up") {
-        sprite->setAnchorPoint(Point(0.5f, 0));
-        sprite->setRotation(180.0f);
-    } else if (direction == "left") {
-        sprite->setAnchorPoint(Point(1.0f, 0.5f));
-        sprite->setRotation(-90.0f);
-    }*/
     
     if (pRet && pRet->initWithNormalSprite(sprite, sprite, sprite, nullptr)) {
         pRet->autorelease();
@@ -61,33 +48,36 @@ void MenuArrowItem::unselected()
 {
     MenuItemSprite::unselected();
     
-    InputEvent event;
+    ArrowInputEvent event;
     if (_direction == "up") {
-        event = InputEvent::RELEASE_UP;
+        event = ArrowInputEvent::RELEASE_UP;
     } else if (_direction == "right") {
-        event = InputEvent::RELEASE_RIGHT;
+        event = ArrowInputEvent::RELEASE_RIGHT;
     } else if (_direction == "down") {
-        event = InputEvent::RELEASE_DOWN;
+        event = ArrowInputEvent::RELEASE_DOWN;
     } else if (_direction == "left") {
-        event = InputEvent::RELEASE_LEFT;
+        event = ArrowInputEvent::RELEASE_LEFT;
     }
     
-    InputModule::getInstance()->pushEvent(event);
+    auto dispatcher = Raciela::Dispatcher::getInstance();
+    dispatcher->dispatch("input_arrow", event);
 }
 
 void MenuArrowItem::update(float dt)
 {
     if (isSelected()) {
-        InputEvent event;
+        ArrowInputEvent event;
         if (_direction == "up") {
-            event = InputEvent::PRESS_UP;
+            event = ArrowInputEvent::PRESS_UP;
         } else if (_direction == "right") {
-            event = InputEvent::PRESS_RIGHT;
+            event = ArrowInputEvent::PRESS_RIGHT;
         } else if (_direction == "down") {
-            event = InputEvent::PRESS_DOWN;
+            event = ArrowInputEvent::PRESS_DOWN;
         } else if (_direction == "left") {
-            event = InputEvent::PRESS_LEFT;
+            event = ArrowInputEvent::PRESS_LEFT;
         }
-        InputModule::getInstance()->pushEvent(event);
+        
+        auto dispatcher = Raciela::Dispatcher::getInstance();
+        dispatcher->dispatch("input_arrow", event);
     }
 }

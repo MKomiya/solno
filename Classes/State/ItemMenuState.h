@@ -10,16 +10,12 @@
 #define __solno__ItemMenuState__
 
 #include <stdio.h>
-#include "StateBase.h"
+#include "State.h"
 
 class Item;
 
-struct MakeTreeData {
-    Item* prepare_item_1, *prepare_item_2, *prepare_item_3;
-    Item* make_item;
-};
-
-class ItemMenuState : public StateBase
+class ItemMenuLayer;
+class ItemMenuState : public Raciela::State
 {
 public:
     static ItemMenuState* create();
@@ -27,8 +23,10 @@ public:
     virtual void enter() override;
     virtual void update() override;
     virtual void exit() override;
+    virtual void delegate() override;
     
-    MakeTreeData updateMakeTreeData();
+    CC_SYNTHESIZE_READONLY(ItemMenuLayer*, view, View);
+    CC_SYNTHESIZE(int, current_item_idx, CurrentItemIndex);
     
 private:
     cocos2d::Vector<Item*> item_list;

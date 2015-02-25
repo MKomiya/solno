@@ -13,8 +13,8 @@
 #include <fstream>
 #include <iostream>
 
-#include "InputModule.h"
 #include "StoryLayer.h"
+#include "Dispatcher.h"
 
 #include "Story.h"
 
@@ -29,6 +29,7 @@ StoryState* StoryState::create(StoryLayer *view)
     }
     
     ret->autorelease();
+    ret->created();
     return ret;
 }
 
@@ -69,6 +70,7 @@ void StoryState::enter()
 
 void StoryState::update()
 {
+    /*
     auto event = InputModule::getInstance()->popEvent();
     
     if (event == InputEvent::RELEASE_DECIDE) {
@@ -89,6 +91,7 @@ void StoryState::update()
             }
         }
     }
+     */
 }
 
 void StoryState::exit()

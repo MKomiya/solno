@@ -7,17 +7,11 @@
 //
 
 #include "ObjectOperateItem.h"
-
-#include "StateMachineModule.h"
 #include "FieldState.h"
-
 #include "FieldObject.h"
 
-void ObjectOperateItem::useItem()
+void ObjectOperateItem::useItem(FieldState* state)
 {
-    auto fsm = StateMachineModule::getInstance();
-    FieldState* state = (FieldState*)fsm->getState("field");
-    
     auto break_object = state->findPlayerDirectionAbutObject();
     if (break_object == nullptr) {
         CCLOG("ここでは使えない");

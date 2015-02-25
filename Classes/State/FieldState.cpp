@@ -8,22 +8,26 @@
 
 #include <json11.hpp>
 
-#include "StateMachineModule.h"
 #include "FieldState.h"
-#include "StoryState.h"
+#include "ModeSelectMenuState.h"
 #include "Direction.h"
 #include "FieldObject.h"
 #include "Item.h"
+#include "MasterStorageModule.h"
+#include "UserStorageModule.h"
+#include "Dispatcher.h"
+#include "Router.h"
 
-#include "LayerManager.h"
 #include "FieldLayer.h"
 #include "ControllerLayer.h"
 #include "StoryLayer.h"
 #include "MessageView.h"
+#include "PlayerView.h"
+#include "MenuArrowItem.h"
 
 USING_NS_CC;
 
-FieldState* FieldState::create(FieldLayer *view, ControllerLayer *controller)
+FieldState* FieldState::create()
 {
     auto ret = new FieldState();
     if (!ret) {
@@ -31,73 +35,120 @@ FieldState* FieldState::create(FieldLayer *view, ControllerLayer *controller)
         return nullptr;
     }
     
+    // initialize view
+    auto field      = FieldLayer::create();
+    auto controller = ControllerLayer::create();
+    auto router     = Raciela::Router::getInstance();
+    router->addView(field);
+    router->addView(controller);
+    
+    ret->init();
+    ret->setMap(TMXTiledMap::create("tmx/01_scrap.tmx"));
     ret->setPlayerMapPosition(Point(0, 0));
     ret->setPlayerDirection("down");
-    ret->setFieldView(view);
+    ret->setFieldView(field);
     ret->setControllerView(controller);
     ret->setExecuteItem(nullptr);
     
+    ret->setMsgViewState(MessageViewState::DISABLED);
+    ret->setPlayerViewState(PlayerViewState::IDLING);
+    ret->setFieldViewState(FieldViewState::NOTHING);
+    
+    UserStorageModule::getInstance()->init();
+    
     ret->autorelease();
+    ret->created();
     return ret;
+}
+
+void FieldState::created()
+{
+    // map size取得のためにcollider layerで代用する
+    auto obj_layer = map->getLayer("meta");
+    auto size      = obj_layer->getLayerSize();
+    auto obj_group = map->getObjectGroup("Event");
+    
+    int id = 100;
+    for (auto object : obj_group->getObjects()) {
+        auto object_data = object.asValueMap();
+        
+        float x  = object_data["x"].asFloat() / 16;
+        float y  = size.height - object_data["y"].asFloat() / 16 - 1;
+        auto pos = Point(x, y);
+        
+        auto ret = FieldObject::create(this, id, pos, object_data);
+        objects.push_back(ret);
+        ++id;
+        
+        if (ret->getObjectType() == FieldObject::ObjectType::START_POINT) {
+            player_map_pos = ret->getPosition();
+        }
+    }
+    
+    view->initMapData(map);
+    view->initFieldObject(objects);
 }
 
 void FieldState::enter()
 {
-    if (execute_item != 0) {
-        CCLOG("use item. item_id: %d, item_type: %d", execute_item->getItemId(), execute_item->getType());
-        execute_item = nullptr;
-        view->changePlayerAnimation(player_direction);
-        return ;
+    delegate();
+    
+    if (controller) {
+        controller->setVisible(true);
     }
-    
-    // map size取得のためにcollider layerで代用する
-    auto obj_layer = view->getMapCollider();
-    auto size      = obj_layer->getLayerSize();
-    auto obj_group = view->getObjectsGroup();
-    
-    {
-        int id = 100;
-        for (auto object : obj_group->getObjects()) {
-            auto object_data = object.asValueMap();
-            
-            float x  = object_data["x"].asFloat() / 16;
-            float y  = size.height - object_data["y"].asFloat() / 16 - 1;
-            auto pos = Point(x, y);
-            
-            auto ret = FieldObject::create(id, pos, object_data);
-            objects.push_back(ret);
-            ++id;
-            
-            if (ret->getObjectType() == FieldObject::ObjectType::START_POINT) {
-                player_map_pos = ret->getPosition();
-            }
-        }
-    }
-    
-    view->initFieldObject(objects);
 }
 
 void FieldState::update()
 {
-    auto event = InputModule::getInstance()->popEvent();
-    
-    if (event == InputEvent::RELEASE_DECIDE) {
-        decideAction();
-    }
-    
-    if (event != InputEvent::RELEASE_DECIDE && event != InputEvent::PRESS_DECIDE && event != 0) {
-        movePlayerCharacter(event);
+    if (execute_item != nullptr) {
+        execute_item->useItem(this);
+        execute_item = nullptr;
+        view->changePlayerAnimation(player_direction);
+        return ;
     }
 }
 
 void FieldState::exit()
 {
     view->stopPlayerAnimation();
+    controller->setVisible(false);
 }
 
 void FieldState::addExecuteItem(Item* item)
 {
     execute_item = item;
+}
+
+void FieldState::delegate()
+{
+    dispatcher->subscribe<void (Item*)>("execute_item", [=](Item* item) {
+        addExecuteItem(item);
+    });
+    
+    dispatcher->subscribe<void (ArrowInputEvent)>("input_arrow", [=](ArrowInputEvent e) {
+        movePlayerCharacter(e);
+    });
+    
+    dispatcher->subscribe<void ()>("release_decide", [=]() {
+        auto router = Raciela::Router::getInstance();
+        router->pushState(ModeSelectMenuState::create());
+    });
+    
+    dispatcher->subscribe<void (MessageViewState)>("update_msg_state", [=](MessageViewState state) {
+        msg_view_state = state;
+    });
+    
+    dispatcher->subscribe<void (PlayerViewState)>("update_player_state", [=](PlayerViewState state) {
+        player_view_state = state;
+    });
+    
+    dispatcher->subscribe<void (FieldViewState)>("update_field_state", [=](FieldViewState state) {
+        field_view_state = state;
+    });
+    
+    dispatcher->subscribe<void (Item*)>("use_item", [=](Item* item) {
+        addExecuteItem(item);
+    });
 }
 
 FieldObject* FieldState::findPlayerDirectionAbutObject()
@@ -127,17 +178,13 @@ void FieldState::deleteObject(FieldObject *target)
 }
 
 void FieldState::decideAction()
-{
-    StateMachineModule::getInstance()->changeState("mode_select_menu");
-    return ;
-    
+{    
     // message view disabled
-    if (view->getMessageState() == MessageView::WAIT) {
+    if (msg_view_state == MessageViewState::WAIT) {
         view->releaseMessages();
         controller->setEnableArrowButtons(true);
         return ;
     }
-    
 
     auto direction_entity = Direction::createInstance(player_direction);
     auto next_pos = player_map_pos + direction_entity.getMapPointVec();
@@ -145,21 +192,22 @@ void FieldState::decideAction()
     // check object executable
     for (auto obj : objects) {
         if (obj->getPosition() == next_pos) {
-            obj->executeDecideAction(view);
+            obj->executeDecideAction();
         }
     }
 }
 
-void FieldState::movePlayerCharacter(InputEvent event)
+void FieldState::movePlayerCharacter(ArrowInputEvent event)
 {
-    if (view->isRunningPlayerView() || view->isRunningMapScroll()) {
+    if (player_view_state == PlayerViewState::RUNNING ||
+        field_view_state == FieldViewState::SCROLL) {
         return ;
     }
     
-    if (event == InputEvent::RELEASE_DOWN  ||
-        event == InputEvent::RELEASE_LEFT  ||
-        event == InputEvent::RELEASE_RIGHT ||
-        event == InputEvent::RELEASE_UP) {
+    if (event == ArrowInputEvent::RELEASE_DOWN  ||
+        event == ArrowInputEvent::RELEASE_LEFT  ||
+        event == ArrowInputEvent::RELEASE_RIGHT ||
+        event == ArrowInputEvent::RELEASE_UP) {
         return ;
     }
     
@@ -181,7 +229,7 @@ void FieldState::movePlayerCharacter(InputEvent event)
     // check object collidable
     for (auto obj : objects) {
         if (obj->getPosition() == next_pos) {
-            obj->executePreMoveAction(direction_entity, view);
+            obj->executePreMoveAction(direction_entity);
         }
     }
     
@@ -195,10 +243,10 @@ void FieldState::movePlayerCharacter(InputEvent event)
     CCLOG("pos: (%f, %f)", player_map_pos.x, player_map_pos.y);
     
     // run scroll field if player pos is scroll point
-    if (((int)player_map_pos.x % 9 == 0 && event == InputEvent::PRESS_RIGHT) ||
-        ((int)player_map_pos.y % 9 == 0 && event == InputEvent::PRESS_DOWN)  ||
-        ((int)player_map_pos.x % 9 == 8 && event == InputEvent::PRESS_LEFT)  ||
-        ((int)player_map_pos.y % 9 == 8 && event == InputEvent::PRESS_UP))
+    if (((int)player_map_pos.x % 9 == 0 && event == ArrowInputEvent::PRESS_RIGHT) ||
+        ((int)player_map_pos.y % 9 == 0 && event == ArrowInputEvent::PRESS_DOWN)  ||
+        ((int)player_map_pos.x % 9 == 8 && event == ArrowInputEvent::PRESS_LEFT)  ||
+        ((int)player_map_pos.y % 9 == 8 && event == ArrowInputEvent::PRESS_UP))
     {
         Point move, scroll;
         move   = direction_entity.getUnitVec() * -32 * 8;
@@ -214,7 +262,7 @@ void FieldState::movePlayerCharacter(InputEvent event)
     // check object collidable after move
     for (auto obj : objects) {
         if (obj->getPosition() == player_map_pos) {
-            obj->executeMovedAction(view);
+            obj->executeMovedAction();
         }
     }
 }
@@ -225,7 +273,7 @@ bool FieldState::isCollidable(int map_x, int map_y)
         return true;
     }
     
-    auto tiled_gid = view->getMapCollider()->getTileGIDAt(Point(map_x, map_y));
+    auto tiled_gid = map->getLayer("meta")->getTileGIDAt(Point(map_x, map_y));
     
     if (tiled_gid > 0) {
         return true;

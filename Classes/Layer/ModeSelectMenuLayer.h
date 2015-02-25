@@ -11,8 +11,9 @@
 
 #include <stdio.h>
 #include <cocos2d.h>
+#include "View.h"
 
-class ModeSelectMenuLayer : public cocos2d::Layer
+class ModeSelectMenuLayer : public Raciela::View
 {
 public:
     virtual bool init();

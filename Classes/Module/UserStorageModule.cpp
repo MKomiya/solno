@@ -11,6 +11,7 @@
 #include "UserStorageModule.h"
 #include "Item.h"
 
+int UserItem::index = 1;
 std::string UserStorageModule::NS_USER_ITEM = "item";
 UserStorageModule* UserStorageModule::instance;
 
@@ -18,41 +19,104 @@ USING_NS_CC;
 
 void UserStorageModule::init()
 {
+    auto user_item_json = readJsonFile(NS_USER_ITEM);
+    
+    for (auto value : user_item_json) {
+        auto data = value.object_items();
+        auto ret  = UserItem(data);
+        user_item.push_back(ret);
+    }
+}
+
+void UserStorageModule::flush()
+{
+    std::string out = json11::Json(user_item).dump();
+    writeJsonFile(NS_USER_ITEM, out);
 }
 
 #pragma mark Read user data
-ValueMap UserStorageModule::getOneUserItem(int id)
+std::vector<UserItem> UserStorageModule::getAllUserItem()
 {
-    auto data = readValueMap(NS_USER_ITEM);
-    
-    if (data.at("id").asInt() == id) {
-        return data;
+    return user_item;
+}
+
+UserItem UserStorageModule::getOneUserItem(int item_id)
+{
+    for (auto value : user_item) {
+        if (value.item_id == item_id) {
+            return value;
+        }
     }
-    
-    return ValueMapNull;
+    return UserItemNull;
 }
 
 #pragma mark Update user data
-void UserStorageModule::updateUserItem(Item *item)
+void UserStorageModule::updateUserItem(int item_id, int num)
 {
-    auto id  = cocos2d::Value(item->getId());
-    auto num = cocos2d::Value(item->getNum());
-    
-    ValueMap data, row;
-    row.insert(std::make_pair("id", id));
-    row.insert(std::make_pair("num", num));
-    
-    writeValueMap(NS_USER_ITEM, data);
+    for (UserItem& value : user_item) {
+        if (value.item_id == item_id) {
+            value.num = num;
+            flush();
+            return ;
+        }
+    }
+
+    user_item.push_back(UserItem(UserItem::index++, item_id, num));
+    flush();
 }
 
-void UserStorageModule::writeValueMap(std::string ns, ValueMap data)
+void UserStorageModule::writeJsonFile(std::string ns, std::string data)
 {
-    std::string filepath = "data/user_" + ns + ".plist";
-    FileUtils::getInstance()->writeToFile(data, filepath);
+    auto fu = FileUtils::getInstance();
+    
+    std::string userdata_root =
+        fu->getWritablePath() + "userdata/";
+    std::string filepath =
+        userdata_root + "user_" + ns + ".json";
+    
+    if (!fu->isDirectoryExist(userdata_root)) {
+        fu->createDirectory(userdata_root);
+    }
+    
+    std::ofstream file(filepath.c_str());
+    file << data.c_str();
+    file.close();
 }
 
-ValueMap UserStorageModule::readValueMap(std::string ns)
+json11::Json::array UserStorageModule::readJsonFile(std::string ns)
 {
-    std::string filepath = "data/user_" + ns + ".plist";
-    return FileUtils::getInstance()->getValueMapFromFile(filepath);
+    auto fu = FileUtils::getInstance();
+    std::string filepath =
+        fu->getWritablePath() + "userdata/user_" + ns + ".json";
+
+    std::string json_string, err;
+    std::ifstream file(filepath.c_str());
+    while(!file.eof()) {
+        std::string buf; file >> buf;
+        json_string += buf;
+    }
+    file.close();
+    
+    return json11::Json::parse(json_string, err).array_items();
+}
+
+json11::Json::array UserStorageModule::readMockData()
+{
+    return json11::Json::array {
+        json11::Json::object {
+            { "id", 1 },
+            { "item_id", 1 },
+            { "num", 2 }
+        },
+        json11::Json::object {
+            { "id", 2 },
+            { "item_id", 2 },
+            { "num", 2 }
+        },
+        json11::Json::object {
+            { "id", 3 },
+            { "item_id", 3 },
+            { "num", 2 }
+        },
+    };
 }

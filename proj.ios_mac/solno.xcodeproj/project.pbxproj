@@ -22,8 +22,6 @@
 		46880B8219C43A67006E1F66 /* HelloWorld.png in Resources */ = {isa = PBXBuildFile; fileRef = 46880B7A19C43A67006E1F66 /* HelloWorld.png */; };
 		46880B8819C43A87006E1F66 /* AppDelegate.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 46880B8419C43A87006E1F66 /* AppDelegate.cpp */; };
 		46880B8919C43A87006E1F66 /* AppDelegate.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 46880B8419C43A87006E1F66 /* AppDelegate.cpp */; };
-		46880B8A19C43A87006E1F66 /* HelloWorldScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 46880B8619C43A87006E1F66 /* HelloWorldScene.cpp */; };
-		46880B8B19C43A87006E1F66 /* HelloWorldScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 46880B8619C43A87006E1F66 /* HelloWorldScene.cpp */; };
 		503AE0F817EB97AB00D1A890 /* Icon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 503AE0F617EB97AB00D1A890 /* Icon.icns */; };
 		503AE10017EB989F00D1A890 /* AppController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 503AE0FB17EB989F00D1A890 /* AppController.mm */; };
 		503AE10117EB989F00D1A890 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 503AE0FC17EB989F00D1A890 /* main.m */; };
@@ -64,13 +62,12 @@
 		BF171245129291EC00B8313A /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF170DB012928DE900B8313A /* OpenGLES.framework */; };
 		BF1712471292920000B8313A /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = BF170DB412928DE900B8313A /* libz.dylib */; };
 		BF1C47F01293687400B63C5D /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF1C47EA1293683800B63C5D /* QuartzCore.framework */; };
-		D00907451A77C56100AD6790 /* MenuState.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D00907431A77C56100AD6790 /* MenuState.cpp */; };
+		D004B8751A9E071C008CFCEC /* MakeMenuControllerLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D004B8731A9E071C008CFCEC /* MakeMenuControllerLayer.cpp */; };
 		D00907481A77C60B00AD6790 /* ModeSelectMenuState.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D00907461A77C60B00AD6790 /* ModeSelectMenuState.cpp */; };
 		D009074B1A77C6B400AD6790 /* ModeSelectMenuLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D00907491A77C6B400AD6790 /* ModeSelectMenuLayer.cpp */; };
 		D01DE4C81A6B706600235525 /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D01DE4C71A6B706600235525 /* libsqlite3.0.dylib */; };
 		D01DE4CC1A6B70D200235525 /* story in Resources */ = {isa = PBXBuildFile; fileRef = D01DE4CB1A6B70D200235525 /* story */; };
 		D020AD741A616A2000BB01A9 /* MessageView.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D020AD721A616A2000BB01A9 /* MessageView.cpp */; };
-		D0332E911A6E81CE004FCA4C /* StateBase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D0332E901A6E81CE004FCA4C /* StateBase.cpp */; };
 		D04876161A697B2B0097D6BB /* StoryState.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D04876141A697B2B0097D6BB /* StoryState.cpp */; };
 		D04876191A697B880097D6BB /* StoryLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D04876171A697B880097D6BB /* StoryLayer.cpp */; };
 		D048D9BC1A4E623500EE9339 /* ControllerLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D048D9BA1A4E623500EE9339 /* ControllerLayer.cpp */; };
@@ -82,6 +79,10 @@
 		D083A2AC1A4DB1EF009A9099 /* chara in Resources */ = {isa = PBXBuildFile; fileRef = D083A2AB1A4DB1EF009A9099 /* chara */; };
 		D094BFB61A6D3F2500D6C383 /* Direction.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D094BFB41A6D3F2500D6C383 /* Direction.cpp */; };
 		D094BFB91A6D3F3800D6C383 /* Story.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D094BFB71A6D3F3800D6C383 /* Story.cpp */; };
+		D09C59341A98DF450085B483 /* Dispatcher.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D09C592C1A98DF450085B483 /* Dispatcher.cpp */; };
+		D09C59351A98DF450085B483 /* Router.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D09C592E1A98DF450085B483 /* Router.cpp */; };
+		D09C59361A98DF450085B483 /* State.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D09C59301A98DF450085B483 /* State.cpp */; };
+		D09C59371A98DF450085B483 /* View.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D09C59321A98DF450085B483 /* View.cpp */; };
 		D0A505441A6559A2004C2C4E /* json11.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D0A505421A6559A2004C2C4E /* json11.cpp */; };
 		D0B25F2A1A7CC1AA00D0D367 /* item in Resources */ = {isa = PBXBuildFile; fileRef = D0B25F291A7CC1AA00D0D367 /* item */; };
 		D0BD84191A6FE9F300980989 /* FieldObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D0BD84171A6FE9F300980989 /* FieldObject.cpp */; };
@@ -89,15 +90,13 @@
 		D0BD84261A6FF21000980989 /* MovableRock.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D0BD84231A6FF21000980989 /* MovableRock.cpp */; };
 		D0C983E21A6E64DA00761742 /* Template.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D0C983E01A6E64DA00761742 /* Template.cpp */; };
 		D0CDF0A71A5AB331009E5E98 /* PlayerView.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D0CDF0A51A5AB331009E5E98 /* PlayerView.cpp */; };
-		D0CDF0AA1A5ABB27009E5E98 /* LayerManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D0CDF0A81A5ABB27009E5E98 /* LayerManager.cpp */; };
 		D0DCF5331A85AAAB003FE946 /* ObjectOperateItem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D0DCF5311A85AAAB003FE946 /* ObjectOperateItem.cpp */; };
+		D0DCF53E1A85F1B1003FE946 /* data in Resources */ = {isa = PBXBuildFile; fileRef = D0DCF53D1A85F1B1003FE946 /* data */; };
 		D0E15D011A7839A800E2AB46 /* ItemMenuState.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D0E15CFF1A7839A800E2AB46 /* ItemMenuState.cpp */; };
 		D0E15D041A783A6200E2AB46 /* ItemMenuLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D0E15D021A783A6200E2AB46 /* ItemMenuLayer.cpp */; };
 		D0E15D071A783B0B00E2AB46 /* Item.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D0E15D051A783B0B00E2AB46 /* Item.cpp */; };
 		D0EBE6171A526F7200E36888 /* MenuArrowItem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D0EBE6151A526F7200E36888 /* MenuArrowItem.cpp */; };
-		D0EBE61A1A52709B00E36888 /* InputModule.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D0EBE6181A52709B00E36888 /* InputModule.cpp */; };
 		D0EBE61E1A5275B900E36888 /* FieldState.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D0EBE61C1A5275B900E36888 /* FieldState.cpp */; };
-		D0EBE6211A52771D00E36888 /* StateMachineModule.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D0EBE61F1A52771D00E36888 /* StateMachineModule.cpp */; };
 		D0FF46DD1A6242EB005EBDE7 /* MenuDecideItem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D0FF46DB1A6242EB005EBDE7 /* MenuDecideItem.cpp */; };
 		D44C620C132DFF330009C878 /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D44C620B132DFF330009C878 /* OpenAL.framework */; };
 		D44C620E132DFF430009C878 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D44C620D132DFF430009C878 /* AVFoundation.framework */; };
@@ -149,8 +148,6 @@
 		46880B7A19C43A67006E1F66 /* HelloWorld.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = HelloWorld.png; sourceTree = "<group>"; };
 		46880B8419C43A87006E1F66 /* AppDelegate.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AppDelegate.cpp; sourceTree = "<group>"; };
 		46880B8519C43A87006E1F66 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
-		46880B8619C43A87006E1F66 /* HelloWorldScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HelloWorldScene.cpp; sourceTree = "<group>"; };
-		46880B8719C43A87006E1F66 /* HelloWorldScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HelloWorldScene.h; sourceTree = "<group>"; };
 		503AE0F617EB97AB00D1A890 /* Icon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = Icon.icns; sourceTree = "<group>"; };
 		503AE0F717EB97AB00D1A890 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		503AE0FA17EB989F00D1A890 /* AppController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppController.h; path = ios/AppController.h; sourceTree = SOURCE_ROOT; };
@@ -193,8 +190,8 @@
 		BF170DB012928DE900B8313A /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		BF170DB412928DE900B8313A /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		BF1C47EA1293683800B63C5D /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
-		D00907431A77C56100AD6790 /* MenuState.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = MenuState.cpp; path = State/MenuState.cpp; sourceTree = "<group>"; };
-		D00907441A77C56100AD6790 /* MenuState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MenuState.h; path = State/MenuState.h; sourceTree = "<group>"; };
+		D004B8731A9E071C008CFCEC /* MakeMenuControllerLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = MakeMenuControllerLayer.cpp; path = Layer/MakeMenuControllerLayer.cpp; sourceTree = "<group>"; };
+		D004B8741A9E071C008CFCEC /* MakeMenuControllerLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MakeMenuControllerLayer.h; path = Layer/MakeMenuControllerLayer.h; sourceTree = "<group>"; };
 		D00907461A77C60B00AD6790 /* ModeSelectMenuState.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ModeSelectMenuState.cpp; path = State/ModeSelectMenuState.cpp; sourceTree = "<group>"; };
 		D00907471A77C60B00AD6790 /* ModeSelectMenuState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ModeSelectMenuState.h; path = State/ModeSelectMenuState.h; sourceTree = "<group>"; };
 		D00907491A77C6B400AD6790 /* ModeSelectMenuLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ModeSelectMenuLayer.cpp; path = Layer/ModeSelectMenuLayer.cpp; sourceTree = "<group>"; };
@@ -203,7 +200,6 @@
 		D01DE4CB1A6B70D200235525 /* story */ = {isa = PBXFileReference; lastKnownFileType = folder; path = story; sourceTree = "<group>"; };
 		D020AD721A616A2000BB01A9 /* MessageView.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = MessageView.cpp; path = Layer/Component/MessageView.cpp; sourceTree = "<group>"; };
 		D020AD731A616A2000BB01A9 /* MessageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MessageView.h; path = Layer/Component/MessageView.h; sourceTree = "<group>"; };
-		D0332E901A6E81CE004FCA4C /* StateBase.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = StateBase.cpp; path = State/StateBase.cpp; sourceTree = "<group>"; };
 		D04876141A697B2B0097D6BB /* StoryState.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = StoryState.cpp; path = State/StoryState.cpp; sourceTree = "<group>"; };
 		D04876151A697B2B0097D6BB /* StoryState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StoryState.h; path = State/StoryState.h; sourceTree = "<group>"; };
 		D04876171A697B880097D6BB /* StoryLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = StoryLayer.cpp; path = Layer/StoryLayer.cpp; sourceTree = "<group>"; };
@@ -223,6 +219,14 @@
 		D094BFB51A6D3F2500D6C383 /* Direction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Direction.h; path = Model/Direction.h; sourceTree = "<group>"; };
 		D094BFB71A6D3F3800D6C383 /* Story.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Story.cpp; path = Model/Story.cpp; sourceTree = "<group>"; };
 		D094BFB81A6D3F3800D6C383 /* Story.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Story.h; path = Model/Story.h; sourceTree = "<group>"; };
+		D09C592C1A98DF450085B483 /* Dispatcher.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Dispatcher.cpp; path = Library/raciela/src/Dispatcher.cpp; sourceTree = "<group>"; };
+		D09C592D1A98DF450085B483 /* Dispatcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Dispatcher.h; path = Library/raciela/src/Dispatcher.h; sourceTree = "<group>"; };
+		D09C592E1A98DF450085B483 /* Router.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Router.cpp; path = Library/raciela/src/Router.cpp; sourceTree = "<group>"; };
+		D09C592F1A98DF450085B483 /* Router.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Router.h; path = Library/raciela/src/Router.h; sourceTree = "<group>"; };
+		D09C59301A98DF450085B483 /* State.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = State.cpp; path = Library/raciela/src/State.cpp; sourceTree = "<group>"; };
+		D09C59311A98DF450085B483 /* State.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = State.h; path = Library/raciela/src/State.h; sourceTree = "<group>"; };
+		D09C59321A98DF450085B483 /* View.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = View.cpp; path = Library/raciela/src/View.cpp; sourceTree = "<group>"; };
+		D09C59331A98DF450085B483 /* View.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = View.h; path = Library/raciela/src/View.h; sourceTree = "<group>"; };
 		D0A505421A6559A2004C2C4E /* json11.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = json11.cpp; path = Library/json11.cpp; sourceTree = "<group>"; };
 		D0A505431A6559A2004C2C4E /* json11.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = json11.hpp; path = Library/json11.hpp; sourceTree = "<group>"; };
 		D0B25F291A7CC1AA00D0D367 /* item */ = {isa = PBXFileReference; lastKnownFileType = folder; path = item; sourceTree = "<group>"; };
@@ -236,10 +240,9 @@
 		D0C983E11A6E64DA00761742 /* Template.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Template.h; path = Model/Template.h; sourceTree = "<group>"; };
 		D0CDF0A51A5AB331009E5E98 /* PlayerView.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = PlayerView.cpp; path = Layer/Component/PlayerView.cpp; sourceTree = "<group>"; };
 		D0CDF0A61A5AB331009E5E98 /* PlayerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PlayerView.h; path = Layer/Component/PlayerView.h; sourceTree = "<group>"; };
-		D0CDF0A81A5ABB27009E5E98 /* LayerManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = LayerManager.cpp; path = Layer/LayerManager.cpp; sourceTree = "<group>"; };
-		D0CDF0A91A5ABB27009E5E98 /* LayerManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LayerManager.h; path = Layer/LayerManager.h; sourceTree = "<group>"; };
 		D0DCF5311A85AAAB003FE946 /* ObjectOperateItem.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ObjectOperateItem.cpp; path = Model/Item/ObjectOperateItem.cpp; sourceTree = "<group>"; };
 		D0DCF5321A85AAAB003FE946 /* ObjectOperateItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ObjectOperateItem.h; path = Model/Item/ObjectOperateItem.h; sourceTree = "<group>"; };
+		D0DCF53D1A85F1B1003FE946 /* data */ = {isa = PBXFileReference; lastKnownFileType = folder; path = data; sourceTree = "<group>"; };
 		D0E15CFF1A7839A800E2AB46 /* ItemMenuState.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ItemMenuState.cpp; path = State/ItemMenuState.cpp; sourceTree = "<group>"; };
 		D0E15D001A7839A800E2AB46 /* ItemMenuState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ItemMenuState.h; path = State/ItemMenuState.h; sourceTree = "<group>"; };
 		D0E15D021A783A6200E2AB46 /* ItemMenuLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ItemMenuLayer.cpp; path = Layer/ItemMenuLayer.cpp; sourceTree = "<group>"; };
@@ -248,13 +251,8 @@
 		D0E15D061A783B0B00E2AB46 /* Item.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Item.h; path = Model/Item.h; sourceTree = "<group>"; };
 		D0EBE6151A526F7200E36888 /* MenuArrowItem.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = MenuArrowItem.cpp; path = Layer/Widget/MenuArrowItem.cpp; sourceTree = "<group>"; };
 		D0EBE6161A526F7200E36888 /* MenuArrowItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MenuArrowItem.h; path = Layer/Widget/MenuArrowItem.h; sourceTree = "<group>"; };
-		D0EBE6181A52709B00E36888 /* InputModule.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = InputModule.cpp; path = Module/InputModule.cpp; sourceTree = "<group>"; };
-		D0EBE6191A52709B00E36888 /* InputModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = InputModule.h; path = Module/InputModule.h; sourceTree = "<group>"; };
 		D0EBE61C1A5275B900E36888 /* FieldState.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = FieldState.cpp; path = State/FieldState.cpp; sourceTree = "<group>"; };
 		D0EBE61D1A5275B900E36888 /* FieldState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FieldState.h; path = State/FieldState.h; sourceTree = "<group>"; };
-		D0EBE61F1A52771D00E36888 /* StateMachineModule.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = StateMachineModule.cpp; path = Module/StateMachineModule.cpp; sourceTree = "<group>"; };
-		D0EBE6201A52771D00E36888 /* StateMachineModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StateMachineModule.h; path = Module/StateMachineModule.h; sourceTree = "<group>"; };
-		D0EBE6221A527C1400E36888 /* StateBase.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = StateBase.h; path = State/StateBase.h; sourceTree = "<group>"; };
 		D0FF46DB1A6242EB005EBDE7 /* MenuDecideItem.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = MenuDecideItem.cpp; path = Layer/Widget/MenuDecideItem.cpp; sourceTree = "<group>"; };
 		D0FF46DC1A6242EB005EBDE7 /* MenuDecideItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MenuDecideItem.h; path = Layer/Widget/MenuDecideItem.h; sourceTree = "<group>"; };
 		D44C620B132DFF330009C878 /* OpenAL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenAL.framework; path = System/Library/Frameworks/OpenAL.framework; sourceTree = SDKROOT; };
@@ -377,6 +375,7 @@
 		46880B7519C43A67006E1F66 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				D0DCF53D1A85F1B1003FE946 /* data */,
 				D0B25F291A7CC1AA00D0D367 /* item */,
 				521A8EA819F11F5000D177D7 /* fonts */,
 				3EACC98E19EE6D4300EB3C5E /* res */,
@@ -402,8 +401,6 @@
 				D083A2AA1A4DAF46009A9099 /* Layer */,
 				46880B8419C43A87006E1F66 /* AppDelegate.cpp */,
 				46880B8519C43A87006E1F66 /* AppDelegate.h */,
-				46880B8619C43A87006E1F66 /* HelloWorldScene.cpp */,
-				46880B8719C43A87006E1F66 /* HelloWorldScene.h */,
 			);
 			name = Classes;
 			path = ../Classes;
@@ -482,8 +479,6 @@
 				D0DCF53A1A85B530003FE946 /* Menu */,
 				D0DCF5371A85B42F003FE946 /* Field */,
 				D0DCF5381A85B44C003FE946 /* Controller */,
-				D0CDF0A81A5ABB27009E5E98 /* LayerManager.cpp */,
-				D0CDF0A91A5ABB27009E5E98 /* LayerManager.h */,
 			);
 			name = Layer;
 			sourceTree = "<group>";
@@ -491,6 +486,14 @@
 		D0A505411A65598F004C2C4E /* Library */ = {
 			isa = PBXGroup;
 			children = (
+				D09C592C1A98DF450085B483 /* Dispatcher.cpp */,
+				D09C592D1A98DF450085B483 /* Dispatcher.h */,
+				D09C592E1A98DF450085B483 /* Router.cpp */,
+				D09C592F1A98DF450085B483 /* Router.h */,
+				D09C59301A98DF450085B483 /* State.cpp */,
+				D09C59311A98DF450085B483 /* State.h */,
+				D09C59321A98DF450085B483 /* View.cpp */,
+				D09C59331A98DF450085B483 /* View.h */,
 				D0A505421A6559A2004C2C4E /* json11.cpp */,
 				D0A505431A6559A2004C2C4E /* json11.hpp */,
 			);
@@ -540,8 +543,6 @@
 		D0DCF5351A85B403003FE946 /* Menu */ = {
 			isa = PBXGroup;
 			children = (
-				D00907431A77C56100AD6790 /* MenuState.cpp */,
-				D00907441A77C56100AD6790 /* MenuState.h */,
 				D00907461A77C60B00AD6790 /* ModeSelectMenuState.cpp */,
 				D00907471A77C60B00AD6790 /* ModeSelectMenuState.h */,
 				D0E15CFF1A7839A800E2AB46 /* ItemMenuState.cpp */,
@@ -593,6 +594,8 @@
 		D0DCF53A1A85B530003FE946 /* Menu */ = {
 			isa = PBXGroup;
 			children = (
+				D004B8731A9E071C008CFCEC /* MakeMenuControllerLayer.cpp */,
+				D004B8741A9E071C008CFCEC /* MakeMenuControllerLayer.h */,
 				D00907491A77C6B400AD6790 /* ModeSelectMenuLayer.cpp */,
 				D009074A1A77C6B400AD6790 /* ModeSelectMenuLayer.h */,
 				D0E15D021A783A6200E2AB46 /* ItemMenuLayer.cpp */,
@@ -619,10 +622,6 @@
 			children = (
 				D07D33B01A7E102200061831 /* UserStorageModule.cpp */,
 				D07D33B11A7E102200061831 /* UserStorageModule.h */,
-				D0EBE6181A52709B00E36888 /* InputModule.cpp */,
-				D0EBE6191A52709B00E36888 /* InputModule.h */,
-				D0EBE61F1A52771D00E36888 /* StateMachineModule.cpp */,
-				D0EBE6201A52771D00E36888 /* StateMachineModule.h */,
 				D07D33A91A7E024000061831 /* MasterStorageModule.cpp */,
 				D07D33AA1A7E024000061831 /* MasterStorageModule.h */,
 			);
@@ -635,8 +634,6 @@
 				D0DCF5361A85B415003FE946 /* Story */,
 				D0DCF5351A85B403003FE946 /* Menu */,
 				D0DCF5341A85B3F5003FE946 /* Field */,
-				D0EBE6221A527C1400E36888 /* StateBase.h */,
-				D0332E901A6E81CE004FCA4C /* StateBase.cpp */,
 			);
 			name = State;
 			sourceTree = "<group>";
@@ -761,6 +758,7 @@
 				50EF62A217ECD613001EB2F8 /* Icon-29.png in Resources */,
 				50EF629617ECD46A001EB2F8 /* Icon-40.png in Resources */,
 				D01DE4CC1A6B70D200235525 /* story in Resources */,
+				D0DCF53E1A85F1B1003FE946 /* data in Resources */,
 				5087E78217EB970100C73F5D /* Icon-144.png in Resources */,
 				3EACC98F19EE6D4300EB3C5E /* res in Resources */,
 				50EF629817ECD46A001EB2F8 /* Icon-80.png in Resources */,
@@ -793,39 +791,38 @@
 			buildActionMask = 2147483647;
 			files = (
 				D0EBE61E1A5275B900E36888 /* FieldState.cpp in Sources */,
+				D09C59341A98DF450085B483 /* Dispatcher.cpp in Sources */,
 				D04876191A697B880097D6BB /* StoryLayer.cpp in Sources */,
 				46880B8819C43A87006E1F66 /* AppDelegate.cpp in Sources */,
+				D09C59371A98DF450085B483 /* View.cpp in Sources */,
 				D0BD84261A6FF21000980989 /* MovableRock.cpp in Sources */,
 				D0EBE6171A526F7200E36888 /* MenuArrowItem.cpp in Sources */,
 				D048D9BC1A4E623500EE9339 /* ControllerLayer.cpp in Sources */,
 				D07D33B21A7E102200061831 /* UserStorageModule.cpp in Sources */,
 				D094BFB91A6D3F3800D6C383 /* Story.cpp in Sources */,
-				D00907451A77C56100AD6790 /* MenuState.cpp in Sources */,
 				D0E15D071A783B0B00E2AB46 /* Item.cpp in Sources */,
 				D0A505441A6559A2004C2C4E /* json11.cpp in Sources */,
 				697244CE1A7A45A600D0C3B6 /* MakeMenuLayer.cpp in Sources */,
 				D020AD741A616A2000BB01A9 /* MessageView.cpp in Sources */,
 				D0BD84191A6FE9F300980989 /* FieldObject.cpp in Sources */,
 				D0FF46DD1A6242EB005EBDE7 /* MenuDecideItem.cpp in Sources */,
-				46880B8A19C43A87006E1F66 /* HelloWorldScene.cpp in Sources */,
 				D083A2A71A4DAB59009A9099 /* FieldLayer.cpp in Sources */,
 				503AE10017EB989F00D1A890 /* AppController.mm in Sources */,
+				D004B8751A9E071C008CFCEC /* MakeMenuControllerLayer.cpp in Sources */,
 				D00907481A77C60B00AD6790 /* ModeSelectMenuState.cpp in Sources */,
-				D0CDF0AA1A5ABB27009E5E98 /* LayerManager.cpp in Sources */,
 				697244CB1A7A44D600D0C3B6 /* MakeMenuState.cpp in Sources */,
 				D009074B1A77C6B400AD6790 /* ModeSelectMenuLayer.cpp in Sources */,
 				D0CDF0A71A5AB331009E5E98 /* PlayerView.cpp in Sources */,
-				D0EBE6211A52771D00E36888 /* StateMachineModule.cpp in Sources */,
 				D0DCF5331A85AAAB003FE946 /* ObjectOperateItem.cpp in Sources */,
 				503AE10217EB989F00D1A890 /* RootViewController.mm in Sources */,
 				503AE10117EB989F00D1A890 /* main.m in Sources */,
+				D09C59351A98DF450085B483 /* Router.cpp in Sources */,
 				D0BD84251A6FF21000980989 /* MessagePoint.cpp in Sources */,
 				D0E15D011A7839A800E2AB46 /* ItemMenuState.cpp in Sources */,
-				D0332E911A6E81CE004FCA4C /* StateBase.cpp in Sources */,
+				D09C59361A98DF450085B483 /* State.cpp in Sources */,
 				D07D33AB1A7E024000061831 /* MasterStorageModule.cpp in Sources */,
 				D04876161A697B2B0097D6BB /* StoryState.cpp in Sources */,
 				D0C983E21A6E64DA00761742 /* Template.cpp in Sources */,
-				D0EBE61A1A52709B00E36888 /* InputModule.cpp in Sources */,
 				D094BFB61A6D3F2500D6C383 /* Direction.cpp in Sources */,
 				D0E15D041A783A6200E2AB46 /* ItemMenuLayer.cpp in Sources */,
 			);
@@ -837,7 +834,6 @@
 			files = (
 				46880B8919C43A87006E1F66 /* AppDelegate.cpp in Sources */,
 				503AE10517EB98FF00D1A890 /* main.cpp in Sources */,
-				46880B8B19C43A87006E1F66 /* HelloWorldScene.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

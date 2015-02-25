@@ -10,26 +10,35 @@
 
 #include "MessagePoint.h"
 
+#include "FieldState.h"
 #include "FieldLayer.h"
-
+#include "ControllerLayer.h"
 USING_NS_CC;
 
-void MessagePoint::executeMovedAction(FieldLayer* view)
+void MessagePoint::executeMovedAction()
 {
     if (decide_trigger) {
         return ;
     }
-    // controller->setEnableArrowButtons(false);
+    
+    auto view       = state->getFieldView();
+    auto controller = state->getControllerView();
+    
+    controller->setEnableArrowButtons(false);
     auto action = getViewMessageAction(view);
     view->addRunActionAfterMove(action);
 }
 
-void MessagePoint::executeDecideAction(FieldLayer* view)
+void MessagePoint::executeDecideAction()
 {
     if (!decide_trigger) {
         return ;
     }
-    // controller->setEnableArrowButtons(false);
+    
+    auto view       = state->getFieldView();
+    auto controller = state->getControllerView();
+    
+    controller->setEnableArrowButtons(false);
     auto action = getViewMessageAction(view);
     view->runAction(action);
 }

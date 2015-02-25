@@ -10,7 +10,7 @@
 
 #include "Template.h"
 
-#include "InputModule.h"
+#include "Dispatcher.h"
 
 USING_NS_CC;
 
@@ -31,7 +31,7 @@ ItemMenuLayer* ItemMenuLayer::create(cocos2d::Vector<Item *> &item_list)
 
 bool ItemMenuLayer::init()
 {
-    if (!Layer::init()) {
+    if (!Raciela::View::init()) {
         return false;
     }
     
@@ -45,30 +45,28 @@ bool ItemMenuLayer::init()
     auto base_pos = Point(26, frame->getContentSize().height - 80);
     
     auto vec = Vector<MenuItem*>();
-    for (int y = 0; y < VIEW_ITEM_H; ++y) {
-        for (int x = 0; x < VIEW_ITEM_W; ++x) {
-            int idx = x + y * VIEW_ITEM_W;
-            
-            if (item_list.size() <= idx) {
-                break;
-            }
-            
-            auto item = item_list.at(idx);
-            auto filepath = Template::create("item/#item_id#.png");
-            filepath->assign("#item_id#", 1); // item->getItemId()
-            auto image_name = filepath->getString();
-            
-            auto item_menu_value = MenuItemImage::create(image_name, image_name);
-            item_menu_value->setPosition(base_pos.x + x * 41, base_pos.y - 40 * y);
-            item_menu_value->setCallback([idx, this](Ref* s) {
-                updateViewItem(idx);
-                /*
-                InputModule::getInstance()->pushEvent(InputEvent::PRESS_ITEM_SELECT);
-                InputModule::getInstance()->pushParam(idx);
-                 */
-            });
-            vec.pushBack(item_menu_value);
+    for (int idx = 0; idx < VIEW_ITEM_H * VIEW_ITEM_W; ++idx) {
+        int x = idx % VIEW_ITEM_W;
+        int y = idx / VIEW_ITEM_W;
+        
+        if (item_list.size() <= idx) {
+            break;
         }
+        
+        auto item = item_list.at(idx);
+        auto filepath = Template::create("item/#item_id#.png");
+        filepath->assign("#item_id#", 1); // item->getItemId()
+        auto image_name = filepath->getString();
+        
+        auto item_menu_value = MenuItemImage::create(image_name, image_name);
+        item_menu_value->setPosition(base_pos.x + x * 41, base_pos.y - 40 * y);
+        item_menu_value->setCallback([idx, this](Ref* s) {
+            updateViewItem(idx);
+            
+            auto dispatcher = Raciela::Dispatcher::getInstance();
+            dispatcher->dispatch("selected_item", idx);
+        });
+        vec.pushBack(item_menu_value);
     }
     
     if (!vec.empty()) {
@@ -83,12 +81,31 @@ bool ItemMenuLayer::init()
     frame->addChild(current_cursor);
     
     // ラベル表示
-    name_label = Label::createWithBMFont("fonts/message_font.fnt", "テスト");
+    name_label = Label::createWithBMFont("fonts/message_font.fnt", "");
     name_label->getTexture()->setAliasTexParameters();
     name_label->setAnchorPoint(Point(0, 0.5f));
     name_label->setPosition(12, frame->getContentSize().height - 16);
     name_label->setScale(2.0f);
     frame->addChild(name_label);
+    
+    // 調合ツリー表示
+    prepare_item_1 = Sprite::create("item/1.png");
+    prepare_item_1->setAnchorPoint(Point(0, 1));
+    prepare_item_1->setPosition(190, frame->getContentSize().height - 82);
+    prepare_item_1->setVisible(false);
+    frame->addChild(prepare_item_1);
+    prepare_item_2 = Sprite::create("item/1.png");
+    prepare_item_2->setAnchorPoint(Point(0, 1));
+    prepare_item_2->setPosition(222, frame->getContentSize().height - 82);
+    prepare_item_2->setVisible(false);
+    frame->addChild(prepare_item_2);
+    prepare_item_3 = Sprite::create("item/1.png");
+    prepare_item_3->setAnchorPoint(Point(0, 1));
+    prepare_item_3->setPosition(206, frame->getContentSize().height - 56);
+    prepare_item_3->setVisible(false);
+    frame->addChild(prepare_item_3);
+    
+    updateViewItem(0);
     
     return true;
 }
@@ -111,4 +128,33 @@ void ItemMenuLayer::updateViewItem(int index)
 
     // 名前表示切り替え
     name_label->setString(item->getItemName());
+    
+    // 調合ツリーの表示更新
+    prepare_item_1->setVisible(false);
+    prepare_item_2->setVisible(false);
+    prepare_item_3->setVisible(false);
+    
+    auto make_item = item->getMakeItem();
+    if (make_item == nullptr) {
+        return ;
+    }
+    
+    auto thumb1    = make_item->getPrepareItemTexture(1);
+    auto thumb2    = make_item->getPrepareItemTexture(2);
+    auto thumb3    = make_item->getPrepareItemTexture(3);
+
+    if (thumb1) {
+        prepare_item_1->setTexture(thumb1);
+        prepare_item_1->setVisible(true);
+    }
+    
+    if (thumb2) {
+        prepare_item_2->setTexture(thumb2);
+        prepare_item_2->setVisible(true);
+    }
+    
+    if (thumb3) {
+        prepare_item_3->setTexture(thumb3);
+        prepare_item_3->setVisible(true);
+    }
 }

@@ -1,0 +1,3 @@
+[submodule "Classes/Library/raciela"]
+	path = Classes/Library/raciela
+	url = git@github.com:MKomiya/raciela.git
