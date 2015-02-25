@@ -31,6 +31,7 @@ public:
     void visibleItemIcons(std::vector<int> indices);
     void setPreparentItemTexture(int preparent_index, cocos2d::Texture2D* texture);
     void invisiblePreparentItem(int preparent_index);
+    void showResult(const Item* maked_item);
     
     CC_SYNTHESIZE_PASS_BY_REF(cocos2d::Vector<Item*>, item_list, ItemList);
     CC_SYNTHESIZE_PASS_BY_REF(cocos2d::Vector<cocos2d::MenuItem*>, item_icon_list, ItemIconList);

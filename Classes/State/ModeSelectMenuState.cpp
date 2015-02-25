@@ -61,6 +61,7 @@ void ModeSelectMenuState::delegate()
     
     dispatcher->subscribe<void ()>("selected_make", [=]() {
         auto router = Raciela::Router::getInstance();
+        router->popState();
         router->pushState(MakeMenuState::create());
     });
 }

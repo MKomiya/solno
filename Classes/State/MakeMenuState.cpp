@@ -120,7 +120,7 @@ void MakeMenuState::delegate()
         auto us   = UserStorageModule::getInstance();
         auto data = us->getOneUserItem(make_item->getItemId());
         us->updateUserItem(make_item->getItemId(), data.num + 1);
-        //view->showResult(make_item);
+        view->showResult(make_item);
     });
 
     dispatcher->subscribe<void ()>("touched_result", [=]() {

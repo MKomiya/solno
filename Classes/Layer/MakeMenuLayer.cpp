@@ -205,3 +205,21 @@ void MakeMenuLayer::invisiblePreparentItem(int preparent_index)
         throw "Invalid preparent index";
     }
 }
+
+void MakeMenuLayer::showResult(const Item *maked_item)
+{
+    std::string str = maked_item->getItemName() + "を調合した！";
+    name_label->setString(str);
+    
+    auto listener = EventListenerTouchOneByOne::create();
+    listener->onTouchBegan = [=](Touch* touch, Event* event) -> bool {
+        return true;
+    };
+    listener->onTouchMoved = [=](Touch* touch, Event* event) {
+    };
+    listener->onTouchEnded = [=](Touch* touch, Event* event) {
+        dispatcher->dispatch("touched_result");
+    };
+    
+    Director::getInstance()->getEventDispatcher()->addEventListenerWithSceneGraphPriority(listener, this);
+}
