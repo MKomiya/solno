@@ -11,6 +11,7 @@
 
 #include "MovableRock.h"
 #include "MessagePoint.h"
+#include "Tree.h"
 
 #pragma mark create method
 FieldObject* FieldObject::create(FieldState* state, int id, cocos2d::Point pos, cocos2d::ValueMap data)
@@ -42,6 +43,15 @@ FieldObject* FieldObject::create(FieldState* state, int id, cocos2d::Point pos, 
         ret->setPosition(pos);
         ret->setFieldState(state);
         return ret;
+    
+    } else if (type_str == "4") {
+        auto ret = new Tree();
+        ret->setObjectType(TREE);
+        ret->setId(id);
+        ret->setPosition(pos);
+        ret->setFieldState(state);
+        return ret;
+        
     }
     return nullptr;
 }
@@ -62,4 +72,9 @@ void FieldObject::executeMovedAction()
 bool FieldObject::isPassablePlayer()
 {
     return true;
+}
+
+int FieldObject::getBreakItemId()
+{
+    return 0;
 }

@@ -30,6 +30,7 @@ public:
     virtual void executeDecideAction();
     virtual void executeMovedAction();
     virtual bool isPassablePlayer();
+    virtual int getBreakItemId();
     
     CC_SYNTHESIZE(int, id, Id);
     CC_SYNTHESIZE(cocos2d::Point, pos, Position);
