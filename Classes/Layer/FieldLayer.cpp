@@ -142,3 +142,15 @@ void FieldLayer::releaseMessages()
 {
     msg_view->nextMessage();
 }
+
+void FieldLayer::destroyObject(int id)
+{
+    auto target = objects_root->getChildByTag(id);
+    if (target == nullptr) {
+        return ;
+    }
+    
+    target->runAction(Sequence::create(FadeOut::create(0.3f),
+                                       RemoveSelf::create(),
+                                       NULL));
+}
