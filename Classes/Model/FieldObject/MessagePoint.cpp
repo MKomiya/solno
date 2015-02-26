@@ -12,7 +12,7 @@
 
 #include "FieldState.h"
 #include "FieldLayer.h"
-#include "ControllerLayer.h"
+#include "FieldControllerLayer.h"
 USING_NS_CC;
 
 void MessagePoint::executeMovedAction()
