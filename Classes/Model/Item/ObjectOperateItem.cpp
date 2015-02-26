@@ -9,6 +9,7 @@
 #include "ObjectOperateItem.h"
 #include "FieldState.h"
 #include "FieldObject.h"
+#include "FieldLayer.h"
 
 void ObjectOperateItem::useItem(FieldState* state)
 {
@@ -18,12 +19,13 @@ void ObjectOperateItem::useItem(FieldState* state)
         return ;
     }
     
-    if (break_object->getObjectType() != FieldObject::ObjectType::TREE) {
+    if (break_object->getBreakItemId() != getItemId()) {
         auto name = getItemName();
         CCLOG("%sでは壊せそうもない", name.c_str());
         return ;
     }
     
-    // 破壊処理（とりあえず木を壊すだけ）
+    auto view = state->getFieldView();
+    view->destroyObject(getId());
     state->deleteObject(break_object);
 }
