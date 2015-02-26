@@ -89,6 +89,10 @@ json11::Json::array UserStorageModule::readJsonFile(std::string ns)
     std::string filepath =
         fu->getWritablePath() + "userdata/user_" + ns + ".json";
 
+    if (!fu->isFileExist(filepath)) {
+        return json11::Json::array();
+    }
+    
     std::string json_string, err;
     std::ifstream file(filepath.c_str());
     while(!file.eof()) {
@@ -111,11 +115,6 @@ json11::Json::array UserStorageModule::readMockData()
         json11::Json::object {
             { "id", 2 },
             { "item_id", 2 },
-            { "num", 2 }
-        },
-        json11::Json::object {
-            { "id", 3 },
-            { "item_id", 3 },
             { "num", 2 }
         },
     };
