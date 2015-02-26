@@ -53,14 +53,21 @@ UserItem UserStorageModule::getOneUserItem(int item_id)
 #pragma mark Update user data
 void UserStorageModule::updateUserItem(int item_id, int num)
 {
+    auto it = user_item.begin();
     for (UserItem& value : user_item) {
         if (value.item_id == item_id) {
+            if (num <= 0) {
+                user_item.erase(it);
+                flush();
+                return ;
+            }
             value.num = num;
             flush();
             return ;
         }
+        ++it;
     }
-
+    
     user_item.push_back(UserItem(UserItem::index++, item_id, num));
     flush();
 }
