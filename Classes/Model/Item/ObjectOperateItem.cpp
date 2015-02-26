@@ -10,6 +10,7 @@
 #include "FieldState.h"
 #include "FieldObject.h"
 #include "FieldLayer.h"
+#include "UserStorageModule.h"
 
 void ObjectOperateItem::useItem(FieldState* state)
 {
@@ -28,4 +29,7 @@ void ObjectOperateItem::useItem(FieldState* state)
     auto view = state->getFieldView();
     view->destroyObject(break_object->getId());
     state->deleteObject(break_object);
+    
+    auto us = UserStorageModule::getInstance();
+    us->updateUserItem(getItemId(), getNum() - 1);
 }
