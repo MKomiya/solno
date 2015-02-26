@@ -26,6 +26,6 @@ void ObjectOperateItem::useItem(FieldState* state)
     }
     
     auto view = state->getFieldView();
-    view->destroyObject(getId());
+    view->destroyObject(break_object->getId());
     state->deleteObject(break_object);
 }
