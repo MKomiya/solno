@@ -30,5 +30,6 @@
     <property name="msg_data" value="[&quot;スクラップオキバ&quot;]"/>
    </properties>
   </object>
+  <object name="tree" type="4" gid="10" x="112" y="512"/>
  </objectgroup>
 </map>
