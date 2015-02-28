@@ -10,6 +10,7 @@
 #include "OpeningLayer.h"
 #include "ControllerLayer.h"
 #include "MessageView.h"
+#include "TerminalMessageView.h"
 #include "Router.h"
 #include "Dispatcher.h"
 
@@ -25,6 +26,7 @@ OpeningState* OpeningState::create()
     
     ret->init();
     ret->setMessageViewState(MessageViewState::DISABLED);
+    ret->setTerminalMessageViewState(TerminalMessageViewState::DISABLED);
     
     ret->autorelease();
     ret->created();
@@ -37,8 +39,8 @@ void OpeningState::enter()
     auto frame = ControllerLayer::create();
     
     auto router = Raciela::Router::getInstance();
-    router->addView(view);
     router->addView(frame);
+    router->addView(view);
     
     std::vector<std::string> data;
     data.push_back("オープニングメッセージ");
@@ -47,6 +49,8 @@ void OpeningState::enter()
     data.push_back("アトハタノミマシタヨ");
     
     view->viewMessages(data);
+    
+    view->viewTerminalMessage("ターミナルメッセージ");
 }
 
 void OpeningState::update()
@@ -64,9 +68,17 @@ void OpeningState::delegate()
         if (msg_view_state == MessageViewState::WAIT) {
             view->nextMessages();
         }
+        
+        if (terminal_message_view_state == TerminalMessageViewState::WAIT) {
+            view->releaseTerminalMesage();
+        }
     });
     
     dispatcher->subscribe<void (MessageViewState)>("update_msg_state", [=](MessageViewState state) {
         msg_view_state = state;
+    });
+    
+    dispatcher->subscribe<void (TerminalMessageViewState)>("update_terminal_msg_state", [=](TerminalMessageViewState state) {
+        terminal_message_view_state = state;
     });
 }

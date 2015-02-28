@@ -9,6 +9,7 @@
 #include "OpeningLayer.h"
 #include "MessageView.h"
 #include "Dispatcher.h"
+#include "TerminalMessageView.h"
 
 USING_NS_CC;
 
@@ -21,6 +22,9 @@ bool OpeningLayer::init()
     msg_view = MessageView::create(false);
     msg_view->setMessageColor(Color3B(0, 255, 30));
     addChild(msg_view);
+    
+    terminal_msg_view = TerminalMessageView::create();
+    addChild(terminal_msg_view);
     
     // add touch event listener
     auto listener = EventListenerTouchOneByOne::create();
@@ -45,4 +49,14 @@ void OpeningLayer::viewMessages(std::vector<std::string> msg_data)
 void OpeningLayer::nextMessages()
 {
     msg_view->nextMessage();
+}
+
+void OpeningLayer::viewTerminalMessage(std::string msg)
+{
+    terminal_msg_view->viewMessage(msg);
+}
+
+void OpeningLayer::releaseTerminalMesage()
+{
+    terminal_msg_view->releaseMessage();
 }

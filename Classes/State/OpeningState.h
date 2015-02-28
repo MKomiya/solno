@@ -14,6 +14,7 @@
 #include "State.h"
 
 enum class MessageViewState;
+enum class TerminalMessageViewState;
 
 class OpeningLayer;
 class OpeningState : public Raciela::State
@@ -28,6 +29,7 @@ public:
 
     CC_SYNTHESIZE(OpeningLayer*, view, View);
     CC_SYNTHESIZE(MessageViewState, msg_view_state, MessageViewState);
+    CC_SYNTHESIZE(TerminalMessageViewState, terminal_message_view_state, TerminalMessageViewState);
 };
 
 #endif /* defined(__solno__OpeningState__) */

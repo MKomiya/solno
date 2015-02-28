@@ -15,8 +15,10 @@
 #include "View.h"
 
 enum class MessageViewState;
+enum class TerminalMessageViewState;
 
 class MessageView;
+class TerminalMessageView;
 class OpeningLayer : public Raciela::View
 {
 public:
@@ -26,8 +28,13 @@ public:
     void viewMessages(std::vector<std::string> msg_data);
     void nextMessages();
     
+    void viewTerminalMessage(std::string msg);
+    void releaseTerminalMesage();
+    
     CC_SYNTHESIZE(MessageView*, msg_view, MessageView);
     CC_SYNTHESIZE(MessageViewState, msg_view_state, MessageViewState);
+    CC_SYNTHESIZE(TerminalMessageView*, terminal_msg_view, TerminalMessageView);
+    CC_SYNTHESIZE(TerminalMessageViewState, terminal_msg_view_state, TerminalMessageViewState);
 };
 
 #endif /* defined(__solno__OpeningLayer__) */
