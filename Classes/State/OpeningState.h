@@ -13,6 +13,8 @@
 #include <cocos2d.h>
 #include "State.h"
 
+enum class MessageViewState;
+
 class OpeningLayer;
 class OpeningState : public Raciela::State
 {
@@ -25,6 +27,7 @@ public:
     virtual void delegate() override;
 
     CC_SYNTHESIZE(OpeningLayer*, view, View);
+    CC_SYNTHESIZE(MessageViewState, msg_view_state, MessageViewState);
 };
 
 #endif /* defined(__solno__OpeningState__) */

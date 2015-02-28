@@ -18,7 +18,8 @@ bool OpeningLayer::init()
         return false;
     }
     
-    msg_view = MessageView::create();
+    msg_view = MessageView::create(false);
+    msg_view->setMessageColor(Color3B(0, 255, 30));
     addChild(msg_view);
     
     // add touch event listener
@@ -31,6 +32,7 @@ bool OpeningLayer::init()
     listener->onTouchEnded = [=](Touch* t, Event* e) {
         dispatcher->dispatch("touched");
     };
+    Director::getInstance()->getEventDispatcher()->addEventListenerWithSceneGraphPriority(listener, this);
     
     return true;
 }

@@ -8,6 +8,8 @@
 
 #include "OpeningState.h"
 #include "OpeningLayer.h"
+#include "ControllerLayer.h"
+#include "MessageView.h"
 #include "Router.h"
 #include "Dispatcher.h"
 
@@ -22,6 +24,8 @@ OpeningState* OpeningState::create()
     }
     
     ret->init();
+    ret->setMessageViewState(MessageViewState::DISABLED);
+    
     ret->autorelease();
     ret->created();
     return ret;
@@ -30,13 +34,23 @@ OpeningState* OpeningState::create()
 void OpeningState::enter()
 {
     view = OpeningLayer::create();
+    auto frame = ControllerLayer::create();
+    
     auto router = Raciela::Router::getInstance();
     router->addView(view);
+    router->addView(frame);
+    
+    std::vector<std::string> data;
+    data.push_back("オープニングメッセージ");
+    data.push_back("ハローハロー");
+    data.push_back("キコエテマスカ");
+    data.push_back("アトハタノミマシタヨ");
+    
+    view->viewMessages(data);
 }
 
 void OpeningState::update()
 {
-    
 }
 
 void OpeningState::exit()
@@ -47,6 +61,12 @@ void OpeningState::exit()
 void OpeningState::delegate()
 {
     dispatcher->subscribe<void ()>("touched", [=]() {
-        view->nextMessages();
+        if (msg_view_state == MessageViewState::WAIT) {
+            view->nextMessages();
+        }
+    });
+    
+    dispatcher->subscribe<void (MessageViewState)>("update_msg_state", [=](MessageViewState state) {
+        msg_view_state = state;
     });
 }

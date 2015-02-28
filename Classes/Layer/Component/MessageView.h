@@ -24,7 +24,7 @@ enum class MessageViewState {
 class MessageView : public cocos2d::Node
 {
 public:
-    static MessageView* create(bool visible_window = false);
+    static MessageView* create(bool visible_window = true);
     void viewMessages(std::vector<std::string> msg_data);
     void updateMessage(float dt);
     void nextMessage();

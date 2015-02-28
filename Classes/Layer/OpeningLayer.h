@@ -14,6 +14,8 @@
 
 #include "View.h"
 
+enum class MessageViewState;
+
 class MessageView;
 class OpeningLayer : public Raciela::View
 {
@@ -25,6 +27,7 @@ public:
     void nextMessages();
     
     CC_SYNTHESIZE(MessageView*, msg_view, MessageView);
+    CC_SYNTHESIZE(MessageViewState, msg_view_state, MessageViewState);
 };
 
 #endif /* defined(__solno__OpeningLayer__) */

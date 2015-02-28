@@ -2,6 +2,7 @@
 #include "MasterStorageModule.h"
 #include "Router.h"
 #include "FieldState.h"
+#include "OpeningState.h"
 
 USING_NS_CC;
 
@@ -57,7 +58,7 @@ bool AppDelegate::applicationDidFinishLaunching() {
     }, "update_state");
     
     // initialize state
-    router->pushState(FieldState::create());
+    router->pushState(OpeningState::create());
     
     // run
     director->runWithScene(scene);
