@@ -59,7 +59,7 @@ void MessageView::viewMessages(std::vector<std::string> msg_data)
     setVisible(true);
     
     auto move  = MoveTo::create(0.3f, Point(16, 176));
-    auto moved = CallFunc::create([this, dispatcher]() {
+    auto moved = CallFunc::create([this]() {
         schedule(schedule_selector(MessageView::updateMessage), 0.03f);
     });
     runAction(Sequence::create(move, moved, NULL));
