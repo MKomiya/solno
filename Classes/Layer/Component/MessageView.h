@@ -21,21 +21,26 @@ enum class MessageViewState {
     END,
 };
 
-class MessageView : public cocos2d::Sprite
+class MessageView : public cocos2d::Node
 {
 public:
-    static MessageView* create();
+    static MessageView* create(bool visible_window = false);
     void viewMessages(std::vector<std::string> msg_data);
     void updateMessage(float dt);
     void nextMessage();
     void releaseMessages();
     void setMessageColor(cocos2d::Color3B color);
     
+    CC_SYNTHESIZE(bool, visible_window, VisibleWindow);
     CC_SYNTHESIZE(cocos2d::Label*, msg_label, MsgLabel);
     CC_SYNTHESIZE(std::vector<std::string>, msg_data, MsgData);
     CC_SYNTHESIZE(std::string, now_msg, NowMsg);
     CC_SYNTHESIZE(int, string_idx, StringIdx);
     CC_SYNTHESIZE(int, msg_idx, msgIdx);
+    CC_SYNTHESIZE(cocos2d::Sprite*, msg_window, MsgWindow);
+    
+private:
+    void disabledMessage();
 };
 
 #endif /* defined(__solno__MessageView__) */
