@@ -29,7 +29,7 @@ MessageView* MessageView::create()
         msg_label->getTexture()->setAliasTexParameters();
         msg_label->setAnchorPoint(Point(0, 1));
         msg_label->setPosition(8, 40);
-        msg_label->setTag(MESSAGE_LABEL);
+        ret->setMsgLabel(msg_label);
         ret->addChild(msg_label);
         
         // disabled view
@@ -71,7 +71,6 @@ void MessageView::updateMessage(float dt)
     string_idx = string_idx >= now_msg.length() ? now_msg.length() : string_idx;
     
     auto output = now_msg.substr(0, string_idx);
-    auto msg_label = (Label*)getChildByTag(MESSAGE_LABEL);
     msg_label->setString(output.c_str());
     
     if (string_idx == now_msg.length()) {
@@ -93,7 +92,6 @@ void MessageView::nextMessage()
         return ;
     }
     
-    auto msg_label = (Label*)getChildByTag(MESSAGE_LABEL);
     msg_label->setString("");
     
     schedule(schedule_selector(MessageView::updateMessage), 0.03f);
@@ -109,8 +107,12 @@ void MessageView::releaseMessages()
         string_idx = 0;
         setVisible(false);
         
-        auto msg_label = (Label*)getChildByTag(MESSAGE_LABEL);
         msg_label->setString("");
     });
     runAction(Sequence::create(move, moved, NULL));
+}
+
+void MessageView::setMessageColor(cocos2d::Color3B color)
+{
+    msg_label->setColor(color);
 }
