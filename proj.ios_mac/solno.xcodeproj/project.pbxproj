@@ -69,6 +69,7 @@
 		D009AD431A9F65AC0075A5DB /* Tree.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D009AD411A9F65AC0075A5DB /* Tree.cpp */; };
 		D00D9A3C1AA18A6D0023A491 /* OpeningState.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D00D9A3A1AA18A6D0023A491 /* OpeningState.cpp */; };
 		D00D9A401AA18C090023A491 /* OpeningLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D00D9A3E1AA18C090023A491 /* OpeningLayer.cpp */; };
+		D00D9A431AA1950C0023A491 /* MenuButtonItem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D00D9A411AA1950C0023A491 /* MenuButtonItem.cpp */; };
 		D01DE4C81A6B706600235525 /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D01DE4C71A6B706600235525 /* libsqlite3.0.dylib */; };
 		D01DE4CC1A6B70D200235525 /* story in Resources */ = {isa = PBXBuildFile; fileRef = D01DE4CB1A6B70D200235525 /* story */; };
 		D020AD741A616A2000BB01A9 /* MessageView.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D020AD721A616A2000BB01A9 /* MessageView.cpp */; };
@@ -208,6 +209,8 @@
 		D00D9A3B1AA18A6D0023A491 /* OpeningState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OpeningState.h; path = State/OpeningState.h; sourceTree = "<group>"; };
 		D00D9A3E1AA18C090023A491 /* OpeningLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = OpeningLayer.cpp; path = Layer/OpeningLayer.cpp; sourceTree = "<group>"; };
 		D00D9A3F1AA18C090023A491 /* OpeningLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OpeningLayer.h; path = Layer/OpeningLayer.h; sourceTree = "<group>"; };
+		D00D9A411AA1950C0023A491 /* MenuButtonItem.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = MenuButtonItem.cpp; path = Layer/Widget/MenuButtonItem.cpp; sourceTree = "<group>"; };
+		D00D9A421AA1950C0023A491 /* MenuButtonItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MenuButtonItem.h; path = Layer/Widget/MenuButtonItem.h; sourceTree = "<group>"; };
 		D01DE4C71A6B706600235525 /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.1.sdk/usr/lib/libsqlite3.0.dylib; sourceTree = DEVELOPER_DIR; };
 		D01DE4CB1A6B70D200235525 /* story */ = {isa = PBXFileReference; lastKnownFileType = folder; path = story; sourceTree = "<group>"; };
 		D020AD721A616A2000BB01A9 /* MessageView.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = MessageView.cpp; path = Layer/Component/MessageView.cpp; sourceTree = "<group>"; };
@@ -648,6 +651,8 @@
 				D0EBE6161A526F7200E36888 /* MenuArrowItem.h */,
 				D0FF46DB1A6242EB005EBDE7 /* MenuDecideItem.cpp */,
 				D0FF46DC1A6242EB005EBDE7 /* MenuDecideItem.h */,
+				D00D9A411AA1950C0023A491 /* MenuButtonItem.cpp */,
+				D00D9A421AA1950C0023A491 /* MenuButtonItem.h */,
 			);
 			name = Widget;
 			sourceTree = "<group>";
@@ -837,6 +842,7 @@
 				D07D33B21A7E102200061831 /* UserStorageModule.cpp in Sources */,
 				D094BFB91A6D3F3800D6C383 /* Story.cpp in Sources */,
 				D009AD401A9F5B5F0075A5DB /* FieldControllerLayer.cpp in Sources */,
+				D00D9A431AA1950C0023A491 /* MenuButtonItem.cpp in Sources */,
 				D0E15D071A783B0B00E2AB46 /* Item.cpp in Sources */,
 				D00D9A3C1AA18A6D0023A491 /* OpeningState.cpp in Sources */,
 				D0A505441A6559A2004C2C4E /* json11.cpp in Sources */,

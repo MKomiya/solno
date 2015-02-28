@@ -9,6 +9,7 @@
 #include "FieldControllerLayer.h"
 #include "MenuArrowItem.h"
 #include "MenuDecideItem.h"
+#include "MenuButtonItem.h"
 
 USING_NS_CC;
 
@@ -34,7 +35,10 @@ bool FieldControllerLayer::init()
     arrow_menu->setPosition(Point::ZERO);
     addChild(arrow_menu);
     
-    auto decide_menu = Menu::create(decide_button, nullptr);
+    auto menu_button = MenuButtonItem::create();
+    menu_button->setPosition(50, 60);
+    
+    auto decide_menu = Menu::create(decide_button, menu_button, nullptr);
     decide_menu->setPosition(Point::ZERO);
     addChild(decide_menu);
     

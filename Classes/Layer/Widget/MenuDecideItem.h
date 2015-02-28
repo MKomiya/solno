@@ -12,7 +12,7 @@
 #include <stdio.h>
 #include <cocos2d.h>
 
-class MenuDecideItem : public cocos2d::MenuItemFont
+class MenuDecideItem : public cocos2d::MenuItemSprite
 {
 public:
     static MenuDecideItem* create();

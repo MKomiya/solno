@@ -134,6 +134,10 @@ void FieldState::delegate()
     });
     
     dispatcher->subscribe<void ()>("release_decide", [=]() {
+        decideAction();
+    });
+    
+    dispatcher->subscribe<void ()>("release_menu", [=]() {
         auto router = Raciela::Router::getInstance();
         router->pushState(ModeSelectMenuState::create());
     });
