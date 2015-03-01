@@ -33,12 +33,34 @@ public:
     {}
 };
 
+enum class MasterOpeningType {
+    NORMAL   = 1, // 通常画面に表示するメッセージ
+    TERMINAL = 2, // ターミナル画面に表示するメッセージ
+};
+
+class MasterOpening
+{
+public:
+    int id;
+    MasterOpeningType type;
+    std::string msg;
+    
+    MasterOpening() : id(0) {}
+    MasterOpening(json11::Json::object data) :
+        id(data["id"].int_value()),
+        type((MasterOpeningType)data["type"].int_value()),
+        msg(data["msg"].string_value())
+    {}
+};
+
 const MasterItem MasterItemNull;
+const MasterOpening MasterOpeningNull;
 
 class MasterStorageModule
 {
 public:
     static std::string MASTER_NS_ITEM;
+    static std::string MASTER_NS_OPENING;
     
     static MasterStorageModule* getInstance() {
         static dispatch_once_t token;
@@ -56,6 +78,7 @@ public:
     std::vector<MasterItem> getAll();
     MasterItem getOne(int id);
     std::vector<int> findPrepareItemIdsByItemId(int item_id);
+    std::vector<MasterOpening> getOpeningList();
 
 #pragma mark Private funcs
 private:
@@ -63,6 +86,7 @@ private:
     
     static MasterStorageModule* instance;
     std::vector<MasterItem> master_item_list;
+    std::vector<MasterOpening> master_opening_list;
 };
 
 #endif /* defined(__solno__MasterStorageModule__) */
