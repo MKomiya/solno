@@ -43,6 +43,7 @@ TerminalMessageView* TerminalMessageView::create()
 
 void TerminalMessageView::viewMessage(std::string msg)
 {
+    setStringIdx(0);
     setMsg(msg);
     
     auto dispatcher = Raciela::Dispatcher::getInstance();
