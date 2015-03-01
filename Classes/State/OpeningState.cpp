@@ -13,6 +13,7 @@
 #include "TerminalMessageView.h"
 #include "Router.h"
 #include "Dispatcher.h"
+#include "FieldState.h"
 
 USING_NS_CC;
 
@@ -80,5 +81,10 @@ void OpeningState::delegate()
     
     dispatcher->subscribe<void (TerminalMessageViewState)>("update_terminal_msg_state", [=](TerminalMessageViewState state) {
         terminal_message_view_state = state;
+    });
+    
+    dispatcher->subscribe<void ()>("exit_opening", [=]() {
+        auto router = Raciela::Router::getInstance();
+        router->pushState(FieldState::create());
     });
 }

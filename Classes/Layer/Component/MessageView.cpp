@@ -103,12 +103,12 @@ void MessageView::nextMessage()
 {
     msg_idx++;
     string_idx = 0;
-    now_msg = msg_data[msg_idx];
-    
     if (msg_idx == msg_data.size()) {
         releaseMessages();
         return ;
     }
+    
+    now_msg = msg_data[msg_idx];
     
     msg_label->setString("");
     
@@ -141,6 +141,8 @@ void MessageView::disabledMessage()
     
     string_idx = 0;
     setVisible(false);
-    
     msg_label->setString("");
+    
+    // @todo: openingだけでdispatch出来る何かを考える
+    dispatcher->dispatch("exit_opening");
 }
