@@ -31,6 +31,8 @@ TerminalMessageView* TerminalMessageView::create()
     msg_label->setAnchorPoint(Point(0, 1));
     msg_label->setPosition(8, 40);
     msg_label->setColor(Color3B(0, 255, 30));
+    msg_label->setWidth(132);
+    msg_label->setLineBreakWithoutSpace(true);
     ret->addChild(msg_label);
     
     ret->setMsgLabel(msg_label);

@@ -45,6 +45,8 @@ MessageView* MessageView::create(bool visible_window)
     msg_label->getTexture()->setAliasTexParameters();
     msg_label->setAnchorPoint(Point(0, 1));
     msg_label->setPosition(8, 40);
+    msg_label->setWidth(132);
+    msg_label->setLineBreakWithoutSpace(true);
     ret->setMsgLabel(msg_label);
     ret->addChild(msg_label);
     
