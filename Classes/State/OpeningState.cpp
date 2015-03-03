@@ -87,14 +87,18 @@ void OpeningState::delegate()
             msg_index++;
             CCLOG("msg_index: %d", msg_index);
             
-            if (normal_msg.size() != 0) {
-                auto it_normal = normal_msg.find(msg_index);
-                if (it_normal == normal_msg.end()) {
-                    view->nextMessages();
-                } else {
-                    view->viewMessages(it_normal->second);
-                    normal_msg.erase(it_normal);
-                }
+            if (normal_msg.size() == 0) {
+                auto router = Raciela::Router::getInstance();
+                router->pushState(FieldState::create());
+                return ;
+            }
+            
+            auto it_normal = normal_msg.find(msg_index);
+            if (it_normal == normal_msg.end()) {
+                view->nextMessages();
+            } else {
+                view->viewMessages(it_normal->second);
+                normal_msg.erase(it_normal);
             }
             
             if (terminal_msg.size() != 0) {
