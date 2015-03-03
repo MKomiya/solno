@@ -9,7 +9,7 @@
 #include "OpeningState.h"
 #include "OpeningLayer.h"
 #include "ControllerLayer.h"
-#include "MessageView.h"
+#include "OpeningMessageView.h"
 #include "TerminalMessageView.h"
 #include "Router.h"
 #include "Dispatcher.h"
@@ -27,7 +27,7 @@ OpeningState* OpeningState::create()
     }
     
     ret->init();
-    ret->setMessageViewState(MessageViewState::DISABLED);
+    ret->setMessageViewState(OpeningMessageViewState::WAIT);
     ret->setTerminalMessageViewState(TerminalMessageViewState::WAIT);
     
     ret->autorelease();
@@ -45,7 +45,7 @@ bool OpeningState::init()
     auto data_list = master->getOpeningList();
     for (auto data : data_list) {
         if (data.type == MasterOpeningType::NORMAL) {
-            normal_msg.push_back(data.msg);
+            normal_msg.insert(std::make_pair(data.id, data.msg));
             continue ;
         }
         if (data.type == MasterOpeningType::TERMINAL){
@@ -67,9 +67,6 @@ void OpeningState::enter()
     auto router = Raciela::Router::getInstance();
     router->addView(frame);
     router->addView(view);
-    
-    
-    view->viewMessages(normal_msg);
 }
 
 void OpeningState::update()
@@ -84,34 +81,41 @@ void OpeningState::exit()
 void OpeningState::delegate()
 {
     dispatcher->subscribe<void ()>("touched", [=]() {
-        if (msg_view_state == MessageViewState::WAIT &&
+        if (msg_view_state != OpeningMessageViewState::PROGRESS &&
             terminal_message_view_state != TerminalMessageViewState::PROGRESS)
         {
             msg_index++;
             CCLOG("msg_index: %d", msg_index);
             
-            view->nextMessages();
-            
-            if (terminal_msg.size() == 0) {
-                return ;
+            if (normal_msg.size() != 0) {
+                auto it_normal = normal_msg.find(msg_index);
+                if (it_normal == normal_msg.end()) {
+                    view->nextMessages();
+                } else {
+                    view->viewMessages(it_normal->second);
+                    normal_msg.erase(it_normal);
+                }
             }
             
-            auto it = terminal_msg.find(msg_index);
-            if (it == terminal_msg.end()) {
-                view->releaseTerminalMesage();
-                return ;
+            if (terminal_msg.size() != 0) {
+                auto it_terminal = terminal_msg.find(msg_index);
+                if (it_terminal == terminal_msg.end()) {
+                    view->releaseTerminalMesage();
+                } else {
+                    view->viewTerminalMessage(it_terminal->second);
+                    terminal_msg.erase(it_terminal);
+                }
             }
-            
-            view->viewTerminalMessage(it->second);
-            terminal_msg.erase(it);
         }
     });
     
-    dispatcher->subscribe<void (MessageViewState)>("update_msg_state", [=](MessageViewState state) {
+    dispatcher->subscribe<void (OpeningMessageViewState)>("update_msg_state", [=](OpeningMessageViewState state) {
+        CCLOG("state: %d", state);
         msg_view_state = state;
     });
     
     dispatcher->subscribe<void (TerminalMessageViewState)>("update_terminal_msg_state", [=](TerminalMessageViewState state) {
+        CCLOG("state: %d", state);
         terminal_message_view_state = state;
     });
     

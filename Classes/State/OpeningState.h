@@ -14,7 +14,7 @@
 #include <cocos2d.h>
 #include "State.h"
 
-enum class MessageViewState;
+enum class OpeningMessageViewState;
 enum class TerminalMessageViewState;
 
 class OpeningLayer;
@@ -29,14 +29,13 @@ public:
     virtual void exit() override;
     virtual void delegate() override;
 
-    CC_SYNTHESIZE(std::vector<std::string>, normal_msg, NormalMsg);
     CC_SYNTHESIZE(int, msg_index, MsgIndex);
-    
     CC_SYNTHESIZE(OpeningLayer*, view, View);
-    CC_SYNTHESIZE(MessageViewState, msg_view_state, MessageViewState);
+    CC_SYNTHESIZE(OpeningMessageViewState, msg_view_state, MessageViewState);
     CC_SYNTHESIZE(TerminalMessageViewState, terminal_message_view_state, TerminalMessageViewState);
     
 private:
+    std::unordered_map<int, std::string> normal_msg;
     std::unordered_map<int, std::string> terminal_msg;
 };
 

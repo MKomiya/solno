@@ -7,7 +7,7 @@
 //
 
 #include "OpeningLayer.h"
-#include "MessageView.h"
+#include "OpeningMessageView.h"
 #include "Dispatcher.h"
 #include "TerminalMessageView.h"
 
@@ -19,8 +19,7 @@ bool OpeningLayer::init()
         return false;
     }
     
-    msg_view = MessageView::create(false);
-    msg_view->setMessageColor(Color3B(0, 255, 30));
+    msg_view = OpeningMessageView::create();
     addChild(msg_view);
     
     terminal_msg_view = TerminalMessageView::create();
@@ -41,14 +40,14 @@ bool OpeningLayer::init()
     return true;
 }
 
-void OpeningLayer::viewMessages(std::vector<std::string> msg_data)
+void OpeningLayer::viewMessages(std::string msg_data)
 {
-    msg_view->viewMessages(msg_data);
+    msg_view->viewMessage(msg_data);
 }
 
 void OpeningLayer::nextMessages()
 {
-    msg_view->nextMessage();
+    msg_view->releaseMessage();
 }
 
 void OpeningLayer::viewTerminalMessage(std::string msg)
