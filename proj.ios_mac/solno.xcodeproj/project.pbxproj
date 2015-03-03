@@ -96,6 +96,7 @@
 		D0BD84261A6FF21000980989 /* MovableRock.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D0BD84231A6FF21000980989 /* MovableRock.cpp */; };
 		D0C983E21A6E64DA00761742 /* Template.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D0C983E01A6E64DA00761742 /* Template.cpp */; };
 		D0CDF0A71A5AB331009E5E98 /* PlayerView.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D0CDF0A51A5AB331009E5E98 /* PlayerView.cpp */; };
+		D0CE85A21AA5C9F20085BCEE /* OpeningMessageView.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D0CE85A01AA5C9F20085BCEE /* OpeningMessageView.cpp */; };
 		D0DCF5331A85AAAB003FE946 /* ObjectOperateItem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D0DCF5311A85AAAB003FE946 /* ObjectOperateItem.cpp */; };
 		D0DCF53E1A85F1B1003FE946 /* data in Resources */ = {isa = PBXBuildFile; fileRef = D0DCF53D1A85F1B1003FE946 /* data */; };
 		D0E15D011A7839A800E2AB46 /* ItemMenuState.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D0E15CFF1A7839A800E2AB46 /* ItemMenuState.cpp */; };
@@ -258,6 +259,8 @@
 		D0C983E11A6E64DA00761742 /* Template.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Template.h; path = Model/Template.h; sourceTree = "<group>"; };
 		D0CDF0A51A5AB331009E5E98 /* PlayerView.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = PlayerView.cpp; path = Layer/Component/PlayerView.cpp; sourceTree = "<group>"; };
 		D0CDF0A61A5AB331009E5E98 /* PlayerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PlayerView.h; path = Layer/Component/PlayerView.h; sourceTree = "<group>"; };
+		D0CE85A01AA5C9F20085BCEE /* OpeningMessageView.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = OpeningMessageView.cpp; path = Layer/OpeningMessageView.cpp; sourceTree = "<group>"; };
+		D0CE85A11AA5C9F20085BCEE /* OpeningMessageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OpeningMessageView.h; path = Layer/OpeningMessageView.h; sourceTree = "<group>"; };
 		D0DCF5311A85AAAB003FE946 /* ObjectOperateItem.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ObjectOperateItem.cpp; path = Model/Item/ObjectOperateItem.cpp; sourceTree = "<group>"; };
 		D0DCF5321A85AAAB003FE946 /* ObjectOperateItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ObjectOperateItem.h; path = Model/Item/ObjectOperateItem.h; sourceTree = "<group>"; };
 		D0DCF53D1A85F1B1003FE946 /* data */ = {isa = PBXFileReference; lastKnownFileType = folder; path = data; sourceTree = "<group>"; };
@@ -485,6 +488,8 @@
 			children = (
 				D00D9A3E1AA18C090023A491 /* OpeningLayer.cpp */,
 				D00D9A3F1AA18C090023A491 /* OpeningLayer.h */,
+				D0CE85A01AA5C9F20085BCEE /* OpeningMessageView.cpp */,
+				D0CE85A11AA5C9F20085BCEE /* OpeningMessageView.h */,
 			);
 			name = Opening;
 			sourceTree = "<group>";
@@ -861,6 +866,7 @@
 				D004B8751A9E071C008CFCEC /* MakeMenuControllerLayer.cpp in Sources */,
 				D00907481A77C60B00AD6790 /* ModeSelectMenuState.cpp in Sources */,
 				D03F07221AA210CB004D6D34 /* TerminalMessageView.cpp in Sources */,
+				D0CE85A21AA5C9F20085BCEE /* OpeningMessageView.cpp in Sources */,
 				697244CB1A7A44D600D0C3B6 /* MakeMenuState.cpp in Sources */,
 				D009074B1A77C6B400AD6790 /* ModeSelectMenuLayer.cpp in Sources */,
 				D0CDF0A71A5AB331009E5E98 /* PlayerView.cpp in Sources */,
