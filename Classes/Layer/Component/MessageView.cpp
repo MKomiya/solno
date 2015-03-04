@@ -144,7 +144,4 @@ void MessageView::disabledMessage()
     string_idx = 0;
     setVisible(false);
     msg_label->setString("");
-    
-    // @todo: openingだけでdispatch出来る何かを考える
-    dispatcher->dispatch("exit_opening");
 }

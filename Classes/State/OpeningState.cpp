@@ -122,9 +122,4 @@ void OpeningState::delegate()
         CCLOG("state: %d", state);
         terminal_message_view_state = state;
     });
-    
-    dispatcher->subscribe<void ()>("exit_opening", [=]() {
-        auto router = Raciela::Router::getInstance();
-        router->pushState(FieldState::create());
-    });
 }
