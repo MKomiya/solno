@@ -68,6 +68,13 @@ void StoryState::enter()
     view->viewMessages(running_story->getMsgData());
 }
 
+void StoryState::delegate()
+{
+    dispatcher->subscribe("update_message_view", []() {
+        
+    });
+}
+
 void StoryState::update()
 {
     /*
@@ -97,4 +104,9 @@ void StoryState::update()
 void StoryState::exit()
 {
     story_data.clear();
+}
+
+void StoryState::delegate()
+{
+    
 }
