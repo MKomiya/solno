@@ -70,7 +70,7 @@ void StoryState::enter()
 
 void StoryState::delegate()
 {
-    dispatcher->subscribe("update_message_view", []() {
+    dispatcher->subscribe<void ()>("update_message_view", []() {
         
     });
 }
@@ -104,9 +104,4 @@ void StoryState::update()
 void StoryState::exit()
 {
     story_data.clear();
-}
-
-void StoryState::delegate()
-{
-    
 }
