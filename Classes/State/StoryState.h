@@ -14,25 +14,24 @@
 #include "State.h"
 #include "Story.h"
 
+enum class MessageViewState;
+
 class Story;
 class StoryLayer;
 class StoryState : public Raciela::State
 {
 public:
-    static StoryState* create(StoryLayer* view);
-    StoryState(StoryLayer* view);
-    virtual ~StoryState();
+    static StoryState* create();
     
     virtual void enter() override;
     virtual void update() override;
     virtual void exit() override;
     virtual void delegate() override;
     
-private:
-    StoryLayer* view;
-    cocos2d::Vector<Story*> story_data;
-    Story* running_story;
-    
-    int msg_idx;
+    CC_SYNTHESIZE(MessageViewState, msg_view_state, MsgViewState);
+    CC_SYNTHESIZE(int, msg_idx, MsgIdx);
+    CC_SYNTHESIZE(Story*, running_story, RunningStory);
+    CC_SYNTHESIZE(StoryLayer*, view, View);
+    CC_SYNTHESIZE(cocos2d::Vector<Story*>, story_data, StoryData);
 };
 #endif /* defined(__solno__StoryState__) */

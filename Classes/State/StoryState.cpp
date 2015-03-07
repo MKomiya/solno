@@ -15,32 +15,26 @@
 
 #include "StoryLayer.h"
 #include "Dispatcher.h"
-
 #include "Story.h"
+#include "MessageView.h"
 
 USING_NS_CC;
 
-StoryState* StoryState::create(StoryLayer *view)
+StoryState* StoryState::create()
 {
-    auto ret = new StoryState(view);
+    auto ret = new StoryState();
     if (!ret) {
         CC_SAFE_DELETE(ret);
         return nullptr;
     }
-    
     ret->autorelease();
+    
+    ret->init();
+    ret->setMsgIdx(0);
+    ret->setRunningStory(nullptr);
+    ret->setView(StoryLayer::create());
     ret->created();
     return ret;
-}
-
-StoryState::StoryState(StoryLayer* view) :
-running_story(nullptr),
-view(view),msg_idx(0)
-{
-}
-
-StoryState::~StoryState()
-{
 }
 
 void StoryState::enter()
@@ -70,8 +64,8 @@ void StoryState::enter()
 
 void StoryState::delegate()
 {
-    dispatcher->subscribe<void ()>("update_message_view", []() {
-        
+    dispatcher->subscribe<void (MessageViewState)>("update_msg_state", [=](MessageViewState state) {
+        msg_view_state = state;
     });
 }
 
