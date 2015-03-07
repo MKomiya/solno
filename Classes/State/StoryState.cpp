@@ -33,6 +33,7 @@ StoryState* StoryState::create()
     ret->setMsgIdx(0);
     ret->setRunningStory(nullptr);
     ret->setView(StoryLayer::create());
+    ret->setMsgViewState(MessageViewState::DISABLED);
     ret->created();
     return ret;
 }
@@ -67,32 +68,30 @@ void StoryState::delegate()
     dispatcher->subscribe<void (MessageViewState)>("update_msg_state", [=](MessageViewState state) {
         msg_view_state = state;
     });
+    
+    dispatcher->subscribe<void ()>("release_decide", [=]() {
+        if (msg_view_state == MessageViewState::WAIT) {
+            msg_idx++;
+            if (running_story->getMsgData().size() > msg_idx) {
+                view->releaseMessages();
+                return ;
+            }
+            
+            story_data.erase(0);
+            if (story_data.empty()) {
+                view->releaseMessages();
+                return;
+            }
+            
+            msg_idx = 0;
+            running_story = story_data.front();
+            view->viewMessages(running_story->getMsgData());
+        }
+    });
 }
 
 void StoryState::update()
 {
-    /*
-    auto event = InputModule::getInstance()->popEvent();
-    
-    if (event == InputEvent::RELEASE_DECIDE) {
-        // message view disabled
-        if (view->getMessageState() == MessageView::WAIT) {
-            if (running_story->getMsgData().size() <= ++msg_idx) {
-                story_data.erase(0);
-                if (story_data.empty()) {
-                    view->releaseMessages();
-                    return;
-                }
-                
-                msg_idx = 0;
-                running_story = story_data.front();
-                view->viewMessages(running_story->getMsgData());
-            } else {
-                view->releaseMessages();
-            }
-        }
-    }
-     */
 }
 
 void StoryState::exit()
