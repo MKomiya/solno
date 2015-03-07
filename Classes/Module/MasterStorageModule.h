@@ -13,7 +13,6 @@
 #include <cocos2d.h>
 #include <dispatch/dispatch.h>
 #include <unordered_map>
-
 #include "json11.hpp"
 
 class MasterItem
@@ -56,11 +55,13 @@ public:
 const MasterItem MasterItemNull;
 const MasterOpening MasterOpeningNull;
 
+class Story;
 class MasterStorageModule
 {
 public:
     static std::string MASTER_NS_ITEM;
     static std::string MASTER_NS_OPENING;
+    static std::string MASTER_NS_STORY;
     
     static MasterStorageModule* getInstance() {
         static dispatch_once_t token;
@@ -79,6 +80,7 @@ public:
     MasterItem getOne(int id);
     std::vector<int> findPrepareItemIdsByItemId(int item_id);
     std::vector<MasterOpening> getOpeningList();
+    std::vector<Story*> getStoryList();
 
 #pragma mark Private funcs
 private:
@@ -87,6 +89,7 @@ private:
     static MasterStorageModule* instance;
     std::vector<MasterItem> master_item_list;
     std::vector<MasterOpening> master_opening_list;
+    std::vector<Story*> master_story_list;
 };
 
 #endif /* defined(__solno__MasterStorageModule__) */
