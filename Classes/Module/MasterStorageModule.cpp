@@ -9,7 +9,6 @@
 #include <fstream>
 #include "MasterStorageModule.h"
 #include "Template.h"
-#include "Story.h"
 
 std::string MasterStorageModule::MASTER_NS_ITEM    = "item";
 std::string MasterStorageModule::MASTER_NS_OPENING = "opening";
@@ -32,7 +31,7 @@ void MasterStorageModule::init()
     }
     
     for (auto data : master[MASTER_NS_STORY].array_items()) {
-        auto master_story = Story::createByJson(data);
+        auto master_story = MasterStory(data.object_items());
         master_story_list.push_back(master_story);
     }
 }
@@ -71,7 +70,7 @@ std::vector<MasterOpening> MasterStorageModule::getOpeningList()
     return master_opening_list;
 }
 
-std::vector<Story*> MasterStorageModule::getStoryList()
+std::vector<MasterStory> MasterStorageModule::getStoryList()
 {
     return master_story_list;
 }

@@ -15,47 +15,10 @@
 #include <unordered_map>
 #include "json11.hpp"
 
-class MasterItem
-{
-public:
-    int item_id, type;
-    std::string name;
-    int preparent_item_1_id, preparent_item_2_id, preparent_item_3_id;
-    
-    MasterItem() : item_id(0) {}
-    MasterItem(json11::Json::object data) :
-        item_id(data["item_id"].int_value()), type(data["type"].int_value()),
-        name(data["name"].string_value()),
-        preparent_item_1_id(data["preparent_item_1_id"].int_value()),
-        preparent_item_2_id(data["preparent_item_2_id"].int_value()),
-        preparent_item_3_id(data["preparent_item_3_id"].int_value())
-    {}
-};
+#include "Item.h"
+#include "Opening.h"
+#include "Story.h"
 
-enum class MasterOpeningType {
-    NORMAL   = 1, // 通常画面に表示するメッセージ
-    TERMINAL = 2, // ターミナル画面に表示するメッセージ
-};
-
-class MasterOpening
-{
-public:
-    int id;
-    MasterOpeningType type;
-    std::string msg;
-    
-    MasterOpening() : id(0) {}
-    MasterOpening(json11::Json::object data) :
-        id(data["id"].int_value()),
-        type((MasterOpeningType)data["type"].int_value()),
-        msg(data["msg"].string_value())
-    {}
-};
-
-const MasterItem MasterItemNull;
-const MasterOpening MasterOpeningNull;
-
-class Story;
 class MasterStorageModule
 {
 public:
@@ -75,12 +38,16 @@ public:
     
     void init();
     
-#pragma mark Read master data
+#pragma mark Read item master
     std::vector<MasterItem> getAll();
     MasterItem getOne(int id);
     std::vector<int> findPrepareItemIdsByItemId(int item_id);
+    
+#pragma mark Read opening master
     std::vector<MasterOpening> getOpeningList();
-    std::vector<Story*> getStoryList();
+    
+#pragma mark Read story master
+    std::vector<MasterStory> getStoryList();
 
 #pragma mark Private funcs
 private:
@@ -89,7 +56,7 @@ private:
     static MasterStorageModule* instance;
     std::vector<MasterItem> master_item_list;
     std::vector<MasterOpening> master_opening_list;
-    std::vector<Story*> master_story_list;
+    std::vector<MasterStory> master_story_list;
 };
 
 #endif /* defined(__solno__MasterStorageModule__) */
