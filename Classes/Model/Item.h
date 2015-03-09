@@ -67,8 +67,8 @@ public:
         BREAK_SCRAP,
     };
     enum ItemType {
-        OPERATE_OBJECT = 1, // ダンジョンオブジェクトの破壊・生成アイテム
-        MATERIAL_ITEM,      // 調合用素材アイテム
+        MATERIAL_ITEM = 1,  // 調合用素材アイテム
+        OPERATE_OBJECT,     // ダンジョンオブジェクトの破壊・生成アイテム
         FLAGMENT_ITEM,      // フラグに影響を及ぼすアイテム
     };
     

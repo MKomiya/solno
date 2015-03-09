@@ -138,8 +138,9 @@ void MakeMenuState::updatePreparentItem(Item *item)
     preparent_item_ids.push_back(item->getItemId());
     view->setPreparentItemTexture(preparent_item_ids.size(), item->getThumbnailTexture());
     
+    make_item = item->getMakeItem();
     if (!make_item) {
-        make_item = item->getMakeItem();
+        return ;
     }
     
     std::vector<int> indices;
