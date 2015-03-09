@@ -72,7 +72,6 @@ void FieldLayer::initFieldObject(std::vector<FieldObject *> objects)
             player_sprite = PlayerView::create();
             player_sprite->setAnchorPoint(Point(0, 1));
             player_sprite->setPosition(pos);
-            player_sprite->setOpacity(0);
             addChild(player_sprite, 2);
             
             continue;
@@ -87,7 +86,6 @@ void FieldLayer::initFieldObject(std::vector<FieldObject *> objects)
         sprite->setAnchorPoint(Point(0, 1));
         sprite->setPosition(pos);
         sprite->setTag(object->getId());
-        sprite->setOpacity(0);
         objects_root->addChild(sprite);
     }
 }
