@@ -76,7 +76,7 @@ Item* Item::createByMaster(int item_id)
             return nullptr;
         }
         
-        ret->setId(1);
+        ret->setId(0);
         ret->setItemId(item_id);
         ret->setType(type);
         ret->setItemName(data.name);
