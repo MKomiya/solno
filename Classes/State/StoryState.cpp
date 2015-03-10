@@ -40,22 +40,16 @@ StoryState* StoryState::create()
 
 void StoryState::enter()
 {
-    auto path = FileUtils::getInstance()->fullPathForFilename("story/mock.json");
-    
-    std::ifstream file(path.c_str());
-    
-    std::string mock_data; file >> mock_data;
-    std::string err;
-    
-    file.close();
-    
-    auto data = json11::Json::parse(mock_data, err);
-    for (auto item : data.array_items()) {
-        if (item["type"].is_null() || item["type"].int_value() != 1) {
-            CCLOG("invalid story node. type: %d", item["type"].int_value());
+    auto master = MasterStorageModule::getInstance();
+    auto data_list = master->getStoryList();
+    auto data = data_list.front(); // @todo 後でストーリーIDを参照して該当データを引っ張れるようにする
+
+    for (auto story : data.array_items()) {
+        if (story["type"].is_null() || story["type"].int_value() != 1) {
+            CCLOG("invalid story node. type: %d", story["type"].int_value());
             continue;
         }
-        auto s = Story::createByJson(item);
+        auto s = Story::createByJson(story);
         story_data.pushBack(s);
     }
     
