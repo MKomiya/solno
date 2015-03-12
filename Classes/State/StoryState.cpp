@@ -17,6 +17,7 @@
 #include "Dispatcher.h"
 #include "Story.h"
 #include "MessageView.h"
+#include "MasterStorageModule.h"
 
 USING_NS_CC;
 
@@ -44,14 +45,9 @@ void StoryState::enter()
     auto data_list = master->getStoryList();
     auto data = data_list.front(); // @todo 後でストーリーIDを参照して該当データを引っ張れるようにする
 
-    for (auto story : data.array_items()) {
-        if (story["type"].is_null() || story["type"].int_value() != 1) {
-            CCLOG("invalid story node. type: %d", story["type"].int_value());
-            continue;
-        }
-        auto s = Story::createByJson(story);
-        story_data.pushBack(s);
-    }
+    std::vector<std::string> msg; msg.push_back(data.msg_data);
+    auto s = Story::create(data.type, msg);
+    story_data.pushBack(s);
     
     running_story = story_data.front();
     view->viewMessages(running_story->getMsgData());
