@@ -50,6 +50,8 @@ public:
     void viewMessages(std::vector<std::string> msg_data);
     void releaseMessages();
     
+    void destroyObject(int id);
+    
     CC_SYNTHESIZE(cocos2d::TMXTiledMap*, map, Map);
     
 private:

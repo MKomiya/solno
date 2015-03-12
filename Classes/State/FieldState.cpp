@@ -20,6 +20,7 @@
 
 #include "FieldLayer.h"
 #include "ControllerLayer.h"
+#include "FieldControllerLayer.h"
 #include "StoryLayer.h"
 #include "MessageView.h"
 #include "PlayerView.h"
@@ -37,9 +38,11 @@ FieldState* FieldState::create()
     
     // initialize view
     auto field      = FieldLayer::create();
-    auto controller = ControllerLayer::create();
+    auto frame      = ControllerLayer::create();
+    auto controller = FieldControllerLayer::create();
     auto router     = Raciela::Router::getInstance();
     router->addView(field);
+    router->addView(frame);
     router->addView(controller);
     
     ret->init();
@@ -47,6 +50,7 @@ FieldState* FieldState::create()
     ret->setPlayerMapPosition(Point(0, 0));
     ret->setPlayerDirection("down");
     ret->setFieldView(field);
+    ret->setFrameView(frame);
     ret->setControllerView(controller);
     ret->setExecuteItem(nullptr);
     
@@ -130,6 +134,10 @@ void FieldState::delegate()
     });
     
     dispatcher->subscribe<void ()>("release_decide", [=]() {
+        decideAction();
+    });
+    
+    dispatcher->subscribe<void ()>("release_menu", [=]() {
         auto router = Raciela::Router::getInstance();
         router->pushState(ModeSelectMenuState::create());
     });

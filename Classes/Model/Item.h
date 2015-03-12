@@ -11,6 +11,52 @@
 
 #include <stdio.h>
 #include <cocos2d.h>
+#include "json11.hpp"
+
+class MasterItem
+{
+public:
+    int item_id, type;
+    std::string name;
+    int preparent_item_1_id, preparent_item_2_id, preparent_item_3_id;
+    
+    MasterItem() : item_id(0) {}
+    MasterItem(json11::Json::object data) :
+    item_id(data["item_id"].int_value()), type(data["type"].int_value()),
+    name(data["name"].string_value()),
+    preparent_item_1_id(data["preparent_item_1_id"].int_value()),
+    preparent_item_2_id(data["preparent_item_2_id"].int_value()),
+    preparent_item_3_id(data["preparent_item_3_id"].int_value())
+    {}
+};
+
+class UserItem
+{
+public:
+    static int index;
+    int id, item_id, num;
+    
+    UserItem() :
+    id(-1), item_id(0), num(0) {}
+    UserItem(int id, int item_id, int num) :
+    id(id), item_id(item_id), num(num) {}
+    UserItem(json11::Json::object data) :
+    id(data["id"].int_value()),
+    item_id(data["item_id"].int_value()),
+    num(data["num"].int_value()) {}
+    
+    json11::Json to_json() const
+    {
+        return json11::Json::object {
+            { "id", id },
+            { "item_id", item_id },
+            { "num", num }
+        };
+    }
+};
+
+const MasterItem MasterItemNull;
+const UserItem   UserItemNull;
 
 class FieldState;
 class Item : public cocos2d::Ref
@@ -21,8 +67,8 @@ public:
         BREAK_SCRAP,
     };
     enum ItemType {
-        OPERATE_OBJECT = 1, // ダンジョンオブジェクトの破壊・生成アイテム
-        MATERIAL_ITEM,      // 調合用素材アイテム
+        MATERIAL_ITEM = 1,  // 調合用素材アイテム
+        OPERATE_OBJECT,     // ダンジョンオブジェクトの破壊・生成アイテム
         FLAGMENT_ITEM,      // フラグに影響を及ぼすアイテム
     };
     

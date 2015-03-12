@@ -26,6 +26,7 @@ enum class FieldViewState;
 
 class FieldLayer;
 class ControllerLayer;
+class FieldControllerLayer;
 class FieldObject;
 class Item;
 class FieldState : public Raciela::State {
@@ -47,7 +48,8 @@ public:
     CC_SYNTHESIZE(cocos2d::Point, player_map_pos, PlayerMapPosition);
     CC_SYNTHESIZE(std::string, player_direction, PlayerDirection);
     CC_SYNTHESIZE(FieldLayer*, view, FieldView);
-    CC_SYNTHESIZE(ControllerLayer*, controller, ControllerView);
+    CC_SYNTHESIZE(ControllerLayer*, frame, FrameView);
+    CC_SYNTHESIZE(FieldControllerLayer*, controller, ControllerView);
     CC_SYNTHESIZE(std::vector<FieldObject*>, objects, MapObjects);
     CC_SYNTHESIZE(Item*, execute_item, ExecuteItem);
     CC_SYNTHESIZE(MessageViewState, msg_view_state, MsgViewState);

@@ -24,7 +24,7 @@ bool FieldLayer::init()
     
     // msg_view
     msg_view = MessageView::create();
-    addChild(msg_view);
+    addChild(msg_view, 3);
     
     return true;
 }
@@ -38,7 +38,7 @@ void FieldLayer::initMapData(cocos2d::TMXTiledMap *value)
     map->setAnchorPoint(Point(0, 1));
     map->setPosition(Point(16, s.height - 16));
     map->setScale(2.0f);
-    addChild(map);
+    addChild(map, 1);
     
     // invisible meta
     auto meta_layer = map->getLayer("meta");
@@ -72,7 +72,7 @@ void FieldLayer::initFieldObject(std::vector<FieldObject *> objects)
             player_sprite = PlayerView::create();
             player_sprite->setAnchorPoint(Point(0, 1));
             player_sprite->setPosition(pos);
-            addChild(player_sprite);
+            addChild(player_sprite, 2);
             
             continue;
         }
@@ -141,4 +141,16 @@ void FieldLayer::viewMessages(std::vector<std::string> msg_data)
 void FieldLayer::releaseMessages()
 {
     msg_view->nextMessage();
+}
+
+void FieldLayer::destroyObject(int id)
+{
+    auto target = objects_root->getChildByTag(id);
+    if (target == nullptr) {
+        return ;
+    }
+    
+    target->runAction(Sequence::create(FadeOut::create(0.3f),
+                                       RemoveSelf::create(),
+                                       NULL));
 }

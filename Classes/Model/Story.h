@@ -13,6 +13,20 @@
 #include <json11.hpp>
 #include <cocos2d.h>
 
+class MasterStory
+{
+public:
+    int type;
+    std::string msg_data;
+    
+    MasterStory() : type(0) {}
+    MasterStory(json11::Json::object data) :
+    type(data["type"].int_value()),
+    msg_data(data["name"].string_value())
+    {}
+};
+const MasterStory MasterStoryNull;
+
 class Story : public cocos2d::Ref
 {
 public:

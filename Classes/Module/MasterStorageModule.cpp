@@ -10,7 +10,9 @@
 #include "MasterStorageModule.h"
 #include "Template.h"
 
-std::string MasterStorageModule::MASTER_NS_ITEM = "item";
+std::string MasterStorageModule::MASTER_NS_ITEM    = "item";
+std::string MasterStorageModule::MASTER_NS_OPENING = "opening";
+std::string MasterStorageModule::MASTER_NS_STORY   = "story";
 MasterStorageModule* MasterStorageModule::instance;
 
 USING_NS_CC;
@@ -21,6 +23,16 @@ void MasterStorageModule::init()
     for (auto data : master[MASTER_NS_ITEM].array_items()) {
         auto master_item = MasterItem(data.object_items());
         master_item_list.push_back(master_item);
+    }
+    
+    for (auto data : master[MASTER_NS_OPENING].array_items()) {
+        auto master_opening = MasterOpening(data.object_items());
+        master_opening_list.push_back(master_opening);
+    }
+    
+    for (auto data : master[MASTER_NS_STORY].array_items()) {
+        auto master_story = MasterStory(data.object_items());
+        master_story_list.push_back(master_story);
     }
 }
 
@@ -51,6 +63,16 @@ std::vector<int> MasterStorageModule::findPrepareItemIdsByItemId(int item_id)
         }
     }
     return ret;
+}
+
+std::vector<MasterOpening> MasterStorageModule::getOpeningList()
+{
+    return master_opening_list;
+}
+
+std::vector<MasterStory> MasterStorageModule::getStoryList()
+{
+    return master_story_list;
 }
 
 #pragma mark Private funcs

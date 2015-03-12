@@ -8,6 +8,7 @@
 
 #include "Item.h"
 #include "ObjectOperateItem.h"
+#include "MaterialItem.h"
 
 #include "MasterStorageModule.h"
 #include "UserStorageModule.h"
@@ -47,7 +48,7 @@ Item* Item::createByMaster(int item_id)
     auto data   = master->getOne(item_id);
     
     auto type   = data.type;
-    if (type == ItemType::OPERATE_OBJECT || ItemType::MATERIAL_ITEM) {
+    if (type == ItemType::OPERATE_OBJECT) {
         auto ret = new ObjectOperateItem();
         if (!ret) {
             CC_SAFE_DELETE(ret);
@@ -55,6 +56,27 @@ Item* Item::createByMaster(int item_id)
         }
         
         ret->setId(1);
+        ret->setItemId(item_id);
+        ret->setType(type);
+        ret->setItemName(data.name);
+        ret->setPrepareItemId1(data.preparent_item_1_id);
+        ret->setPrepareItemId2(data.preparent_item_2_id);
+        ret->setPrepareItemId3(data.preparent_item_3_id);
+        
+        auto path = "item/" + std::to_string(item_id) + ".png";
+        auto tc = Director::getInstance()->getTextureCache();
+        auto texture = tc->addImage(path);
+        ret->setThumbnailTexture(texture);
+        return ret;
+    
+    } else if (type == ItemType::MATERIAL_ITEM) {
+        auto ret = new MaterialItem();
+        if (!ret) {
+            CC_SAFE_DELETE(ret);
+            return nullptr;
+        }
+        
+        ret->setId(0);
         ret->setItemId(item_id);
         ret->setType(type);
         ret->setItemName(data.name);

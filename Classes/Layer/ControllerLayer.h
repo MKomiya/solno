@@ -19,11 +19,6 @@ class ControllerLayer : public Raciela::View
 public:
     virtual bool init();
     CREATE_FUNC(ControllerLayer);
-    
-    void setEnableArrowButtons(bool enabled);
-    
-private:
-    cocos2d::Menu* arrow_menu;
 };
 
 #endif /* defined(__solno__ControllerLayer__) */

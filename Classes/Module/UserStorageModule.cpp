@@ -53,14 +53,21 @@ UserItem UserStorageModule::getOneUserItem(int item_id)
 #pragma mark Update user data
 void UserStorageModule::updateUserItem(int item_id, int num)
 {
+    auto it = user_item.begin();
     for (UserItem& value : user_item) {
         if (value.item_id == item_id) {
+            if (num <= 0) {
+                user_item.erase(it);
+                flush();
+                return ;
+            }
             value.num = num;
             flush();
             return ;
         }
+        ++it;
     }
-
+    
     user_item.push_back(UserItem(UserItem::index++, item_id, num));
     flush();
 }
@@ -89,6 +96,10 @@ json11::Json::array UserStorageModule::readJsonFile(std::string ns)
     std::string filepath =
         fu->getWritablePath() + "userdata/user_" + ns + ".json";
 
+    if (!fu->isFileExist(filepath)) {
+        return json11::Json::array();
+    }
+    
     std::string json_string, err;
     std::ifstream file(filepath.c_str());
     while(!file.eof()) {
@@ -111,11 +122,6 @@ json11::Json::array UserStorageModule::readMockData()
         json11::Json::object {
             { "id", 2 },
             { "item_id", 2 },
-            { "num", 2 }
-        },
-        json11::Json::object {
-            { "id", 3 },
-            { "item_id", 3 },
             { "num", 2 }
         },
     };

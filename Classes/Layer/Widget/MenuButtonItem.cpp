@@ -1,20 +1,20 @@
 //
-//  MenuDecideItem.cpp
+//  MenuButtonItem.cpp
 //  solno
 //
-//  Created by S_Wyvern on 2015/01/11.
+//  Created by S_Wyvern on 2015/02/28.
 //
 //
 
-#include "MenuDecideItem.h"
+#include "MenuButtonItem.h"
 #include "Dispatcher.h"
 
 USING_NS_CC;
 
-MenuDecideItem* MenuDecideItem::create()
+MenuButtonItem* MenuButtonItem::create()
 {
-    auto ret = new MenuDecideItem();
-    auto s = Sprite::create("ui/ui_decide_button.png");
+    auto ret = new MenuButtonItem();
+    auto s = Sprite::create("ui/ui_menu_button.png");
     if (ret && ret->initWithNormalSprite(s, s, s, nullptr)) {
         ret->autorelease();
     } else {
@@ -24,18 +24,18 @@ MenuDecideItem* MenuDecideItem::create()
     return ret;
 }
 
-void MenuDecideItem::selected()
+void MenuButtonItem::selected()
 {
     MenuItemSprite::selected();
     
     auto dispatcher = Raciela::Dispatcher::getInstance();
-    dispatcher->dispatch("press_decide");
+    dispatcher->dispatch("press_menu");
 }
 
-void MenuDecideItem::unselected()
+void MenuButtonItem::unselected()
 {
     MenuItemSprite::unselected();
     
     auto dispatcher = Raciela::Dispatcher::getInstance();
-    dispatcher->dispatch("release_decide");
+    dispatcher->dispatch("release_menu");
 }

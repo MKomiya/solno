@@ -13,32 +13,18 @@
 #include <cocos2d.h>
 #include <dispatch/dispatch.h>
 #include <unordered_map>
-
 #include "json11.hpp"
 
-class MasterItem
-{
-public:
-    int item_id, type;
-    std::string name;
-    int preparent_item_1_id, preparent_item_2_id, preparent_item_3_id;
-    
-    MasterItem() : item_id(0) {}
-    MasterItem(json11::Json::object data) :
-        item_id(data["item_id"].int_value()), type(data["type"].int_value()),
-        name(data["name"].string_value()),
-        preparent_item_1_id(data["preparent_item_1_id"].int_value()),
-        preparent_item_2_id(data["preparent_item_2_id"].int_value()),
-        preparent_item_3_id(data["preparent_item_3_id"].int_value())
-    {}
-};
-
-const MasterItem MasterItemNull;
+#include "Item.h"
+#include "Opening.h"
+#include "Story.h"
 
 class MasterStorageModule
 {
 public:
     static std::string MASTER_NS_ITEM;
+    static std::string MASTER_NS_OPENING;
+    static std::string MASTER_NS_STORY;
     
     static MasterStorageModule* getInstance() {
         static dispatch_once_t token;
@@ -52,10 +38,16 @@ public:
     
     void init();
     
-#pragma mark Read master data
+#pragma mark Read item master
     std::vector<MasterItem> getAll();
     MasterItem getOne(int id);
     std::vector<int> findPrepareItemIdsByItemId(int item_id);
+    
+#pragma mark Read opening master
+    std::vector<MasterOpening> getOpeningList();
+    
+#pragma mark Read story master
+    std::vector<MasterStory> getStoryList();
 
 #pragma mark Private funcs
 private:
@@ -63,6 +55,8 @@ private:
     
     static MasterStorageModule* instance;
     std::vector<MasterItem> master_item_list;
+    std::vector<MasterOpening> master_opening_list;
+    std::vector<MasterStory> master_story_list;
 };
 
 #endif /* defined(__solno__MasterStorageModule__) */
