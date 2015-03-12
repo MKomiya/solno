@@ -30,10 +30,12 @@ void MasterStorageModule::init()
         master_opening_list.push_back(master_opening);
     }
     
-    for (auto data : master[MASTER_NS_STORY].array_items()) {
-        auto master_story = MasterStory(data.object_items());
-        master_story_list.push_back(master_story);
+    auto master_story = loadJsonData("data/master_story.json");
+    for (auto data : master_story.array_items()) {
+        auto s = MasterStory(data.object_items());
+        master_story_list.push_back(s);
     }
+    CCLOG("init finish");
 }
 
 #pragma mark Read master data
