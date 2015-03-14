@@ -10,17 +10,13 @@
 
 Story* Story::createByJson(json11::Json json)
 {
-    int type = json["type"].int_value();
-    
-    std::vector<std::string> msg_data;
-    for (auto item : json["msg_data"].array_items()) {
-        msg_data.push_back(item.string_value());
-    }
+    auto type = json["type"].int_value();
+    auto msg_data = json["msg_data"].string_value();
     
     return create(type, msg_data);
 }
 
-Story* Story::create(int type, std::vector<std::string> msg_data)
+Story* Story::create(int type, std::string msg_data)
 {
     auto ret = new Story();
     if (!ret) {

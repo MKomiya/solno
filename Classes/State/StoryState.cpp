@@ -45,12 +45,11 @@ void StoryState::enter()
     auto data_list = master->getStoryList();
     auto data = data_list.front(); // @todo 後でストーリーIDを参照して該当データを引っ張れるようにする
 
-    std::vector<std::string> msg; msg.push_back(data.msg_data);
-    auto s = Story::create(data.type, msg);
+    auto s = Story::create(data.type, data.msg_data);
     story_data.pushBack(s);
     
     running_story = story_data.front();
-    view->viewMessages(running_story->getMsgData());
+    //view->viewMessages(running_story->getMsgData());
 }
 
 void StoryState::delegate()
@@ -75,7 +74,7 @@ void StoryState::delegate()
             
             msg_idx = 0;
             running_story = story_data.front();
-            view->viewMessages(running_story->getMsgData());
+            //view->viewMessages(running_story->getMsgData());
         }
     });
 }
