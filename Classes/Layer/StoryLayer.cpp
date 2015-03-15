@@ -7,6 +7,7 @@
 //
 
 #include "StoryLayer.h"
+#include "OpeningMessageView.h"
 
 bool StoryLayer::init()
 {
@@ -14,18 +15,18 @@ bool StoryLayer::init()
         return false;
     }
     
-    msg_view = MessageView::create();
+    msg_view = OpeningMessageView::create();
     addChild(msg_view);
     
     return true;
 }
 
-void StoryLayer::viewMessages(std::vector<std::string> msg_data)
+void StoryLayer::viewMessage(std::string msg_data)
 {
-    msg_view->viewMessages(msg_data);
+    msg_view->viewMessage(msg_data);
 }
 
 void StoryLayer::releaseMessages()
 {
-    msg_view->nextMessage();
+    msg_view->releaseMessage();
 }

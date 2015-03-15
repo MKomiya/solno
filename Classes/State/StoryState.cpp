@@ -49,7 +49,7 @@ void StoryState::enter()
     story_data.pushBack(s);
     
     running_story = story_data.front();
-    //view->viewMessages(running_story->getMsgData());
+    view->viewMessage(running_story->getMsgData());
 }
 
 void StoryState::delegate()
@@ -74,7 +74,7 @@ void StoryState::delegate()
             
             msg_idx = 0;
             running_story = story_data.front();
-            //view->viewMessages(running_story->getMsgData());
+            view->viewMessage(running_story->getMsgData());
         }
     });
 }
