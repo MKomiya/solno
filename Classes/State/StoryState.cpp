@@ -62,6 +62,9 @@ StoryState* StoryState::create(std::string story_id)
 
 void StoryState::enter()
 {
+    if (story_id.empty()) {
+        return ;
+    }
     auto master = MasterStorageModule::getInstance();
     auto data   = master->getStoryDataById(story_id);
 
