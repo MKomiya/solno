@@ -82,23 +82,25 @@ void StoryState::delegate()
     });
     
     dispatcher->subscribe<void ()>("release_decide", [=]() {
-        if (msg_view_state == MessageViewState::WAIT) {
-            msg_idx++;
-            if (running_story->getMsgData().size() > msg_idx) {
-                view->releaseMessages();
-                return ;
-            }
-            
-            story_data.erase(0);
-            if (story_data.empty()) {
-                view->releaseMessages();
-                return;
-            }
-            
-            msg_idx = 0;
-            running_story = story_data.front();
-            view->viewMessage(running_story->getMsgData());
+        if (msg_view_state != MessageViewState::WAIT) {
+            return ;
         }
+
+        msg_idx++;
+        if (running_story->getMsgData().size() > msg_idx) {
+            view->releaseMessages();
+            return ;
+        }
+        
+        story_data.erase(0);
+        if (story_data.empty()) {
+            view->releaseMessages();
+            return;
+        }
+        
+        msg_idx = 0;
+        running_story = story_data.front();
+        view->viewMessage(running_story->getMsgData());
     });
 }
 
