@@ -62,6 +62,7 @@
 		BF171245129291EC00B8313A /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF170DB012928DE900B8313A /* OpenGLES.framework */; };
 		BF1712471292920000B8313A /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = BF170DB412928DE900B8313A /* libz.dylib */; };
 		BF1C47F01293687400B63C5D /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF1C47EA1293683800B63C5D /* QuartzCore.framework */; };
+		D002223D1ABD0F7B004E3240 /* StoryPoint.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D002223B1ABD0F7B004E3240 /* StoryPoint.cpp */; };
 		D004B8751A9E071C008CFCEC /* MakeMenuControllerLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D004B8731A9E071C008CFCEC /* MakeMenuControllerLayer.cpp */; };
 		D00907481A77C60B00AD6790 /* ModeSelectMenuState.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D00907461A77C60B00AD6790 /* ModeSelectMenuState.cpp */; };
 		D009074B1A77C6B400AD6790 /* ModeSelectMenuLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D00907491A77C6B400AD6790 /* ModeSelectMenuLayer.cpp */; };
@@ -198,6 +199,8 @@
 		BF170DB012928DE900B8313A /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		BF170DB412928DE900B8313A /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		BF1C47EA1293683800B63C5D /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		D002223B1ABD0F7B004E3240 /* StoryPoint.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = StoryPoint.cpp; path = Model/FieldObject/StoryPoint.cpp; sourceTree = "<group>"; };
+		D002223C1ABD0F7B004E3240 /* StoryPoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StoryPoint.h; path = Model/FieldObject/StoryPoint.h; sourceTree = "<group>"; };
 		D004B8731A9E071C008CFCEC /* MakeMenuControllerLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = MakeMenuControllerLayer.cpp; path = Layer/MakeMenuControllerLayer.cpp; sourceTree = "<group>"; };
 		D004B8741A9E071C008CFCEC /* MakeMenuControllerLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MakeMenuControllerLayer.h; path = Layer/MakeMenuControllerLayer.h; sourceTree = "<group>"; };
 		D00907461A77C60B00AD6790 /* ModeSelectMenuState.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ModeSelectMenuState.cpp; path = State/ModeSelectMenuState.cpp; sourceTree = "<group>"; };
@@ -556,6 +559,8 @@
 				D0BD84241A6FF21000980989 /* MovableRock.h */,
 				D009AD411A9F65AC0075A5DB /* Tree.cpp */,
 				D009AD421A9F65AC0075A5DB /* Tree.h */,
+				D002223B1ABD0F7B004E3240 /* StoryPoint.cpp */,
+				D002223C1ABD0F7B004E3240 /* StoryPoint.h */,
 			);
 			name = FieldObject;
 			sourceTree = "<group>";
@@ -886,6 +891,7 @@
 				D09C59361A98DF450085B483 /* State.cpp in Sources */,
 				D07D33AB1A7E024000061831 /* MasterStorageModule.cpp in Sources */,
 				D01EDEAE1AAAE7A100522A70 /* MaterialItem.cpp in Sources */,
+				D002223D1ABD0F7B004E3240 /* StoryPoint.cpp in Sources */,
 				D04876161A697B2B0097D6BB /* StoryState.cpp in Sources */,
 				D0C983E21A6E64DA00761742 /* Template.cpp in Sources */,
 				D00D9A401AA18C090023A491 /* OpeningLayer.cpp in Sources */,
