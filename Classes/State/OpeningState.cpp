@@ -31,7 +31,6 @@ OpeningState* OpeningState::create()
     ret->setTerminalMessageViewState(TerminalMessageViewState::WAIT);
     
     ret->autorelease();
-    ret->created();
     return ret;
 }
 

@@ -32,8 +32,8 @@ class Item;
 class FieldState : public Raciela::State {
 public:
     static FieldState* create();
+    void created();
     
-    virtual void created() override;
     virtual void enter() override;
     virtual void update() override;
     virtual void exit() override;

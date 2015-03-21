@@ -27,7 +27,6 @@ MakeMenuState* MakeMenuState::create()
     ret->setCurrentItemIndex(0);
     ret->setMakeItem(nullptr);
     ret->autorelease();
-    ret->created();
     return ret;
 }
 

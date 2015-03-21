@@ -29,7 +29,6 @@ ModeSelectMenuState* ModeSelectMenuState::create()
     
     ret->init();
     ret->autorelease();
-    ret->created();
     return ret;
 }
 

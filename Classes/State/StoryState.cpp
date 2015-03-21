@@ -35,7 +35,6 @@ StoryState* StoryState::create()
     ret->setRunningStory(nullptr);
     ret->setView(StoryLayer::create());
     ret->setMsgViewState(MessageViewState::DISABLED);
-    ret->created();
     return ret;
 }
 
@@ -49,14 +48,11 @@ StoryState* StoryState::create(std::string story_id)
     ret->autorelease();
     
     ret->init();
-    
     ret->setStoryId(story_id);
     ret->setMsgIdx(0);
     ret->setRunningStory(nullptr);
     ret->setView(StoryLayer::create());
     ret->setMsgViewState(MessageViewState::DISABLED);
-    
-    ret->created();
     return ret;
 }
 
