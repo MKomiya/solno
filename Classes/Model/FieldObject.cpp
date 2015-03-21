@@ -8,15 +8,20 @@
 
 #include "FieldObject.h"
 #include "Direction.h"
-
 #include "MovableRock.h"
 #include "MessagePoint.h"
 #include "Tree.h"
+#include "FieldState.h"
 
 #pragma mark create method
-FieldObject* FieldObject::create(FieldState* state, int id, cocos2d::Point pos, cocos2d::ValueMap data)
+FieldObject* FieldObject::create(FieldState* state, int id, cocos2d::ValueMap data)
 {
     auto type_str = data["type"].asString();
+    
+    auto size = state->getMap()->getLayer("meta")->getLayerSize();
+    float x   = data["x"].asFloat() / 16;
+    float y   = size.height - data["y"].asFloat() / 16 - 1;
+    auto pos  = cocos2d::Point(x, y);
     
     if (type_str == "1") {
         auto ret = new MovableRock();

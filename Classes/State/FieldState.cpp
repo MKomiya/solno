@@ -61,26 +61,19 @@ FieldState* FieldState::create()
     UserStorageModule::getInstance()->init();
     
     ret->autorelease();
-    ret->created();
+    ret->loadMapData();
     return ret;
 }
 
-void FieldState::created()
+void FieldState::loadMapData()
 {
-    // map size取得のためにcollider layerで代用する
-    auto obj_layer = map->getLayer("meta");
-    auto size      = obj_layer->getLayerSize();
     auto obj_group = map->getObjectGroup("Event");
     
     int id = 100;
     for (auto object : obj_group->getObjects()) {
         auto object_data = object.asValueMap();
         
-        float x  = object_data["x"].asFloat() / 16;
-        float y  = size.height - object_data["y"].asFloat() / 16 - 1;
-        auto pos = Point(x, y);
-        
-        auto ret = FieldObject::create(this, id, pos, object_data);
+        auto ret = FieldObject::create(this, id, object_data);
         objects.push_back(ret);
         ++id;
         

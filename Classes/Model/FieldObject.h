@@ -24,7 +24,7 @@ public:
         TREE,              // 破壊出来る木
     };
     
-    static FieldObject* create(FieldState* state, int id, cocos2d::Point pos, cocos2d::ValueMap data);
+    static FieldObject* create(FieldState* state, int id, cocos2d::ValueMap data);
     
     virtual void executePreMoveAction(Direction);
     virtual void executeDecideAction();

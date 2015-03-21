@@ -32,7 +32,7 @@ class Item;
 class FieldState : public Raciela::State {
 public:
     static FieldState* create();
-    void created();
+    void loadMapData();
     
     virtual void enter() override;
     virtual void update() override;
