@@ -72,7 +72,6 @@ public:
         FLAGMENT_ITEM,      // フラグに影響を及ぼすアイテム
     };
     
-    static Item* createMock(int id);
     static Item* createByMaster(int item_id);
     
     virtual void useItem(FieldState* state);

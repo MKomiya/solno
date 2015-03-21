@@ -16,32 +16,6 @@
 USING_NS_CC;
 
 #pragma mark create method
-Item* Item::createMock(int id)
-{
-    if (true) {
-        auto ret = new ObjectOperateItem();
-        if (!ret) {
-            CC_SAFE_DELETE(ret);
-            return nullptr;
-        }
-        
-        ret->setId(id);
-        ret->setItemId(999);
-        ret->setType(ItemType::OPERATE_OBJECT);
-        ret->setItemName("モックアイテム");
-        ret->setPrepareItemId1(999);
-        ret->setPrepareItemId2(999);
-        ret->setPrepareItemId3(999);
-        
-        auto tc = Director::getInstance()->getTextureCache();
-        auto texture = tc->addImage("item/1.png");
-        ret->setThumbnailTexture(texture);
-        return ret;
-    }
-    
-    return nullptr;
-}
-
 Item* Item::createByMaster(int item_id)
 {
     auto master = MasterStorageModule::getInstance();
