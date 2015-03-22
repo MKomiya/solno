@@ -11,13 +11,15 @@
 
 #include <stdio.h>
 #include "FieldObject.h"
-
 #include "Direction.h"
 
 class FieldLayer;
+class FieldState;
 class Tree : public FieldObject
 {
 public:
+    Tree(FieldState* state, int id, cocos2d::ValueMap data);
+    
     virtual void executeDecideAction() override;
     virtual bool isPassablePlayer() override;
     virtual int getBreakItemId() override;

@@ -14,9 +14,12 @@
 #include "Direction.h"
 
 class FiledLayer;
+class FieldState;
 class StoryPoint : public FieldObject
 {
 public:
+    StoryPoint(FieldState* state, int id, cocos2d::ValueMap data);
+    
     virtual void executeDecideAction() override;
     virtual bool isPassablePlayer() override;
     

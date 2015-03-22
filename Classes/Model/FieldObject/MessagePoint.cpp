@@ -15,6 +15,13 @@
 #include "FieldControllerLayer.h"
 USING_NS_CC;
 
+MessagePoint::MessagePoint(FieldState* state, int id, cocos2d::ValueMap data) :
+    FieldObject(state, id, data)
+{
+    setMessageData(data["msg_data"].asString());
+    setDecideTrigger(data["decide_trigger"].asBool());
+}
+
 void MessagePoint::executeMovedAction()
 {
     if (decide_trigger) {

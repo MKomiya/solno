@@ -13,9 +13,12 @@
 #include "FieldObject.h"
 
 class FieldLayer;
+class FieldState;
 class MessagePoint : public FieldObject
 {
 public:
+    MessagePoint(FieldState* state, int id, cocos2d::ValueMap data);
+    
     virtual void executeMovedAction() override;
     virtual void executeDecideAction() override;
     virtual bool isPassablePlayer() override;

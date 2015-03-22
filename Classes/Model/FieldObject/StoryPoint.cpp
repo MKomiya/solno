@@ -14,6 +14,12 @@
 
 USING_NS_CC;
 
+StoryPoint::StoryPoint(FieldState* state, int id, cocos2d::ValueMap data) :
+    FieldObject(state, id, data)
+{
+    setStoryId(data["story_id"].asString());
+}
+
 void StoryPoint::executeDecideAction()
 {
     auto view = state->getFieldView();

@@ -11,13 +11,15 @@
 
 #include <stdio.h>
 #include "FieldObject.h"
-
 #include "Direction.h"
 
 class FieldLayer;
+class FieldState;
 class MovableRock : public FieldObject
 {
 public:
+    MovableRock(FieldState* state, int id, cocos2d::ValueMap data);
+    
     virtual void executePreMoveAction(Direction direction) override;
     virtual bool isPassablePlayer() override;
 };

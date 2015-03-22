@@ -11,6 +11,11 @@
 #include "FieldState.h"
 #include "FieldLayer.h"
 
+MovableRock::MovableRock(FieldState* state, int id, cocos2d::ValueMap data) :
+    FieldObject(state, id, data)
+{
+}
+
 void MovableRock::executePreMoveAction(Direction direction)
 {
     auto check_pos = this->getPosition() + direction.getMapPointVec();
