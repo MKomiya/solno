@@ -22,7 +22,7 @@ class StoryState : public Raciela::State
 {
 public:
     static StoryState* create();
-    static StoryState* create(std::string story_id);
+    static StoryState* createByStoryId(std::string story_id);
     
     virtual void enter() override;
     virtual void update() override;

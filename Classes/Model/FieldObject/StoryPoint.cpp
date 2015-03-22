@@ -25,9 +25,9 @@ void StoryPoint::executeDecideAction()
     auto view = state->getFieldView();
     
     auto fade = FadeOut::create(0.3f);
-    auto change_state = CallFunc::create([]() {
+    auto change_state = CallFunc::create([=]() {
         auto router = Raciela::Router::getInstance();
-        router->pushState(StoryState::create());
+        router->pushState(StoryState::createByStoryId(story_id));
     });
     auto action = Sequence::create(fade, change_state, nullptr);
     view->runAction(action);

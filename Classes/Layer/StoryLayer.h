@@ -11,9 +11,10 @@
 
 #include <stdio.h>
 #include <cocos2d.h>
+#include "View.h"
 
 class OpeningMessageView;
-class StoryLayer : public cocos2d::Layer
+class StoryLayer : public Raciela::View
 {
 public:
     virtual bool init();

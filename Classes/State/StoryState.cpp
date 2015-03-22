@@ -18,6 +18,7 @@
 #include "Story.h"
 #include "MessageView.h"
 #include "MasterStorageModule.h"
+#include "Router.h"
 
 USING_NS_CC;
 
@@ -38,7 +39,7 @@ StoryState* StoryState::create()
     return ret;
 }
 
-StoryState* StoryState::create(std::string story_id)
+StoryState* StoryState::createByStoryId(std::string story_id)
 {
     auto ret = new StoryState();
     if (!ret) {
@@ -52,7 +53,7 @@ StoryState* StoryState::create(std::string story_id)
     ret->setMsgIdx(0);
     ret->setRunningStory(nullptr);
     ret->setView(StoryLayer::create());
-    ret->setMsgViewState(MessageViewState::DISABLED);
+    ret->setMsgViewState(MessageViewState::DISABLED);    
     return ret;
 }
 
