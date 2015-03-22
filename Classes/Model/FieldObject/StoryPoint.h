@@ -19,6 +19,8 @@ class StoryPoint : public FieldObject
 public:
     virtual void executeDecideAction() override;
     virtual bool isPassablePlayer() override;
+    
+    CC_SYNTHESIZE(std::string, story_id, StoryId);
 };
 
 #endif /* defined(__solno__StoryPoint__) */

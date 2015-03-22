@@ -22,6 +22,7 @@ public:
         MESSAGE_POINT,     // 会話が流れるポイント
         START_POINT,       // スタート地点
         TREE,              // 破壊出来る木
+        STORY_POINT,       // 回想ポイント
     };
     
     static FieldObject* create(FieldState* state, int id, cocos2d::ValueMap data);

@@ -11,6 +11,7 @@
 #include "MovableRock.h"
 #include "MessagePoint.h"
 #include "Tree.h"
+#include "StoryPoint.h"
 #include "FieldState.h"
 
 #pragma mark create method
@@ -52,6 +53,15 @@ FieldObject* FieldObject::create(FieldState* state, int id, cocos2d::ValueMap da
     } else if (type_str == "4") {
         auto ret = new Tree();
         ret->setObjectType(TREE);
+        ret->setId(id);
+        ret->setPosition(pos);
+        ret->setFieldState(state);
+        return ret;
+        
+    } else if (type_str == "5") {
+        auto ret = new StoryPoint();
+        ret->setObjectType(STORY_POINT);
+        ret->setStoryId(data["story_id"].asString());
         ret->setId(id);
         ret->setPosition(pos);
         ret->setFieldState(state);
