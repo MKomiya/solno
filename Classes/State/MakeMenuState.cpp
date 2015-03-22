@@ -56,7 +56,7 @@ void MakeMenuState::update()
 
 void MakeMenuState::exit()
 {
-    dispatcher->removeAllListener();
+    Raciela::State::exit();
     
     preparent_item_ids.clear();
     item_list.clear();

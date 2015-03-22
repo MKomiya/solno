@@ -51,6 +51,8 @@ void ItemMenuState::update()
 
 void ItemMenuState::exit()
 {
+    Raciela::State::exit();
+    
     item_list.clear();
     Raciela::Router::getInstance()->removeView(view);
 }

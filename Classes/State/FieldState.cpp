@@ -89,7 +89,6 @@ void FieldState::loadMapData()
 void FieldState::enter()
 {
     delegate();
-    
     if (controller) {
         controller->setVisible(true);
     }
@@ -107,6 +106,23 @@ void FieldState::update()
 
 void FieldState::exit()
 {
+    Raciela::State::exit();
+    Raciela::Router::getInstance()->removeView(view);
+}
+
+void FieldState::resume()
+{
+    delegate();
+    if (controller) {
+        controller->setVisible(true);
+    }
+    view->changePlayerAnimation(player_direction);
+}
+
+void FieldState::pause()
+{
+    Raciela::State::pause();
+    
     view->stopPlayerAnimation();
     controller->setVisible(false);
 }

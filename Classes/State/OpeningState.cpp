@@ -74,6 +74,7 @@ void OpeningState::update()
 
 void OpeningState::exit()
 {
+    Raciela::State::exit();
     Raciela::Router::getInstance()->removeView(view);
 }
 
@@ -88,7 +89,7 @@ void OpeningState::delegate()
             
             if (normal_msg.size() == 0) {
                 auto router = Raciela::Router::getInstance();
-                router->pushState(FieldState::create());
+                router->replaceState(FieldState::create());
                 return ;
             }
             

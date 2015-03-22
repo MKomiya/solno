@@ -22,23 +22,6 @@
 
 USING_NS_CC;
 
-StoryState* StoryState::create()
-{
-    auto ret = new StoryState();
-    if (!ret) {
-        CC_SAFE_DELETE(ret);
-        return nullptr;
-    }
-    ret->autorelease();
-    
-    ret->init();
-    ret->setMsgIdx(0);
-    ret->setRunningStory(nullptr);
-    ret->setView(StoryLayer::create());
-    ret->setMsgViewState(MessageViewState::DISABLED);
-    return ret;
-}
-
 StoryState* StoryState::createByStoryId(std::string story_id)
 {
     auto ret = new StoryState();
@@ -70,6 +53,9 @@ void StoryState::enter()
     
     running_story = story_data.front();
     view->viewMessage(running_story->getMsgData());
+    
+    auto router = Raciela::Router::getInstance();
+    router->addView(getView());
 }
 
 void StoryState::delegate()
@@ -107,5 +93,7 @@ void StoryState::update()
 
 void StoryState::exit()
 {
+    Raciela::State::exit();
+    
     story_data.clear();
 }
