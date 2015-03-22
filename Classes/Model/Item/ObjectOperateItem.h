@@ -15,6 +15,9 @@
 class FieldState;
 class ObjectOperateItem : public Item
 {
+public:
+    ObjectOperateItem(int id, int item_id);
+    
     virtual void useItem(FieldState* state) override;
 };
 

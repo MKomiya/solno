@@ -67,11 +67,12 @@ public:
         BREAK_SCRAP,
     };
     enum ItemType {
-        MATERIAL_ITEM = 1,  // 調合用素材アイテム
-        OPERATE_OBJECT,     // ダンジョンオブジェクトの破壊・生成アイテム
-        FLAGMENT_ITEM,      // フラグに影響を及ぼすアイテム
+        MATERIAL_ITEM  = 1, // 調合用素材アイテム
+        OPERATE_OBJECT = 2, // ダンジョンオブジェクトの破壊・生成アイテム
+        FLAGMENT_ITEM  = 3, // フラグに影響を及ぼすアイテム
     };
     
+    Item(int id, int item_id);
     static Item* createByMaster(int item_id);
     
     virtual void useItem(FieldState* state);

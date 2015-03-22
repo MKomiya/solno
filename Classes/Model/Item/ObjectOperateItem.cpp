@@ -12,6 +12,11 @@
 #include "FieldLayer.h"
 #include "UserStorageModule.h"
 
+ObjectOperateItem::ObjectOperateItem(int id, int item_id) :
+    Item(id, item_id)
+{
+}
+
 void ObjectOperateItem::useItem(FieldState* state)
 {
     auto break_object = state->findPlayerDirectionAbutObject();

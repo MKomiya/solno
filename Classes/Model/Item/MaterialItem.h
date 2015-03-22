@@ -15,6 +15,9 @@
 class FieldState;
 class MaterialItem : public Item
 {
+public:
+    MaterialItem(int id, int item_id);
+    
     virtual void useItem(FieldState* state) override;
 };
 
