@@ -49,8 +49,10 @@ void StoryState::enter()
     auto master = MasterStorageModule::getInstance();
     auto data   = master->getStoryDataById(story_id);
 
-    auto s = Story::create(data.type, data.msg_data);
-    story_data.pushBack(s);
+    for (auto value : data) {
+        auto s = Story::create(value.type, value.msg_data);
+        story_data.pushBack(s);
+    }
     
     running_story = story_data.front();
     view->viewMessage(running_story->getMsgData());

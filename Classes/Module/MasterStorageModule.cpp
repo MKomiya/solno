@@ -32,8 +32,13 @@ void MasterStorageModule::init()
     
     auto master_story = loadJsonData("data/master_story.json");
     for (auto data : master_story.object_items()) {
-        auto s = MasterStory(data.second.object_items());
-        master_story_map.insert(std::make_pair(data.first, s));
+        
+        std::vector<MasterStory> story_list;
+        for (auto s : data.second.array_items()) {
+            auto story = MasterStory(s.object_items());
+            story_list.push_back(story);
+        }
+        master_story_map.insert(std::make_pair(data.first, story_list));
     }
     CCLOG("init finish");
 }
@@ -77,7 +82,7 @@ std::vector<MasterStory> MasterStorageModule::getStoryList()
     return master_story_list;
 }
 
-MasterStory MasterStorageModule::getStoryDataById(std::string story_id)
+std::vector<MasterStory> MasterStorageModule::getStoryDataById(std::string story_id)
 {
     auto ret = master_story_map.find(story_id);
     if (ret == master_story_map.end()) {
