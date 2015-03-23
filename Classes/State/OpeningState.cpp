@@ -12,6 +12,7 @@
 #include "OpeningMessageView.h"
 #include "TerminalMessageView.h"
 #include "Router.h"
+#include "ViewManager.h"
 #include "Dispatcher.h"
 #include "FieldState.h"
 #include "MasterStorageModule.h"
@@ -63,9 +64,9 @@ void OpeningState::enter()
     view = OpeningLayer::create();
     auto frame = ControllerLayer::create();
     
-    auto router = Raciela::Router::getInstance();
-    router->addView(frame);
-    router->addView(view);
+    auto view_manager = Raciela::ViewManager::getInstance();
+    view_manager->addView(frame);
+    view_manager->addView(view);
 }
 
 void OpeningState::update()
@@ -75,7 +76,7 @@ void OpeningState::update()
 void OpeningState::exit()
 {
     Raciela::State::exit();
-    Raciela::Router::getInstance()->removeView(view);
+    Raciela::ViewManager::getInstance()->removeView(view);
 }
 
 void OpeningState::delegate()

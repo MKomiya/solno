@@ -15,6 +15,7 @@
 
 #include "StoryLayer.h"
 #include "Dispatcher.h"
+#include "ViewManager.h"
 #include "Story.h"
 #include "MessageView.h"
 #include "MasterStorageModule.h"
@@ -54,8 +55,8 @@ void StoryState::enter()
     running_story = story_data.front();
     view->viewMessage(running_story->getMsgData());
     
-    auto router = Raciela::Router::getInstance();
-    router->addView(getView());
+    auto view_manager = Raciela::ViewManager::getInstance();
+    view_manager->addView(view);
 }
 
 void StoryState::delegate()
@@ -94,6 +95,7 @@ void StoryState::update()
 void StoryState::exit()
 {
     Raciela::State::exit();
-    
     story_data.clear();
+    
+    Raciela::ViewManager::getInstance()->removeView(view);
 }

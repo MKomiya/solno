@@ -17,6 +17,7 @@
 #include "UserStorageModule.h"
 #include "Dispatcher.h"
 #include "Router.h"
+#include "ViewManager.h"
 
 #include "FieldLayer.h"
 #include "ControllerLayer.h"
@@ -40,10 +41,10 @@ FieldState* FieldState::create()
     auto field      = FieldLayer::create();
     auto frame      = ControllerLayer::create();
     auto controller = FieldControllerLayer::create();
-    auto router     = Raciela::Router::getInstance();
-    router->addView(field);
-    router->addView(frame);
-    router->addView(controller);
+    auto view_manager = Raciela::ViewManager::getInstance();
+    view_manager->addView(field);
+    view_manager->addView(frame);
+    view_manager->addView(controller);
     
     ret->init();
     ret->setMap(TMXTiledMap::create("tmx/01_scrap.tmx"));
@@ -107,7 +108,7 @@ void FieldState::update()
 void FieldState::exit()
 {
     Raciela::State::exit();
-    Raciela::Router::getInstance()->removeView(view);
+    Raciela::ViewManager::getInstance()->removeView(view);
 }
 
 void FieldState::resume()
