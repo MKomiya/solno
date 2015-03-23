@@ -40,12 +40,36 @@ bool OpeningLayer::init()
     return true;
 }
 
-void OpeningLayer::viewMessages(std::string msg_data)
+void OpeningLayer::viewMessage(OpeningMessageType type, std::string msg_data)
+{
+    switch (type) {
+        case OpeningMessageType::NORMAL_MESSAGE:
+            viewMainMessages(msg_data);
+            break;
+        case OpeningMessageType::TERMINAL_MESSAGE:
+            viewTerminalMessage(msg_data);
+            break;
+    }
+}
+
+void OpeningLayer::nextMessage(OpeningMessageType type)
+{
+    switch (type) {
+        case OpeningMessageType::NORMAL_MESSAGE:
+            nextMainMessages();
+            break;
+        case OpeningMessageType::TERMINAL_MESSAGE:
+            releaseTerminalMesage();
+            break;
+    }
+}
+
+void OpeningLayer::viewMainMessages(std::string msg_data)
 {
     msg_view->viewMessage(msg_data);
 }
 
-void OpeningLayer::nextMessages()
+void OpeningLayer::nextMainMessages()
 {
     msg_view->releaseMessage();
 }

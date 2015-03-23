@@ -16,6 +16,7 @@
 
 enum class OpeningMessageViewState;
 enum class TerminalMessageViewState;
+enum class OpeningMessageType;
 
 class OpeningLayer;
 class OpeningState : public Raciela::State
@@ -37,6 +38,9 @@ public:
 private:
     std::unordered_map<int, std::string> normal_msg;
     std::unordered_map<int, std::string> terminal_msg;
+    
+    void playMessages(OpeningMessageType type);
+    std::unordered_map<int, std::string>& getMessageDataRef(OpeningMessageType type);
 };
 
 #endif /* defined(__solno__OpeningState__) */

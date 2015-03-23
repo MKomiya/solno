@@ -94,26 +94,12 @@ void OpeningState::delegate()
             router->replaceState(FieldState::create());
             return ;
         }
-        
-        auto it_normal = normal_msg.find(msg_index);
-        if (it_normal == normal_msg.end()) {
-            view->nextMessages();
-        } else {
-            view->viewMessages(it_normal->second);
-            normal_msg.erase(it_normal);
-        }
+        playMessages(OpeningMessageType::NORMAL_MESSAGE);
 
         if (terminal_msg.size() == 0) {
             return ;
         }
-        
-        auto it_terminal = terminal_msg.find(msg_index);
-        if (it_terminal == terminal_msg.end()) {
-            view->releaseTerminalMesage();
-        } else {
-            view->viewTerminalMessage(it_terminal->second);
-            terminal_msg.erase(it_terminal);
-        }
+        playMessages(OpeningMessageType::TERMINAL_MESSAGE);
     });
     
     dispatcher->subscribe<void (OpeningMessageViewState)>("update_msg_state", [=](OpeningMessageViewState state) {
@@ -125,4 +111,26 @@ void OpeningState::delegate()
         CCLOG("state: %d", state);
         terminal_message_view_state = state;
     });
+}
+
+void OpeningState::playMessages(OpeningMessageType type)
+{
+    auto msg_list = getMessageDataRef(type);
+    auto it = msg_list.find(msg_index);
+    if (it == msg_list.end()) {
+        view->nextMessage(type);
+    } else {
+        view->viewMessage(type, it->second);
+        msg_list.erase(it);
+    }
+}
+
+std::unordered_map<int, std::string>& OpeningState::getMessageDataRef(OpeningMessageType type)
+{
+    switch (type) {
+        case OpeningMessageType::NORMAL_MESSAGE:
+            return normal_msg;
+        case OpeningMessageType::TERMINAL_MESSAGE:
+            return terminal_msg;
+    }
 }
