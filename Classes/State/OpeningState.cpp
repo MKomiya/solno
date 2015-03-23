@@ -82,35 +82,37 @@ void OpeningState::exit()
 void OpeningState::delegate()
 {
     dispatcher->subscribe<void ()>("touched", [=]() {
-        if (msg_view_state != OpeningMessageViewState::PROGRESS &&
-            terminal_message_view_state != TerminalMessageViewState::PROGRESS)
+        if (msg_view_state == OpeningMessageViewState::PROGRESS ||
+            terminal_message_view_state == TerminalMessageViewState::PROGRESS)
         {
-            msg_index++;
-            CCLOG("msg_index: %d", msg_index);
-            
-            if (normal_msg.size() == 0) {
-                auto router = Raciela::Router::getInstance();
-                router->replaceState(FieldState::create());
-                return ;
-            }
-            
-            auto it_normal = normal_msg.find(msg_index);
-            if (it_normal == normal_msg.end()) {
-                view->nextMessages();
-            } else {
-                view->viewMessages(it_normal->second);
-                normal_msg.erase(it_normal);
-            }
-            
-            if (terminal_msg.size() != 0) {
-                auto it_terminal = terminal_msg.find(msg_index);
-                if (it_terminal == terminal_msg.end()) {
-                    view->releaseTerminalMesage();
-                } else {
-                    view->viewTerminalMessage(it_terminal->second);
-                    terminal_msg.erase(it_terminal);
-                }
-            }
+            return ;
+        }
+
+        msg_index++;
+        if (normal_msg.size() == 0) {
+            auto router = Raciela::Router::getInstance();
+            router->replaceState(FieldState::create());
+            return ;
+        }
+        
+        auto it_normal = normal_msg.find(msg_index);
+        if (it_normal == normal_msg.end()) {
+            view->nextMessages();
+        } else {
+            view->viewMessages(it_normal->second);
+            normal_msg.erase(it_normal);
+        }
+
+        if (terminal_msg.size() == 0) {
+            return ;
+        }
+        
+        auto it_terminal = terminal_msg.find(msg_index);
+        if (it_terminal == terminal_msg.end()) {
+            view->releaseTerminalMesage();
+        } else {
+            view->viewTerminalMessage(it_terminal->second);
+            terminal_msg.erase(it_terminal);
         }
     });
     
