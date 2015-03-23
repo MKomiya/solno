@@ -1,6 +1,7 @@
 #include "AppDelegate.h"
 #include "MasterStorageModule.h"
 #include "Router.h"
+#include "ViewManager.h"
 #include "FieldState.h"
 #include "OpeningState.h"
 
@@ -52,7 +53,7 @@ bool AppDelegate::applicationDidFinishLaunching() {
     //auto scene = HelloWorld::createScene();
 
     auto router = Raciela::Router::getInstance();
-    auto scene  = router->getRootScene();
+    auto scene  = Raciela::ViewManager::getInstance()->getRootScene();
     scene->schedule([router](float t) {
         router->update(t);
     }, "update_state");

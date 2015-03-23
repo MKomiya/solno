@@ -21,7 +21,6 @@ class StoryLayer;
 class StoryState : public Raciela::State
 {
 public:
-    static StoryState* create();
     static StoryState* createByStoryId(std::string story_id);
     
     virtual void enter() override;

@@ -15,29 +15,13 @@
 
 #include "StoryLayer.h"
 #include "Dispatcher.h"
+#include "ViewManager.h"
 #include "Story.h"
 #include "MessageView.h"
 #include "MasterStorageModule.h"
 #include "Router.h"
 
 USING_NS_CC;
-
-StoryState* StoryState::create()
-{
-    auto ret = new StoryState();
-    if (!ret) {
-        CC_SAFE_DELETE(ret);
-        return nullptr;
-    }
-    ret->autorelease();
-    
-    ret->init();
-    ret->setMsgIdx(0);
-    ret->setRunningStory(nullptr);
-    ret->setView(StoryLayer::create());
-    ret->setMsgViewState(MessageViewState::DISABLED);
-    return ret;
-}
 
 StoryState* StoryState::createByStoryId(std::string story_id)
 {
@@ -70,6 +54,9 @@ void StoryState::enter()
     
     running_story = story_data.front();
     view->viewMessage(running_story->getMsgData());
+    
+    auto view_manager = Raciela::ViewManager::getInstance();
+    view_manager->addView(view);
 }
 
 void StoryState::delegate()
@@ -107,5 +94,8 @@ void StoryState::update()
 
 void StoryState::exit()
 {
+    Raciela::State::exit();
     story_data.clear();
+    
+    Raciela::ViewManager::getInstance()->removeView(view);
 }

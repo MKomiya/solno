@@ -12,6 +12,7 @@
 #include "MasterStorageModule.h"
 #include "UserStorageModule.h"
 #include "Dispatcher.h"
+#include "ViewManager.h"
 
 #include "ItemMenuLayer.h"
 #include "Router.h"
@@ -41,8 +42,8 @@ void ItemMenuState::enter()
     
     // ItemMenuLayerへset
     view = ItemMenuLayer::create(item_list);
-    auto router = Raciela::Router::getInstance();
-    router->addView(view);
+    auto view_manager = Raciela::ViewManager::getInstance();
+    view_manager->addView(view);
 }
 
 void ItemMenuState::update()
@@ -51,8 +52,10 @@ void ItemMenuState::update()
 
 void ItemMenuState::exit()
 {
+    Raciela::State::exit();
+    
     item_list.clear();
-    Raciela::Router::getInstance()->removeView(view);
+    Raciela::ViewManager::getInstance()->removeView(view);
 }
 
 void ItemMenuState::delegate()

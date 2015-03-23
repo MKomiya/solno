@@ -9,11 +9,10 @@
 #include "ModeSelectMenuState.h"
 
 #include "Router.h"
-#include "ModeSelectMenuLayer.h"
-
 #include "Dispatcher.h"
-#include "Router.h"
+#include "ViewManager.h"
 
+#include "ModeSelectMenuLayer.h"
 #include "ItemMenuState.h"
 #include "MakeMenuState.h"
 
@@ -35,8 +34,7 @@ ModeSelectMenuState* ModeSelectMenuState::create()
 void ModeSelectMenuState::enter()
 {
     view = ModeSelectMenuLayer::create();
-    auto router = Raciela::Router::getInstance();
-    router->addView(view);
+    Raciela::ViewManager::getInstance()->addView(view);
 }
 
 void ModeSelectMenuState::update()
@@ -45,7 +43,9 @@ void ModeSelectMenuState::update()
 
 void ModeSelectMenuState::exit()
 {
-    Raciela::Router::getInstance()->removeView(view);
+    Raciela::State::exit();
+    
+    Raciela::ViewManager::getInstance()->removeView(view);
 }
 
 void ModeSelectMenuState::delegate()

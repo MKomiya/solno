@@ -10,6 +10,7 @@
 
 #include "UserStorageModule.h"
 #include "Dispatcher.h"
+#include "ViewManager.h"
 
 #include "MakeMenuLayer.h"
 #include "MakeMenuControllerLayer.h"
@@ -41,13 +42,12 @@ void MakeMenuState::enter()
     
     // ItemMenuLayerへset
     view = MakeMenuLayer::create(item_list);
-    auto router = Raciela::Router::getInstance();
-    router->addView(view);
-
     controller = MakeMenuControllerLayer::create();
-    router->addView(controller);
-    
     controller->setVisible(false);
+    
+    auto view_manager = Raciela::ViewManager::getInstance();
+    view_manager->addView(view);
+    view_manager->addView(controller);
 }
 
 void MakeMenuState::update()
@@ -56,12 +56,12 @@ void MakeMenuState::update()
 
 void MakeMenuState::exit()
 {
-    dispatcher->removeAllListener();
+    Raciela::State::exit();
     
     preparent_item_ids.clear();
     item_list.clear();
-    Raciela::Router::getInstance()->removeView(controller);
-    Raciela::Router::getInstance()->removeView(view);
+    Raciela::ViewManager::getInstance()->removeView(controller);
+    Raciela::ViewManager::getInstance()->removeView(view);
 }
 
 void MakeMenuState::delegate()
