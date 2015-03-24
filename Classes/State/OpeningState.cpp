@@ -54,7 +54,7 @@ bool OpeningState::init()
         }
     }
     
-    setMsgIndex(1);
+    setMsgIndex(0);
     
     return true;
 }
@@ -89,17 +89,16 @@ void OpeningState::delegate()
         }
 
         msg_index++;
-        if (normal_msg.size() == 0) {
-            auto router = Raciela::Router::getInstance();
-            router->replaceState(FieldState::create());
-            return ;
+        if (normal_msg.size() != 0) {
+            playMessages(OpeningMessageType::NORMAL_MESSAGE);
         }
-        playMessages(OpeningMessageType::NORMAL_MESSAGE);
 
-        if (terminal_msg.size() == 0) {
+        if (terminal_msg.size() != 0) {
+            playMessages(OpeningMessageType::TERMINAL_MESSAGE);
             return ;
         }
-        playMessages(OpeningMessageType::TERMINAL_MESSAGE);
+        
+        Raciela::Router::getInstance()->replaceState(FieldState::create());
     });
     
     dispatcher->subscribe<void (OpeningMessageViewState)>("update_msg_state", [=](OpeningMessageViewState state) {
@@ -115,22 +114,22 @@ void OpeningState::delegate()
 
 void OpeningState::playMessages(OpeningMessageType type)
 {
-    auto msg_list = getMessageDataRef(type);
-    auto it = msg_list.find(msg_index);
-    if (it == msg_list.end()) {
+    auto msg_list = getMessageDataPtr(type);
+    auto it = msg_list->find(msg_index);
+    if (it == msg_list->end()) {
         view->nextMessage(type);
     } else {
         view->viewMessage(type, it->second);
-        msg_list.erase(it);
+        msg_list->erase(it);
     }
 }
 
-std::unordered_map<int, std::string>& OpeningState::getMessageDataRef(OpeningMessageType type)
+std::unordered_map<int, std::string>* OpeningState::getMessageDataPtr(OpeningMessageType type)
 {
     switch (type) {
         case OpeningMessageType::NORMAL_MESSAGE:
-            return normal_msg;
+            return &normal_msg;
         case OpeningMessageType::TERMINAL_MESSAGE:
-            return terminal_msg;
+            return &terminal_msg;
     }
 }

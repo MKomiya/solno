@@ -40,7 +40,7 @@ private:
     std::unordered_map<int, std::string> terminal_msg;
     
     void playMessages(OpeningMessageType type);
-    std::unordered_map<int, std::string>& getMessageDataRef(OpeningMessageType type);
+    std::unordered_map<int, std::string>* getMessageDataPtr(OpeningMessageType type);
 };
 
 #endif /* defined(__solno__OpeningState__) */
