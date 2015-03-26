@@ -148,8 +148,7 @@ void FieldState::delegate()
     });
     
     dispatcher->subscribe<void ()>("release_menu", [=]() {
-        auto router = Raciela::Router::getInstance();
-        router->pushState(ModeSelectMenuState::create());
+         Raciela::Router::getInstance()->pushState(ModeSelectMenuState::create());
     });
     
     dispatcher->subscribe<void (MessageViewState)>("update_msg_state", [=](MessageViewState state) {

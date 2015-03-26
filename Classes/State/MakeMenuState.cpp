@@ -33,6 +33,8 @@ MakeMenuState* MakeMenuState::create()
 
 void MakeMenuState::enter()
 {
+    Raciela::State::enter();
+    
     // repositoryからitem list読込
     auto user_item_list = UserStorageModule::getInstance()->getAllUserItem();
     for (auto user_item : user_item_list) {

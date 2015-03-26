@@ -43,6 +43,8 @@ StoryState* StoryState::createByStoryId(std::string story_id)
 
 void StoryState::enter()
 {
+    Raciela::State::enter();
+    
     if (story_id.empty()) {
         return ;
     }

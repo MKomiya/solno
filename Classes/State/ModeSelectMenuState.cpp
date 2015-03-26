@@ -33,6 +33,8 @@ ModeSelectMenuState* ModeSelectMenuState::create()
 
 void ModeSelectMenuState::enter()
 {
+    Raciela::State::enter();
+    
     view = ModeSelectMenuLayer::create();
     Raciela::ViewManager::getInstance()->addView(view);
 }
@@ -52,13 +54,11 @@ void ModeSelectMenuState::delegate()
 {
     dispatcher->subscribe<void ()>("selected_item", [=]() {
         auto router = Raciela::Router::getInstance();
-        router->popState();
-        router->pushState(ItemMenuState::create());
+        router->replaceState(ItemMenuState::create());
     });
     
     dispatcher->subscribe<void ()>("selected_make", [=]() {
         auto router = Raciela::Router::getInstance();
-        router->popState();
-        router->pushState(MakeMenuState::create());
+        router->replaceState(MakeMenuState::create());
     });
 }

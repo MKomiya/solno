@@ -61,6 +61,8 @@ bool OpeningState::init()
 
 void OpeningState::enter()
 {
+    Raciela::State::enter();
+    
     view = OpeningLayer::create();
     auto frame = ControllerLayer::create();
     
