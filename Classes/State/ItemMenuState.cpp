@@ -74,8 +74,7 @@ void ItemMenuState::delegate()
             return ;
         }
         
-        dispatcher->dispatch("use_item", item);
-        auto router = Raciela::Router::getInstance();
-        router->popState();
+        dispatcher->dispatch_transition("use_item", item);
+        Raciela::Router::getInstance()->popState();
     });
 }

@@ -113,6 +113,8 @@ void FieldState::exit()
 
 void FieldState::resume()
 {
+    dispatcher->dispose_transition("use_item");
+
     delegate();
     if (controller) {
         controller->setVisible(true);
@@ -126,6 +128,10 @@ void FieldState::pause()
     
     view->stopPlayerAnimation();
     controller->setVisible(false);
+
+    dispatcher->subscribe_transition<void (Item*)>("use_item", [=](Item* item) {
+        addExecuteItem(item);
+    }
 }
 
 void FieldState::addExecuteItem(Item* item)
