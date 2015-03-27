@@ -131,7 +131,7 @@ void FieldState::pause()
 
     dispatcher->subscribe_transition<void (Item*)>("use_item", [=](Item* item) {
         addExecuteItem(item);
-    }
+    });
 }
 
 void FieldState::addExecuteItem(Item* item)
