@@ -20,6 +20,7 @@ enum class TerminalMessageViewState;
 enum class OpeningMessageType {
     NORMAL_MESSAGE,
     TERMINAL_MESSAGE,
+    MULTI_TERMINAL_MESSAGE,
 };
 
 class OpeningMessageView;
@@ -32,6 +33,7 @@ public:
     
     void viewMessage(OpeningMessageType type, std::string msg_data);
     void nextMessage(OpeningMessageType type);
+    void viewMultiMessages(std::vector<std::string> msg_list);
     
     CC_SYNTHESIZE(OpeningMessageView*, msg_view, MessageView);
     CC_SYNTHESIZE(OpeningMessageViewState, msg_view_state, MessageViewState);

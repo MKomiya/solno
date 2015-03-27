@@ -43,14 +43,28 @@ bool OpeningState::init()
 
     auto master    = MasterStorageModule::getInstance();
     auto data_list = master->getOpeningList();
-    for (auto data : data_list) {
+    
+    std::vector<std::string> multi_terminal_buff;
+    for (auto it = data_list.begin(); it != data_list.end(); ++it) {
+        auto data = (*it);
+        
         if (data.type == MasterOpeningType::NORMAL) {
             normal_msg.insert(std::make_pair(data.id, data.msg));
-            continue ;
         }
+        
         if (data.type == MasterOpeningType::TERMINAL){
             terminal_msg.insert(std::make_pair(data.id, data.msg));
-            continue ;
+        }
+        
+        if (data.type == MasterOpeningType::MULTI_TERMINAL) {
+            multi_terminal_buff.push_back(data.msg);
+            
+            auto next = it + 1;
+            if (next == data_list.end() || (*next).type != MasterOpeningType::MULTI_TERMINAL) {
+                auto id = data.id - multi_terminal_buff.size() + 1;
+                multi_terminal_msg.insert(std::make_pair(id, multi_terminal_buff));
+                multi_terminal_buff.clear();
+            }
         }
     }
     
@@ -97,9 +111,15 @@ void OpeningState::delegate()
 
         if (terminal_msg.size() != 0) {
             playMessages(OpeningMessageType::TERMINAL_MESSAGE);
-            return ;
         }
         
+        if (multi_terminal_msg.size() != 0) {
+            auto it = multi_terminal_msg.find(msg_index);
+            if (it == multi_terminal_msg.end()) {
+                return;
+            }
+            view->viewMultiMessages(it->second);
+        }
         Raciela::Router::getInstance()->replaceState(FieldState::create());
     });
     

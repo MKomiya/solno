@@ -49,6 +49,8 @@ void OpeningLayer::viewMessage(OpeningMessageType type, std::string msg_data)
         case OpeningMessageType::TERMINAL_MESSAGE:
             viewTerminalMessage(msg_data);
             break;
+        default:
+            throw "Invalid type";
     }
 }
 
@@ -61,6 +63,8 @@ void OpeningLayer::nextMessage(OpeningMessageType type)
         case OpeningMessageType::TERMINAL_MESSAGE:
             releaseTerminalMesage();
             break;
+        default:
+            throw "Invalid type";
     }
 }
 
@@ -82,4 +86,9 @@ void OpeningLayer::viewTerminalMessage(std::string msg)
 void OpeningLayer::releaseTerminalMesage()
 {
     terminal_msg_view->releaseMessage();
+}
+
+void OpeningLayer::viewMultiMessages(std::vector<std::string> msg_list)
+{
+    terminal_msg_view->viewMultiMessage(msg_list);
 }

@@ -13,8 +13,9 @@
 #include "json11.hpp"
 
 enum class MasterOpeningType {
-    NORMAL   = 1, // 通常画面に表示するメッセージ
-    TERMINAL = 2, // ターミナル画面に表示するメッセージ
+    NORMAL         = 1, // 通常画面に表示するメッセージ
+    TERMINAL       = 2, // ターミナル画面に表示するメッセージ
+    MULTI_TERMINAL = 3, // ターミナル画面に連続で表示するメッセージ
 };
 
 class MasterOpening
