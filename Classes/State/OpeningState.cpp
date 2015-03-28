@@ -118,7 +118,10 @@ void OpeningState::delegate()
             if (it == multi_terminal_msg.end()) {
                 return;
             }
+            msg_index += it->second.size();
             view->viewMultiMessages(it->second);
+            multi_terminal_msg.erase(it);
+            return ;
         }
         Raciela::Router::getInstance()->replaceState(FieldState::create());
     });

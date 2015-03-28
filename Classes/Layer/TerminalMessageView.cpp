@@ -63,7 +63,7 @@ void TerminalMessageView::viewMultiMessage(std::vector<std::string> msg_list)
     Raciela::Dispatcher::getInstance()->dispatch("update_terminal_msg_state", TerminalMessageViewState::PROGRESS);
     
     setVisible(true);
-    schedule(schedule_selector(TerminalMessageView::update), 0.03f);
+    schedule(schedule_selector(TerminalMessageView::updateMultiMessage), 0.03f);
 }
 
 void TerminalMessageView::update(float dt)
@@ -89,11 +89,23 @@ void TerminalMessageView::updateMultiMessage(float dt)
     auto output = multi_msg[msg_idx].substr(0, string_idx);
     msg_label->setString(output.c_str());
     if (string_idx == multi_msg[msg_idx].length()) {
-        msg_idx++;
+        unschedule(schedule_selector(TerminalMessageView::updateMultiMessage));
         if (msg_idx >= multi_msg.size()) {
+            msg_idx = 0;
             Raciela::Dispatcher::getInstance()->dispatch("update_terminal_msg_state", TerminalMessageViewState::WAIT);
-            unschedule(schedule_selector(TerminalMessageView::updateMultiMessage));
+            return ;
         }
+        
+        runAction(Sequence::create(
+                                   CallFunc::create([=] {
+                                       msg_idx++;
+                                       string_idx = 0;
+                                   }),
+                                   DelayTime::create(0.1f),
+                                   CallFunc::create([=] {
+                                       schedule(schedule_selector(TerminalMessageView::updateMultiMessage));
+                                   }),
+                                   NULL));
     }
 }
 
