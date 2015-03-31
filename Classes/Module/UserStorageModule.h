@@ -19,6 +19,7 @@ class UserStorageModule
 {
 public:
     static std::string NS_USER_ITEM;
+    static std::string NS_PLAYER_POSITION;
     
     static UserStorageModule* getInstance() {
         static dispatch_once_t token;
@@ -36,9 +37,11 @@ public:
 #pragma mark Read user data
     std::vector<UserItem> getAllUserItem();
     UserItem getOneUserItem(int id);
+    cocos2d::Point getPlayerPosition();
     
 #pragma mark Update user data
     void updateUserItem(int item_id, int num);
+    void updatePlayerPosition(cocos2d::Point pos);
     
 private:
     void writeJsonFile(std::string ns, std::string data);
@@ -47,6 +50,7 @@ private:
 
     static UserStorageModule* instance;
     std::vector<UserItem> user_item;
+    cocos2d::Point player_pos;
 };
 
 #endif /* defined(__solno__UserStorageModule__) */
