@@ -14,7 +14,8 @@
 #include <cocos2d.h>
 #include "json11.hpp"
 
-class UserItem;
+#include "Item.h"
+
 class UserStorageModule
 {
 public:

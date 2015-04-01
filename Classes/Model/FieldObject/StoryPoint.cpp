@@ -11,6 +11,7 @@
 #include "FieldLayer.h"
 #include "StoryState.h"
 #include "Router.h"
+#include "UserStorageModule.h"
 
 USING_NS_CC;
 
@@ -26,7 +27,8 @@ void StoryPoint::executeDecideAction()
 
     auto fade = FadeOut::create(0.3f);
     auto change_state = CallFunc::create([=]() {
-        // @todo: playerの座標情報を保存しておく
+        auto player_pos = state->getPlayerMapPosition();
+        UserStorageModule::getInstance()->updatePlayerPosition(player_pos);
         Raciela::Router::getInstance()->replaceState(StoryState::createByStoryId(story_id));
     });
     auto action = Sequence::create(fade, change_state, nullptr);
