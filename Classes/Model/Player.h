@@ -16,14 +16,16 @@
 class Player
 {
 public:
+    int map_id;
     int map_x, map_y;
     
-    Player(cocos2d::Point pos) :
-    map_x(pos.x),map_y(pos.y) {}
+    Player(int map_id, cocos2d::Point pos) :
+    map_id(map_id),map_x(pos.x),map_y(pos.y) {}
     
     json11::Json to_json() const
     {
         return json11::Json::object {
+            { "map_id", map_id },
             { "map_x", map_x },
             { "map_y", map_y }
         };

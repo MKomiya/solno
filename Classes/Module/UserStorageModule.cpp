@@ -79,11 +79,11 @@ void UserStorageModule::updateUserItem(int item_id, int num)
     flush();
 }
 
-void UserStorageModule::updatePlayerPosition(cocos2d::Point pos)
+void UserStorageModule::updatePlayerPosition(int map_id, cocos2d::Point pos)
 {
     player_pos = pos;
     
-    auto data = Player(player_pos);
+    auto data = Player(map_id, player_pos);
     writeJsonFile(NS_PLAYER_POSITION, data.to_json().dump());
 }
 

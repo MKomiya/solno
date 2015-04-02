@@ -42,7 +42,7 @@ public:
     
 #pragma mark Update user data
     void updateUserItem(int item_id, int num);
-    void updatePlayerPosition(cocos2d::Point pos);
+    void updatePlayerPosition(int map_id, cocos2d::Point pos);
     
 private:
     void writeJsonFile(std::string ns, std::string data);

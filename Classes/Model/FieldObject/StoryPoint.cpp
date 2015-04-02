@@ -28,7 +28,7 @@ void StoryPoint::executeDecideAction()
     auto fade = FadeOut::create(0.3f);
     auto change_state = CallFunc::create([=]() {
         auto player_pos = state->getPlayerMapPosition();
-        UserStorageModule::getInstance()->updatePlayerPosition(player_pos);
+        UserStorageModule::getInstance()->updatePlayerPosition(state->getMapId(), player_pos);
         Raciela::Router::getInstance()->replaceState(StoryState::createByStoryId(story_id));
     });
     auto action = Sequence::create(fade, change_state, nullptr);

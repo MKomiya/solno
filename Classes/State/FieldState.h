@@ -57,6 +57,7 @@ public:
     CC_SYNTHESIZE(MessageViewState, msg_view_state, MsgViewState);
     CC_SYNTHESIZE(PlayerViewState, player_view_state, PlayerViewState);
     CC_SYNTHESIZE(FieldViewState, field_view_state, FieldViewState);
+    CC_SYNTHESIZE(int, map_id, MapId);
     
 private:
     void decideAction();

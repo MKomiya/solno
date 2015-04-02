@@ -48,6 +48,7 @@ FieldState* FieldState::create()
     
     ret->init();
     ret->setMap(TMXTiledMap::create("tmx/01_scrap.tmx"));
+    ret->setMapId(1);
     ret->setPlayerMapPosition(Point(0, 0));
     ret->setPlayerDirection("down");
     ret->setFieldView(field);
