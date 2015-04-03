@@ -46,9 +46,12 @@ FieldState* FieldState::create()
     view_manager->addView(frame);
     view_manager->addView(controller);
     
+    auto map = TMXTiledMap::create("tmx/01_scrap.tmx");
+    auto map_id = map->getProperty("map_id").asInt();
+    
     ret->init();
-    ret->setMap(TMXTiledMap::create("tmx/01_scrap.tmx"));
-    ret->setMapId(1);
+    ret->setMap(map);
+    ret->setMapId(map_id);
     ret->setPlayerMapPosition(Point(0, 0));
     ret->setPlayerDirection("down");
     ret->setFieldView(field);
