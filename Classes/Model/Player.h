@@ -12,12 +12,14 @@
 #include <iostream>
 #include <cocos2d.h>
 #include "json11.hpp"
+#include "Direction.h"
 
 class Player
 {
 public:
     int map_id;
     int map_x, map_y;
+    Direction direction;
     
     Player(int map_id, cocos2d::Point pos) :
     map_id(map_id),map_x(pos.x),map_y(pos.y) {}
