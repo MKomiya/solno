@@ -165,5 +165,7 @@ std::unordered_map<int, std::string>* OpeningState::getMessageDataPtr(OpeningMes
             return &normal_msg;
         case OpeningMessageType::TERMINAL_MESSAGE:
             return &terminal_msg;
+        default:
+            throw "Invalid opening message type";
     }
 }
