@@ -39,6 +39,7 @@ private:
     std::unordered_map<int, std::string> normal_msg;
     std::unordered_map<int, std::string> terminal_msg;
     std::unordered_map<int, std::vector<std::string>> multi_terminal_msg;
+    int change_state_idx;
     
     void playMessages(OpeningMessageType type);
     std::unordered_map<int, std::string>* getMessageDataPtr(OpeningMessageType type);

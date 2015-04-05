@@ -66,6 +66,10 @@ bool OpeningState::init()
                 multi_terminal_buff.clear();
             }
         }
+        
+        if (data.type == MasterOpeningType::CHANGE_STATE) {
+            change_state_idx = data.id;
+        }
     }
     
     setMsgIndex(0);
@@ -83,6 +87,8 @@ void OpeningState::enter()
     auto view_manager = Raciela::ViewManager::getInstance();
     view_manager->addView(frame);
     view_manager->addView(view);
+    
+    dispatcher->dispatch("touched");
 }
 
 void OpeningState::update()
@@ -123,7 +129,10 @@ void OpeningState::delegate()
             multi_terminal_msg.erase(it);
             return ;
         }
-        Raciela::Router::getInstance()->replaceState(FieldState::create());
+
+        if (msg_index >= change_state_idx) {
+            Raciela::Router::getInstance()->replaceState(FieldState::create());
+        }
     });
     
     dispatcher->subscribe<void (OpeningMessageViewState)>("update_msg_state", [=](OpeningMessageViewState state) {

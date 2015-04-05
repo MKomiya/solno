@@ -16,6 +16,7 @@ enum class MasterOpeningType {
     NORMAL         = 1, // 通常画面に表示するメッセージ
     TERMINAL       = 2, // ターミナル画面に表示するメッセージ
     MULTI_TERMINAL = 3, // ターミナル画面に連続で表示するメッセージ
+    CHANGE_STATE   = 4, // オープニングから次のステートに切り替え
 };
 
 class MasterOpening
