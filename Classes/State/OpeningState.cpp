@@ -122,6 +122,7 @@ void OpeningState::delegate()
         if (multi_terminal_msg.size() != 0) {
             auto it = multi_terminal_msg.find(msg_index);
             if (it == multi_terminal_msg.end()) {
+                dispatcher->dispatch("touched");
                 return;
             }
             msg_index += it->second.size();
