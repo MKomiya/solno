@@ -108,7 +108,7 @@ void MakeMenuState::delegate()
                  item->getItemId() == make_item->getPrepareItemId3()) &&
                 (std::find(preparent_item_ids.begin(), preparent_item_ids.end(), item->getItemId()) == preparent_item_ids.end()))
             {
-                auto idx = item_list.getIndex(item);
+                auto idx = (int)item_list.getIndex(item);
                 indices.push_back(idx);
             }
         }
@@ -137,7 +137,7 @@ void MakeMenuState::updatePreparentItem(Item *item)
     view->setOpacityItemIconAll(64);
     
     preparent_item_ids.push_back(item->getItemId());
-    view->setPreparentItemTexture(preparent_item_ids.size(), item->getThumbnailTexture());
+    view->setPreparentItemTexture((int)preparent_item_ids.size(), item->getThumbnailTexture());
     
     make_item = item->getMakeItem();
     if (!make_item) {
@@ -151,7 +151,7 @@ void MakeMenuState::updatePreparentItem(Item *item)
              item->getItemId() == make_item->getPrepareItemId3()) &&
             (std::find(preparent_item_ids.begin(), preparent_item_ids.end(), item->getItemId()) == preparent_item_ids.end()))
         {
-            auto idx = item_list.getIndex(item);
+            auto idx = (int)item_list.getIndex(item);
             indices.push_back(idx);
         }
     }
