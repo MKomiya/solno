@@ -69,7 +69,7 @@ std::vector<int> MasterStorageModule::findPrepareItemIdsByItemId(int item_id)
             ret.push_back(master_item.item_id);
         }
     }
-    return ret;
+    return std::move(ret);
 }
 
 std::vector<MasterOpening> MasterStorageModule::getOpeningList()
