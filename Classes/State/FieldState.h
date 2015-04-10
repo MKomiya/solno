@@ -32,11 +32,13 @@ class Item;
 class FieldState : public Raciela::State {
 public:
     static FieldState* create();
+    void loadMapData();
     
-    virtual void created() override;
     virtual void enter() override;
     virtual void update() override;
     virtual void exit() override;
+    virtual void resume() override;
+    virtual void pause() override;
     virtual void delegate() override;
     
     void addExecuteItem(Item* item);
@@ -55,6 +57,7 @@ public:
     CC_SYNTHESIZE(MessageViewState, msg_view_state, MsgViewState);
     CC_SYNTHESIZE(PlayerViewState, player_view_state, PlayerViewState);
     CC_SYNTHESIZE(FieldViewState, field_view_state, FieldViewState);
+    CC_SYNTHESIZE(int, map_id, MapId);
     
 private:
     void decideAction();

@@ -8,50 +8,42 @@
 
 #include "FieldObject.h"
 #include "Direction.h"
-
 #include "MovableRock.h"
 #include "MessagePoint.h"
 #include "Tree.h"
+#include "StoryPoint.h"
+#include "FieldState.h"
+
+FieldObject::FieldObject(FieldState* state, int id, cocos2d::ValueMap data)
+{
+    auto size = state->getMap()->getLayer("meta")->getLayerSize();
+    float x   = data["x"].asFloat() / 16;
+    float y   = size.height - data["y"].asFloat() / 16 - 1;
+    auto pos  = cocos2d::Point(x, y);
+    auto type = (ObjectType)std::stoi(data["type"].asString());
+    
+    setId(id);
+    setPosition(pos);
+    setFieldState(state);
+    setObjectType(type);
+}
 
 #pragma mark create method
-FieldObject* FieldObject::create(FieldState* state, int id, cocos2d::Point pos, cocos2d::ValueMap data)
+FieldObject* FieldObject::create(FieldState* state, int id, cocos2d::ValueMap data)
 {
-    auto type_str = data["type"].asString();
+    auto type = (ObjectType)std::stoi(data["type"].asString());
     
-    if (type_str == "1") {
-        auto ret = new MovableRock();
-        ret->setObjectType(MOVABLE_ROCK);
-        ret->setId(id);
-        ret->setPosition(pos);
-        ret->setFieldState(state);
-        return ret;
-        
-    } else if (type_str == "2") {
-        auto ret = new MessagePoint();
-        ret->setObjectType(MESSAGE_POINT);
-        ret->setMessageData(data["msg_data"].asString());
-        ret->setDecideTrigger(data["decide_trigger"].asBool());
-        ret->setId(id);
-        ret->setPosition(pos);
-        ret->setFieldState(state);
-        return ret;
-        
-    } else if (type_str == "3") {
-        auto ret = new FieldObject();
-        ret->setObjectType(START_POINT);
-        ret->setId(id);
-        ret->setPosition(pos);
-        ret->setFieldState(state);
-        return ret;
-    
-    } else if (type_str == "4") {
-        auto ret = new Tree();
-        ret->setObjectType(TREE);
-        ret->setId(id);
-        ret->setPosition(pos);
-        ret->setFieldState(state);
-        return ret;
-        
+    switch (type) {
+        case MOVABLE_ROCK:
+            return new MovableRock(state, id, data);
+        case MESSAGE_POINT:
+            return new MessagePoint(state, id, data);
+        case START_POINT:
+            return new FieldObject(state, id, data);
+        case TREE:
+            return new Tree(state, id, data);
+        case STORY_POINT:
+            return new StoryPoint(state, id, data);
     }
     return nullptr;
 }

@@ -57,11 +57,13 @@
 		521A8E6519F0C34300D177D7 /* Default-736h@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 521A8E6319F0C34300D177D7 /* Default-736h@3x.png */; };
 		521A8EA919F11F5000D177D7 /* fonts in Resources */ = {isa = PBXBuildFile; fileRef = 521A8EA819F11F5000D177D7 /* fonts */; };
 		521A8EAA19F11F5000D177D7 /* fonts in Resources */ = {isa = PBXBuildFile; fileRef = 521A8EA819F11F5000D177D7 /* fonts */; };
+		6923CF5B1ACAB84A008D9F24 /* Player.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6923CF591ACAB84A008D9F24 /* Player.cpp */; };
 		697244CB1A7A44D600D0C3B6 /* MakeMenuState.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 697244C91A7A44D600D0C3B6 /* MakeMenuState.cpp */; };
 		697244CE1A7A45A600D0C3B6 /* MakeMenuLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 697244CC1A7A45A600D0C3B6 /* MakeMenuLayer.cpp */; };
 		BF171245129291EC00B8313A /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF170DB012928DE900B8313A /* OpenGLES.framework */; };
 		BF1712471292920000B8313A /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = BF170DB412928DE900B8313A /* libz.dylib */; };
 		BF1C47F01293687400B63C5D /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF1C47EA1293683800B63C5D /* QuartzCore.framework */; };
+		D002223D1ABD0F7B004E3240 /* StoryPoint.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D002223B1ABD0F7B004E3240 /* StoryPoint.cpp */; };
 		D004B8751A9E071C008CFCEC /* MakeMenuControllerLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D004B8731A9E071C008CFCEC /* MakeMenuControllerLayer.cpp */; };
 		D00907481A77C60B00AD6790 /* ModeSelectMenuState.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D00907461A77C60B00AD6790 /* ModeSelectMenuState.cpp */; };
 		D009074B1A77C6B400AD6790 /* ModeSelectMenuLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D00907491A77C6B400AD6790 /* ModeSelectMenuLayer.cpp */; };
@@ -91,6 +93,7 @@
 		D09C59361A98DF450085B483 /* State.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D09C59301A98DF450085B483 /* State.cpp */; };
 		D09C59371A98DF450085B483 /* View.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D09C59321A98DF450085B483 /* View.cpp */; };
 		D0A505441A6559A2004C2C4E /* json11.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D0A505421A6559A2004C2C4E /* json11.cpp */; };
+		D0AC43631ABF150400F43F90 /* ViewManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D0AC43611ABF150400F43F90 /* ViewManager.cpp */; };
 		D0B25F2A1A7CC1AA00D0D367 /* item in Resources */ = {isa = PBXBuildFile; fileRef = D0B25F291A7CC1AA00D0D367 /* item */; };
 		D0BD84191A6FE9F300980989 /* FieldObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D0BD84171A6FE9F300980989 /* FieldObject.cpp */; };
 		D0BD84251A6FF21000980989 /* MessagePoint.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D0BD84211A6FF21000980989 /* MessagePoint.cpp */; };
@@ -191,6 +194,8 @@
 		521A8E6219F0C34300D177D7 /* Default-667h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-667h@2x.png"; sourceTree = "<group>"; };
 		521A8E6319F0C34300D177D7 /* Default-736h@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-736h@3x.png"; sourceTree = "<group>"; };
 		521A8EA819F11F5000D177D7 /* fonts */ = {isa = PBXFileReference; lastKnownFileType = folder; path = fonts; sourceTree = "<group>"; };
+		6923CF591ACAB84A008D9F24 /* Player.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Player.cpp; path = Model/Player.cpp; sourceTree = "<group>"; };
+		6923CF5A1ACAB84A008D9F24 /* Player.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Player.h; path = Model/Player.h; sourceTree = "<group>"; };
 		697244C91A7A44D600D0C3B6 /* MakeMenuState.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = MakeMenuState.cpp; path = State/MakeMenuState.cpp; sourceTree = "<group>"; };
 		697244CA1A7A44D600D0C3B6 /* MakeMenuState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MakeMenuState.h; path = State/MakeMenuState.h; sourceTree = "<group>"; };
 		697244CC1A7A45A600D0C3B6 /* MakeMenuLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = MakeMenuLayer.cpp; path = Layer/MakeMenuLayer.cpp; sourceTree = "<group>"; };
@@ -198,6 +203,8 @@
 		BF170DB012928DE900B8313A /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		BF170DB412928DE900B8313A /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		BF1C47EA1293683800B63C5D /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		D002223B1ABD0F7B004E3240 /* StoryPoint.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = StoryPoint.cpp; path = Model/FieldObject/StoryPoint.cpp; sourceTree = "<group>"; };
+		D002223C1ABD0F7B004E3240 /* StoryPoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StoryPoint.h; path = Model/FieldObject/StoryPoint.h; sourceTree = "<group>"; };
 		D004B8731A9E071C008CFCEC /* MakeMenuControllerLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = MakeMenuControllerLayer.cpp; path = Layer/MakeMenuControllerLayer.cpp; sourceTree = "<group>"; };
 		D004B8741A9E071C008CFCEC /* MakeMenuControllerLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MakeMenuControllerLayer.h; path = Layer/MakeMenuControllerLayer.h; sourceTree = "<group>"; };
 		D00907461A77C60B00AD6790 /* ModeSelectMenuState.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ModeSelectMenuState.cpp; path = State/ModeSelectMenuState.cpp; sourceTree = "<group>"; };
@@ -252,6 +259,8 @@
 		D09C59331A98DF450085B483 /* View.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = View.h; path = Library/raciela/src/View.h; sourceTree = "<group>"; };
 		D0A505421A6559A2004C2C4E /* json11.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = json11.cpp; path = Library/json11.cpp; sourceTree = "<group>"; };
 		D0A505431A6559A2004C2C4E /* json11.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = json11.hpp; path = Library/json11.hpp; sourceTree = "<group>"; };
+		D0AC43611ABF150400F43F90 /* ViewManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ViewManager.cpp; path = Library/raciela/src/ViewManager.cpp; sourceTree = "<group>"; };
+		D0AC43621ABF150400F43F90 /* ViewManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ViewManager.h; path = Library/raciela/src/ViewManager.h; sourceTree = "<group>"; };
 		D0B25F291A7CC1AA00D0D367 /* item */ = {isa = PBXFileReference; lastKnownFileType = folder; path = item; sourceTree = "<group>"; };
 		D0BD84171A6FE9F300980989 /* FieldObject.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = FieldObject.cpp; path = Model/FieldObject.cpp; sourceTree = "<group>"; };
 		D0BD84181A6FE9F300980989 /* FieldObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FieldObject.h; path = Model/FieldObject.h; sourceTree = "<group>"; };
@@ -514,6 +523,8 @@
 				D0E15D051A783B0B00E2AB46 /* Item.cpp */,
 				D0E15D061A783B0B00E2AB46 /* Item.h */,
 				D01EDEAA1AAAE28300522A70 /* Opening.h */,
+				6923CF591ACAB84A008D9F24 /* Player.cpp */,
+				6923CF5A1ACAB84A008D9F24 /* Player.h */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -543,6 +554,8 @@
 				D09C59331A98DF450085B483 /* View.h */,
 				D0A505421A6559A2004C2C4E /* json11.cpp */,
 				D0A505431A6559A2004C2C4E /* json11.hpp */,
+				D0AC43611ABF150400F43F90 /* ViewManager.cpp */,
+				D0AC43621ABF150400F43F90 /* ViewManager.h */,
 			);
 			name = Library;
 			sourceTree = "<group>";
@@ -556,6 +569,8 @@
 				D0BD84241A6FF21000980989 /* MovableRock.h */,
 				D009AD411A9F65AC0075A5DB /* Tree.cpp */,
 				D009AD421A9F65AC0075A5DB /* Tree.h */,
+				D002223B1ABD0F7B004E3240 /* StoryPoint.cpp */,
+				D002223C1ABD0F7B004E3240 /* StoryPoint.h */,
 			);
 			name = FieldObject;
 			sourceTree = "<group>";
@@ -869,6 +884,7 @@
 				D0BD84191A6FE9F300980989 /* FieldObject.cpp in Sources */,
 				D0FF46DD1A6242EB005EBDE7 /* MenuDecideItem.cpp in Sources */,
 				D083A2A71A4DAB59009A9099 /* FieldLayer.cpp in Sources */,
+				D0AC43631ABF150400F43F90 /* ViewManager.cpp in Sources */,
 				503AE10017EB989F00D1A890 /* AppController.mm in Sources */,
 				D004B8751A9E071C008CFCEC /* MakeMenuControllerLayer.cpp in Sources */,
 				D00907481A77C60B00AD6790 /* ModeSelectMenuState.cpp in Sources */,
@@ -877,6 +893,7 @@
 				697244CB1A7A44D600D0C3B6 /* MakeMenuState.cpp in Sources */,
 				D009074B1A77C6B400AD6790 /* ModeSelectMenuLayer.cpp in Sources */,
 				D0CDF0A71A5AB331009E5E98 /* PlayerView.cpp in Sources */,
+				6923CF5B1ACAB84A008D9F24 /* Player.cpp in Sources */,
 				D0DCF5331A85AAAB003FE946 /* ObjectOperateItem.cpp in Sources */,
 				503AE10217EB989F00D1A890 /* RootViewController.mm in Sources */,
 				503AE10117EB989F00D1A890 /* main.m in Sources */,
@@ -886,6 +903,7 @@
 				D09C59361A98DF450085B483 /* State.cpp in Sources */,
 				D07D33AB1A7E024000061831 /* MasterStorageModule.cpp in Sources */,
 				D01EDEAE1AAAE7A100522A70 /* MaterialItem.cpp in Sources */,
+				D002223D1ABD0F7B004E3240 /* StoryPoint.cpp in Sources */,
 				D04876161A697B2B0097D6BB /* StoryState.cpp in Sources */,
 				D0C983E21A6E64DA00761742 /* Template.cpp in Sources */,
 				D00D9A401AA18C090023A491 /* OpeningLayer.cpp in Sources */,

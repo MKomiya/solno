@@ -13,6 +13,11 @@
 
 USING_NS_CC;
 
+Tree::Tree(FieldState* state, int id, cocos2d::ValueMap data) :
+    FieldObject(state, id, data)
+{
+}
+
 void Tree::executeDecideAction()
 {
     auto view       = state->getFieldView();

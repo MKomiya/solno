@@ -17,6 +17,7 @@
 #include "UserStorageModule.h"
 #include "Dispatcher.h"
 #include "Router.h"
+#include "ViewManager.h"
 
 #include "FieldLayer.h"
 #include "ControllerLayer.h"
@@ -40,13 +41,17 @@ FieldState* FieldState::create()
     auto field      = FieldLayer::create();
     auto frame      = ControllerLayer::create();
     auto controller = FieldControllerLayer::create();
-    auto router     = Raciela::Router::getInstance();
-    router->addView(field);
-    router->addView(frame);
-    router->addView(controller);
+    auto view_manager = Raciela::ViewManager::getInstance();
+    view_manager->addView(field);
+    view_manager->addView(frame);
+    view_manager->addView(controller);
+    
+    auto map = TMXTiledMap::create("tmx/01_scrap.tmx");
+    auto map_id = map->getProperty("map_id").asInt();
     
     ret->init();
-    ret->setMap(TMXTiledMap::create("tmx/01_scrap.tmx"));
+    ret->setMap(map);
+    ret->setMapId(map_id);
     ret->setPlayerMapPosition(Point(0, 0));
     ret->setPlayerDirection("down");
     ret->setFieldView(field);
@@ -61,26 +66,19 @@ FieldState* FieldState::create()
     UserStorageModule::getInstance()->init();
     
     ret->autorelease();
-    ret->created();
+    ret->loadMapData();
     return ret;
 }
 
-void FieldState::created()
+void FieldState::loadMapData()
 {
-    // map size取得のためにcollider layerで代用する
-    auto obj_layer = map->getLayer("meta");
-    auto size      = obj_layer->getLayerSize();
     auto obj_group = map->getObjectGroup("Event");
     
     int id = 100;
     for (auto object : obj_group->getObjects()) {
         auto object_data = object.asValueMap();
         
-        float x  = object_data["x"].asFloat() / 16;
-        float y  = size.height - object_data["y"].asFloat() / 16 - 1;
-        auto pos = Point(x, y);
-        
-        auto ret = FieldObject::create(this, id, pos, object_data);
+        auto ret = FieldObject::create(this, id, object_data);
         objects.push_back(ret);
         ++id;
         
@@ -96,7 +94,6 @@ void FieldState::created()
 void FieldState::enter()
 {
     delegate();
-    
     if (controller) {
         controller->setVisible(true);
     }
@@ -114,8 +111,31 @@ void FieldState::update()
 
 void FieldState::exit()
 {
+    Raciela::State::exit();
+    Raciela::ViewManager::getInstance()->removeView(view);
+}
+
+void FieldState::resume()
+{
+    dispatcher->dispose_transition("use_item");
+
+    delegate();
+    if (controller) {
+        controller->setVisible(true);
+    }
+    view->changePlayerAnimation(player_direction);
+}
+
+void FieldState::pause()
+{
+    Raciela::State::pause();
+    
     view->stopPlayerAnimation();
     controller->setVisible(false);
+
+    dispatcher->subscribe_transition<void (Item*)>("use_item", [=](Item* item) {
+        addExecuteItem(item);
+    });
 }
 
 void FieldState::addExecuteItem(Item* item)
@@ -138,8 +158,7 @@ void FieldState::delegate()
     });
     
     dispatcher->subscribe<void ()>("release_menu", [=]() {
-        auto router = Raciela::Router::getInstance();
-        router->pushState(ModeSelectMenuState::create());
+         Raciela::Router::getInstance()->pushState(ModeSelectMenuState::create());
     });
     
     dispatcher->subscribe<void (MessageViewState)>("update_msg_state", [=](MessageViewState state) {

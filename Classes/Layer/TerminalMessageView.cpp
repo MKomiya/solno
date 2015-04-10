@@ -55,6 +55,17 @@ void TerminalMessageView::viewMessage(std::string msg)
     schedule(schedule_selector(TerminalMessageView::update), 0.03f);
 }
 
+void TerminalMessageView::viewMultiMessage(std::vector<std::string> msg_list)
+{
+    setStringIdx(0);
+    setMultiMsg(msg_list);
+    
+    Raciela::Dispatcher::getInstance()->dispatch("update_terminal_msg_state", TerminalMessageViewState::PROGRESS);
+    
+    setVisible(true);
+    schedule(schedule_selector(TerminalMessageView::updateMultiMessage), 0.03f);
+}
+
 void TerminalMessageView::update(float dt)
 {
     string_idx += 3;
@@ -67,6 +78,34 @@ void TerminalMessageView::update(float dt)
         dispatcher->dispatch("update_terminal_msg_state", TerminalMessageViewState::WAIT);
         
         unschedule(schedule_selector(TerminalMessageView::update));
+    }
+}
+
+void TerminalMessageView::updateMultiMessage(float dt)
+{
+    string_idx += 3;
+    string_idx = string_idx >= multi_msg[msg_idx].length() ? multi_msg[msg_idx].length() : string_idx;
+    
+    auto output = multi_msg[msg_idx].substr(0, string_idx);
+    msg_label->setString(output.c_str());
+    if (string_idx == multi_msg[msg_idx].length()) {
+        unschedule(schedule_selector(TerminalMessageView::updateMultiMessage));
+        if (msg_idx >= multi_msg.size()) {
+            msg_idx = 0;
+            Raciela::Dispatcher::getInstance()->dispatch("update_terminal_msg_state", TerminalMessageViewState::WAIT);
+            return ;
+        }
+        
+        runAction(Sequence::create(
+                                   CallFunc::create([=] {
+                                       msg_idx++;
+                                       string_idx = 0;
+                                   }),
+                                   DelayTime::create(0.1f),
+                                   CallFunc::create([=] {
+                                       schedule(schedule_selector(TerminalMessageView::updateMultiMessage));
+                                   }),
+                                   NULL));
     }
 }
 

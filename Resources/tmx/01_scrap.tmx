@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" width="36" height="36" tilewidth="16" tileheight="16">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="36" height="36" tilewidth="16" tileheight="16" nextobjectid="7">
+ <properties>
+  <property name="map_id" value="1"/>
+ </properties>
  <tileset firstgid="1" name="map" tilewidth="16" tileheight="16">
   <image source="map.png" width="48" height="80"/>
  </tileset>
@@ -21,15 +24,20 @@
    eJztk1EKACEIBb2C97/sfgXysGiXVvuYgbAieAOpGQAAAAAAAHTj3QKC2z1OHmqnk0sd+yonzc98xrnTKa5Kp5gx89L3f/tU5Lwl89m9O81sprJ8/d+sx067rfp4x71qFlcZmcsXpwejbQQf
   </data>
  </layer>
- <objectgroup name="Event" width="36" height="36">
-  <object name="start" type="3" gid="13" x="64" y="496"/>
-  <object name="movable_rock" type="1" gid="13" x="176" y="512"/>
-  <object name="message" type="2" gid="13" x="208" y="496">
+ <objectgroup name="Event">
+  <object id="1" name="start" type="3" gid="13" x="64" y="496"/>
+  <object id="2" name="movable_rock" type="1" gid="13" x="176" y="512"/>
+  <object id="3" name="message" type="2" gid="13" x="208" y="496">
    <properties>
     <property name="decide_trigger" value="true"/>
     <property name="msg_data" value="[&quot;スクラップオキバ&quot;]"/>
    </properties>
   </object>
-  <object name="tree" type="4" gid="10" x="112" y="512"/>
+  <object id="4" name="tree" type="4" gid="10" x="112" y="512"/>
+  <object id="5" name="01_02" type="5" gid="13" x="176" y="560">
+   <properties>
+    <property name="story_id" value="01_02"/>
+   </properties>
+  </object>
  </objectgroup>
 </map>

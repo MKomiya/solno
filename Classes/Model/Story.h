@@ -31,10 +31,10 @@ class Story : public cocos2d::Ref
 {
 public:
     static Story* createByJson(json11::Json json);
-    static Story* create(int type, std::vector<std::string> msg_data);
+    static Story* create(int type, std::string msg_data);
 
     CC_SYNTHESIZE(int, type, Type);
-    CC_SYNTHESIZE(std::vector<std::string>, msg_data, MsgData);
+    CC_SYNTHESIZE(std::string, msg_data, MsgData);
 };
 
 #endif /* defined(__solno__Story__) */

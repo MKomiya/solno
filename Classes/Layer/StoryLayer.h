@@ -11,20 +11,20 @@
 
 #include <stdio.h>
 #include <cocos2d.h>
+#include "View.h"
 
-#include "MessageView.h"
-
-class StoryLayer : public cocos2d::Layer
+class OpeningMessageView;
+class StoryLayer : public Raciela::View
 {
 public:
     virtual bool init();
     CREATE_FUNC(StoryLayer);
     
-    void viewMessages(std::vector<std::string> msg_data);
+    void viewMessage(std::string msg_data);
     void releaseMessages();
     
 private:
-    MessageView* msg_view;
+    OpeningMessageView* msg_view;
 };
 
 #endif /* defined(__solno__StoryLayer__) */

@@ -10,9 +10,11 @@
 
 #include "UserStorageModule.h"
 #include "Item.h"
+#include "Player.h"
 
 int UserItem::index = 1;
 std::string UserStorageModule::NS_USER_ITEM = "item";
+std::string UserStorageModule::NS_PLAYER_POSITION = "player";
 UserStorageModule* UserStorageModule::instance;
 
 USING_NS_CC;
@@ -50,6 +52,11 @@ UserItem UserStorageModule::getOneUserItem(int item_id)
     return UserItemNull;
 }
 
+cocos2d::Point UserStorageModule::getPlayerPosition()
+{
+    return player_pos;
+}
+
 #pragma mark Update user data
 void UserStorageModule::updateUserItem(int item_id, int num)
 {
@@ -70,6 +77,14 @@ void UserStorageModule::updateUserItem(int item_id, int num)
     
     user_item.push_back(UserItem(UserItem::index++, item_id, num));
     flush();
+}
+
+void UserStorageModule::updatePlayerPosition(int map_id, cocos2d::Point pos)
+{
+    player_pos = pos;
+    
+    auto data = Player(map_id, player_pos);
+    writeJsonFile(NS_PLAYER_POSITION, data.to_json().dump());
 }
 
 void UserStorageModule::writeJsonFile(std::string ns, std::string data)

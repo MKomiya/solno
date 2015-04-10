@@ -30,10 +30,17 @@ void MasterStorageModule::init()
         master_opening_list.push_back(master_opening);
     }
     
-    for (auto data : master[MASTER_NS_STORY].array_items()) {
-        auto master_story = MasterStory(data.object_items());
-        master_story_list.push_back(master_story);
+    auto master_story = loadJsonData("data/master_story.json");
+    for (auto data : master_story.object_items()) {
+        
+        std::vector<MasterStory> story_list;
+        for (auto s : data.second.array_items()) {
+            auto story = MasterStory(s.object_items());
+            story_list.push_back(story);
+        }
+        master_story_map.insert(std::make_pair(data.first, story_list));
     }
+    CCLOG("init finish");
 }
 
 #pragma mark Read master data
@@ -62,7 +69,7 @@ std::vector<int> MasterStorageModule::findPrepareItemIdsByItemId(int item_id)
             ret.push_back(master_item.item_id);
         }
     }
-    return ret;
+    return std::move(ret);
 }
 
 std::vector<MasterOpening> MasterStorageModule::getOpeningList()
@@ -73,6 +80,16 @@ std::vector<MasterOpening> MasterStorageModule::getOpeningList()
 std::vector<MasterStory> MasterStorageModule::getStoryList()
 {
     return master_story_list;
+}
+
+std::vector<MasterStory> MasterStorageModule::getStoryDataById(std::string story_id)
+{
+    auto ret = master_story_map.find(story_id);
+    if (ret == master_story_map.end()) {
+        std::string msg = "Invalid story id: " + story_id;
+        throw msg.c_str();
+    }
+    return ret->second;
 }
 
 #pragma mark Private funcs

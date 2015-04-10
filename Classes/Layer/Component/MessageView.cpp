@@ -88,7 +88,7 @@ void MessageView::viewMessages(std::vector<std::string> msg_data)
 void MessageView::updateMessage(float dt)
 {
     string_idx += 3;
-    string_idx = string_idx >= now_msg.length() ? now_msg.length() : string_idx;
+    string_idx = string_idx >= (int)now_msg.length() ? (int)now_msg.length() : string_idx;
     
     auto output = now_msg.substr(0, string_idx);
     msg_label->setString(output.c_str());

@@ -21,13 +21,14 @@ class StoryLayer;
 class StoryState : public Raciela::State
 {
 public:
-    static StoryState* create();
+    static StoryState* createByStoryId(std::string story_id);
     
     virtual void enter() override;
     virtual void update() override;
     virtual void exit() override;
     virtual void delegate() override;
     
+    CC_SYNTHESIZE(std::string, story_id, StoryId);
     CC_SYNTHESIZE(MessageViewState, msg_view_state, MsgViewState);
     CC_SYNTHESIZE(int, msg_idx, MsgIdx);
     CC_SYNTHESIZE(Story*, running_story, RunningStory);

@@ -10,6 +10,7 @@
 
 #include "UserStorageModule.h"
 #include "Dispatcher.h"
+#include "ViewManager.h"
 
 #include "MakeMenuLayer.h"
 #include "MakeMenuControllerLayer.h"
@@ -27,12 +28,13 @@ MakeMenuState* MakeMenuState::create()
     ret->setCurrentItemIndex(0);
     ret->setMakeItem(nullptr);
     ret->autorelease();
-    ret->created();
     return ret;
 }
 
 void MakeMenuState::enter()
 {
+    Raciela::State::enter();
+    
     // repositoryからitem list読込
     auto user_item_list = UserStorageModule::getInstance()->getAllUserItem();
     for (auto user_item : user_item_list) {
@@ -42,13 +44,12 @@ void MakeMenuState::enter()
     
     // ItemMenuLayerへset
     view = MakeMenuLayer::create(item_list);
-    auto router = Raciela::Router::getInstance();
-    router->addView(view);
-
     controller = MakeMenuControllerLayer::create();
-    router->addView(controller);
-    
     controller->setVisible(false);
+    
+    auto view_manager = Raciela::ViewManager::getInstance();
+    view_manager->addView(view);
+    view_manager->addView(controller);
 }
 
 void MakeMenuState::update()
@@ -57,12 +58,12 @@ void MakeMenuState::update()
 
 void MakeMenuState::exit()
 {
-    dispatcher->removeAllListener();
+    Raciela::State::exit();
     
     preparent_item_ids.clear();
     item_list.clear();
-    Raciela::Router::getInstance()->removeView(controller);
-    Raciela::Router::getInstance()->removeView(view);
+    Raciela::ViewManager::getInstance()->removeView(controller);
+    Raciela::ViewManager::getInstance()->removeView(view);
 }
 
 void MakeMenuState::delegate()
@@ -107,7 +108,7 @@ void MakeMenuState::delegate()
                  item->getItemId() == make_item->getPrepareItemId3()) &&
                 (std::find(preparent_item_ids.begin(), preparent_item_ids.end(), item->getItemId()) == preparent_item_ids.end()))
             {
-                auto idx = item_list.getIndex(item);
+                auto idx = (int)item_list.getIndex(item);
                 indices.push_back(idx);
             }
         }
@@ -136,7 +137,7 @@ void MakeMenuState::updatePreparentItem(Item *item)
     view->setOpacityItemIconAll(64);
     
     preparent_item_ids.push_back(item->getItemId());
-    view->setPreparentItemTexture(preparent_item_ids.size(), item->getThumbnailTexture());
+    view->setPreparentItemTexture((int)preparent_item_ids.size(), item->getThumbnailTexture());
     
     make_item = item->getMakeItem();
     if (!make_item) {
@@ -150,7 +151,7 @@ void MakeMenuState::updatePreparentItem(Item *item)
              item->getItemId() == make_item->getPrepareItemId3()) &&
             (std::find(preparent_item_ids.begin(), preparent_item_ids.end(), item->getItemId()) == preparent_item_ids.end()))
         {
-            auto idx = item_list.getIndex(item);
+            auto idx = (int)item_list.getIndex(item);
             indices.push_back(idx);
         }
     }

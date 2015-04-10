@@ -48,6 +48,7 @@ public:
     
 #pragma mark Read story master
     std::vector<MasterStory> getStoryList();
+    std::vector<MasterStory> getStoryDataById(std::string story_id);
 
 #pragma mark Private funcs
 private:
@@ -57,6 +58,7 @@ private:
     std::vector<MasterItem> master_item_list;
     std::vector<MasterOpening> master_opening_list;
     std::vector<MasterStory> master_story_list;
+    std::unordered_map<std::string, std::vector<MasterStory>> master_story_map;
 };
 
 #endif /* defined(__solno__MasterStorageModule__) */

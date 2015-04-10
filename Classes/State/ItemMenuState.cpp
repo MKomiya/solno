@@ -12,6 +12,7 @@
 #include "MasterStorageModule.h"
 #include "UserStorageModule.h"
 #include "Dispatcher.h"
+#include "ViewManager.h"
 
 #include "ItemMenuLayer.h"
 #include "Router.h"
@@ -27,12 +28,13 @@ ItemMenuState* ItemMenuState::create()
     ret->init();
     ret->setCurrentItemIndex(0);
     ret->autorelease();
-    ret->created();
     return ret;
 }
 
 void ItemMenuState::enter()
 {
+    Raciela::State::enter();
+    
     // repositoryからitem list読込
     auto user_item_list = UserStorageModule::getInstance()->getAllUserItem();
     for (auto user_item : user_item_list) {
@@ -42,8 +44,8 @@ void ItemMenuState::enter()
     
     // ItemMenuLayerへset
     view = ItemMenuLayer::create(item_list);
-    auto router = Raciela::Router::getInstance();
-    router->addView(view);
+    auto view_manager = Raciela::ViewManager::getInstance();
+    view_manager->addView(view);
 }
 
 void ItemMenuState::update()
@@ -52,8 +54,10 @@ void ItemMenuState::update()
 
 void ItemMenuState::exit()
 {
+    Raciela::State::exit();
+    
     item_list.clear();
-    Raciela::Router::getInstance()->removeView(view);
+    Raciela::ViewManager::getInstance()->removeView(view);
 }
 
 void ItemMenuState::delegate()
@@ -70,8 +74,7 @@ void ItemMenuState::delegate()
             return ;
         }
         
-        dispatcher->dispatch("use_item", item);
-        auto router = Raciela::Router::getInstance();
-        router->popState();
+        dispatcher->dispatch_transition("use_item", item);
+        Raciela::Router::getInstance()->popState();
     });
 }
