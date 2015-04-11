@@ -89,7 +89,7 @@ std::vector<MasterStory> MasterStorageModule::getStoryDataById(std::string story
         std::string msg = "Invalid story id: " + story_id;
         throw msg.c_str();
     }
-    return ret->second;
+    return std::move(ret->second);
 }
 
 #pragma mark Private funcs
