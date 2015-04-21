@@ -58,6 +58,10 @@ void Item::useItem(FieldState *state)
 #pragma mark getter method
 Texture2D* Item::getPrepareItemTexture(int prepare_index)
 {
+    CCASSERT(prepare_index == 1 ||
+             prepare_index == 2 ||
+             prepare_index == 3, "Invalid prepare item index");
+    
     int prepare_item_id;
     if (prepare_index == 1) {
         prepare_item_id = prepare_item_id_1;
@@ -65,8 +69,6 @@ Texture2D* Item::getPrepareItemTexture(int prepare_index)
         prepare_item_id = prepare_item_id_2;
     } else if (prepare_index == 3) {
         prepare_item_id = prepare_item_id_3;
-    } else {
-        throw "Invalid prepare item index";
     }
     
     if (prepare_item_id == 0) {

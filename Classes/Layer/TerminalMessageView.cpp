@@ -86,15 +86,17 @@ void TerminalMessageView::updateMultiMessage(float dt)
     string_idx += 3;
     string_idx = string_idx >= multi_msg[msg_idx].length() ? multi_msg[msg_idx].length() : string_idx;
     
+    if (msg_idx >= multi_msg.size()) {
+        msg_idx = 0;
+        unschedule(schedule_selector(TerminalMessageView::updateMultiMessage));
+        Raciela::Dispatcher::getInstance()->dispatch("update_terminal_msg_state", TerminalMessageViewState::WAIT);
+        return ;
+    }
+    
     auto output = multi_msg[msg_idx].substr(0, string_idx);
     msg_label->setString(output.c_str());
     if (string_idx == multi_msg[msg_idx].length()) {
         unschedule(schedule_selector(TerminalMessageView::updateMultiMessage));
-        if (msg_idx >= multi_msg.size()) {
-            msg_idx = 0;
-            Raciela::Dispatcher::getInstance()->dispatch("update_terminal_msg_state", TerminalMessageViewState::WAIT);
-            return ;
-        }
         
         runAction(Sequence::create(
                                    CallFunc::create([=] {
