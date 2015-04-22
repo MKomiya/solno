@@ -176,6 +176,10 @@ void MakeMenuLayer::visibleItemIcons(std::vector<int> indices)
 
 void MakeMenuLayer::setPreparentItemTexture(int preparent_index, cocos2d::Texture2D *texture)
 {
+    CCASSERT(preparent_index == 1 ||
+             preparent_index == 2 ||
+             preparent_index == 3, "Invalid preparent item index");
+    
     if (preparent_index == 1) {
         auto sprite = (Sprite*)prepare_item_1->getNormalImage();
         sprite->setTexture(texture);
@@ -188,21 +192,21 @@ void MakeMenuLayer::setPreparentItemTexture(int preparent_index, cocos2d::Textur
         auto sprite = (Sprite*)prepare_item_3->getNormalImage();
         sprite->setTexture(texture);
         prepare_item_3->setVisible(true);
-    } else {
-        throw "Invalid preparent index";
     }
 }
 
 void MakeMenuLayer::invisiblePreparentItem(int preparent_index)
 {
+    CCASSERT(preparent_index == 1 ||
+             preparent_index == 2 ||
+             preparent_index == 3, "Invalid preparent item index");
+    
     if (preparent_index == 1) {
         prepare_item_1->setVisible(false);
     } else if (preparent_index == 2) {
         prepare_item_2->setVisible(false);
     } else if (preparent_index == 3) {
         prepare_item_3->setVisible(false);
-    } else {
-        throw "Invalid preparent index";
     }
 }
 
