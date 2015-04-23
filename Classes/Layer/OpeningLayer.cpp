@@ -42,6 +42,9 @@ bool OpeningLayer::init()
 
 void OpeningLayer::viewMessage(OpeningMessageType type, std::string msg_data)
 {
+    CCASSERT(type == OpeningMessageType::NORMAL_MESSAGE ||
+             type == OpeningMessageType::TERMINAL_MESSAGE, "Invalid type");
+    
     switch (type) {
         case OpeningMessageType::NORMAL_MESSAGE:
             viewMainMessages(msg_data);
@@ -49,13 +52,15 @@ void OpeningLayer::viewMessage(OpeningMessageType type, std::string msg_data)
         case OpeningMessageType::TERMINAL_MESSAGE:
             viewTerminalMessage(msg_data);
             break;
-        default:
-            throw "Invalid type";
+        default: ;
     }
 }
 
 void OpeningLayer::nextMessage(OpeningMessageType type)
 {
+    CCASSERT(type == OpeningMessageType::NORMAL_MESSAGE ||
+             type == OpeningMessageType::TERMINAL_MESSAGE, "Invalid type");
+    
     switch (type) {
         case OpeningMessageType::NORMAL_MESSAGE:
             nextMainMessages();
@@ -63,8 +68,7 @@ void OpeningLayer::nextMessage(OpeningMessageType type)
         case OpeningMessageType::TERMINAL_MESSAGE:
             releaseTerminalMesage();
             break;
-        default:
-            throw "Invalid type";
+        default: ;
     }
 }
 
