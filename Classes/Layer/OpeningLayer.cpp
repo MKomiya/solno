@@ -52,7 +52,6 @@ void OpeningLayer::viewMessage(OpeningMessageType type, std::string msg_data)
         case OpeningMessageType::TERMINAL_MESSAGE:
             viewTerminalMessage(msg_data);
             break;
-        default: ;
     }
 }
 
@@ -68,7 +67,6 @@ void OpeningLayer::nextMessage(OpeningMessageType type)
         case OpeningMessageType::TERMINAL_MESSAGE:
             releaseTerminalMesage();
             break;
-        default: ;
     }
 }
 
